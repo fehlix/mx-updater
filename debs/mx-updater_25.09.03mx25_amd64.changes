@@ -1,0 +1,56 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 11 Sep 2025 06:53:54 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 25.09.03mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (25.09.03mx25) mx; urgency=medium
+ .
+   * restore autostart desktop entry
+   * fix to enable automatic upgrade logs due to restrictive read permissions
+   * add pycache stanzas to postinst and prerm
+   * add licence.html file to install
+Checksums-Sha1:
+ c6bd5d66e2fe3a78af71f4f063eb5061abe1d594 1624 mx-updater_25.09.03mx25.dsc
+ f9ed25d62bebacd7a69760002d79b0a75a9c60ba 156328 mx-updater_25.09.03mx25.tar.xz
+ 3ce8dc594814189456e4d8774cfa43d9f5622bfa 352648 mx-updater_25.09.03mx25_all.deb
+ bb0b11d3305fc4c4dacbcad87a69ed06ba410b23 7483 mx-updater_25.09.03mx25_amd64.buildinfo
+Checksums-Sha256:
+ 9df77999e1d8fcb84d0fb1647b740e16eb189a754a588df3131cbeb062968b6c 1624 mx-updater_25.09.03mx25.dsc
+ 260bb56c6e3dc9e8e130d4069234789f2f85b3692902cefe0d56310ae1112d38 156328 mx-updater_25.09.03mx25.tar.xz
+ fe4d11b14474042634e10276f709beecdcd925ab838722e433fdde64035218d9 352648 mx-updater_25.09.03mx25_all.deb
+ a411e65f77268f7e926d1caad7b5161402cd9af8a4facefd7430da315e1e580f 7483 mx-updater_25.09.03mx25_amd64.buildinfo
+Files:
+ 7ba09fcf2bb1c0123b7d05bef190b37c 1624 admin optional mx-updater_25.09.03mx25.dsc
+ 0288bfcc2319e648b42ad2652c78bd77 156328 admin optional mx-updater_25.09.03mx25.tar.xz
+ 173eb5d339666a5f5e95467dc01f8f36 352648 admin optional mx-updater_25.09.03mx25_all.deb
+ 664368b22a673dd513bba7542e20765e 7483 admin optional mx-updater_25.09.03mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjCwLsTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6S/fD/9VJDWZNUAPlSF1ORCCejsDShkUQlHB
+OCNyq35+tOiOCZ3EVQrlK+nql2er0z2RL8Gxy/FLsnWkW6vKqkXwZMxx1LNDNP69
+79FCEBTBcsmzpX7iwrDstbyHBDxUfw9pXuNKTf1seyIlxodvXfJsJ4hqqpYy2qdm
+rD78D4Nj3E+qlPLYxOBmIs00Td0zKzJSa+I3etjh6MZHjnLyRp7FLoKhXsHuy29S
+KoR5beYFz12mmxfiwaY+pz86kdB/6lmvSTgGwzSOKQDzSHysMqdqlZ560bavwmpd
+ywoPQjfGO/IOlZzB2I+Hlo/Jlsrxyv+WO2R7xs6Y91f2LC7OSs/PtXdF04UlftU1
+JKK4gt+MnT8bmdTX32cAJadWTG1ayjuYIGjvUB8brGT1OucnrFha0++sYyv3msZL
+wkqa/kyoB9Tgm0OdWA7kUZNyZWMwJ9wUr/c2LDzFbxRZlZvRQRfHnC5xpu/zhDrl
+3c65uGxF85fYyiCi5+g1XKHb94HzkMJcJ9ptNftyxwdaLl4/tqX6eaXG186HWxm/
+OqN8J0K2LgHhGoLLaqQh50Yyny2axyI94BvMj8+hdLB8y1T1RMSev3NYNnWf2naZ
+2+uqboqatzIwcCyjJeVpnFycSe6htU7d3hBK5Az5vlB8S6k1q08u5dcrBBycYCao
+jWR549gBjZoxtw==
+=eD7j
+-----END PGP SIGNATURE-----

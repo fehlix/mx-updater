@@ -2,7 +2,7 @@
 Hash: SHA512
 
 Format: 1.8
-Date: Thu, 11 Sep 2025 06:53:54 -0400
+Date: Sun, 14 Sep 2025 12:39:18 -0400
 Source: mx-updater
 Binary: mx-updater
 Architecture: source all
@@ -16,41 +16,44 @@ Description:
 Changes:
  mx-updater (25.09.03mx25) mx; urgency=medium
  .
+   * adjust tray icon visibilty checks
    * restore autostart desktop entry
-   * fix to enable automatic upgrade logs due to restrictive read permissions
+   * keep systray icon hidden with autostart if set in preferences
+   * fix enable automatic upgrade logs due to restrictive read permissions
    * add pycache stanzas to postinst and prerm
    * add licence.html file to install
+   * add translations for strings
 Checksums-Sha1:
- c6bd5d66e2fe3a78af71f4f063eb5061abe1d594 1624 mx-updater_25.09.03mx25.dsc
- f9ed25d62bebacd7a69760002d79b0a75a9c60ba 156328 mx-updater_25.09.03mx25.tar.xz
- 3ce8dc594814189456e4d8774cfa43d9f5622bfa 352648 mx-updater_25.09.03mx25_all.deb
- bb0b11d3305fc4c4dacbcad87a69ed06ba410b23 7483 mx-updater_25.09.03mx25_amd64.buildinfo
+ 3310a835e10366e190751a268ce509285d0bd4bb 1624 mx-updater_25.09.03mx25.dsc
+ fc886de4cb8ace968c7107fb1793f97a23ca4059 157580 mx-updater_25.09.03mx25.tar.xz
+ 1ecb6936645a0aaa26dd370ce72d730589bc9092 353996 mx-updater_25.09.03mx25_all.deb
+ 456085fe3a730f0a9ba108f180fad19e5b06e5aa 7483 mx-updater_25.09.03mx25_amd64.buildinfo
 Checksums-Sha256:
- 9df77999e1d8fcb84d0fb1647b740e16eb189a754a588df3131cbeb062968b6c 1624 mx-updater_25.09.03mx25.dsc
- 260bb56c6e3dc9e8e130d4069234789f2f85b3692902cefe0d56310ae1112d38 156328 mx-updater_25.09.03mx25.tar.xz
- fe4d11b14474042634e10276f709beecdcd925ab838722e433fdde64035218d9 352648 mx-updater_25.09.03mx25_all.deb
- a411e65f77268f7e926d1caad7b5161402cd9af8a4facefd7430da315e1e580f 7483 mx-updater_25.09.03mx25_amd64.buildinfo
+ 2ac7faf6744034020bbe3b5ac0a26abefddb5b777e726f10323b13eec2b26ce3 1624 mx-updater_25.09.03mx25.dsc
+ 0a2ebf60409cfed6536ebd6a36267a8a2a435652cae5b821f4761ac9a2882c38 157580 mx-updater_25.09.03mx25.tar.xz
+ 3db210fdf31d970636af2ca143c4669d9b2d802702a15ebc72be3999b1c79ccc 353996 mx-updater_25.09.03mx25_all.deb
+ e52da26ad342c38097af73fc4345d6078a0066c801918d511bed79a85f9e281a 7483 mx-updater_25.09.03mx25_amd64.buildinfo
 Files:
- 7ba09fcf2bb1c0123b7d05bef190b37c 1624 admin optional mx-updater_25.09.03mx25.dsc
- 0288bfcc2319e648b42ad2652c78bd77 156328 admin optional mx-updater_25.09.03mx25.tar.xz
- 173eb5d339666a5f5e95467dc01f8f36 352648 admin optional mx-updater_25.09.03mx25_all.deb
- 664368b22a673dd513bba7542e20765e 7483 admin optional mx-updater_25.09.03mx25_amd64.buildinfo
+ 25887f1d083da0dc39e829f39ac69e9a 1624 admin optional mx-updater_25.09.03mx25.dsc
+ 1322be3118b849df29041e25fcd129a2 157580 admin optional mx-updater_25.09.03mx25.tar.xz
+ 0e15a3e33a686c4a1bbf925db356e29e 353996 admin optional mx-updater_25.09.03mx25_all.deb
+ b62dcd1a7ae39c3142ee0154fb69cebd 7483 admin optional mx-updater_25.09.03mx25_amd64.buildinfo
 Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjCwLsTHGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6S/fD/9VJDWZNUAPlSF1ORCCejsDShkUQlHB
-OCNyq35+tOiOCZ3EVQrlK+nql2er0z2RL8Gxy/FLsnWkW6vKqkXwZMxx1LNDNP69
-79FCEBTBcsmzpX7iwrDstbyHBDxUfw9pXuNKTf1seyIlxodvXfJsJ4hqqpYy2qdm
-rD78D4Nj3E+qlPLYxOBmIs00Td0zKzJSa+I3etjh6MZHjnLyRp7FLoKhXsHuy29S
-KoR5beYFz12mmxfiwaY+pz86kdB/6lmvSTgGwzSOKQDzSHysMqdqlZ560bavwmpd
-ywoPQjfGO/IOlZzB2I+Hlo/Jlsrxyv+WO2R7xs6Y91f2LC7OSs/PtXdF04UlftU1
-JKK4gt+MnT8bmdTX32cAJadWTG1ayjuYIGjvUB8brGT1OucnrFha0++sYyv3msZL
-wkqa/kyoB9Tgm0OdWA7kUZNyZWMwJ9wUr/c2LDzFbxRZlZvRQRfHnC5xpu/zhDrl
-3c65uGxF85fYyiCi5+g1XKHb94HzkMJcJ9ptNftyxwdaLl4/tqX6eaXG186HWxm/
-OqN8J0K2LgHhGoLLaqQh50Yyny2axyI94BvMj8+hdLB8y1T1RMSev3NYNnWf2naZ
-2+uqboqatzIwcCyjJeVpnFycSe6htU7d3hBK5Az5vlB8S6k1q08u5dcrBBycYCao
-jWR549gBjZoxtw==
-=eD7j
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjG9EMTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6baGEACMWxuhyR9nXUuEuH16IVoL75H5GCWd
+7OgZi9K2WE+ECEuJG7HLhM+IT5Fngtc+ulRdwdbF+adbChzZM+VPHz7TL7ggisjJ
+3yF2rAKayhg/5v6yVTjFIAH2EWIb5+Z3M3Ydt49QTEcMoqrhgZnLlBgI1E+L7z8u
+ZUtFBXgawhy+YZ0fYqLgAoUtpc4DqOjmuQlAFYDEZOmiSosexH7WTIq9aYQDTucy
+v8KW+jJz7N3UqWngsTbTNjBQHgaqIVR+Qi8+Xk8HC1+jydYLpGNRewLvzc/CByDR
+KQ2NlPGHZmE1Uwysgaw68XzlG+FkYybWDPyKmHuNNl0U7NTJR7XYJUskTP5/bCB1
+QOVLJ6nU4llZPtkn5PXEsk8JdGbATvE1tKyIQ+ibQY0vZ0VTpnrCdin7H9y/DYjJ
+QzYvoX/l7C8HrPWp+ZGvzvfFWbzuvVKQ0dFGYZC7Wz1NoAXsg9eB5gtSxY/nDRtS
+JwlEJ5dtHI7ZR5/SL1EQGCZleuno7QC0dea35SgHXOLDlGP0m/wkJ3T4/QG8iqTa
+SDtHUWaV/1x3FAZ3gbbx5nWosiqE3vK9d6XQBoEeZnUTI3epNMFBlqtPtKoitdNJ
+Q19xg8L9iPV0q0/c/zq+kEvv8askZoIiL0dDcyYYjQ07g40CUJ4xDx7fGx8FVCio
+YuSKJ1fPDJzK6g==
+=6mxZ
 -----END PGP SIGNATURE-----

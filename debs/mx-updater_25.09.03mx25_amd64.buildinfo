@@ -7,17 +7,17 @@ Binary: mx-updater
 Architecture: all source
 Version: 25.09.03mx25
 Checksums-Md5:
- 7ba09fcf2bb1c0123b7d05bef190b37c 1624 mx-updater_25.09.03mx25.dsc
- 173eb5d339666a5f5e95467dc01f8f36 352648 mx-updater_25.09.03mx25_all.deb
+ 25887f1d083da0dc39e829f39ac69e9a 1624 mx-updater_25.09.03mx25.dsc
+ 0e15a3e33a686c4a1bbf925db356e29e 353996 mx-updater_25.09.03mx25_all.deb
 Checksums-Sha1:
- c6bd5d66e2fe3a78af71f4f063eb5061abe1d594 1624 mx-updater_25.09.03mx25.dsc
- 3ce8dc594814189456e4d8774cfa43d9f5622bfa 352648 mx-updater_25.09.03mx25_all.deb
+ 3310a835e10366e190751a268ce509285d0bd4bb 1624 mx-updater_25.09.03mx25.dsc
+ 1ecb6936645a0aaa26dd370ce72d730589bc9092 353996 mx-updater_25.09.03mx25_all.deb
 Checksums-Sha256:
- 9df77999e1d8fcb84d0fb1647b740e16eb189a754a588df3131cbeb062968b6c 1624 mx-updater_25.09.03mx25.dsc
- fe4d11b14474042634e10276f709beecdcd925ab838722e433fdde64035218d9 352648 mx-updater_25.09.03mx25_all.deb
+ 2ac7faf6744034020bbe3b5ac0a26abefddb5b777e726f10323b13eec2b26ce3 1624 mx-updater_25.09.03mx25.dsc
+ 3db210fdf31d970636af2ca143c4669d9b2d802702a15ebc72be3999b1c79ccc 353996 mx-updater_25.09.03mx25_all.deb
 Build-Origin: Debian
 Build-Architecture: amd64
-Build-Date: Thu, 11 Sep 2025 14:29:39 +0200
+Build-Date: Sun, 14 Sep 2025 18:58:34 +0200
 Build-Tainted-By:
  usr-local-has-programs
 Installed-Build-Depends:
@@ -173,7 +173,7 @@ Installed-Build-Depends:
  libssl3t64 (= 3.5.1-1),
  libstdc++-14-dev (= 14.2.0-19),
  libstdc++6 (= 14.2.0-19),
- libsystemd0 (= 257.8-1~deb13u1),
+ libsystemd0 (= 257.8-1~deb13u2),
  libthai-data (= 0.1.29-2),
  libthai0 (= 0.1.29-2+b1),
  libtiff6 (= 4.7.0-3),
@@ -182,7 +182,7 @@ Installed-Build-Depends:
  libtsan2 (= 14.2.0-19),
  libubsan1 (= 14.2.0-19),
  libuchardet0 (= 0.0.8-1+b2),
- libudev1 (= 257.8-1~deb13u1),
+ libudev1 (= 257.8-1~deb13u2),
  libunistring5 (= 1.3-2),
  libuuid1 (= 2.41-5),
  libwebp7 (= 1.5.0-0.1),
@@ -227,22 +227,22 @@ Installed-Build-Depends:
 Environment:
  DEB_BUILD_OPTIONS="parallel=4"
  LANG="en_US.UTF-8"
- SOURCE_DATE_EPOCH="1757588034"
+ SOURCE_DATE_EPOCH="1757867958"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjCwLsTHGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6eZgD/9a9S+o+t2VNFPJNhlIylyjh04FpXoJ
-34b0s90zNrtDIeAAxoU1Ntb0bNTPpigMZIEwARuy29BnnNL2Ne36TPbxMWaICmD6
-MXjSnD1gqDbHu5n4SXH4POMFX2qB8nq4aO0NhWKlBIjy0CSG1LM+7E/+DDoo8PAt
-rybDdA0BNyZsOK1Rp0bPwAJPV71cCAlNuwH4MFutLgoRFtICGDmg5Qm1WDKps0un
-yLug1HeTa3v+TuPYshjQWEQhZsVhhsOlCfqSHRcXUgd3rKVE759+e9AEBoimt7ve
-PmbFhudrv3GwqaW+r5su5ADMqslsCBLvKWJ8zdPkMU961RyWHptMmQyki/RK0tW+
-uDWva3ZhrOMy4i08NbHvSG7x4p1whReqnMj3mwr46t/qhBLLNwV+/30daQRhvJyR
-bRxd9rnuSkIqAzG1C5aPXikKsbN+5zkoF/ixfsLkdFLCTTYVGh758i91ulbK70IC
-JQdskSSeQP8RURIeJw+H2G0e4KhwTAzqrJYc4N+6UkVUNL65yBOd0Zj20khUApDS
-y6zHictizHGGEThrLJbsGGtvftsL4ck0/3B4gSO7PY+3VWkc/ZoWv9y3Q1898tla
-YOigUkDyxPWHGaavBgsa7f3/stYnixEAPvPTY+UMH1nxVfCgIsRUnZ8t+R5aJeEo
-ARPeCkrZWWQrUg==
-=LUOK
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjG9EMTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6Tb8EACmdMTSf1uo9XDMW4R0QJYxyxU+0RtT
+cEeeyhPJfHC22dAqVJ6AbNf9ycKvK1NXZlt7ue2wa4lnZ9B3Pqxg33rHwfZiN0jD
+Eo1btcxVuj0eO3Wo01Yr5nJDSxZpOFL7cHsvjXcoWY9OUFD6S4qgYvHQvr9rEAh8
+S+tzOpgbJhV/LI68h/WkugCrQMr+Je7Jk6rIU2rp8aPD7AXlEcC7NXxhhjZ2r32N
+09uPQjJBs+M9dQfh6Y+u5lz5qPG1TZWaqf7dgpsBGMFJ72FCSvmxBM2Pk5J+Wqe4
+RVO3ihQ4BJAT4saHiNHXJG0+JfH/7kKPQ9uB5tXSuvLd71nRxghjx6xNim+ez2eo
+Lfg8rhgk/IiHMN5ZRyKKMQcH9y+8LuykQTJ6APTMDc0sRwfpY433l1CrHMsbD04E
+vOxahPgDWJt91cC9oYzC04Kz1lbH8J+JGdyAi5mw91cv003BjkY9n4EuzP8oej4l
+nOIt0W4MdK/jiUQP756c+K8CV8H2kIeQsDrQExSDYL0M5U9eITrvv5t0Cfy6JuRz
+kxggg620kyv1rWdFtP52oJEpJ+xLaNzNr6s5g6+SblP+mougT5YE3cQLq/Gc+kd5
+kASyVu9S8Ne9q1Xw4iuVHly/EBA7YEfFEueRUHHN4A4i72im2RTN3zcWI1+GnKR4
+O4d4Ehrn7kt67Q==
+=ktyI
 -----END PGP SIGNATURE-----

@@ -1,0 +1,57 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 26 Sep 2025 15:50:06 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 25.09.05mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (25.09.05mx25) mx; urgency=medium
+ .
+   * add static 51unattended-upgrades-default-origins
+   * change update-Origin-Pattern to generate only non-Debian and non-MX origins by default
+   * fix assume-yes for automatically confirm package upgrades
+   * disable 'hide until updates available' option for Kde/Plasma
+   * disable right-click 'hide until updates available' for Fluxbox
+Checksums-Sha1:
+ ce901bac5b9cd67f5b201e190ecacab537493c16 1624 mx-updater_25.09.05mx25.dsc
+ 592c05bf8871b7c5edf05e497b0a53b57f663c77 159416 mx-updater_25.09.05mx25.tar.xz
+ 0f295c34f32552911c599a585aa9b847639af274 355460 mx-updater_25.09.05mx25_all.deb
+ 747606a38c093f08ca77b30e6d6b7558c9bafacd 7483 mx-updater_25.09.05mx25_amd64.buildinfo
+Checksums-Sha256:
+ da593df1f0af519c80a2a1df55c430393ea6c974eb2cfbded04f2e5a0d1f5d16 1624 mx-updater_25.09.05mx25.dsc
+ a583fe8c84880b7df26685817337c9e3b05404293d725f1726a0716fd761308d 159416 mx-updater_25.09.05mx25.tar.xz
+ 7053f562feb34e3b45058b55adafd96000cd4097feeb1b1334e799f672e60e65 355460 mx-updater_25.09.05mx25_all.deb
+ 008590a5760d75d6466651d4a6a18daa64b9074c0fe3e5c747ad256abd976b8b 7483 mx-updater_25.09.05mx25_amd64.buildinfo
+Files:
+ f91d7c9aa31f993626980f9f1e1e7063 1624 admin optional mx-updater_25.09.05mx25.dsc
+ 55bd5c1fbc47990f2a6dbe44de5ae259 159416 admin optional mx-updater_25.09.05mx25.tar.xz
+ 7af6c7faea1a0eae67bb901fe54573ee 355460 admin optional mx-updater_25.09.05mx25_all.deb
+ 898300498166112c6745ae9f67e8c0c7 7483 admin optional mx-updater_25.09.05mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjYPmwTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6dEKD/4wEbIVfdCE9dSZPEaWe22Q0SxCzyKn
+ANYx2CwI0SlQUNNd1H3ZvIVaB4qfz0vMy97q6lWeA5RUfS24qv8ztOxzMD35kqzV
+1CFN+Oti+b6XHc1OCIXNODgLylebclC7f4uAMiwY+1weFsnaKMK9qhFXpvtd0O92
+4cSbcmBnoc3UGJHODUQPrOm/1jtGxP0I8BOfcTqiphg5a9OA3e70Vbv5zDcn22fA
+y6kTkZqRnbRDuSsk5cefLJ0sdwLsWiB4P3U2auV+gx0E3e/0nunHVW/TnqlDdxZq
+0pDY5WI9Vc2fuToUd0pG8Wqp7dM6NY+SVoPgSk0YZCx8zGtkbWfwUy+0MMtABFBv
+38yUG4mBwT61Ey9FbGcmkaP4O+xQaqjUXpYdDrI6+iPRndJF2Tt/drlhrsfzAmdX
+AbUGj1ar/avze2ezH0BhPXPfZDgqfSbZtp4fz6pZ5YdRwjjV+SIwudHpiPKmOfFu
+TNltPiWXxuWGpb4u7uHM8016giD3UjT5Ce3Koh5uDblPMqqTqEqe2GuRC6//MS1p
+WWyMoJ4lDbSgFwKh9DopPrNB2aHgNb4d+eTHV45fwHZY6LkkMg+mK3RayrK/S7SJ
+qtX3H7MmkYPzoWONMHj9+6N6YLAhJz8Zpi53yYZP+J/NeVme/90jF+873EhSde29
+r4Yjuc0K580C+w==
+=abpf
+-----END PGP SIGNATURE-----

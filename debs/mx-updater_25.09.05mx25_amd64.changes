@@ -1,0 +1,60 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sun, 28 Sep 2025 14:23:39 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 25.09.05mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (25.09.05mx25) mx; urgency=medium
+ .
+   * Adjust 'update-Origin-Pattern' to generate only non-standard repo origins
+   * Add static '51unattended-upgrades-default-origins' for standard repos
+   * Correct 'assume-yes' for automatic confirmation of package upgrades
+   * Disable the 'Hide until updates are available' option for Kde/Plasma
+   * Disable the right-click option 'Hide until updates are available' for Fluxbox
+   * Fix the issue with left-clicking on 'No updates available'
+   * Middle-clicking remains enabled even if Synaptic or Package Installer are not installed
+   * Add 'daily_lock' from apt to the list of known locks in 'updater-system-monitor'
+Checksums-Sha1:
+ fc23ff35f5bc7c465425f321325be8daea80cb4e 1624 mx-updater_25.09.05mx25.dsc
+ 856f0e95534704c221ee5d73cf3759ca92046ed6 159520 mx-updater_25.09.05mx25.tar.xz
+ 27e258e5da8846bca1d660b8ae5e906793060e5d 355644 mx-updater_25.09.05mx25_all.deb
+ 35c4b5d82806fe559485e537f1c1d8e2f72a0bc7 7483 mx-updater_25.09.05mx25_amd64.buildinfo
+Checksums-Sha256:
+ b45c97a8223d611f5c050f625d91273e14bf661b7857a55d587f427429805762 1624 mx-updater_25.09.05mx25.dsc
+ 93469db2f53d1fde2ee0a6d935672dada56f4743130e4cbe6fb437eacbc484b5 159520 mx-updater_25.09.05mx25.tar.xz
+ 820aae57d8ef0cfd3e58ac54f8c0124e3e648d4e8389bdd8fd3c6aecbc739bd1 355644 mx-updater_25.09.05mx25_all.deb
+ c4e9b7baac7e83b670f3f05085b3e44759cd55d2f66d6c5eaeeec9a60f741da8 7483 mx-updater_25.09.05mx25_amd64.buildinfo
+Files:
+ 33a9d163243edaedc677854b25923ee5 1624 admin optional mx-updater_25.09.05mx25.dsc
+ f0e44ad99d558920ec73869897dfddd3 159520 admin optional mx-updater_25.09.05mx25.tar.xz
+ d1743ef2c9affc4512de7d6ed246efc6 355644 admin optional mx-updater_25.09.05mx25_all.deb
+ 6f4d1d937a0900c0356dd2a58a3a6faa 7483 admin optional mx-updater_25.09.05mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjZf54THGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6drFEACHh3DK6KK2adTjS5W8qvp1a9iIx1Np
+QbVcIPaQTh82gZUHMdIrOQBLE7gFKY++tiqTrL1fHub8sYlIBkyxuITwdF9QF2HW
+ZMVz9am8w0IE/DJb5tyXbVOrrM7Z4OZuIYFd/X/YSY+aJVU8r9qGuck7TAAGBDmR
+kWxWZg0xg0RXWfRQvlGnO50f0OTd09ZE4ZLIkOALJEGoKNOBtz4ryeGFrv+TW7iG
+v54D5VdguOXqETGKRCRF/FsC5y1usRcfdukKxC25CapTCP3VEoAqzNtExsggSx6X
+fJel9SDuPpIcuizXdF5yWMBbGwH3AhID+Xh4tv0dYGok7uiWMq7HGtIbjVL54N6t
+OmoQ9EjuH2WoypsInqck1aMVwWeGJbQOZISEJzJwvGVqUPLID01xPP884pCtOmWa
+jbmglFW6xKuKnnDkHUoxvGY/tkaB5hOKcdc41mbOkdVywsj4MciA0gGPenocGzqf
+1orShWDZnSfrDwVmfaU2ISoeCD46YtnpjukuYfQHB5i1I+FhtCsJselxvGbgJuP/
+qd70lirMbDiMBHOx2vZaZUYZ4TJ3Hh/qeLcsBWi0TrZ/uSAz+bRbangrc20wp/+H
+6bgLpa/b6bolYk1vQpRX/omyYWCcyBdq6vlFOLAB7vLGzHSg/e8HS4bWVmQ76Ku1
+NUej+F60ap9gFA==
+=bNLS
+-----END PGP SIGNATURE-----

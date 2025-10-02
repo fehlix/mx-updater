@@ -7,17 +7,17 @@ Binary: mx-updater
 Architecture: all source
 Version: 25.09.06mx25
 Checksums-Md5:
- d1a15660c59eeddac50145ed5d59893e 1624 mx-updater_25.09.06mx25.dsc
- 56e59d7760f80cd9ec2706c50d530c15 355896 mx-updater_25.09.06mx25_all.deb
+ ecbb0b66b381366561d10c985e59b626 1624 mx-updater_25.09.06mx25.dsc
+ 53fc61bb96e3a42a9ec637be5b320889 355928 mx-updater_25.09.06mx25_all.deb
 Checksums-Sha1:
- 53e6f0731bfd83831702ebf2bae007045b158d19 1624 mx-updater_25.09.06mx25.dsc
- 3cb750ca7e9011319f5dbeae2d2e9185675d9c46 355896 mx-updater_25.09.06mx25_all.deb
+ c94eef0711ef1d732ae56ae7c2123b59acc4b5d9 1624 mx-updater_25.09.06mx25.dsc
+ b6c56c4e31f9ed693cbcfe6a683a24a44687b3cb 355928 mx-updater_25.09.06mx25_all.deb
 Checksums-Sha256:
- b63ce8e3b1f8620076ed17b4f6669bbe56ab50df9b7468852128dab935f3963d 1624 mx-updater_25.09.06mx25.dsc
- 562a654f928061f89336f0c14d956b3b261355115b3f03819ed3b2059e44990b 355896 mx-updater_25.09.06mx25_all.deb
+ fa37da750f123c432f961f59e5adea19f7ac5563f6be9b53a263b8dddd2c1da0 1624 mx-updater_25.09.06mx25.dsc
+ 743bd3fc234425c3a076881fc3d56213c4fbd6d480b7bd66389854ffc8a866f0 355928 mx-updater_25.09.06mx25_all.deb
 Build-Origin: Debian
 Build-Architecture: amd64
-Build-Date: Thu, 02 Oct 2025 23:03:14 +0200
+Build-Date: Thu, 02 Oct 2025 23:31:00 +0200
 Build-Tainted-By:
  usr-local-has-programs
 Installed-Build-Depends:
@@ -227,22 +227,22 @@ Installed-Build-Depends:
 Environment:
  DEB_BUILD_OPTIONS="parallel=4"
  LANG="de_DE.UTF-8"
- SOURCE_DATE_EPOCH="1759437218"
+ SOURCE_DATE_EPOCH="1759440284"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje6J0THGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6TrGEACKWB8a7eje5YcXOk2cOQ7M+EDWPpe5
-RFahufoeqf/AHsDamNnCMke3AVfNwIDE5LcvtPRR4OIEnkFFsXvNQHBNEZC3vuVe
-ItNr3q+RwXTZGuXRx7VyrL6tk513HkM1IevUFji3siJseFMY4haFksMFvX9SarmY
-CawUSXAW4vMCZtGKHZ+8bvqoFs6bkJNG5enXgLlMsdeenASXOskkQPZWuoRbU5kL
-izAjyxbqOUcR94lV0lKAaCd78obD4bpjbIfUDe1EWrlupW4H0l/Lnc6zourn/U/d
-KpOwsWf1zUQ9M9MeUbWtJs0UizKXIAAogcimcJliugUWfNFwfw5znxCQe/ucVdgr
-eZR/IgGs3TKcXQjIGYYYZirQFUHgJ+eiRDSqcK3JlFRFR+axllaIplM/YqgjwrMT
-zpeoOaAFKUBJy5ftIF9XbX2NbuXKVCX77ILJ1oSpOzkb6YVq/L1rpG6x2VOg8ScB
-ijRQ1qptrBx/qnuY9EPwHSHAWJDZoy3pZ3RQnFDPleEpIT6UitZ1he427nZOeBaO
-1fA/b31MNLdymai0z76TqzMTZpgusWr2iHWmcVTwRdVzLF6pS/xzsdxWifEFnHvc
-I0GyyAv5RQsB4RF9saLykfmhCcbxJ2WhSUt6Jep59qXQoXWfRt7bwZ53Ivc2Q686
-fJ52DJuijXFj1g==
-=Nqf2
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje7xQTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6XtXEACCOqvlQl2erY3Sbb8PpBmoSVILDgF1
+kTbIQR6hcAndjDZt3tMiEYYNoRIYHsYeKjqjeLCJdZlcaR1CawckJjuUaJJJG4CS
+sIEPRWoG2P2ydEnyBpgNJue6kvWMBhtZ2B3Cuv6+fox1KnPZh1xoXU0Yl6tTqCdd
+X3/vM5V7+yYCiwi/DMiiVZnfhWskW2bN0S64QYOd+wFgMWYK2WbuZ6s1yC2O1RIW
+0pGGobA0BveNHXOBJumaNhyuhzZ6wS67VhgIGXSWfGYJvBZUgMdR0bCJSXhrQ7OQ
+q2iHREiMLzSQMEg1W9FRtUgyh7XEAt5vBIoeFxy8zoX41roA/wCxrr9zzz0GfniZ
+ioaCr20adLxUly1rIc/lj/ljRfDkBV6pbDvhLHBZs8HjNUYKrivWCXc28/viKYhr
+y+acjByvGdq5n83qJ77n3u/GQHg9EFPiQRRWoOVUR4U3cslEZdJ8Rcm3sJnlJ69m
+DYcGOiYTdALZV2W2AEvCvG5ioqup0TdRIM9dv6SQb6D9XxYjG6V+C9XAAutPI254
+leHyWDCLZuvqU+CfGoaZdt1PHmizYZb+pSRzVeAI47c+SnZ4PhqdV1lbcMOOddXj
+ZGzIz4pKiKL4DZ7Q/wCN0XY3QPvLZyNUzv9m1ukBGfAoH6J5j8bN6SOXHHnBOAK2
+OTJoF1NdMuuHSg==
+=H7Ng
 -----END PGP SIGNATURE-----

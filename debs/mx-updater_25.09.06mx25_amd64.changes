@@ -2,7 +2,7 @@
 Hash: SHA512
 
 Format: 1.8
-Date: Thu, 02 Oct 2025 16:33:38 -0400
+Date: Thu, 02 Oct 2025 17:24:44 -0400
 Source: mx-updater
 Binary: mx-updater
 Architecture: source all
@@ -18,38 +18,38 @@ Changes:
  .
    * Add origin 'site=' to origin pattern. Thanks kmathern.
    * Use locale domain 'mx-updater' instead of 'apt-notifier'
-   * Add Unattended-Upgrade::Package-Blacklist
+   * Add Unattended-Upgrade::Package-Blacklist. Thanks kmathern.
 Checksums-Sha1:
- 53e6f0731bfd83831702ebf2bae007045b158d19 1624 mx-updater_25.09.06mx25.dsc
- ad9f3b90611f040d437d2b18cd79c4c7e18b372f 159776 mx-updater_25.09.06mx25.tar.xz
- 3cb750ca7e9011319f5dbeae2d2e9185675d9c46 355896 mx-updater_25.09.06mx25_all.deb
- fbe478d4f22df86f73e36f14fd2ef1eca8a87d23 7483 mx-updater_25.09.06mx25_amd64.buildinfo
+ c94eef0711ef1d732ae56ae7c2123b59acc4b5d9 1624 mx-updater_25.09.06mx25.dsc
+ d1987b8d0d3fcfac52bd6dc0bbc2e75f8298877e 159788 mx-updater_25.09.06mx25.tar.xz
+ b6c56c4e31f9ed693cbcfe6a683a24a44687b3cb 355928 mx-updater_25.09.06mx25_all.deb
+ 835427bff5a5bb2e3d59e7fb629f68a24b21ae28 7483 mx-updater_25.09.06mx25_amd64.buildinfo
 Checksums-Sha256:
- b63ce8e3b1f8620076ed17b4f6669bbe56ab50df9b7468852128dab935f3963d 1624 mx-updater_25.09.06mx25.dsc
- ac153ef99e49923242035e5a9348ebcdf3dd5159c285350fbe53af107f36b7aa 159776 mx-updater_25.09.06mx25.tar.xz
- 562a654f928061f89336f0c14d956b3b261355115b3f03819ed3b2059e44990b 355896 mx-updater_25.09.06mx25_all.deb
- 0d3288ded065d7050db2d7408fa4d49176296fb94809efa6ac7d596f2de4bc90 7483 mx-updater_25.09.06mx25_amd64.buildinfo
+ fa37da750f123c432f961f59e5adea19f7ac5563f6be9b53a263b8dddd2c1da0 1624 mx-updater_25.09.06mx25.dsc
+ 5fa2910a2511457b736dcc1c7bb64af82b05335963e49c18d14e5ada6a91a2e4 159788 mx-updater_25.09.06mx25.tar.xz
+ 743bd3fc234425c3a076881fc3d56213c4fbd6d480b7bd66389854ffc8a866f0 355928 mx-updater_25.09.06mx25_all.deb
+ 91ec26f621dcddd3671b7458231877ed20675224416bd33173778f879314b57b 7483 mx-updater_25.09.06mx25_amd64.buildinfo
 Files:
- d1a15660c59eeddac50145ed5d59893e 1624 admin optional mx-updater_25.09.06mx25.dsc
- 5ee83399b2e420a50a099d32113c2ab2 159776 admin optional mx-updater_25.09.06mx25.tar.xz
- 56e59d7760f80cd9ec2706c50d530c15 355896 admin optional mx-updater_25.09.06mx25_all.deb
- 4162c222bca826dfb807afed150268a7 7483 admin optional mx-updater_25.09.06mx25_amd64.buildinfo
+ ecbb0b66b381366561d10c985e59b626 1624 admin optional mx-updater_25.09.06mx25.dsc
+ a9fca2cf54ec897aa8d4d3412a7aea70 159788 admin optional mx-updater_25.09.06mx25.tar.xz
+ 53fc61bb96e3a42a9ec637be5b320889 355928 admin optional mx-updater_25.09.06mx25_all.deb
+ de8718dde375675fbfdf82fd2be58146 7483 admin optional mx-updater_25.09.06mx25_amd64.buildinfo
 Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje6J4THGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6SfKD/9AZeABsolLcsRazmZKJVEpnYqXbMTp
-66mgI94BIULavDcYP2brHvTj2947/+wHiiITMlrgEwja2gfaM8dhudp/vPcNFyrz
-S/FJlw0QT9JHr5pFGg2yqIfmBTHtS8kTROmC0/Z4ZhcZdjaDrOgFPxci6ftNB/98
-xyA5jVflLi8lFszidGKJ71o5biB9Fiw9i6heEoE/nUinLnK++MzcLQ+2M+yDOkoB
-Gw6xAHMys7xx7GY8KMOqLOX4NtnIFmtuQB8zjtL5ljKFvIyr3O2Jhhl0jaJdtM1/
-+ZsBZiSWrFboSszubxeRy8M6itmbdwkzKurVpFtqYg41fp2sm55Dse9bTTO8W7fN
-NjVRodG7eBehINf2Opa0sRa69R6S8yYQy69UaD/a8GIPtLRQlkV9Lgloy92AF0wf
-gvuo2T+h9fCiA+RcZEIjOJbRqAt2UTtt9Cxgp+LKBtodTyIHJsrD65WpayjBI0i+
-sSRwWn5n2lyozJ5jYOnxpC5+BrASHarjNIQn+Z5reCHXS920V3ARBy3J13ZZEm+P
-AwhoY+A1LuGat0YINj6r/A/SE2PONyhL1zl6B9ToRMtZQaCXuAT7FjCmf8oSHouo
-1l2veFa+kA5nBLZ80folC806fO1KBs7bMDcUboVAQgTs+sWTuW3Hf/nE0Vhg1RCC
-UAIe0VvUJCJJiA==
-=uwKN
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje7xUTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6WobD/9/j3F0J88cWdYOR5jBwC+cyQtmLGGe
+JlnLCWRfxNSuGIOs2CSWilcidZzI7n6NceRtug6AA+/dzDqc/+NsinDksKM1OiWe
+TeLpxMQovjZYsKw/WjpciLQ8sYNyqRYYb1CGzZi8EFFSx/7QNWjdVe2KxR4njm5+
+VMcVVjBwfREAILm9Z0LVCVtmBdF2xZWt6DdEk5a7s/kIJgGrYuAb6Om/DeerxJuZ
+igd/oNKmv2gIkrbzBjSBYAa6xGMUJOlakFUnokOkp0mrbvo0iiLx5lTXrCfBAtBa
+4eCItpparU+kjkMVNZ1MH2OKCVI2IHjbYNoCiGNkXKK30DLaebLh4SXKCMtT1zH2
+tEL/9rOenRsuUvsfVEiAF0sY1cRCBg4NHwk/B9npapEBTisBHa/Us8yMEB0CWdr3
+lLs6BRcoQYyMvVfK4iIWewluiOYfg9zIPq3oppAXf673Jx1pJMmgja0joLsXumat
+TMwSMsIXmaqZVO/DLqnAOvHWsbxF2lqriWv0y307IQan6h+S+ZdGrK+bZBVIKwas
+oKS3CUiLEHjxmkK402gfNZWzSDtnV0ohJN9mS4Y4qRjiyPtgLinGUFC4FEZ9yeu7
+5kw0sEkiUhpofGNIpwMzZMp2kEWRBwbqkK4Wzg/2mHENolNyjvLsiElLMSI3do4l
+W2Dv252sMRSLdw==
+=gPNf
 -----END PGP SIGNATURE-----

@@ -13,27 +13,27 @@ Build-Depends: debhelper-compat (= 13), debhelper (>= 13), librsvg2-bin (>= 2.50
 Package-List:
  mx-updater deb admin optional arch=all
 Checksums-Sha1:
- ad9f3b90611f040d437d2b18cd79c4c7e18b372f 159776 mx-updater_25.09.06mx25.tar.xz
+ d1987b8d0d3fcfac52bd6dc0bbc2e75f8298877e 159788 mx-updater_25.09.06mx25.tar.xz
 Checksums-Sha256:
- ac153ef99e49923242035e5a9348ebcdf3dd5159c285350fbe53af107f36b7aa 159776 mx-updater_25.09.06mx25.tar.xz
+ 5fa2910a2511457b736dcc1c7bb64af82b05335963e49c18d14e5ada6a91a2e4 159788 mx-updater_25.09.06mx25.tar.xz
 Files:
- 5ee83399b2e420a50a099d32113c2ab2 159776 mx-updater_25.09.06mx25.tar.xz
+ a9fca2cf54ec897aa8d4d3412a7aea70 159788 mx-updater_25.09.06mx25.tar.xz
 Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje6JITHGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6SlzD/sGG+X+AMfPr0X1xFteERSmIi4zCWHK
-wGRxzS39xl4k+lJb6ly0+LHtGyha83ls6/A0PBmCvZFRIwK2Q7naodKGkK7MR1mh
-3wiM/1+3R0NQlUEPl67nwPbh+sezqIDWmn0efKRBwNbcXa8NV4ALKBxPnjt+yXut
-5+6dUJ2TsrgdV29aoguVH9z+zO8M3nFSPB1YS9fiNRHNjEsjvLvVG5uq17JCqgny
-nVeX/CLEqKygvj2czWaEyV7G2I9qbB8D6Yz/SmflktOT0h78q0/g8LwaDvIfYRAS
-tCXpnSCiLYo3tfLc/fJQcJNqcpIcWi5mIiKOZhqLvMYjzs7uxAlH5gazAAKXsW/k
-piohB9C+1KkyB47Bge6N4El5UFYH1gvAEH1JmLweFol5zBuX5PUqBT5SCxr1gBC6
-bL0lAcCZdosrY33o3fIx6gu/vZG/UyT6sP6ycSdqZ8zyDOtwNMK5hbku8EbweWzE
-qDBnmnw79ubr5CBBeefnNgLItCMLS6v96U1TFY//c9Bke6I5Moy+Mj51XfY4rf9l
-zO3PpgIHrESIpiSF0u9nGQKpaNbVK/QiAbqb9B4PBvfaDfy6fMygc2Jo3Ee76QjI
-j2LYmfSzCwmoq3/2DqG3TVacLIeFlwDSfR/HdJ+ZXreqmeuo1dtqFFRWlz5bFswa
-dQtplD7QAK3cRQ==
-=3Ir1
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmje7xQTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6VsaD/9ssfHpQrSiCMKGaP/n4pdt4xNJHuj+
+I2yW02MnDjbfrA7v+wnis7VCII59Hm6BZ1cpUaNbhmews8jTMmuMuazv3h+fR6wG
+BsEDqk166ntvhyw+ZS4AKjEBHP8hhgElkK3EYDUhd8U2P9ZZijfQh0ti672cwsmD
+baQSOlCe2rBd9meY51uP0LsV4D9vIcdXZdAONnfMk3QTrfF/kfdX1m1ECxBGAnbl
+tQDSYJ8P2XmOrcD9yrzckbnHVWcy1i0b3rYv4JdSeNsZVUoVqwgC/TqL5uy4IWkm
+IzlCszn9CPMY510RnguemfTFY0HSHc4cZ8eFkgU/3iOtpjfpFAIAg/swrs1mjSFn
+tr0QOG9qG8hFFeaShsByQFC9aXTCyazav18Ql04bG3VGjQQQssLy9ZskMSUlnnCa
+GXEfF/Iv8dSwscGWjtPIS+7Dw5+Vw8S4mB0VXdt8vT9nYskDB7SMZCCbsFqyGn7b
+/+Z04QND2rnL9VclMwX3aK9emICZgtxwCxk/qgZrg7jRn8nTeMn3MBaH9ysypVNg
+Tl+CHEtjP2q0AmEX+ICje+arxXY4RretjfH5N6q3M665370RJZhtCHeGTyT8ut6N
+XgV79zH5l+J6iq35iXXd5bmug3s6e1FPOT3x5Xkd4eZyV/eDuf4G2pngYSn9TILx
+dZKgrXjx/X49Ww==
+=i9cT
 -----END PGP SIGNATURE-----

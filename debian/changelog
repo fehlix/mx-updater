@@ -1,13 +1,16 @@
-mx-updater (25.09.06mx25+dev04) mx; urgency=medium
+mx-updater (25.09.06mx25+dev05) mx; urgency=medium
 
   * List to be installed packages one per-line in unattended-upgrade logs. Thanks kmathern.
-  * Remove debug output from unattended-upgrade logs. Thanks kmathern.
+  * Remove debug, but keep info, error, and warning lines from unattended-upgrade logs. Thanks kmathern.
   * Remove lot's of other debug prints
   * Remove non-used leftover scripts
   * Clean more apt-notifier remainings
-  * Customize window title template uniformly
+  * Customize window titles
   * Add localized pattern to unattended log view
   * Set tryicon visibility after icon was set
+  * Use apt's translation for "[working]" within "View_and Upgrade" preview
+  * Always trim spaces
+  * Run dbus-activated updater-system-monitor without debug output
 
  -- fehlix <fehlix@mxlinux.org>  Fri, 10 Oct 2025 07:35:12 -0400
 

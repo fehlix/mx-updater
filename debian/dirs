@@ -5,7 +5,6 @@ usr/libexec/mx-updater/version
 usr/lib/mx-updater
 usr/lib/mx-updater/actions
 usr/lib/mx-updater/bin
-usr/lib/mx-updater/modules
 usr/lib/mx-updater/shlib
 usr/share/applications
 usr/share/mx-updater

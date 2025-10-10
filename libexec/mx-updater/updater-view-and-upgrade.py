@@ -31,7 +31,7 @@ gettext.textdomain('mx-updater')
 _ = gettext.gettext
 
 
-logging.basicConfig(level=logging.INFO, 
+logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -61,9 +61,9 @@ class LogUpdateThread(QThread):
     def run(self):
         try:
             command = [ "/usr/lib/mx-updater/bin/updater_list" ]
-            result = subprocess.run(command, 
-                                    capture_output=True, 
-                                    text=True, 
+            result = subprocess.run(command,
+                                    capture_output=True,
+                                    text=True,
                                     timeout=30)
             log_text = result.stdout
             self.log_ready.emit(log_text)
@@ -108,7 +108,7 @@ class ViewAndUpgradeService(dbus.service.Object):
 class ViewAndUpgradeDialog(QDialog):
     # PyQt signals
     value_changed_signal = pyqtSignal(str, str)
- 
+
     def __init__(self, service, session_bus,
                 default_width=960, default_height=600):
         super().__init__()
@@ -119,7 +119,7 @@ class ViewAndUpgradeDialog(QDialog):
 
         self.qsettings = QSettings("MX-Linux", "mx-updater")
         self.qsettings_section = "Geometry_View_and_Upgrade"
-        self.dbus_call_back = True       
+        self.dbus_call_back = True
 
         # Connect service's PyQt signal
         self.service.value_changed_qt.connect(self.on_value_changed)
@@ -159,7 +159,7 @@ class ViewAndUpgradeDialog(QDialog):
             'use_nala',
             'upgrade_assume_yes',
             'wireframe_transparent',
-        )   
+        )
 
         if key in bool_keys:
             if isinstance(value, str):
@@ -176,7 +176,7 @@ class ViewAndUpgradeDialog(QDialog):
                 # try to convert string to integer
                 new_value = int(value)
                 # check value is in range, and set accordingly
-                    
+
                 if not (AUTO_CLOSE_TIMEOUT_MIN <= new_value <= AUTO_CLOSE_TIMEOUT_MAX):
                     logger.debug("[%s] value '%s' for auto_close_timeout, not within allowed range of (%s..%s)",
                                 me, value,
@@ -184,13 +184,13 @@ class ViewAndUpgradeDialog(QDialog):
                                 )
                     if new_value < AUTO_CLOSE_TIMEOUT_MIN:
                         new_value = AUTO_CLOSE_TIMEOUT_MIN
-                        
+
                     if new_value > AUTO_CLOSE_TIMEOUT_MAX:
                         new_value = AUTO_CLOSE_TIMEOUT_MAX
             except ValueError:
                 print(f"Error: '{value}' is not a valid integer.")
                 return  # ignored
-            
+
 
         match key:
 
@@ -202,7 +202,7 @@ class ViewAndUpgradeDialog(QDialog):
 
             case 'use_nala':
                 logger.debug("[update_dialog@UpdaterViewAndUpgrade] use_nala_checkbox.setChecked to  %s", new_value)
-            
+
                 self.use_nala_checkbox.setChecked(new_value)
 
             case 'upgrade_assume_yes':
@@ -210,10 +210,10 @@ class ViewAndUpgradeDialog(QDialog):
 
 
             case _:
-                # default handling if any 
+                # default handling if any
                 pass
 
-    
+
     def update_settings_dialog(self, key, value):
 
         me = "update_settings_dialog@UpdaterViewAndUpgrade"
@@ -242,7 +242,7 @@ class ViewAndUpgradeDialog(QDialog):
             'auto_close',
             'use_nala',
             'upgrade_assume_yes',
-        )   
+        )
 
         if key in bool_keys:
             if isinstance(value, str):
@@ -271,22 +271,22 @@ class ViewAndUpgradeDialog(QDialog):
         try:
             # Connect to session bus
             bus = dbus.SessionBus()
-            
+
             try:
                 # dbus proxy object
                 proxy = bus.get_object(SETTINGS_OBJECT_NAME, SETTINGS_OBJECT_PATH)
-                
+
                 # dbus interface
                 interface = dbus.Interface(proxy, SETTINGS_OBJECT_IFACE)
-                
+
                 # dbus method call to update settings dialog with key/value
                 interface.SetValue(str(key), str(value))
-            
+
             except dbus.exceptions.DBusException as e:
                 #print(f"UpdaterSettings dialog not running.: {e}")
                 logger.debug("[%s] UpdaterSettings dialog does not appear to be active.", me)
                 pass
-        
+
         except Exception as e:
             #print(f"Unexpected D-Bus error: {e}")
             logger.error("[%s] Unexpected D-Bus error: %r", me, e)
@@ -313,7 +313,7 @@ class ViewAndUpgradeDialog(QDialog):
             assume_yes = False
             logger.debug("default settings 'use_nala' = %s", assume_yes)
         self.upgrade_assume_yes_checkbox.setChecked(assume_yes)
-        
+
         try:
             use_nala = self.qsettings.value("Settings/use_nala", False, type=bool)
             logger.debug("loaded settings 'use_nala' = %s", use_nala)
@@ -347,7 +347,7 @@ class ViewAndUpgradeDialog(QDialog):
             auto_close_timeout = 10
             logger.debug("default settings 'auto_close_timeout' = %s", auto_close_timeout)
         self.auto_close_timeout.setValue(auto_close_timeout)
-        
+
     def init_ui(self):
 
         window_title_updater = _("MX Updater")
@@ -357,7 +357,7 @@ class ViewAndUpgradeDialog(QDialog):
 
         self.setWindowTitle(window_title)
         self.setWindowIcon(QIcon(window_icon))
-        
+
         self.log_text = ""
         self.log_cnt = 0
         #self.setlog_text()
@@ -367,10 +367,12 @@ class ViewAndUpgradeDialog(QDialog):
 
         # Set initial placeholder text
         # ="...$(mygettext -d apt ' [Working]')..."
-        working=' [Working]'
+
+        apt_is_working = ' [Working]'
+        working = gettext.dgettext('apt', apt_is_working)
         self.log.setPlainText(f"...{working}...")
 
-        # main outer vbox layout 
+        # main outer vbox layout
         outer = QVBoxLayout(self)
         # with stretch=1 to expand on vertical resize
         outer.addWidget(self.log, stretch=1)
@@ -378,7 +380,7 @@ class ViewAndUpgradeDialog(QDialog):
         # 2 rows with 2 columns
         grid = QGridLayout()
         # row 0
-        
+
         checkbox_label = _("automatically confirm all package upgrades")
         checkbox_tooltip = _("Automatically answers 'yes' to package management prompts during upgrades.\n"
                              "Some system configuration changes may still require manual confirmation.")
@@ -407,7 +409,7 @@ class ViewAndUpgradeDialog(QDialog):
         # after system updates with a configurable idle time
         auto_close_tooltip = _("Automatically closes the terminal window after the specified\n"
                                 "number of seconds of inactivity following system updates.")
-        
+
         # row 1
         self.auto_close_checkbox = QCheckBox(auto_close_label)
         self.auto_close_checkbox.setToolTip(auto_close_tooltip)
@@ -424,9 +426,9 @@ class ViewAndUpgradeDialog(QDialog):
         grid.addWidget(self.auto_close_checkbox,            1, 0)
         grid.addWidget(self.auto_close_timeout,                        1, 1)
 
-        # 3rd empty, column 2 with stretch=1, so columns 0+1 stay close 
+        # 3rd empty, column 2 with stretch=1, so columns 0+1 stay close
         grid.setColumnStretch(2, 1)
-        
+
         # add grid into a group-box for the frame
         frame = QGroupBox()
         frame.setLayout(grid)
@@ -451,16 +453,16 @@ class ViewAndUpgradeDialog(QDialog):
         upgrade_label = "&" + upgrade_label
         close_label = "&" + close_label
 
-        
+
         button_layout = QHBoxLayout()
         self.reload_button = QPushButton(reload_label, self)
         self.upgrade_button = QPushButton(upgrade_label, self)
         self.close_button = QPushButton(close_label, self)
 
-        self.reload_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_BrowserReload)) 
+        self.reload_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_BrowserReload))
         self.upgrade_button.setIcon(QIcon("/usr/share/icons/hicolor/48x48/apps/mx-updater.png"))  # Set Upgrade icon
-        self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton)) 
-        
+        self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
+
         # minimum width for buttons
         self.reload_button.setMinimumWidth(130)
         self.upgrade_button.setMinimumWidth(130)
@@ -475,7 +477,7 @@ class ViewAndUpgradeDialog(QDialog):
         self.reload_button.setIconSize(QSize(16, 16))
         self.upgrade_button.setIconSize(QSize(32, 32))
         self.close_button.setIconSize(QSize(32, 32))
-       
+
         # stretchable space to right-align the buttons
         button_layout.addStretch()
         button_layout.addWidget(self.reload_button)
@@ -526,7 +528,7 @@ class ViewAndUpgradeDialog(QDialog):
         self.qsettings.setValue("Settings/auto_close", checked)
         self.qsettings.sync()
         self.update_settings_dialog("auto_close", checked)
-        
+
 
     def do_reload(self):
         self.hide()
@@ -561,74 +563,74 @@ class ViewAndUpgradeDialog(QDialog):
     def setlog_text(self):
         self.log_cnt +=1
         self.log_text = self.get_updater_list()
-        
+
     def get_updater_list(self):
         #print("get_updater_list running ...")
         try:
             command = "/usr/lib/mx-updater/bin/updater_list"
             result = subprocess.run(
-                command, 
+                command,
                 shell=False,
-                stdout=subprocess.PIPE, 
-                stderr=subprocess.PIPE, 
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True
             )
-   
+
             return f"get_updater_list counter : {self.log_cnt}\n" + result.stdout.strip()
         except Exception as e:
             return f"Error retrieving apt package lists: {str(e)}"
-    
+
     def updater_reload_run(self):
         logger.info("updater_reload_run started ...")
         try:
             command = ["/usr/libexec/mx-updater/updater_action_run", "updater_reload"]
             result = subprocess.run(
-                command, 
+                command,
                 shell=False,
-                stdout=subprocess.PIPE, 
-                stderr=subprocess.PIPE, 
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True
             )
-   
+
             return result.stdout.strip()
         except Exception as e:
             return f"Error updater_reload [apt/nala update] : {str(e)}"
 
-    
+
     def updater_upgrade_run(self):
         logger.info("updater_upgrade_run started ...")
         try:
             command = ["/usr/libexec/mx-updater/updater_action_run", "updater_upgrade"]
             result = subprocess.run(
-                command, 
+                command,
                 shell=False,
-                stdout=subprocess.PIPE, 
-                stderr=subprocess.PIPE, 
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True
             )
-   
+
             return result.stdout.strip()
         except Exception as e:
             return f"Error updater_upgrade [apt/nala update] : {str(e)}"
 
-    
+
     #def resize_and_center(self, default_width, default_height):
     def resize_and_center(self):
         """
         Resize and center the window with scaling.
-        
+
         :param default_width: Desired window width
         :param default_height: Desired window height
         """
 
-        default_width  = self.default_width 
+        default_width  = self.default_width
         default_height = self.default_height
 
         #print(f"Original size: {default_width}x{default_height}")
 
         # Get the primary screen
         screen = QGuiApplication.primaryScreen()
-        
+
         # Get available screen geometry (accounting for panels)
         available_geometry = screen.availableGeometry()
         #print(f"Screen available: {available_geometry.width()}x{available_geometry.height()}")
@@ -637,44 +639,44 @@ class ViewAndUpgradeDialog(QDialog):
         max_width = int(available_geometry.width() * 0.9)  # 90% of available width
         max_height = int(available_geometry.height() * 0.9)  # 90% of available height
         #print(f"max_width x max_height: {max_width} x {max_height}")
-        
+
         # Calculate scaling factors
         width_scale = max_width / default_width
         height_scale = max_height / default_height
-        
+
         # Use the smaller scale to maintain aspect ratio, but not scale up
         scale = min(1.0, min(width_scale, height_scale))
-        
+
         # Calculate final dimensions
         final_width = int(default_width * scale)
         final_height = int(default_height * scale)
-        
+
         # Resize the window to exact calculated dimensions
         self.resize(final_width, final_height)
-        
+
         # Calculate center position
         center_point = available_geometry.center()
         frame_geometry = self.frameGeometry()
         frame_geometry.moveCenter(center_point)
-        
+
         # Ensure the window is within available screen space
         adjusted_pos = frame_geometry.topLeft()
-        adjusted_pos.setX(max(available_geometry.left(), 
-                               min(adjusted_pos.x(), 
+        adjusted_pos.setX(max(available_geometry.left(),
+                               min(adjusted_pos.x(),
                                    available_geometry.right() - frame_geometry.width())))
-        adjusted_pos.setY(max(available_geometry.top(), 
-                               min(adjusted_pos.y(), 
+        adjusted_pos.setY(max(available_geometry.top(),
+                               min(adjusted_pos.y(),
                                    available_geometry.bottom() - frame_geometry.height())))
-        
+
         # Move the window
         self.move(adjusted_pos)
-        
+
         #print(f"Final size: {final_width}x{final_height}")
 
     def keyPressEventXXX(self, event):
         """
         Override key press event to close window when Esc is pressed.
-        
+
         :param event: Key press event
         """
         if event.key() == Qt.Key.Key_Escape:
@@ -686,7 +688,7 @@ class ViewAndUpgradeDialog(QDialog):
         # Save geometry when dialog is closed
         self.save_dialog_geometry()
         super().done(result)
-    
+
     def save_dialog_geometry(self):
         """
         Save dialog position and size to QSettings
@@ -694,7 +696,7 @@ class ViewAndUpgradeDialog(QDialog):
         section = self.qsettings_section
         self.qsettings.setValue(f'{section}/position', self.pos())
         self.qsettings.setValue(f'{section}/size', self.size())
-    
+
     def restore_dialog_geometry(self):
         """
         Restore dialog position and size, with fallback to resize_and_center
@@ -702,63 +704,63 @@ class ViewAndUpgradeDialog(QDialog):
         # Get the primary screen's available geometry
         screen = QGuiApplication.primaryScreen()
         available_geometry = screen.availableGeometry()
-        
+
         # Check if valid geometry exists in settings
         section = self.qsettings_section
         saved_pos = self.qsettings.value(f'{section}/position', None)
         saved_size = self.qsettings.value(f'{section}/size', None)
-        
+
         # Validate saved geometry
-        if (saved_pos is not None and saved_size is not None and 
+        if (saved_pos is not None and saved_size is not None and
             isinstance(saved_pos, QPoint) and isinstance(saved_size, QSize)):
-            
+
             # Adjust size to fit within available geometry
             adjusted_size = self.adjust_size_to_screen(saved_size, available_geometry)
-            
+
             # Adjust position to ensure dialog is within screen bounds
             adjusted_pos = self.adjust_position_to_screen(saved_pos, adjusted_size, available_geometry)
-            
+
             # Set the dialog geometry
             self.resize(adjusted_size)
             self.move(adjusted_pos)
-        
+
         else:
             # No valid saved geometry - use resize_and_center method
             self.resize_and_center()
-    
+
     def adjust_size_to_screen(self, size, available_geometry):
         """
         Ensure dialog size does not exceed available screen geometry
         """
         max_width = min(size.width(), available_geometry.width())
         max_height = min(size.height(), available_geometry.height())
-        
+
         return QSize(
             max(max_width, self.minimumWidth()),
             max(max_height, self.minimumHeight())
         )
-    
+
     def adjust_position_to_screen(self, pos, size, available_geometry):
         """
         Ensure dialog position is within available screen geometry
         """
         # Adjust x-coordinate
         x = max(
-            available_geometry.left(), 
+            available_geometry.left(),
             min(pos.x(), available_geometry.right() - size.width())
         )
-        
+
         # Adjust y-coordinate
         y = max(
-            available_geometry.top(), 
+            available_geometry.top(),
             min(pos.y(), available_geometry.bottom() - size.height())
         )
-        
+
         return QPoint(x, y)
-    
 
 
-    
+
+
 def is_dark_theme():
     if QApplication.palette().color(QPalette.ColorRole.Window).lightness() < 128:
         logger.debug("Dark theme detected")
@@ -766,8 +768,8 @@ def is_dark_theme():
     else:
         logger.debug("Light theme detected")
         return False
-            
- 
+
+
 def tooltip_stylesheet():
     if is_dark_theme():
         # Dark theme: slightly more saturated yellow
@@ -839,7 +841,7 @@ if __name__ == "__main__":
     logger.debug("dbus object iface: %s", VIEW_AND_UPGRADE_OBJECT_IFACE)
 
     service = ViewAndUpgradeService(session_bus, VIEW_AND_UPGRADE_OBJECT_PATH)
-    
+
     app = QApplication(sys.argv)
     app.setApplicationName("mx-updater")
     app.setStyleSheet(tooltip_stylesheet())
@@ -852,9 +854,9 @@ if __name__ == "__main__":
             default_height=default_height
             )
 
-  
+
     #dlg.resize(900, 600)
-    
+
     while True:
         dlg.load_settings()
         result = dlg.exec()

@@ -284,6 +284,8 @@ class SystemTrayIcon(QSystemTrayIcon):
         self.is_detect_fluxbox = self.detect_fluxbox()
         self.disable_hide_until = (self.is_detect_fluxbox, self.is_detect_plasma)
 
+        self.is_icon_set = False
+
         # on startup, try to acquire a lock
         self.run_time_path = acquire_runtime_lock()
         if self.run_time_path is None:
@@ -1325,6 +1327,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         if set_icon:
             logger.debug("[%s] setIcon(QIcon('%s')", me, set_icon)
             self.setIcon(QIcon(set_icon))
+            self.is_icon_set = True
 
         value = self.qsettings.value('Settings/hide_until_upgrades_available', False)
         logger.debug("[%s] self.qsettings.value('Settings/hide_until_upgrades_available', False) is %s", me, value)
@@ -1337,7 +1340,9 @@ class SystemTrayIcon(QSystemTrayIcon):
         logger.debug("[%s] hide_until_upgrades_available is : %r", me, hide_until_upgrades_available)
         logger.debug("[%s] hide_tray_icon is : %r", me, hide_until_upgrades_available)
         logger.debug("[%s] self._apply_tray_visibility(%r)", me, not hide_tray_icon)
-        self._apply_tray_visibility(not hide_tray_icon)
+        if self.is_icon_set:
+            self._apply_tray_visibility(not hide_tray_icon)
+
         logger.debug("[%s] ----------------------------------------------", me)
 
 
@@ -1406,7 +1411,8 @@ class SystemTrayIcon(QSystemTrayIcon):
         set_icon = None
         if total_updates and not is_unattended_upgrade_enabled:
             set_icon = self._icon_some
-            self.setVisible(True)
+            if self.is_icon_set:
+                self.setVisible(True)
         else:
             set_icon = self._icon_none
 
@@ -1418,12 +1424,13 @@ class SystemTrayIcon(QSystemTrayIcon):
         if set_icon:
             logger.debug("[%s] setIcon(QIcon('%s')", me, set_icon)
             self.setIcon(QIcon(set_icon))
-
+            self.is_icon_set = True
 
         if total_updates:
             self._apply_entry_visible("view_and_upgrade", True)
             self._apply_entry_visible("hide_until_updates_available", False)
-            self._apply_tray_visibility(True)
+            if self.is_icon_set:
+                self._apply_tray_visibility(True)
         else:
             self._apply_entry_visible("view_and_upgrade", False)
 
@@ -1481,7 +1488,8 @@ class SystemTrayIcon(QSystemTrayIcon):
             ("auto_update_dpkg_log", _("Auto-update dpkg log(s)"), True,  "/usr/libexec/mx-updater/mx-updater-auto-update_dpkg_log.py"),
             ("settings_editor",      _("Preferences"),             True,  "/usr/bin/mx-updater-settings"),
             ("updater_about",        _("About"),                   True,  "/usr/libexec/mx-updater/updater_about.py"),
-            ("updater_restart",      _("Restart"),                 True,  "/usr/libexec/mx-updater/updater-restart"),
+            #("updater_restart",      _("Restart"),                True,  "/usr/libexec/mx-updater/updater-restart"),
+            ("updater_restart",      _("Restart MX Updater"),      True,  "/usr/libexec/mx-updater/updater-restart"),
 
         ]
 

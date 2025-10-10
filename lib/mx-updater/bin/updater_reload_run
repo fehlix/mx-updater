@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# load updater_config settings
-unset APT_NOTIFIER_CONFIG_ITEMS
-declare -A APT_NOTIFIER_CONFIG_ITEMS
-UPDATER_CONFIG="/usr/lib/apt-notifier/bin/updater_config"
-if [ -x "${UPDATER_CONFIG}" ]; then
-    eval "APT_NOTIFIER_CONFIG_ITEMS=$(${UPDATER_CONFIG} --shell)"
-fi
-
-#reload_in_root_terminal="${APT_NOTIFIER_CONFIG_ITEMS[reload_in_root_terminal]}"
-#allow_passwordless_reload_in_user_terminal="${APT_NOTIFIER_CONFIG_ITEMS[allow_passwordless_reload_in_user_terminal]}"
-
 reload_in_root_terminal="false"
 allow_passwordless_reload_in_user_terminal="true"
 
@@ -75,10 +64,12 @@ DOMAIN=MX
 ICON="/usr/share/icons/mx-updater.png"
 ICON_KDE="/usr/share/icons/hicolor/scalable/mx-updater.svg"
 
-UPDATER=$(translate "MX Updater")
-RELOAD=$(translate "Reload")
+export TEXTDOMAIN="mx-updater"
+UPDATER=$(gettext "MX Updater")
+RELOAD=$(gettext "Reload")
 
-TITLE="${UPDATER}: $RELOAD"
+TITLE="${UPDATER} -- ${RELOAD}"
+
 RUN=/usr/lib/mx-updater/actions/updater_reload_action
 #MSG="apt-get update"
 #MSG="$RELOAD"

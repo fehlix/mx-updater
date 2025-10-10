@@ -10,6 +10,7 @@ mx-updater (25.09.06mx25+dev05) mx; urgency=medium
   * Set tryicon visibility after icon was set
   * Use apt's translation for "[working]" within "View_and Upgrade" preview
   * Always trim spaces
+  * Run dbus-activated updater-system-monitor without debug output
 
  -- fehlix <fehlix@mxlinux.org>  Fri, 10 Oct 2025 07:35:12 -0400
 

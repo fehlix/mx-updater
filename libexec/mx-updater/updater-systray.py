@@ -1301,22 +1301,40 @@ class SystemTrayIcon(QSystemTrayIcon):
                 do_notify = False
                 do_hide = True
                 #self._clean_notifications()
-                if self._icon_none:
-                    set_icon = self._icon_none
+                if self._total_updates:
+                    do_hide = False
+                    if self._icon_some:
+                        set_icon = self._icon_some
+                else:
+                    do_hide = True
+                    if self._icon_none:
+                        set_icon = self._icon_none
 
             if is_full:
                 if full_upgrades_available == basic_upgrades_available:
                     do_notify = False
                     do_hide = True
                     #self._clean_notifications()
-                    if self._icon_none:
-                        set_icon = self._icon_none
+                    if self._total_updates:
+                        do_hide = False
+                        if self._icon_some:
+                            set_icon = self._icon_some
+                    else:
+                        do_hide = True
+                        if self._icon_none:
+                            set_icon = self._icon_none
                 else:
                     do_notify = True
                     do_hide = False
                     #self._clean_notifications()
-                    if self._icon_some:
-                        set_icon = self._icon_some
+                    if self._total_updates:
+                        do_hide = False
+                        if self._icon_some:
+                            set_icon = self._icon_some
+                    else:
+                        do_hide = True
+                        if self._icon_none:
+                            set_icon = self._icon_none
 
 
         tooltip= f"{tooltip_upgrade_type}\n{tooltip_available}"
@@ -1407,19 +1425,20 @@ class SystemTrayIcon(QSystemTrayIcon):
         total_updates = upgraded + newly_installed
 
 
-
         set_icon = None
-        if total_updates and not is_unattended_upgrade_enabled:
+        # always show "some"-icons if we have updates, even if auto-upgrade is enabled
+        # if total_updates and not is_unattended_upgrade_enabled:
+        if total_updates:
             set_icon = self._icon_some
             if self.is_icon_set:
                 self.setVisible(True)
         else:
             set_icon = self._icon_none
 
-        if (is_unattended_upgrade_enabled and total_updates == 0
-            and full_upgrades_available == basic_upgrades_available
-            ):
-            set_icon = self._icon_none
+        #if (is_unattended_upgrade_enabled and total_updates == 0
+        #    and full_upgrades_available == basic_upgrades_available
+        #    ):
+        #    set_icon = self._icon_none
 
         if set_icon:
             logger.debug("[%s] setIcon(QIcon('%s')", me, set_icon)

@@ -5,7 +5,8 @@ usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/u
 usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_reload_action
 usr/lib/mx-updater/bin/updater_upgrade_run          usr/lib/mx-updater/bin/updater_basic-upgrade_run
 usr/lib/mx-updater/bin/updater_upgrade_run          usr/lib/mx-updater/bin/updater_full-upgrade_run
+usr/libexec/mx-updater/mx-updater-logviewer.py      usr/libexec/mx-updater/mx-updater-auto-update_log.py
+usr/libexec/mx-updater/mx-updater-logviewer.py      usr/libexec/mx-updater/mx-updater-auto-update_dpkg_log.py
 usr/share/mx-updater/1-quick-live-update            etc/cron.daily/1-quick-live-update
 usr/share/mx-updater/2-apt-compat                   etc/cron.daily/2-apt-compat
 usr/share/mx-updater/03mx-updater-update-stamp      etc/apt/apt.conf.d/03mx-updater-update-stamp
-

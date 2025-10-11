@@ -1,4 +1,4 @@
-mx-updater (25.09.06mx25+dev07) mx; urgency=medium
+mx-updater (25.09.07mx25) mx; urgency=medium
 
   * List to be installed packages one per-line in unattended-upgrade logs. Thanks kmathern.
   * Remove debug, but keep info, error, and warning lines from unattended-upgrade logs. Thanks kmathern.
@@ -13,6 +13,7 @@ mx-updater (25.09.06mx25+dev07) mx; urgency=medium
   * Run dbus-activated updater-system-monitor without debug output
   * Keep translated hint-line as the last line in the log-viewer of unattended-upgrade logs
   * Always display the "some" icon when updates are available, even if unattended-upgrade is enabled
+  * Add symlinks during build, and remove symlinks from github
 
  -- fehlix <fehlix@mxlinux.org>  Sat, 11 Oct 2025 09:02:35 -0400
 

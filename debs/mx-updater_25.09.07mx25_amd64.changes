@@ -1,0 +1,66 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sat, 11 Oct 2025 09:02:35 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 25.09.07mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (25.09.07mx25) mx; urgency=medium
+ .
+   * List to be installed packages one per-line in unattended-upgrade logs. Thanks kmathern.
+   * Remove debug, but keep info, error, and warning lines from unattended-upgrade logs. Thanks kmathern.
+   * Remove lot's of other debug prints
+   * Remove non-used leftover scripts
+   * Clean more apt-notifier remainings
+   * Customize window titles
+   * Add localized pattern to unattended-upgrade log view
+   * Set trayicon visibility after icon was set
+   * Use apt's translation for "[Working]" within "View_and Upgrade" preview
+   * Always trim spaces
+   * Run dbus-activated updater-system-monitor without debug output
+   * Keep translated hint-line as the last line in the log-viewer of unattended-upgrade logs
+   * Always display the "some" icon when updates are available, even if unattended-upgrade is enabled
+   * Add symlinks during build, and remove symlinks from github
+Checksums-Sha1:
+ 39ef7ccf00a996a9641d8db0284ed4dd270840e6 1624 mx-updater_25.09.07mx25.dsc
+ f65f16689fa16aa8edba3fa96526a59134790f00 160460 mx-updater_25.09.07mx25.tar.xz
+ eb11da373fd4cbd6e1e6ca78a462c474ee25e0f5 356756 mx-updater_25.09.07mx25_all.deb
+ 5ea15321b6fac9c6e3a367645d52ca4cba7401de 7507 mx-updater_25.09.07mx25_amd64.buildinfo
+Checksums-Sha256:
+ a6899c6a2813281cec101c74ac6624f91252a2600a30eed4c8f82dea1ce4a263 1624 mx-updater_25.09.07mx25.dsc
+ 1592ccef9902eb9c1a09804556fdea59099d847a40dfb2b1816ca3f7ea34425a 160460 mx-updater_25.09.07mx25.tar.xz
+ fe756a223c796b83957d1e34993f871755dd6ca52df375ca5f59ae3122fefb26 356756 mx-updater_25.09.07mx25_all.deb
+ aa583168997479c7ba8aa6cc28b1406c06ded8dd23d6770ca5e08066dc5d7a19 7507 mx-updater_25.09.07mx25_amd64.buildinfo
+Files:
+ aef4ead1ee97879895385859e8ae0ec1 1624 admin optional mx-updater_25.09.07mx25.dsc
+ 7ded4d58bb365768d4b43a3406bd4089 160460 admin optional mx-updater_25.09.07mx25.tar.xz
+ 1ffabd9b200409373402899005880240 356756 admin optional mx-updater_25.09.07mx25_all.deb
+ 06d5c1115e2fe431b30bf885a81f2a90 7507 admin optional mx-updater_25.09.07mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmjqWNQTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6dkzEAC2aPOyZ0y0QWaAAB4NvfBWjIbQ1Q0X
+lyC81tFpWyj5SrSs/f4YUCmS/QCpU/SZ80eqQCptHAO9qNDY7av68/cFlXRn2xVa
+R6T8nrsZTFdPpyTLNGAOWdK2T8qkACrmGkOdpu/9uiIsgUbk1/Gt0kYx3kPMi1fO
+zvuZ7DGaFOFHo2eG7iZyAattGX9o1kXFQkvmqdwuTKFNJgXh9oX/S7ubHfeeClQv
+2SZiOinb0aqzJ4oFuf+jdpq77CPfMNTgpZO8ZMEg/5J/JDfzJ6NAfZn2J7ke1aqo
+2GKqvo2YsQkPL9TJeyKw8Gr2p6725CXOpyi6VmuQcNn6tLty+A2T/Ac+AMRQKWxM
+YZVmTijLzK7Gjb9in6Ky/oYGtBDKmw/PyE3GT8eztd4KDybpTKv13H2IrDBgUpWB
+FJMWejpD1QO0CgSciqZLrMial6udZQCUaXRGTAzY5tvqzWPJ1OKHeUKERkb9Rpdj
+XmYTBBvvfPpax+GG193DwOb8HJs1bMyddz/S1Owvr1HG9P39JJ63EnEzsIvIv5YO
+3Ct1tYEaMm3DsLISXQl0MjCNQlFUj8HXdnmzSLDUCA1R3TkCXHqdzasVh2rtiTEx
+aDJCM9LRrfodXBhD7GJI2OZKDNKlqSHT1gSeOKWtlTlin/P7J2ScI7DGAH6twTrz
+EmvwlHmfwL9eLw==
+=vYhK
+-----END PGP SIGNATURE-----

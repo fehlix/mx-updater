@@ -1,280 +1,429 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Croatian translations for mx-updater package.
+# Copyright (C) 2025 THE mx-updater'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the mx-updater package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-# Translators:
-# James Bowlin <BitJam@gmail.com>, 2022
-# anticapitalista <anticapitalista@riseup.net>, 2022
-# Ivica  Kolić <ikoli@yahoo.com>, 2022
-# Dolphin Oracle <dolphinoracle@gmail.com>, 2022
-# 
+# Automatically generated, 2025.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 02:38+0100\n"
-"PO-Revision-Date: 2017-05-11 01:14+0000\n"
-"Last-Translator: Dolphin Oracle <dolphinoracle@gmail.com>, 2022\n"
-"Language-Team: Croatian (https://app.transifex.com/anticapitalista/teams/10162/hr/)\n"
+"POT-Creation-Date: 2025-10-12 18:32-0400\n"
+"PO-Revision-Date: 2025-10-12 18:32-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "$count new updates available"
-msgstr "$count novih ažuriranja dostupno"
-
-msgid "0 updates available"
-msgstr "0 ažuriranja je dostupno"
-
-msgid "1 new update available"
-msgstr "1 novo ažuriranje je dostupno"
-
+#: ../libexec/mx-updater/updater-systray.py:1509
 msgid "About"
 msgstr "O programu"
 
+#: ../libexec/mx-updater/updater_about.py:79
 msgid "About MX Updater"
 msgstr ""
 
-msgid "Auto-update"
-msgstr "Automatsko ažuriranje"
+#: ../libexec/mx-updater/updater-settings.py:1198
+msgid "An unexpected error occurred:"
+msgstr ""
 
+#: ../libexec/mx-updater/mx-updater-logviewer.py:395
+#: ../libexec/mx-updater/updater-systray.py:1507
 msgid "Auto-update dpkg log(s)"
 msgstr ""
 
+#: ../libexec/mx-updater/mx-updater-logviewer.py:411
+#: ../libexec/mx-updater/updater-systray.py:1506
 msgid "Auto-update log(s)"
 msgstr ""
 
-msgid "Automatically answer 'yes' to all prompts during full/basic upgrade"
+#: ../libexec/mx-updater/updater-settings.py:1168
+msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
 
-msgid "Automatically answer 'yes' to all prompts during upgrade"
+#: ../libexec/mx-updater/updater-settings.py:1180
+msgid "Auto-upgrade setting updated successfully."
 msgstr ""
 
-msgid "Cancel"
-msgstr "Otkaži"
+#: ../libexec/mx-updater/updater-settings.py:702
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:385
+msgid ""
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
+msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:503
+msgid ""
+"Automatically check for package updates once a day and install them.\n"
+"Only updates existing packages without changing your system configuration.\n"
+"The updater icon shows the total number of updates, including automatic updates,\n"
+"when additional updates are available."
+msgstr ""
+
+#. TRANSLATORS: Explains the auto-close behavior of terminal window
+#. after system updates with a configurable idle time
+#: ../libexec/mx-updater/updater-settings.py:785
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:410
+msgid ""
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:514
+msgid ""
+"Automatically update package cache with \"apt update\".\n"
+"          "
+msgstr ""
+
+#: ../libexec/mx-updater/updater_about.py:92
+#: ../libexec/mx-updater/updater-changelog.py:214
 msgid "Changelog"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-systray.py:1504
 msgid "Check for Updates"
 msgstr "Provjeri za ažuriranja"
 
+#: ../libexec/mx-updater/updater-history.py:80
+msgid "Clear"
+msgstr ""
+
+#: ../libexec/mx-updater/updater_about.py:90
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:443
 msgid "Close"
 msgstr "Zatvori"
 
-msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
+#: ../libexec/mx-updater/updater-settings.py:1252
+msgid "Command failed"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:1251
+msgid "Could not change automatic upgrades configuration"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:620
+msgid ""
+"Display transparent wireframe icons without color fill\n"
+"when no updates are available."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:1197
+msgid "Error"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-history.py:456
+msgid "Error retrieving apt-history:"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:1187
+msgid "Failed to update auto-upgrade setting."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:1186
+msgid "Failure"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-history.py:68
+#: ../libexec/mx-updater/updater-history.py:165
+msgid "Filter by"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:864
+msgid ""
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:856
+#: ../libexec/mx-updater/updater-systray.py:1592
 msgid "Hide until updates available"
 msgstr "Sakrij dok ažuriranja ne budu dostupna"
 
+#: ../libexec/mx-updater/updater-history.py:110
+#: ../libexec/mx-updater/updater-systray.py:1505
 msgid "History"
 msgstr "Povijest"
 
+#: ../libexec/mx-updater/updater-settings.py:610
 msgid "Icons"
 msgstr "Ikone"
 
+#: ../libexec/mx-updater/updater-settings.py:841
+msgid ""
+"In addition to change of the tray icon,\n"
+"pop-up messages will be shown when\n"
+"system updates are available."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:561
 msgid "Left-click behaviour   (when updates are available)"
 msgstr "Ponašanje lijevog klika (kada su dostupna ažuriranja)"
 
+#: ../libexec/mx-updater/updater_about.py:91
 msgid "License"
 msgstr "Licenca"
 
+#: ../libexec/mx-updater/mx-updater-logviewer.py:185
+msgid "Log file is empty."
+msgstr ""
+
+#: ../libexec/mx-updater/mx-updater-logviewer.py:393
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
 
+#: ../libexec/mx-updater/mx-updater-logviewer.py:409
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-systray.py:1489
 msgid "MX Package Installer"
 msgstr "MX instaler paketa"
 
-#. The autostart desktop entry name will be shown within the list of autostart
-#. entries.
+#: ../libexec/mx-updater/updater-systray.py:1494
+msgid "MX Repo Manager"
+msgstr ""
+
+#. The autostart desktop entry name will be shown within the list of autostart entries.
 #. The desktop entry name will be displayed within the menu.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:385
+#: ../libexec/mx-updater/updater_about.py:77
+#: ../libexec/mx-updater/updater-changelog.py:213
+#: ../libexec/mx-updater/updater-history.py:111
+#: ../libexec/mx-updater/updater-settings.py:389
+#: ../libexec/mx-updater/updater-systray.py:367
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:353
+#: ../xdg/mx-updater-autostart.desktop.in:4 ../xdg/mx-updater.desktop.in:5
+#: ../lib/mx-updater/bin/updater_reload_run:68
+#: ../lib/mx-updater/bin/updater_upgrade_run:69
 msgid "MX Updater"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:936
+#: ../libexec/mx-updater/updater-systray.py:1516
 msgid "MX Updater Help"
 msgstr ""
 
-msgid "MX Updater preferences"
+#: ../libexec/mx-updater/updater-history.py:454
+msgid "No apt-history data found!"
 msgstr ""
 
-msgid "MX Updater--View and Upgrade, previewing: basic upgrade"
-msgstr ""
-
-msgid "MX Updater--View and Upgrade, previewing: full upgrade"
-msgstr ""
-
-msgid "No logs found."
-msgstr ""
-
-msgid "No unattended-upgrades dpkg log(s) found."
-msgstr ""
-
+#: ../libexec/mx-updater/updater-systray.py:1285
 msgid "No updates available"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:689
 msgid "Other options"
 msgstr "Ostale opcije"
 
+#: ../libexec/mx-updater/updater-settings.py:390
+#: ../libexec/mx-updater/updater-settings.py:1398
+#: ../libexec/mx-updater/updater-systray.py:1508
 msgid "Preferences"
 msgstr "Osobitosti"
 
-msgid "Press 'h' for help, 'q' to quit"
-msgstr ""
-
+#: ../libexec/mx-updater/updater-systray.py:1600
 msgid "Quit"
 msgstr "Zatvori"
 
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:441
+#: ../polkit/actions/org.mxlinux.mx-updater.reload.policy:13
+#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy:13
+#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy:13
+#: ../lib/mx-updater/bin/updater_reload_run:69
 msgid "Reload"
 msgstr "Ponovno učitaj"
 
-msgid ""
-"Reload the package information to become informed about new, removed or "
-"upgraded software packages. (apt-get update)"
-msgstr ""
-
+#: ../libexec/mx-updater/updater-systray.py:1511
 msgid "Restart MX Updater"
 msgstr ""
 
-msgid "Running apt-get autoremove, if you are unsure type 'n'."
-msgstr "Pokreni apt-get autoremove, ako niste sigurni upišite 'n'."
-
+#. TRANSLATORS: Explains the start of MX Updater automatically
+#. after a delay of seconds. The user can select the number of seconds.
+#: ../libexec/mx-updater/updater-settings.py:729
 msgid ""
-"Switches the type of Upgrade that will be performed, alternating back and "
-"forth between 'full upgrade' and 'basic upgrade'."
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
 msgstr ""
 
+#. TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
+#: ../libexec/mx-updater/updater-settings.py:454
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:397
+msgid "Select this to use nala package manager instead of apt."
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:1179
+msgid "Success"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-systray.py:1517
 msgid "Synaptic Help"
 msgstr "Synaptic pomoć"
 
+#: ../libexec/mx-updater/updater-systray.py:1484
+msgid "Synaptic Package Manager"
+msgstr ""
+
+#: ../libexec/mx-updater/updater_about.py:78
 msgid "Tray applet to notify of system and application updates"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:1250
+msgid "Unattended Upgrades Configuration Failed"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-systray.py:1259
 msgid "Unattended-upgrades"
 msgstr ""
 
-msgid "Unneeded packages are installed that can be removed."
-msgstr "Nepotrebni paketi su instalirani i mogu biti uklonjeni."
-
-msgid "Updates"
-msgstr "Ažuriranja"
-
+#: ../libexec/mx-updater/updater-settings.py:413
 msgid "Upgrade mode"
 msgstr "Način nadogradnje"
 
-msgid "Upgrade using Synaptic"
-msgstr "Nadogradi koristeći Synaptic"
+#: ../libexec/mx-updater/updater-settings.py:427
+msgid ""
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
+msgstr ""
 
-msgid "Using basic upgrade (not recommended)"
-msgstr "Koristeći punu nadogradnju (ne preporuča se)"
+#: ../libexec/mx-updater/updater-systray.py:1385
+msgid "Upgrades available"
+msgstr ""
 
-msgid "Using full upgrade"
-msgstr "Koristeći punu nadogradnju"
+#: ../libexec/mx-updater/updater-settings.py:432
+msgid ""
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
+msgstr ""
 
+#: ../libexec/mx-updater/updater-systray.py:908
+#: ../libexec/mx-updater/updater-systray.py:1500
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:354
 msgid "View and Upgrade"
 msgstr "Pogled i nadogradnja"
 
-msgid "You have $count new updates available"
-msgstr "Imate $count dostupno novih ažuriranja"
+#: ../libexec/mx-updater/mx-updater-logviewer.py:122
+msgid "_Close"
+msgstr ""
 
-msgid "You have 1 new update available"
-msgstr "Imate dostupno 1 ažuriranje"
+#: ../libexec/mx-updater/updater-history.py:184
+msgid "_Copy"
+msgstr ""
 
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
-#, python-brace-format
-msgid "You have {num} new update available"
-msgid_plural "You have {num} new updates available"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#: ../libexec/mx-updater/updater-settings.py:700
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:384
+msgid "automatically confirm all package upgrades"
+msgstr ""
 
-msgid "automatically close terminal window when full/basic upgrade complete"
-msgstr "automatski zatvori terminal kada je puno/osnovno ažuriranje završeno"
-
-msgid "automatically close terminal window when upgrade complete"
-msgstr "automatski zatvori prozor terminala kada je nadogradnja gotova"
-
+#: ../libexec/mx-updater/updater-settings.py:430
+#: ../libexec/mx-updater/updater-systray.py:1256
+#: ../polkit/actions/org.mxlinux.mx-updater.basic-upgrade.policy:13
+#: ../lib/mx-updater/bin/updater_upgrade_run:74
 msgid "basic upgrade"
 msgstr "osnovna nadogradnja"
 
-msgid "basic upgrade complete (or was canceled)"
-msgstr "osnovna nadogradnja je završena (ili je otkazana)"
-
-msgid "check for autoremovable packages after full/basic upgrade"
-msgstr ""
-
+#. TRANSLATORS: The classic icon-set
+#: ../libexec/mx-updater/updater-settings.py:633
 msgid "classic"
 msgstr ""
 
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+#: ../libexec/mx-updater/updater-settings.py:781
+msgid "close terminal window after idle time"
+msgstr ""
+
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:406
+msgid "close terminal window automatically after idle time"
+msgstr ""
+
+#. TRANSLATORS: The strings is used for the 'dark' or 'light' icon-set
+#: ../libexec/mx-updater/updater-settings.py:624
+msgid "dark"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-systray.py:1254
+#: ../polkit/actions/org.mxlinux.mx-updater.full-upgrade.policy:13
+#: ../lib/mx-updater/bin/updater_upgrade_run:78
 msgid "full upgrade"
 msgstr "potpuna nadogradnja"
 
+#: ../libexec/mx-updater/updater-settings.py:423
 msgid "full upgrade   (recommended)"
 msgstr "puna nadogradnja (preporučeno)"
 
-msgid "full upgrade complete (or was canceled)"
-msgstr "puna nadogradnja je završena (ili je otkazana)"
+#. TRANSLATORS: The strings is used for 'dark' or 'light' icon-set
+#: ../libexec/mx-updater/updater-settings.py:627
+msgid "light"
+msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:571
 msgid "opens MX Updater 'View and Upgrade' window"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:570
 msgid "opens Synaptic"
 msgstr "otvara Synaptic"
 
-msgid "press any key to close"
-msgstr "pritisni bilo koju tipku i zatvori"
-
-msgid "press any key to stop automatic closing"
-msgstr ""
-
+#. TRANSLATORS: The pulse icon-set
+#: ../libexec/mx-updater/updater-settings.py:631
 msgid "pulse"
 msgstr ""
 
-msgid "start MX Updater at login"
+#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
+#. in the timeout/time delay selection field. Please use the most appropriate
+#. translated string for the singular or plural form. Only one form will
+#. be displayed.
+#: ../libexec/mx-updater/updater-settings.py:747
+#: ../libexec/mx-updater/updater-settings.py:803
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:424
+msgid "sec"
 msgstr ""
 
-msgid "switch to basic upgrade"
-msgstr "prebaci na osnovnu nadogradnju"
-
-msgid "switch to full upgrade"
-msgstr "prebaci na punu nadogradnju"
-
-msgid "this terminal window can now be closed"
-msgstr "ovaj prozor terminala će se sada zatvoriti"
-
-msgid "update automatically   (will not add new or remove existing packages)"
+#. TRANSLATORS: The label of the checkbox where user can select
+#. to start 'MX Updater' systray icon automatically at login
+#. after a delay of seconds.
+#: ../libexec/mx-updater/updater-settings.py:725
+msgid "start \"MX Updater\" at login after delay"
 msgstr ""
 
+#: ../libexec/mx-updater/updater-settings.py:511
+msgid "update automatically"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:442
 msgid "upgrade"
 msgstr "nadogradi"
 
+#: ../libexec/mx-updater/updater-settings.py:501
+msgid "upgrade automatically"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:839
 msgid "use desktop notifications"
 msgstr ""
 
+#. TRANSLATORS: Select this to use nala package manager instead of apt.
+#: ../libexec/mx-updater/updater-settings.py:453
+#: ../libexec/mx-updater/updater-view-and-upgrade.py:395
+msgid "use nala"
+msgstr ""
+
+#: ../libexec/mx-updater/updater-settings.py:618
 msgid "use transparent interior for no-updates wireframe"
 msgstr ""
 
+#. TRANSLATORS: The wireframe icon-set
+#: ../libexec/mx-updater/updater-settings.py:629
 msgid "wireframe"
 msgstr ""
 
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
+#: ../libexec/mx-updater/updater-systray.py:1230
 #, python-brace-format
 msgid "{num} new update available"
 msgid_plural "{num} new updates available"
@@ -283,18 +432,111 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. TRANSLATORS:
-#. This autostart desktop entry comment will be shown within 'Session and
-#. Startup' (Autostart).
+#. The autostart desktop entry comment will be shown within 'Session and Startup' (Autostart).
+#: ../xdg/mx-updater-autostart.desktop.in:7
 msgid "An applet to show updates"
 msgstr ""
 
 #. TRANSLATORS:
-#. This desktop entry comment will be shown within the menu.
-msgid "Re-enable MX Updater icon even if no updates available"
+#. The desktop entry comment will be shown within the menu.
+#: ../xdg/mx-updater.desktop.in:8
+msgid "MX Updater system tray applet"
 msgstr ""
 
+#: ../xdg/mx-updater.desktop.in:16
+msgid "apt;update;upgrade;notifier;"
+msgstr ""
+
+#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-disable.policy:13
+msgid "Disable Auto-update"
+msgstr "Onemogući samoažuriranje"
+
+#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-enable.policy:13
 msgid "Enable Auto-update"
 msgstr "Omogući samoažuriranje"
 
-msgid "Disable Auto-update"
-msgstr "Onemogući samoažuriranje"
+#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:27
+#: ../bin/mx-updater_unattended_upgrades_log_view:39
+msgid "Press 'h' for help, 'q' to quit"
+msgstr ""
+
+#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:28
+#: ../bin/mx-updater_unattended_upgrades_log_view:40
+msgid "No logs found."
+msgstr ""
+
+#: ../bin/mx-updater_unattended_upgrades_log_view:41
+msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
+msgstr ""
+
+#: ../lib/mx-updater/bin/updater_upgrade:161
+msgid "basic upgrade complete (or was canceled)"
+msgstr "osnovna nadogradnja je završena (ili je otkazana)"
+
+#: ../lib/mx-updater/bin/updater_upgrade:163
+msgid "full upgrade complete (or was canceled)"
+msgstr "puna nadogradnja je završena (ili je otkazana)"
+
+#: ../lib/mx-updater/bin/updater_upgrade:180
+msgid "this terminal window can now be closed"
+msgstr "ovaj prozor terminala će se sada zatvoriti"
+
+#: ../lib/mx-updater/shlib/updater_shlib:218
+msgid "press any key to stop automatic closing"
+msgstr ""
+
+#: ../lib/mx-updater/shlib/updater_shlib:219
+#: ../lib/mx-updater/shlib/updater_shlib:256
+msgid "press any key to close"
+msgstr "pritisni bilo koju tipku i zatvori"
+
+#~ msgid "$count new updates available"
+#~ msgstr "$count novih ažuriranja dostupno"
+
+#~ msgid "0 updates available"
+#~ msgstr "0 ažuriranja je dostupno"
+
+#~ msgid "1 new update available"
+#~ msgstr "1 novo ažuriranje je dostupno"
+
+#~ msgid "Auto-update"
+#~ msgstr "Automatsko ažuriranje"
+
+#~ msgid "Cancel"
+#~ msgstr "Otkaži"
+
+#~ msgid "Running apt-get autoremove, if you are unsure type 'n'."
+#~ msgstr "Pokreni apt-get autoremove, ako niste sigurni upišite 'n'."
+
+#~ msgid "Unneeded packages are installed that can be removed."
+#~ msgstr "Nepotrebni paketi su instalirani i mogu biti uklonjeni."
+
+#~ msgid "Updates"
+#~ msgstr "Ažuriranja"
+
+#~ msgid "Upgrade using Synaptic"
+#~ msgstr "Nadogradi koristeći Synaptic"
+
+#~ msgid "Using basic upgrade (not recommended)"
+#~ msgstr "Koristeći punu nadogradnju (ne preporuča se)"
+
+#~ msgid "Using full upgrade"
+#~ msgstr "Koristeći punu nadogradnju"
+
+#~ msgid "You have $count new updates available"
+#~ msgstr "Imate $count dostupno novih ažuriranja"
+
+#~ msgid "You have 1 new update available"
+#~ msgstr "Imate dostupno 1 ažuriranje"
+
+#~ msgid "automatically close terminal window when full/basic upgrade complete"
+#~ msgstr "automatski zatvori terminal kada je puno/osnovno ažuriranje završeno"
+
+#~ msgid "automatically close terminal window when upgrade complete"
+#~ msgstr "automatski zatvori prozor terminala kada je nadogradnja gotova"
+
+#~ msgid "switch to basic upgrade"
+#~ msgstr "prebaci na osnovnu nadogradnju"
+
+#~ msgid "switch to full upgrade"
+#~ msgstr "prebaci na punu nadogradnju"

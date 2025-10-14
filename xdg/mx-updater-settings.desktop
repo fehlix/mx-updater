@@ -1,10 +1,8 @@
 [Desktop Entry]
 Type=Application
-# TRANSLATORS:
-# The desktop entry name will be displayed within the menu.
+# TRANSLATORS: The desktop entry name will be displayed within the menu.
 Name=MX Updater Settings
-# TRANSLATORS:
-# The desktop entry comment will be shown within the menu.
+# TRANSLATORS: The desktop entry comment will be shown within the menu.
 Comment=MX Updater Preferences
 Exec=/usr/bin/mx-updater-settings
 TryExec=/usr/bin/mx-updater-settings
@@ -14,5 +12,6 @@ StartupNotify=false
 Categories=System;MX-Software;
 StartupWMClass=mx-updater-settings
 NoDisplay=false
-Keywords=apt;update;upgrade;notifier;settings;
+# TRANSLATORS: Keywords to search in the menu. Hint: Keep English keywords, add translated keywords to existing.
+Keywords=apt;nala;update;upgrade;notifier;settings;
 

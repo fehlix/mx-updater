@@ -64,8 +64,8 @@ fi
 
 # translations are defined within apt-notifier python modules
 # define functions to make xgettext ignore translations used here
-mygettext()  { gettext  -d mx-updater "$@"; }
-myngettext() { ngettext -d mx-updater "$@"; }
+mygettext()  { local gettext=gettext; ${gettext} -d mx-updater "$@"; }
+myngettext() { local ngettext=ngettext; ${ngettext} -d mx-updater "$@"; }
 
 D="" ; C="" ; U=""
 CheckType=""

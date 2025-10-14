@@ -1,8 +1,10 @@
-mx-updater (25.09.07mx25+dev01) mx; urgency=medium
+mx-updater (25.09.07mx25+dev04) mx; urgency=medium
 
-  * Replace 2-apt-compat with 2-origin-patterns.daily
+  * Replace 2-apt-compat with 2-origin-patterns-daily
+  * Adjust more translation strings
+  * Keep mx-updater-autostart.desktop as conffile
 
- -- fehlix <fehlix@mxlinux.org>  Sat, 11 Oct 2025 19:20:53 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sun, 12 Oct 2025 18:21:35 -0400
 
 mx-updater (25.09.07mx25) mx; urgency=medium
 

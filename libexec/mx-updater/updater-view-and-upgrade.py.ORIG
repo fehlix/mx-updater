@@ -366,9 +366,11 @@ class ViewAndUpgradeDialog(QDialog):
         #self.log.setPlainText(self.log_text)
 
         # Set initial placeholder text
+        # ="...$(mygettext -d apt ' [Working]')..."
 
-        self.apt_is_working = gettext.dgettext('apt', ' [Working]')
-        self.log.setPlainText(f"...{self.apt_is_working}")
+        apt_is_working = ' [Working]'
+        working = gettext.dgettext('apt', apt_is_working)
+        self.log.setPlainText(f"...{working}...")
 
         # main outer vbox layout
         outer = QVBoxLayout(self)
@@ -533,7 +535,7 @@ class ViewAndUpgradeDialog(QDialog):
         self.hide()
         self.state = "do_reload"
         self.updater_reload_run()
-        self.log.setPlainText(f"...{self.apt_is_working}")
+        self.log.setPlainText("... working, please wait")
         self.start_log_update()
         self.accept()
 

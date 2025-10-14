@@ -382,16 +382,14 @@ def main():
         # ignore if not found
         pass
 
+
     window_title_updater = _("MX Updater")
+
+
     if "dpkg_log" in os.path.basename(os.path.abspath(__file__)):
 
         default_width  = 800
         default_height = 500
-        # original title was:
-        # "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-        # so we keep translations, for now
-        window_title = _("MX Auto-update  --  unattended-upgrades dpkg log viewer")
-
         log_view_title = _('Auto-update dpkg log(s)')
         window_title = f"[ {window_title_updater} ] -- {log_view_title}"
 
@@ -404,13 +402,8 @@ def main():
 
         default_width  = 900
         default_height = 600
-        # original title was:
-        # "MX Auto-update  --  unattended-upgrades log viewer"
-        window_title = _("MX Auto-update  --  unattended-upgrades log viewer")
-
         log_view_title = _('Auto-update log(s)')
         window_title = f"[ {window_title_updater} ] -- {log_view_title}"
-
         view_cmd = [
             '/usr/bin/pkexec',
             '/usr/libexec/mx-updater/updater_auto_upgrades_log_view'

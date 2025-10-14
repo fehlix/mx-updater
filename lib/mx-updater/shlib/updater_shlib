@@ -10,7 +10,8 @@
 # at /usr/lib/mx-updater/shlib/updater_shlib
 
 mygettext() {
-    gettext -d mx-updater "$@"
+    local gettext=gettext
+    $gettext -d mx-updater "$@"
 }
 
 unset UPDATER_SHLIB_DEBUG
@@ -35,12 +36,12 @@ get_config_item() {
     local config_item=$1
     local default_value=$2
 
-	local LC_CTYPE="C.UTF-8"
-	local LC_COLLATE="C.UTF-8"
+    local LC_CTYPE="C.UTF-8"
+    local LC_COLLATE="C.UTF-8"
 
     local CONFIG_DIST="MX-Linux"              # dist name where conf file is located und ~/.config
     local CONFIG_NAME="mx-updater.conf"       # conf file name
-    local CONFIG_SECTION="Settings"           # section within  
+    local CONFIG_SECTION="Settings"           # section within
 
     local home_dir="$(eval echo ~$(logname))"
     local config_file="${home_dir}/.config/${CONFIG_DIST}/${CONFIG_NAME}"
@@ -122,7 +123,7 @@ get_config_item() {
     fi
 
     echo "$value"
-    
+
     # return success
     return 0
 }
@@ -134,8 +135,8 @@ read_auto_close_timeout() {
     local home_dir=$(eval echo ~$(logname))
     local config_file="${home_dir}/.config/MX-Linux/mx-updater.conf"
     local sed_pattern="auto_close_timeout"
-	local LC_CTYPE="C.UTF-8"
-	local LC_COLLATE="C.UTF-8"
+    local LC_CTYPE="C.UTF-8"
+    local LC_COLLATE="C.UTF-8"
 
     local default_value=10
 
@@ -213,11 +214,9 @@ press_any_key_stop_auto_close() {
     local count_line=$(printf "$count_str%.0s" $(eval echo {1..$count_len}));
     local space_line=$(printf '%*s' $cols)
     local done_line=$(printf '_''%.0s' $(eval echo {1..$cols}))
-
-    local anykey_to_stop=$(mygettext "press any key to stop automatic closing")
-    # TEST
-    # anykey_to_stop="${anykey_to_stop} [$UPDATER_AUTO_CLOSE_TIMEOUT] $USER@$HOME"
-    local anykey_to_close=$(mygettext "press any key to close")
+    export TEXTDOMAIN="mx-updater"
+    local anykey_to_stop=$(gettext "press any key to stop automatic closing")
+    local anykey_to_close=$(gettext "press any key to close")
 
     anykey_to_stop="${anykey_to_stop^}..."
     anykey_to_close="${anykey_to_close^}..."
@@ -252,8 +251,9 @@ press_any_key_stop_auto_close() {
 
 press_any_key_to_close() {
 
+    export TEXTDOMAIN="mx-updater"
     local cls_msg_en="press any key to close"
-    local cls_msg=$(mygettext "press any key to close")
+    local cls_msg=$(gettext "press any key to close")
     # capitilize
     cls_msg=${cls_msg^}
 
@@ -270,8 +270,7 @@ translate() {
     local text="$1"
     local domain="MX"
 
-    #text=$(gettext -d mx-updater "$text")
-    text=$(mygettext -d mx-updater "$text")
+    text=$(mygettext "$text")
     # check DOMAIN is set - but could be  empty
     [ -z "${DOMAIN+set}" ] && echo "$text" && return
     # check text contains $domain

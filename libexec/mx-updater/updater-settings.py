@@ -390,7 +390,7 @@ class SettingsEditorDialog(QDialog):
         window_title_preferences = _("Preferences")
         window_title  = f"[ {window_title_updater} ] -- {window_title_preferences}"
         self.setWindowTitle(window_title)
-        
+
         #self.setWindowIcon(QIcon("mx-updater-settings.svg"))
         self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/mx-updater-settings.svg"))
         self.setGeometry(100, 100, 400, 400)  # X, Y,  Width, Height
@@ -622,7 +622,7 @@ when no updates are available."""))
 
         #TRANSLATORS: The strings is used for the 'dark' or 'light' icon-set
         dark_string = _("dark")
-        
+
         #TRANSLATORS: The strings is used for 'dark' or 'light' icon-set
         light_string = _("light")
         #TRANSLATORS: The wireframe icon-set
@@ -631,14 +631,14 @@ when no updates are available."""))
         pulse_string = _("pulse")
         #TRANSLATORS: The classic icon-set
         classic_string = _("classic")
-        
+
         for icon_name in self.icon_order:
             #print(f"Icon_Look(name)={icon_name}")
             icon = self.icon_set.get(icon_name)
             icon_label_string = icon.get('label')
             icon_some = icon.get('icon_some')
             icon_none = icon.get('icon_none')
-            
+
             if icon_label_string == "wireframe dark":
                 icon_label = f"{wireframe_string} -- {dark_string}"
             elif icon_label_string == "wireframe light":
@@ -647,7 +647,7 @@ when no updates are available."""))
                 icon_label = f"{pulse_string} -- {light_string}"
             else:
                 icon_label = _(icon_label_string)
-            
+
             row_layout = QHBoxLayout()
             row_layout.setSpacing(20)  # smaller spacing between icons
             icon_radio_button = QRadioButton(icon_label)
@@ -744,9 +744,6 @@ at login after the specified delay in seconds.""")
         value = default_value if value < 0 else min(value, 60)
         self.start_8_login_delay_spinbox.setValue(value)
 
-        # TRANSLATORS: This is the abriavated string for 'seconds' shown within
-        # the "start at login" selection field. Please use the most appropriate trnslated
-        # string for the singular or plural form.
         seconds_suffix = _("sec")
         self.start_8_login_delay_spinbox.setSuffix(f" {seconds_suffix}")
 
@@ -803,9 +800,6 @@ at login after the specified delay in seconds.""")
         auto_close_timeout = self.load_setting("auto_close_timeout")
         self.auto_close_timeout.setValue(auto_close_timeout)
 
-        # TRANSLATORS: This is the abriavated string for 'seconds' shown within
-        # the timeout selection field. Please use the most appropriate trnslated
-        # string for the singular or plural form. Only one form is shown.
         seconds_suffix = _("sec")
         self.auto_close_timeout.setSuffix(f" {seconds_suffix}")
 
@@ -864,7 +858,7 @@ system updates are available."""))
             hide_until_updates_available_string = hide_until_updates_available_string.lower()
         else:
             hide_until_updates_available_string = hide_until_updates_available_translated
-            
+
         self.hide_until_upgrades_available_checkbox = QCheckBox(hide_until_updates_available_string)
         self.hide_until_upgrades_available_checkbox.setToolTip(
         _("""Hide the system update icon when no updates are available.
@@ -937,6 +931,9 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
         # slots
         self.close_button.clicked.connect(self.on_close)
+
+        # set here so we get translations
+        updater_help = _("MX Updater Help")
 
         """
         # TODO:  when we have an actual help content

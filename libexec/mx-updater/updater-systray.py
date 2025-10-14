@@ -1481,7 +1481,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         synapic_label = self.get_app_name_from_path(
             "/usr/share/applications/synaptic.desktop"
-            ) or _("Synaptic")
+            ) or _("Synaptic Package Manager")
         logger.debug(f"Synaptic:'{synapic_label}'")
 
         packageinstaller_label = self.get_app_name_from_path(
@@ -1511,6 +1511,10 @@ class SystemTrayIcon(QSystemTrayIcon):
             ("updater_restart",      _("Restart MX Updater"),      True,  "/usr/libexec/mx-updater/updater-restart"),
 
         ]
+
+        # not yet available , but let's get translations for the strings
+        _updater_help = _("MX Updater Help")
+        _synaptic_help = _("Synaptic Help")
 
         # build a dict to quick lookup by tag:
         """

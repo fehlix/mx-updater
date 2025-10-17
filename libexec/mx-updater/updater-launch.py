@@ -21,12 +21,13 @@ import argparse
 
 help_text="""
 
-MX Updater will sit with the system tray icon and notify about available package updates.
+MX Updater appears in the system tray and notifies you of available package updates.
 
 """
 
 parser = argparse.ArgumentParser(
         description='MX Updater System Tray Icon',
+        prog='mx-updater',
         formatter_class=argparse.RawDescriptionHelpFormatter, epilog=help_text
         )
 

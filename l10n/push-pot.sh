@@ -7,11 +7,6 @@ echodo() { echo "${@}"; ${@}; }
 
 [ ! -x "$TXBIN" ] && echo "Error: transifex client not found!" && exit 1
 
-# [o:fehlix:p:testproject-do-not-use:r:mx-updater-test]
-# RESOURCE="testproject-do-not-use.mx-updater-test"
-# [o:anticapitalista:p:antix-development:r:mx-updater]
-# RESOURCE="antix-development.mx-updater"
-
 ORGANIZATION_SLUG="anticapitalista"
 PROJECT_SLUG="antix-development"
 RESOURCE_SLUG="mx-updater"
@@ -39,19 +34,9 @@ type = PO
 
 EOF
 
-# backup existing
-[ -d "${PO_DIR}" ] && echodo mv "${PO_DIR}" "${PO_BAK}"
-mkdir "${PO_DIR}"
-[ -f "${PO_BAK}/LINGUAS" ] && cp "${PO_BAK}/LINGUAS" "${PO_DIR}/LINGUAS"
+# tx push -r <project-slug>.<resource-slug> -s
 
-echodo() {
-    echo "${@}";
-    ${@};
-    }
+echodo ${TXBIN} push -r ${RESOURCE} -s 
 
+exit
 
-# get all translations
-# echodo ${TXBIN} pull --force  -r "$RESOURCE" --all 
-
-# get all translations mentioned in LINGUAS
-echodo ${TXBIN} pull  -r "$RESOURCE" -t -l $(grep -v '^\s*#' ${PO_DIR}/LINGUAS | tr '\n' ',' | sed 's/,$//')

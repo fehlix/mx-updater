@@ -1,62 +1,239 @@
-# Japanese translations for mx-updater package
-# mx-updater パッケージに対する英訳.
-# Copyright (C) 2025 THE mx-updater'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the mx-updater package.
-# Automatically generated, 2025.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Transifex Bot <>, 2025
+# anticapitalista <anticapitalista@riseup.net>, 2025
+# Green <usergreen@users.osdn.me>, 2025
+# night1ynx <night1ynxd@gmail.com>, 2025
+# Dolphin Oracle <dolphinoracle@gmail.com>, 2025
+# 🎈 BALLOON | FU-SEN, 2025
+# Geoff Gigg <geoffgigg@hotmail.com>, 2025
+# fehlix, 2025
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 18:32-0400\n"
-"PO-Revision-Date: 2025-10-12 18:32-0400\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ja\n"
+"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"PO-Revision-Date: 2025-10-17 07:23+0000\n"
+"Last-Translator: fehlix, 2025\n"
+"Language-Team: Japanese (https://app.transifex.com/anticapitalista/teams/10162/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../libexec/mx-updater/updater-systray.py:1509
-msgid "About"
-msgstr "情報"
+#. TRANSLATORS: The string "MX Updater" is the name of the tool that
+#. appears in the system tray/taskbar to inform users about software
+#. package updates and perform various actions to update and upgrade the
+#. system.  The string is used in various places. Keep the translation
+#. short and leave the string "MX Updater" untranslated if necessary.
+msgid "MX Updater"
+msgstr "MX アップデーター"
 
-#: ../libexec/mx-updater/updater_about.py:79
-msgid "About MX Updater"
-msgstr "MX アップデーターについて"
-
-#: ../libexec/mx-updater/updater-settings.py:1198
-msgid "An unexpected error occurred:"
+#. TRANSLATORS: The desktop entry comment will be shown within the menu.
+#. Keep it short.
+msgid "MX Updater system tray applet"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:395
-#: ../libexec/mx-updater/updater-systray.py:1507
+#. TRANSLATORS: Keywords for Menu Search
+#. Important Translation Guidance:
+#. - Keep the original English keywords
+#. - Add translated keywords
+#. - IMPORTANT: End EACH keyword with a semicolon (;)
+#. - Do NOT replace English keywords entirely
+#. Example:
+#. English keywords: "repository;update;upgrade;"
+#. French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à
+#. niveau;"
+#. Note the inclusion of:
+#. - Accented characters (à, é)
+#. - Non-ASCII translations
+#. - Original English keywords preserved
+#. - Each keyword ending with a semicolon
+msgid ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
+msgstr ""
+
+#. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
+#. displayed in the menu.
+msgid "MX Updater Settings"
+msgstr ""
+
+#. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
+#. of the ""MX Updater Settings" menu entry.
+msgid "MX Updater preferences"
+msgstr "MX アップデーターの設定"
+
+#. TRANSLATORS: The autostart desktop entry name will be shown within the list
+#. of autostart entries.
+msgid "MX Updater Autostart"
+msgstr ""
+
+#. TRANSLATORS: The autostart desktop entry comment will be shown within
+#. 'Session and Startup' (Autostart).
+msgid "An applet to show updates"
+msgstr "アップデート通知アプリ"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. disable unattended-upgrade (Auto-update)!
+msgid "Disable Auto-update"
+msgstr "自動更新を無効"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. enabale unattended-upgrade (Auto-update)!
+msgid "Enable Auto-update"
+msgstr "自動更新を有効"
+
+#. TRANSLATORS: The upgrade mode "basic upgrade".
+msgid "basic upgrade"
+msgstr "基本のアップグレード"
+
+#. TRANSLATORS: The upgrade mode "full upgrade".
+msgid "full upgrade"
+msgstr "フルアップグレード"
+
+#. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
+msgid "Reload"
+msgstr "再読込"
+
+msgid "Press 'h' for help, 'q' to quit"
+msgstr "「h」キーでヘルプを表示し「q」キーで終了します。"
+
+msgid "No logs found."
+msgstr "ログはありません。"
+
+msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
+msgstr "簡易ビューは「自動更新の dpkg ログ」または「履歴」にあります。"
+
+msgid "No updates available"
+msgstr "利用可能な更新はありません"
+
+#. TRANSLATORS: Plural Forms Guide
+#. Each language has unique rules for plurals. Fill in ALL plural forms
+#. specified for your language.
+#. - "%d" will be replaced by the actual number at runtime
+#. - Use grammatically correct translations for each form
+#. - Singular form (msgstr[0]): Typically for count of 1
+#. - Plural forms (msgstr[1], msgstr[2], etc.): Use appropriate grammatical
+#. variations
+#. Example (English):
+#. msgstr[0] "One new update"
+#. msgstr[1] "%d new updates"
+#. Tip: Consider your language's specific plural formation rules and
+#. grammatical nuances.
+msgid "%d new update available"
+msgid_plural "%d new updates available"
+msgstr[0] "%d 新しい更新が利用可能です"
+
+msgid "basic upgrade complete (or was canceled)"
+msgstr "基本アップグレードが完了しました (または中止しました)"
+
+msgid "full upgrade complete (or was canceled)"
+msgstr "フルアップグレードが完了しました (または中止しました)"
+
+msgid "this terminal window can now be closed"
+msgstr "この端末ウインドウを閉じる"
+
+msgid "press any key to stop automatic closing"
+msgstr "いずれかのキーを押して自動終了を中止"
+
+msgid "press any key to close"
+msgstr "何かキーを押して閉じる"
+
+msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
+msgstr "MX 自動更新 -- 自動更新の dpkg ログビューアー"
+
 msgid "Auto-update dpkg log(s)"
 msgstr "自動更新された dpkg のログ"
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:411
-#: ../libexec/mx-updater/updater-systray.py:1506
+msgid "MX Auto-update  --  unattended-upgrades log viewer"
+msgstr "MX 自動更新 -- 自動更新ログビューア"
+
 msgid "Auto-update log(s)"
 msgstr "自動更新のログ"
 
-#: ../libexec/mx-updater/updater-settings.py:1168
-msgid "Auto-upgrade setting is already in the desired state. No changes made."
+msgid "Tray applet to notify of system and application updates"
+msgstr "システムおよびアプリケーションの更新通知トレイアプレット"
+
+msgid "About MX Updater"
+msgstr "MX アップデーターについて"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "License"
+msgstr "ライセンス"
+
+msgid "Changelog"
+msgstr "更新履歴"
+
+#. TRANSLATORS: "History" menu item in right-click context
+#. Allows users to view logs of package installations and removals
+#. using dpkg and apt package management tools
+msgid "History"
+msgstr "履歴"
+
+msgid "No apt-history data found!"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1180
-msgid "Auto-upgrade setting updated successfully."
+msgid "Error retrieving apt-history:"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:702
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:385
+msgid "Preferences"
+msgstr "設定"
+
+#. TRANSLATORS: The label group-box, where user can select
+#. the "Upgrade mode" either "full upgrade" or "basic upgrade"
+msgid "Upgrade mode"
+msgstr "アップグレード方法"
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. the "Upgrade mode": "full upgrade"
+msgid "full upgrade   (recommended)"
+msgstr "フルアップグレード (推奨)"
+
+#. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
+#. which tries to explain what this checkbox is about.
 msgid ""
-"Automatically answers 'yes' to package management prompts during upgrades.\n"
-"Some system configuration changes may still require manual confirmation."
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:503
+#. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. to use "nala" package manager instead of "apt"
+#. TRANSLATORS: Select this to use nala package manager instead of apt.
+msgid "use nala"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "use nala",
+#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: Explains upgrade can be done by using nala package manager
+#. instead of apt
+msgid "Select this to use nala package manager instead of apt."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
+#. can select
+#. to enabled "unattended-upgrade"
+msgid "upgrade automatically"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
+#. which tries to explain what this checkbox is about.
 msgid ""
 "Automatically check for package updates once a day and install them.\n"
 "Only updates existing packages without changing your system configuration.\n"
@@ -64,519 +241,190 @@ msgid ""
 "when additional updates are available."
 msgstr ""
 
-#. TRANSLATORS: Explains the auto-close behavior of terminal window
-#. after system updates with a configurable idle time
-#: ../libexec/mx-updater/updater-settings.py:785
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:410
-msgid ""
-"Automatically closes the terminal window after the specified\n"
-"number of seconds of inactivity following system updates."
+msgid "Left-click behaviour   (when updates are available)"
+msgstr "左クリックの動作 (更新が可能な場合)"
+
+msgid "opens Synaptic"
+msgstr "Synaptic を開く"
+
+msgid "opens MX Updater 'View and Upgrade' window"
+msgstr "MX アップデーターの詳細を画面表示"
+
+msgid "Icons"
+msgstr "アイコン"
+
+#. TRANSLATORS: Please keep it short. Detailed explanation are with the
+#. tooltip.
+msgid "transparent wireframe for no updates"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:514
-msgid ""
-"Automatically update package cache with \"apt update\".\n"
-"          "
-msgstr ""
-
-#: ../libexec/mx-updater/updater_about.py:92
-#: ../libexec/mx-updater/updater-changelog.py:214
-msgid "Changelog"
-msgstr "更新履歴"
-
-#: ../libexec/mx-updater/updater-systray.py:1504
-msgid "Check for Updates"
-msgstr "更新をチェック"
-
-#: ../libexec/mx-updater/updater-history.py:80
-msgid "Clear"
-msgstr ""
-
-#: ../libexec/mx-updater/updater_about.py:90
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:443
-msgid "Close"
-msgstr "閉じる"
-
-#: ../libexec/mx-updater/updater-settings.py:1252
-msgid "Command failed"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:1251
-msgid "Could not change automatic upgrades configuration"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:620
+#. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
+#. updates", which explains
+#. what the checkbox is about.
 msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1197
-msgid "Error"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "dark"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:456
-msgid "Error retrieving apt-history:"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "light"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1187
-msgid "Failed to update auto-upgrade setting."
+#. TRANSLATORS: The wireframe icon-set
+msgid "wireframe"
+msgstr "ワイヤーフレーム"
+
+#. TRANSLATORS: The pulse icon-set
+msgid "pulse"
+msgstr "パルス"
+
+#. TRANSLATORS: The classic icon-set
+msgid "classic"
+msgstr "クラシック"
+
+msgid "Other options"
+msgstr "その他のオプション"
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. that "--assume-yes" option is added, so "apt" or "nala" won't ask
+#. for confirmations to install
+msgid "automatically confirm all package upgrades"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1186
-msgid "Failure"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-history.py:68
-#: ../libexec/mx-updater/updater-history.py:165
-msgid "Filter by"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:864
+#. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
+#. upgrades",
+#. which tries to explain what this checkbox is about.
 msgid ""
-"Hide the system update icon when no updates are available.\n"
-"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:856
-#: ../libexec/mx-updater/updater-systray.py:1592
-msgid "Hide until updates available"
-msgstr "入手可能な更新がないときは非表示"
+#. TRANSLATORS: The label of the checkbox where user can select
+#. to start 'MX Updater' systray icon automatically at login
+#. after a delay of seconds.
+msgid "start \"MX Updater\" at login after delay"
+msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:110
-#: ../libexec/mx-updater/updater-systray.py:1505
-msgid "History"
-msgstr "履歴"
+#. TRANSLATORS: Explains the start of MX Updater automatically
+#. after a delay of seconds. The user can select the number of seconds.
+msgid ""
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
+msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:610
-msgid "Icons"
-msgstr "アイコン"
+#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
+#. in the timeout/time delay selection field. Please use the most appropriate
+#. translated string for the singular or plural form. Only one form will
+#. be displayed.
+msgid "sec"
+msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:841
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window after idle time"
+msgstr ""
+
+#. TRANSLATORS: Explains the auto-close behavior of terminal window
+#. after system updates with a configurable idle time
+msgid ""
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "use desktop notifications",
+#. where user can select to disabled or enable notification "popup" window
+#. shown .
+msgid "use desktop notifications"
+msgstr "デスクトップ通知を利用"
+
+#. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
+#. which tries to exlpain what this checkbox is about.
 msgid ""
 "In addition to change of the tray icon,\n"
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:561
-msgid "Left-click behaviour   (when updates are available)"
-msgstr "左クリックの動作 (更新が可能な場合)"
+#. TRANSLATORS: The label of the checkbox "Hide until updates available" and
+#. also of the right-click menu entry, where user can select to not show
+#. the "MX Updater" systray icon until package upgrades are available.
+msgid "Hide until updates available"
+msgstr "入手可能な更新がないときは非表示"
 
-#: ../libexec/mx-updater/updater_about.py:91
-msgid "License"
-msgstr "ライセンス"
-
-#: ../libexec/mx-updater/mx-updater-logviewer.py:185
-msgid "Log file is empty."
+#. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:393
-msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-msgstr "MX 自動更新 -- 自動更新の dpkg ログビューアー"
-
-#: ../libexec/mx-updater/mx-updater-logviewer.py:409
-msgid "MX Auto-update  --  unattended-upgrades log viewer"
-msgstr "MX 自動更新 -- 自動更新ログビューア"
-
-#: ../libexec/mx-updater/updater-systray.py:1489
-msgid "MX Package Installer"
-msgstr "MX パッケージインストーラ"
-
-#: ../libexec/mx-updater/updater-systray.py:1494
-msgid "MX Repo Manager"
-msgstr ""
-
-#. The autostart desktop entry name will be shown within the list of autostart entries.
-#. The desktop entry name will be displayed within the menu.
-#: ../libexec/mx-updater/mx-updater-logviewer.py:385
-#: ../libexec/mx-updater/updater_about.py:77
-#: ../libexec/mx-updater/updater-changelog.py:213
-#: ../libexec/mx-updater/updater-history.py:111
-#: ../libexec/mx-updater/updater-settings.py:389
-#: ../libexec/mx-updater/updater-systray.py:367
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:353
-#: ../xdg/mx-updater-autostart.desktop.in:4 ../xdg/mx-updater.desktop.in:5
-#: ../lib/mx-updater/bin/updater_reload_run:68
-#: ../lib/mx-updater/bin/updater_upgrade_run:69
-msgid "MX Updater"
-msgstr "MX アップデーター"
-
-#: ../libexec/mx-updater/updater-settings.py:936
-#: ../libexec/mx-updater/updater-systray.py:1516
 msgid "MX Updater Help"
 msgstr "MXアップデーターのヘルプ"
 
-#: ../libexec/mx-updater/updater-history.py:454
-msgid "No apt-history data found!"
+msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1285
-msgid "No updates available"
-msgstr "利用可能な更新はありません"
-
-#: ../libexec/mx-updater/updater-settings.py:689
-msgid "Other options"
-msgstr "その他のオプション"
-
-#: ../libexec/mx-updater/updater-settings.py:390
-#: ../libexec/mx-updater/updater-settings.py:1398
-#: ../libexec/mx-updater/updater-systray.py:1508
-msgid "Preferences"
-msgstr "設定"
-
-#: ../libexec/mx-updater/updater-systray.py:1600
-msgid "Quit"
-msgstr "終了"
-
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:441
-#: ../polkit/actions/org.mxlinux.mx-updater.reload.policy:13
-#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy:13
-#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy:13
-#: ../lib/mx-updater/bin/updater_reload_run:69
-msgid "Reload"
-msgstr "再読込"
-
-#: ../libexec/mx-updater/updater-systray.py:1511
-msgid "Restart MX Updater"
-msgstr "MX アップデーターの再起動"
-
-#. TRANSLATORS: Explains the start of MX Updater automatically
-#. after a delay of seconds. The user can select the number of seconds.
-#: ../libexec/mx-updater/updater-settings.py:729
-msgid ""
-"Select this to launch \"MX Updater\" automatically\n"
-"at login after the specified delay in seconds."
-msgstr ""
-
-#. TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
-#: ../libexec/mx-updater/updater-settings.py:454
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:397
-msgid "Select this to use nala package manager instead of apt."
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:1179
 msgid "Success"
+msgstr "成功"
+
+msgid "Auto-upgrade setting updated successfully."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1517
-msgid "Synaptic Help"
-msgstr "Synaptic のヘルプ"
+msgid "Failure"
+msgstr "失敗"
 
-#: ../libexec/mx-updater/updater-systray.py:1484
-msgid "Synaptic Package Manager"
+msgid "Failed to update auto-upgrade setting."
 msgstr ""
 
-#: ../libexec/mx-updater/updater_about.py:78
-msgid "Tray applet to notify of system and application updates"
-msgstr "システムおよびアプリケーションの更新通知トレイアプレット"
+msgid "Error"
+msgstr "エラー"
 
-#: ../libexec/mx-updater/updater-settings.py:1250
+msgid "An unexpected error occurred:"
+msgstr ""
+
 msgid "Unattended Upgrades Configuration Failed"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1259
-msgid "Unattended-upgrades"
-msgstr "自動アップデート"
-
-#: ../libexec/mx-updater/updater-settings.py:413
-msgid "Upgrade mode"
-msgstr "アップグレード方法"
-
-#: ../libexec/mx-updater/updater-settings.py:427
-msgid ""
-"Upgrades all packages to their latest versions,\n"
-"which may include adding or removing packages\n"
-"to keep the system up-to-date and consistent."
+msgid "Could not change automatic upgrades configuration"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1385
-msgid "Upgrades available"
+msgid "Command failed"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:432
-msgid ""
-"Upgrades existing packages to their latest versions\n"
-"without installing new dependencies or removing existing packages."
-msgstr ""
-
-#: ../libexec/mx-updater/updater-systray.py:908
-#: ../libexec/mx-updater/updater-systray.py:1500
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:354
 msgid "View and Upgrade"
 msgstr "表示・更新"
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:122
-msgid "_Close"
+msgid "Unattended-upgrades"
+msgstr "自動アップデート"
+
+msgid "Upgrades available"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:184
-msgid "_Copy"
-msgstr ""
+msgid "Check for Updates"
+msgstr "更新をチェック"
 
-#: ../libexec/mx-updater/updater-settings.py:700
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:384
-msgid "automatically confirm all package upgrades"
-msgstr ""
+msgid "About"
+msgstr "情報"
 
-#: ../libexec/mx-updater/updater-settings.py:430
-#: ../libexec/mx-updater/updater-systray.py:1256
-#: ../polkit/actions/org.mxlinux.mx-updater.basic-upgrade.policy:13
-#: ../lib/mx-updater/bin/updater_upgrade_run:74
-msgid "basic upgrade"
-msgstr "基本のアップグレード"
+msgid "Restart MX Updater"
+msgstr "MX アップデーターの再起動"
 
-#. TRANSLATORS: The classic icon-set
-#: ../libexec/mx-updater/updater-settings.py:633
-msgid "classic"
-msgstr "クラシック"
+msgid "Synaptic Help"
+msgstr "Synaptic のヘルプ"
+
+msgid "Quit"
+msgstr "終了"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
-#: ../libexec/mx-updater/updater-settings.py:781
-msgid "close terminal window after idle time"
-msgstr ""
-
-#. TRANSLATORS: After the idle time in seconds has elapsed,
-#. the terminal window is closed once the system update is complete.
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:406
 msgid "close terminal window automatically after idle time"
 msgstr ""
 
-#. TRANSLATORS: The strings is used for the 'dark' or 'light' icon-set
-#: ../libexec/mx-updater/updater-settings.py:624
-msgid "dark"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-systray.py:1254
-#: ../polkit/actions/org.mxlinux.mx-updater.full-upgrade.policy:13
-#: ../lib/mx-updater/bin/updater_upgrade_run:78
-msgid "full upgrade"
-msgstr "フルアップグレード"
-
-#: ../libexec/mx-updater/updater-settings.py:423
-msgid "full upgrade   (recommended)"
-msgstr "フルアップグレード (推奨)"
-
-#. TRANSLATORS: The strings is used for 'dark' or 'light' icon-set
-#: ../libexec/mx-updater/updater-settings.py:627
-msgid "light"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:571
-msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "MX アップデーターの詳細を画面表示"
-
-#: ../libexec/mx-updater/updater-settings.py:570
-msgid "opens Synaptic"
-msgstr "Synaptic を開く"
-
-#. TRANSLATORS: The pulse icon-set
-#: ../libexec/mx-updater/updater-settings.py:631
-msgid "pulse"
-msgstr "パルス"
-
-#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
-#. in the timeout/time delay selection field. Please use the most appropriate
-#. translated string for the singular or plural form. Only one form will
-#. be displayed.
-#: ../libexec/mx-updater/updater-settings.py:747
-#: ../libexec/mx-updater/updater-settings.py:803
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:424
-msgid "sec"
-msgstr ""
-
-#. TRANSLATORS: The label of the checkbox where user can select
-#. to start 'MX Updater' systray icon automatically at login
-#. after a delay of seconds.
-#: ../libexec/mx-updater/updater-settings.py:725
-msgid "start \"MX Updater\" at login after delay"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:511
-msgid "update automatically"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:442
 msgid "upgrade"
 msgstr "アップグレード"
-
-#: ../libexec/mx-updater/updater-settings.py:501
-msgid "upgrade automatically"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:839
-msgid "use desktop notifications"
-msgstr "デスクトップ通知を利用"
-
-#. TRANSLATORS: Select this to use nala package manager instead of apt.
-#: ../libexec/mx-updater/updater-settings.py:453
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:395
-msgid "use nala"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:618
-msgid "use transparent interior for no-updates wireframe"
-msgstr "無更新のワイヤーフレームには透過性のある内装を使用します。"
-
-#. TRANSLATORS: The wireframe icon-set
-#: ../libexec/mx-updater/updater-settings.py:629
-msgid "wireframe"
-msgstr "ワイヤーフレーム"
-
-#: ../libexec/mx-updater/updater-systray.py:1230
-#, python-brace-format
-msgid "{num} new update available"
-msgid_plural "{num} new updates available"
-msgstr[0] "{num} 新しい更新が利用可能です"
-
-#. TRANSLATORS:
-#. The autostart desktop entry comment will be shown within 'Session and Startup' (Autostart).
-#: ../xdg/mx-updater-autostart.desktop.in:7
-msgid "An applet to show updates"
-msgstr "アップデート通知アプリ"
-
-#. TRANSLATORS:
-#. The desktop entry comment will be shown within the menu.
-#: ../xdg/mx-updater.desktop.in:8
-msgid "MX Updater system tray applet"
-msgstr ""
-
-#: ../xdg/mx-updater.desktop.in:16
-msgid "apt;update;upgrade;notifier;"
-msgstr ""
-
-#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-disable.policy:13
-msgid "Disable Auto-update"
-msgstr "自動更新を無効"
-
-#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-enable.policy:13
-msgid "Enable Auto-update"
-msgstr "自動更新を有効"
-
-#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:27
-#: ../bin/mx-updater_unattended_upgrades_log_view:39
-msgid "Press 'h' for help, 'q' to quit"
-msgstr "「h」キーでヘルプを表示し「q」キーで終了します。"
-
-#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:28
-#: ../bin/mx-updater_unattended_upgrades_log_view:40
-msgid "No logs found."
-msgstr "ログはありません。"
-
-#: ../bin/mx-updater_unattended_upgrades_log_view:41
-msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
-msgstr "簡易ビューは「自動更新の dpkg ログ」または「履歴」にあります。"
-
-#: ../lib/mx-updater/bin/updater_upgrade:161
-msgid "basic upgrade complete (or was canceled)"
-msgstr "基本アップグレードが完了しました (または中止しました)"
-
-#: ../lib/mx-updater/bin/updater_upgrade:163
-msgid "full upgrade complete (or was canceled)"
-msgstr "フルアップグレードが完了しました (または中止しました)"
-
-#: ../lib/mx-updater/bin/updater_upgrade:180
-msgid "this terminal window can now be closed"
-msgstr "この端末ウインドウを閉じる"
-
-#: ../lib/mx-updater/shlib/updater_shlib:218
-msgid "press any key to stop automatic closing"
-msgstr "いずれかのキーを押して自動終了を中止"
-
-#: ../lib/mx-updater/shlib/updater_shlib:219
-#: ../lib/mx-updater/shlib/updater_shlib:256
-msgid "press any key to close"
-msgstr "何かキーを押して閉じる"
-
-#~ msgid "$count new updates available"
-#~ msgstr "$count 新しい更新が入手可能です"
-
-#~ msgid "0 updates available"
-#~ msgstr "利用可能な更新はありません"
-
-#~ msgid "1 new update available"
-#~ msgstr "1 個の新しい更新が利用可能です"
-
-#~ msgid "Auto-update"
-#~ msgstr "自動更新"
-
-#~ msgid "Automatically answer 'yes' to all prompts during full/basic upgrade"
-#~ msgstr "基本/フルアップグレード中、プロンプトで全ての質問にはいと答えます"
-
-#~ msgid "Automatically answer 'yes' to all prompts during upgrade"
-#~ msgstr "アップグレード中の質問には全て「はい」と答えます"
-
-#~ msgid "Cancel"
-#~ msgstr "取り消し"
-
-#~ msgid "MX Updater preferences"
-#~ msgstr "MX アップデーターの設定"
-
-#~ msgid "MX Updater--View and Upgrade, previewing: basic upgrade"
-#~ msgstr "MX アップデーター--表示とアップグレード、基本アップグレードのプレビュー"
-
-#~ msgid "MX Updater--View and Upgrade, previewing: full upgrade"
-#~ msgstr "MX アップデーター--表示とアップグレード、フルアップグレードのプレビュー"
-
-#~ msgid "No unattended-upgrades dpkg log(s) found."
-#~ msgstr "自動更新された dpkg のログは見つかりません。"
-
-#~ msgid "Reload the package information to become informed about new, removed or upgraded software packages. (apt-get update)"
-#~ msgstr "新規、削除あるいはアップグレードされたパッケージについて情報が得られるように、パッケージ情報を再読込してください。(apt-get update)"
-
-#~ msgid "Running apt-get autoremove, if you are unsure type 'n'."
-#~ msgstr "APT 自動削除を実行しますが、よく分からないのなら 'n' をタイプしてください。"
-
-#~ msgid "Switches the type of Upgrade that will be performed, alternating back and forth between 'full upgrade' and 'basic upgrade'."
-#~ msgstr "実行するアップグレードのタイプを切り替えます。基本アップグレードとフルアップグレードを交互に切り替えられます。"
-
-#~ msgid "Unneeded packages are installed that can be removed."
-#~ msgstr "削除可能な不要なパッケージがインストールされています。"
-
-#~ msgid "Updates"
-#~ msgstr "更新"
-
-#~ msgid "Upgrade using Synaptic"
-#~ msgstr "Synaptic を使って更新します"
-
-#~ msgid "Using basic upgrade (not recommended)"
-#~ msgstr "基本アップグレードを実行 (非推奨)"
-
-#~ msgid "Using full upgrade"
-#~ msgstr "フルアップグレードを実行"
-
-#~ msgid "You have $count new updates available"
-#~ msgstr "$count 新たな更新が入手可能です"
-
-#~ msgid "You have 1 new update available"
-#~ msgstr "1 つの新たな更新が入手可能です"
-
-#, python-brace-format
-#~ msgid "You have {num} new update available"
-#~ msgid_plural "You have {num} new updates available"
-#~ msgstr[0] "{num} 個の更新が利用可能です"
-
-#~ msgid "automatically close terminal window when full/basic upgrade complete"
-#~ msgstr "基本/フルアップグレードか完了したらターミナルを閉じます"
-
-#~ msgid "automatically close terminal window when upgrade complete"
-#~ msgstr "アップグレードが完了したらターミナルを自動的に終了します"
-
-#~ msgid "check for autoremovable packages after full/basic upgrade"
-#~ msgstr "基本/フルアップグレード後、自動削除可能なパッケージをチェック"
-
-#~ msgid "start MX Updater at login"
-#~ msgstr "ログイン時にMXアップデートを開始"
-
-#~ msgid "switch to basic upgrade"
-#~ msgstr "基本アップグレードへ変更"
-
-#~ msgid "switch to full upgrade"
-#~ msgstr "フルアップグレードへ変更"
-
-#~ msgid "update automatically   (will not add new or remove existing packages)"
-#~ msgstr "自動更新 (新規のパッケージやインストール済のパッケージの削除をしない)"
-
-#~ msgid "Re-enable MX Updater icon even if no updates available"
-#~ msgstr "アップデートがなくてもMXアップデーターのアイコンを再有効化"

@@ -1,61 +1,240 @@
-# Albanian translations for mx-updater package.
-# Copyright (C) 2025 THE mx-updater'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the mx-updater package.
-# Automatically generated, 2025.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Dolphin Oracle <dolphinoracle@gmail.com>, 2025
+# Besnik Bleta <besnik@programeshqip.org>, 2025
+# fehlix, 2025
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 18:32-0400\n"
-"PO-Revision-Date: 2025-10-12 18:32-0400\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: sq\n"
+"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"PO-Revision-Date: 2025-10-17 07:23+0000\n"
+"Last-Translator: fehlix, 2025\n"
+"Language-Team: Albanian (https://app.transifex.com/anticapitalista/teams/10162/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../libexec/mx-updater/updater-systray.py:1509
-msgid "About"
-msgstr "Mbi"
+#. TRANSLATORS: The string "MX Updater" is the name of the tool that
+#. appears in the system tray/taskbar to inform users about software
+#. package updates and perform various actions to update and upgrade the
+#. system.  The string is used in various places. Keep the translation
+#. short and leave the string "MX Updater" untranslated if necessary.
+msgid "MX Updater"
+msgstr "Përditësues MX"
 
-#: ../libexec/mx-updater/updater_about.py:79
-msgid "About MX Updater"
-msgstr "Mbi Përditësuesin MX"
-
-#: ../libexec/mx-updater/updater-settings.py:1198
-msgid "An unexpected error occurred:"
+#. TRANSLATORS: The desktop entry comment will be shown within the menu.
+#. Keep it short.
+msgid "MX Updater system tray applet"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:395
-#: ../libexec/mx-updater/updater-systray.py:1507
+#. TRANSLATORS: Keywords for Menu Search
+#. Important Translation Guidance:
+#. - Keep the original English keywords
+#. - Add translated keywords
+#. - IMPORTANT: End EACH keyword with a semicolon (;)
+#. - Do NOT replace English keywords entirely
+#. Example:
+#. English keywords: "repository;update;upgrade;"
+#. French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à
+#. niveau;"
+#. Note the inclusion of:
+#. - Accented characters (à, é)
+#. - Non-ASCII translations
+#. - Original English keywords preserved
+#. - Each keyword ending with a semicolon
+msgid ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
+msgstr ""
+
+#. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
+#. displayed in the menu.
+msgid "MX Updater Settings"
+msgstr ""
+
+#. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
+#. of the ""MX Updater Settings" menu entry.
+msgid "MX Updater preferences"
+msgstr "Parapëlqime Përditësuesi MX"
+
+#. TRANSLATORS: The autostart desktop entry name will be shown within the list
+#. of autostart entries.
+msgid "MX Updater Autostart"
+msgstr ""
+
+#. TRANSLATORS: The autostart desktop entry comment will be shown within
+#. 'Session and Startup' (Autostart).
+msgid "An applet to show updates"
+msgstr "Një aplikacion i vockël për të shfaqur përditësime"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. disable unattended-upgrade (Auto-update)!
+msgid "Disable Auto-update"
+msgstr "Çaktivizo Vetëpërditësime"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. enabale unattended-upgrade (Auto-update)!
+msgid "Enable Auto-update"
+msgstr "Aktivizo Vetëpërditësime"
+
+#. TRANSLATORS: The upgrade mode "basic upgrade".
+msgid "basic upgrade"
+msgstr "përmirësim elementar"
+
+#. TRANSLATORS: The upgrade mode "full upgrade".
+msgid "full upgrade"
+msgstr "përmirësim i plotë"
+
+#. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
+msgid "Reload"
+msgstr "Ringarkoje"
+
+msgid "Press 'h' for help, 'q' to quit"
+msgstr "Shtypni “h” për ndihmë, “q” për mbyllje"
+
+msgid "No logs found."
+msgstr "S’u gjetën regjistra."
+
+msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
+msgstr ""
+"Për një pamje më pak të hollësishme, shihni “Regjistër(a) dpkg auto-update”,"
+" ose “Historik”."
+
+msgid "No updates available"
+msgstr "S’ka përditësime gati"
+
+#. TRANSLATORS: Plural Forms Guide
+#. Each language has unique rules for plurals. Fill in ALL plural forms
+#. specified for your language.
+#. - "%d" will be replaced by the actual number at runtime
+#. - Use grammatically correct translations for each form
+#. - Singular form (msgstr[0]): Typically for count of 1
+#. - Plural forms (msgstr[1], msgstr[2], etc.): Use appropriate grammatical
+#. variations
+#. Example (English):
+#. msgstr[0] "One new update"
+#. msgstr[1] "%d new updates"
+#. Tip: Consider your language's specific plural formation rules and
+#. grammatical nuances.
+msgid "%d new update available"
+msgid_plural "%d new updates available"
+msgstr[0] "%d përditësim i ri i gatshëm"
+msgstr[1] "%d përditësime të reja të gatshme"
+
+msgid "basic upgrade complete (or was canceled)"
+msgstr "përmirësim elementar i plotësuar (ose u anulua)"
+
+msgid "full upgrade complete (or was canceled)"
+msgstr "përmirësim tërësor i plotësuar (ose u anulua)"
+
+msgid "this terminal window can now be closed"
+msgstr "kjo dritare terminali tani mund të mbyllet"
+
+msgid "press any key to stop automatic closing"
+msgstr "shtypni çfarëdo tasti, për të ndalur mbylljen automatike"
+
+msgid "press any key to close"
+msgstr "shtypni çfarëdo tasti që të mbyllet"
+
+msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
+msgstr ""
+"MX Auto-update  --  parës regjistri dpkg përmirësimesh të pambikëqyrura"
+
 msgid "Auto-update dpkg log(s)"
 msgstr "Vetëpërditëso regjistër(a) dpkg"
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:411
-#: ../libexec/mx-updater/updater-systray.py:1506
+msgid "MX Auto-update  --  unattended-upgrades log viewer"
+msgstr "MX Auto-update  --  parës regjistri përmirësimesh të pambikëqyrura"
+
 msgid "Auto-update log(s)"
 msgstr "Regjistër(a) vetëpërditësimi"
 
-#: ../libexec/mx-updater/updater-settings.py:1168
-msgid "Auto-upgrade setting is already in the desired state. No changes made."
+msgid "Tray applet to notify of system and application updates"
+msgstr ""
+"Aplikacionth paneli, për të njoftuar rreth përditësimesh sistemi dhe "
+"aplikacionesh"
+
+msgid "About MX Updater"
+msgstr "Mbi Përditësuesin MX"
+
+msgid "Close"
+msgstr "Mbylle"
+
+msgid "License"
+msgstr "Licencë"
+
+msgid "Changelog"
+msgstr "Regjistër ndryshimesh"
+
+#. TRANSLATORS: "History" menu item in right-click context
+#. Allows users to view logs of package installations and removals
+#. using dpkg and apt package management tools
+msgid "History"
+msgstr "Historik"
+
+msgid "No apt-history data found!"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1180
-msgid "Auto-upgrade setting updated successfully."
+msgid "Error retrieving apt-history:"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:702
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:385
+msgid "Preferences"
+msgstr "Parapëlqime"
+
+#. TRANSLATORS: The label group-box, where user can select
+#. the "Upgrade mode" either "full upgrade" or "basic upgrade"
+msgid "Upgrade mode"
+msgstr "Mënyrë përmirësimi"
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. the "Upgrade mode": "full upgrade"
+msgid "full upgrade   (recommended)"
+msgstr "përmirësim i plotë   (e rekomanduar)"
+
+#. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
+#. which tries to explain what this checkbox is about.
 msgid ""
-"Automatically answers 'yes' to package management prompts during upgrades.\n"
-"Some system configuration changes may still require manual confirmation."
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:503
+#. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. to use "nala" package manager instead of "apt"
+#. TRANSLATORS: Select this to use nala package manager instead of apt.
+msgid "use nala"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "use nala",
+#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: Explains upgrade can be done by using nala package manager
+#. instead of apt
+msgid "Select this to use nala package manager instead of apt."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
+#. can select
+#. to enabled "unattended-upgrade"
+msgid "upgrade automatically"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
+#. which tries to explain what this checkbox is about.
 msgid ""
 "Automatically check for package updates once a day and install them.\n"
 "Only updates existing packages without changing your system configuration.\n"
@@ -63,521 +242,190 @@ msgid ""
 "when additional updates are available."
 msgstr ""
 
-#. TRANSLATORS: Explains the auto-close behavior of terminal window
-#. after system updates with a configurable idle time
-#: ../libexec/mx-updater/updater-settings.py:785
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:410
-msgid ""
-"Automatically closes the terminal window after the specified\n"
-"number of seconds of inactivity following system updates."
+msgid "Left-click behaviour   (when updates are available)"
+msgstr "Sjellje e klikimit me të majtin (kur ka përditësime)"
+
+msgid "opens Synaptic"
+msgstr "hap Synaptic-un"
+
+msgid "opens MX Updater 'View and Upgrade' window"
+msgstr "hap dritaren “Shiheni dhe Përmirësojeni” të Përditësuesit MX"
+
+msgid "Icons"
+msgstr "Ikona"
+
+#. TRANSLATORS: Please keep it short. Detailed explanation are with the
+#. tooltip.
+msgid "transparent wireframe for no updates"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:514
-msgid ""
-"Automatically update package cache with \"apt update\".\n"
-"          "
-msgstr ""
-
-#: ../libexec/mx-updater/updater_about.py:92
-#: ../libexec/mx-updater/updater-changelog.py:214
-msgid "Changelog"
-msgstr "Regjistër ndryshimesh"
-
-#: ../libexec/mx-updater/updater-systray.py:1504
-msgid "Check for Updates"
-msgstr "Kontrollo për Përditësime"
-
-#: ../libexec/mx-updater/updater-history.py:80
-msgid "Clear"
-msgstr ""
-
-#: ../libexec/mx-updater/updater_about.py:90
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:443
-msgid "Close"
-msgstr "Mbylle"
-
-#: ../libexec/mx-updater/updater-settings.py:1252
-msgid "Command failed"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:1251
-msgid "Could not change automatic upgrades configuration"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:620
+#. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
+#. updates", which explains
+#. what the checkbox is about.
 msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1197
-msgid "Error"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "dark"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:456
-msgid "Error retrieving apt-history:"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "light"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1187
-msgid "Failed to update auto-upgrade setting."
+#. TRANSLATORS: The wireframe icon-set
+msgid "wireframe"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1186
-msgid "Failure"
+#. TRANSLATORS: The pulse icon-set
+msgid "pulse"
+msgstr "puls"
+
+#. TRANSLATORS: The classic icon-set
+msgid "classic"
+msgstr "klasike"
+
+msgid "Other options"
+msgstr "Mundësi të tjera"
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. that "--assume-yes" option is added, so "apt" or "nala" won't ask
+#. for confirmations to install
+msgid "automatically confirm all package upgrades"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:68
-#: ../libexec/mx-updater/updater-history.py:165
-msgid "Filter by"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:864
+#. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
+#. upgrades",
+#. which tries to explain what this checkbox is about.
 msgid ""
-"Hide the system update icon when no updates are available.\n"
-"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:856
-#: ../libexec/mx-updater/updater-systray.py:1592
-msgid "Hide until updates available"
-msgstr "Fshihe, deri sa të ketë përditësime"
+#. TRANSLATORS: The label of the checkbox where user can select
+#. to start 'MX Updater' systray icon automatically at login
+#. after a delay of seconds.
+msgid "start \"MX Updater\" at login after delay"
+msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:110
-#: ../libexec/mx-updater/updater-systray.py:1505
-msgid "History"
-msgstr "Historik"
+#. TRANSLATORS: Explains the start of MX Updater automatically
+#. after a delay of seconds. The user can select the number of seconds.
+msgid ""
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
+msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:610
-msgid "Icons"
-msgstr "Ikona"
+#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
+#. in the timeout/time delay selection field. Please use the most appropriate
+#. translated string for the singular or plural form. Only one form will
+#. be displayed.
+msgid "sec"
+msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:841
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window after idle time"
+msgstr ""
+
+#. TRANSLATORS: Explains the auto-close behavior of terminal window
+#. after system updates with a configurable idle time
+msgid ""
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "use desktop notifications",
+#. where user can select to disabled or enable notification "popup" window
+#. shown .
+msgid "use desktop notifications"
+msgstr "përdor njoftime desktopi"
+
+#. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
+#. which tries to exlpain what this checkbox is about.
 msgid ""
 "In addition to change of the tray icon,\n"
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:561
-msgid "Left-click behaviour   (when updates are available)"
-msgstr "Sjellje e klikimit me të majtin (kur ka përditësime)"
+#. TRANSLATORS: The label of the checkbox "Hide until updates available" and
+#. also of the right-click menu entry, where user can select to not show
+#. the "MX Updater" systray icon until package upgrades are available.
+msgid "Hide until updates available"
+msgstr "Fshihe, deri sa të ketë përditësime"
 
-#: ../libexec/mx-updater/updater_about.py:91
-msgid "License"
-msgstr "Licencë"
-
-#: ../libexec/mx-updater/mx-updater-logviewer.py:185
-msgid "Log file is empty."
+#. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:393
-msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-msgstr "MX Auto-update  --  parës regjistri dpkg përmirësimesh të pambikëqyrura"
-
-#: ../libexec/mx-updater/mx-updater-logviewer.py:409
-msgid "MX Auto-update  --  unattended-upgrades log viewer"
-msgstr "MX Auto-update  --  parës regjistri përmirësimesh të pambikëqyrura"
-
-#: ../libexec/mx-updater/updater-systray.py:1489
-msgid "MX Package Installer"
-msgstr "Instalues Paketash MX"
-
-#: ../libexec/mx-updater/updater-systray.py:1494
-msgid "MX Repo Manager"
-msgstr ""
-
-#. The autostart desktop entry name will be shown within the list of autostart entries.
-#. The desktop entry name will be displayed within the menu.
-#: ../libexec/mx-updater/mx-updater-logviewer.py:385
-#: ../libexec/mx-updater/updater_about.py:77
-#: ../libexec/mx-updater/updater-changelog.py:213
-#: ../libexec/mx-updater/updater-history.py:111
-#: ../libexec/mx-updater/updater-settings.py:389
-#: ../libexec/mx-updater/updater-systray.py:367
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:353
-#: ../xdg/mx-updater-autostart.desktop.in:4 ../xdg/mx-updater.desktop.in:5
-#: ../lib/mx-updater/bin/updater_reload_run:68
-#: ../lib/mx-updater/bin/updater_upgrade_run:69
-msgid "MX Updater"
-msgstr "Përditësues MX"
-
-#: ../libexec/mx-updater/updater-settings.py:936
-#: ../libexec/mx-updater/updater-systray.py:1516
 msgid "MX Updater Help"
 msgstr "Ndihmë Përditësuesi MX"
 
-#: ../libexec/mx-updater/updater-history.py:454
-msgid "No apt-history data found!"
+msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1285
-msgid "No updates available"
-msgstr "S’ka përditësime gati"
-
-#: ../libexec/mx-updater/updater-settings.py:689
-msgid "Other options"
-msgstr "Mundësi të tjera"
-
-#: ../libexec/mx-updater/updater-settings.py:390
-#: ../libexec/mx-updater/updater-settings.py:1398
-#: ../libexec/mx-updater/updater-systray.py:1508
-msgid "Preferences"
-msgstr "Parapëlqime"
-
-#: ../libexec/mx-updater/updater-systray.py:1600
-msgid "Quit"
-msgstr "Mbylle"
-
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:441
-#: ../polkit/actions/org.mxlinux.mx-updater.reload.policy:13
-#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy:13
-#: ../polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy:13
-#: ../lib/mx-updater/bin/updater_reload_run:69
-msgid "Reload"
-msgstr "Ringarkoje"
-
-#: ../libexec/mx-updater/updater-systray.py:1511
-msgid "Restart MX Updater"
-msgstr "Rinis Përditësuesin e MX-it"
-
-#. TRANSLATORS: Explains the start of MX Updater automatically
-#. after a delay of seconds. The user can select the number of seconds.
-#: ../libexec/mx-updater/updater-settings.py:729
-msgid ""
-"Select this to launch \"MX Updater\" automatically\n"
-"at login after the specified delay in seconds."
-msgstr ""
-
-#. TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
-#: ../libexec/mx-updater/updater-settings.py:454
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:397
-msgid "Select this to use nala package manager instead of apt."
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:1179
 msgid "Success"
+msgstr "Sukses"
+
+msgid "Auto-upgrade setting updated successfully."
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1517
-msgid "Synaptic Help"
-msgstr "Ndihmë për Synaptic-un"
+msgid "Failure"
+msgstr "Dështim"
 
-#: ../libexec/mx-updater/updater-systray.py:1484
-msgid "Synaptic Package Manager"
+msgid "Failed to update auto-upgrade setting."
 msgstr ""
 
-#: ../libexec/mx-updater/updater_about.py:78
-msgid "Tray applet to notify of system and application updates"
-msgstr "Aplikacionth paneli, për të njoftuar rreth përditësimesh sistemi dhe aplikacionesh"
+msgid "Error"
+msgstr "Gabim"
 
-#: ../libexec/mx-updater/updater-settings.py:1250
+msgid "An unexpected error occurred:"
+msgstr ""
+
 msgid "Unattended Upgrades Configuration Failed"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1259
-msgid "Unattended-upgrades"
+msgid "Could not change automatic upgrades configuration"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:413
-msgid "Upgrade mode"
-msgstr "Mënyrë përmirësimi"
-
-#: ../libexec/mx-updater/updater-settings.py:427
-msgid ""
-"Upgrades all packages to their latest versions,\n"
-"which may include adding or removing packages\n"
-"to keep the system up-to-date and consistent."
+msgid "Command failed"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-systray.py:1385
-msgid "Upgrades available"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:432
-msgid ""
-"Upgrades existing packages to their latest versions\n"
-"without installing new dependencies or removing existing packages."
-msgstr ""
-
-#: ../libexec/mx-updater/updater-systray.py:908
-#: ../libexec/mx-updater/updater-systray.py:1500
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:354
 msgid "View and Upgrade"
 msgstr "Shiheni dhe Përmirësojeni"
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:122
-msgid "_Close"
+msgid "Unattended-upgrades"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-history.py:184
-msgid "_Copy"
+msgid "Upgrades available"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:700
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:384
-msgid "automatically confirm all package upgrades"
-msgstr ""
+msgid "Check for Updates"
+msgstr "Kontrollo për Përditësime"
 
-#: ../libexec/mx-updater/updater-settings.py:430
-#: ../libexec/mx-updater/updater-systray.py:1256
-#: ../polkit/actions/org.mxlinux.mx-updater.basic-upgrade.policy:13
-#: ../lib/mx-updater/bin/updater_upgrade_run:74
-msgid "basic upgrade"
-msgstr "përmirësim elementar"
+msgid "About"
+msgstr "Mbi"
 
-#. TRANSLATORS: The classic icon-set
-#: ../libexec/mx-updater/updater-settings.py:633
-msgid "classic"
-msgstr "klasike"
+msgid "Restart MX Updater"
+msgstr "Rinis Përditësuesin e MX-it"
+
+msgid "Synaptic Help"
+msgstr "Ndihmë për Synaptic-un"
+
+msgid "Quit"
+msgstr "Mbylle"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
-#: ../libexec/mx-updater/updater-settings.py:781
-msgid "close terminal window after idle time"
-msgstr ""
-
-#. TRANSLATORS: After the idle time in seconds has elapsed,
-#. the terminal window is closed once the system update is complete.
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:406
 msgid "close terminal window automatically after idle time"
 msgstr ""
 
-#. TRANSLATORS: The strings is used for the 'dark' or 'light' icon-set
-#: ../libexec/mx-updater/updater-settings.py:624
-msgid "dark"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-systray.py:1254
-#: ../polkit/actions/org.mxlinux.mx-updater.full-upgrade.policy:13
-#: ../lib/mx-updater/bin/updater_upgrade_run:78
-msgid "full upgrade"
-msgstr "përmirësim i plotë"
-
-#: ../libexec/mx-updater/updater-settings.py:423
-msgid "full upgrade   (recommended)"
-msgstr "përmirësim i plotë   (e rekomanduar)"
-
-#. TRANSLATORS: The strings is used for 'dark' or 'light' icon-set
-#: ../libexec/mx-updater/updater-settings.py:627
-msgid "light"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:571
-msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "hap dritaren “Shiheni dhe Përmirësojeni” të Përditësuesit MX"
-
-#: ../libexec/mx-updater/updater-settings.py:570
-msgid "opens Synaptic"
-msgstr "hap Synaptic-un"
-
-#. TRANSLATORS: The pulse icon-set
-#: ../libexec/mx-updater/updater-settings.py:631
-msgid "pulse"
-msgstr "puls"
-
-#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
-#. in the timeout/time delay selection field. Please use the most appropriate
-#. translated string for the singular or plural form. Only one form will
-#. be displayed.
-#: ../libexec/mx-updater/updater-settings.py:747
-#: ../libexec/mx-updater/updater-settings.py:803
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:424
-msgid "sec"
-msgstr ""
-
-#. TRANSLATORS: The label of the checkbox where user can select
-#. to start 'MX Updater' systray icon automatically at login
-#. after a delay of seconds.
-#: ../libexec/mx-updater/updater-settings.py:725
-msgid "start \"MX Updater\" at login after delay"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:511
-msgid "update automatically"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:442
 msgid "upgrade"
 msgstr "përmirësim"
-
-#: ../libexec/mx-updater/updater-settings.py:501
-msgid "upgrade automatically"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:839
-msgid "use desktop notifications"
-msgstr "përdor njoftime desktopi"
-
-#. TRANSLATORS: Select this to use nala package manager instead of apt.
-#: ../libexec/mx-updater/updater-settings.py:453
-#: ../libexec/mx-updater/updater-view-and-upgrade.py:395
-msgid "use nala"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-settings.py:618
-msgid "use transparent interior for no-updates wireframe"
-msgstr ""
-
-#. TRANSLATORS: The wireframe icon-set
-#: ../libexec/mx-updater/updater-settings.py:629
-msgid "wireframe"
-msgstr ""
-
-#: ../libexec/mx-updater/updater-systray.py:1230
-#, python-brace-format
-msgid "{num} new update available"
-msgid_plural "{num} new updates available"
-msgstr[0] "{num} përditësim i ri i gatshëm"
-msgstr[1] "{num} përditësime të reja të gatshme"
-
-#. TRANSLATORS:
-#. The autostart desktop entry comment will be shown within 'Session and Startup' (Autostart).
-#: ../xdg/mx-updater-autostart.desktop.in:7
-msgid "An applet to show updates"
-msgstr "Një aplikacion i vockël për të shfaqur përditësime"
-
-#. TRANSLATORS:
-#. The desktop entry comment will be shown within the menu.
-#: ../xdg/mx-updater.desktop.in:8
-msgid "MX Updater system tray applet"
-msgstr ""
-
-#: ../xdg/mx-updater.desktop.in:16
-msgid "apt;update;upgrade;notifier;"
-msgstr ""
-
-#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-disable.policy:13
-msgid "Disable Auto-update"
-msgstr "Çaktivizo Vetëpërditësime"
-
-#: ../polkit/actions/org.mxlinux.mx-updater.auto-update-enable.policy:13
-msgid "Enable Auto-update"
-msgstr "Aktivizo Vetëpërditësime"
-
-#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:27
-#: ../bin/mx-updater_unattended_upgrades_log_view:39
-msgid "Press 'h' for help, 'q' to quit"
-msgstr "Shtypni “h” për ndihmë, “q” për mbyllje"
-
-#: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:28
-#: ../bin/mx-updater_unattended_upgrades_log_view:40
-msgid "No logs found."
-msgstr "S’u gjetën regjistra."
-
-#: ../bin/mx-updater_unattended_upgrades_log_view:41
-msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
-msgstr "Për një pamje më pak të hollësishme, shihni “Regjistër(a) dpkg auto-update”, ose “Historik”."
-
-#: ../lib/mx-updater/bin/updater_upgrade:161
-msgid "basic upgrade complete (or was canceled)"
-msgstr "përmirësim elementar i plotësuar (ose u anulua)"
-
-#: ../lib/mx-updater/bin/updater_upgrade:163
-msgid "full upgrade complete (or was canceled)"
-msgstr "përmirësim tërësor i plotësuar (ose u anulua)"
-
-#: ../lib/mx-updater/bin/updater_upgrade:180
-msgid "this terminal window can now be closed"
-msgstr "kjo dritare terminali tani mund të mbyllet"
-
-#: ../lib/mx-updater/shlib/updater_shlib:218
-msgid "press any key to stop automatic closing"
-msgstr "shtypni çfarëdo tasti, për të ndalur mbylljen automatike"
-
-#: ../lib/mx-updater/shlib/updater_shlib:219
-#: ../lib/mx-updater/shlib/updater_shlib:256
-msgid "press any key to close"
-msgstr "shtypni çfarëdo tasti që të mbyllet"
-
-#~ msgid "$count new updates available"
-#~ msgstr "$count përditësime të reja të gatshme"
-
-#~ msgid "0 updates available"
-#~ msgstr "0 përditësime gati"
-
-#~ msgid "1 new update available"
-#~ msgstr "1 përditësim i ri i gatshëm"
-
-#~ msgid "Auto-update"
-#~ msgstr "Vetëpërditësim"
-
-#~ msgid "Automatically answer 'yes' to all prompts during full/basic upgrade"
-#~ msgstr "Përgjigje e automatizuar “po” për krejt hapat gjatë përmirësimi të plotë/elementar"
-
-#~ msgid "Automatically answer 'yes' to all prompts during upgrade"
-#~ msgstr "Përgjigje e automatizuar “po” për krejt hapat gjatë përmirësimi"
-
-#~ msgid "Cancel"
-#~ msgstr "Anuloje"
-
-#~ msgid "MX Updater preferences"
-#~ msgstr "Parapëlqime Përditësuesi MX-i"
-
-#~ msgid "MX Updater--View and Upgrade, previewing: basic upgrade"
-#~ msgstr "Përditësues MX--Shihini dhe Përmirësoni, paraparje: përmirësim elementar"
-
-#~ msgid "MX Updater--View and Upgrade, previewing: full upgrade"
-#~ msgstr "Përditësues MX--Shihini dhe Përmirësoni, paraparje: përmirësim i plotë"
-
-#~ msgid "No unattended-upgrades dpkg log(s) found."
-#~ msgstr "S’u gjet regjistër(a) dpkg përmirësimesh të pambikëqyrur."
-
-#~ msgid "Reload the package information to become informed about new, removed or upgraded software packages. (apt-get update)"
-#~ msgstr "Ringarko hollësi paketash, për të qenë i informuar rreth paketash software të reja, të hequra ose të përmirësuara. (apt-get update)"
-
-#~ msgid "Running apt-get autoremove, if you are unsure type 'n'."
-#~ msgstr "Po xhirohet “apt-get autoremove”, nëse s’jeni të sigurt, shtypni “n”."
-
-#~ msgid "Switches the type of Upgrade that will be performed, alternating back and forth between 'full upgrade' and 'basic upgrade'."
-#~ msgstr "Ndërron llojin e Përmirësimit që do të kryhet, nga “përmirësim i plotë” në “përmirësim elementar” dhe anasjelltas."
-
-#~ msgid "Unneeded packages are installed that can be removed."
-#~ msgstr "Janë instaluar paketa të panevojshme që mund të hiqen."
-
-#~ msgid "Updates"
-#~ msgstr "Përditësime"
-
-#~ msgid "Upgrade using Synaptic"
-#~ msgstr "Përmirësojeni duke përdorur Synaptic-un"
-
-#~ msgid "Using basic upgrade (not recommended)"
-#~ msgstr "Duke përdorur përmirësim elementar (e parekomanduar)"
-
-#~ msgid "Using full upgrade"
-#~ msgstr "Duke përdorur përmirësim të plotë"
-
-#~ msgid "You have $count new updates available"
-#~ msgstr "Keni $count përditësime të reja të gatshme"
-
-#~ msgid "You have 1 new update available"
-#~ msgstr "Keni 1 përditësim të ri të gatshëm"
-
-#, python-brace-format
-#~ msgid "You have {num} new update available"
-#~ msgid_plural "You have {num} new updates available"
-#~ msgstr[0] "Keni të gatshëm {num} përditësim të ri"
-#~ msgstr[1] "Keni të gatshme {num} përditësime të reja"
-
-#~ msgid "automatically close terminal window when full/basic upgrade complete"
-#~ msgstr "mbylle vetvetiu dritaren e terminalit, kur plotësohet përmirësimi i plotë/elementar"
-
-#~ msgid "automatically close terminal window when upgrade complete"
-#~ msgstr "mbylle vetvetiu dritaren e terminalit, kur plotësohet përmirësimi"
-
-#~ msgid "check for autoremovable packages after full/basic upgrade"
-#~ msgstr "kontrollo për paketa të vetëheqshme, pas përmirësimi të plotë/elementar"
-
-#~ msgid "start MX Updater at login"
-#~ msgstr "nise Përditësuesin MX gjatë hyrjes"
-
-#~ msgid "switch to basic upgrade"
-#~ msgstr "kalo te përmirësim elementar"
-
-#~ msgid "switch to full upgrade"
-#~ msgstr "kalo te përmirësim i plotë"
-
-#~ msgid "update automatically   (will not add new or remove existing packages)"
-#~ msgstr "përditësoje automatikisht   (s’do të shtohen paketa të reja apo hiqen ekzistuese)"
-
-#~ msgid "Re-enable MX Updater icon even if no updates available"
-#~ msgstr "Riaktivizoni ikonën Përditësues MX, edhe pse s’ka përditësime të gatshme"

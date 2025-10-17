@@ -64,6 +64,7 @@ fi
 
 # translations are defined within apt-notifier python modules
 # define functions to make xgettext ignore translations used here
+export TEXTDOMAIN="mx-updater"
 mygettext()  { local gettext=gettext; ${gettext} -d mx-updater "$@"; }
 myngettext() { local ngettext=ngettext; ${ngettext} -d mx-updater "$@"; }
 
@@ -168,53 +169,13 @@ else
     case $Count in
         "") :
             ;;
-        0)  # untranslated old non-plurals msg
-            umsg="0 updates available"
-            # translated old non-plurals msg
-            tmsg=$(mygettext "$umsg")
-
-            numsg='No updates available'
-            nmsg=$(mygettext "$numsg")
+        0)  msg=$(gettext 'No updates available')
             ;;
-        1)  # untranslated old non-plurals msg
-            umsg='1 new update available'
-            # translated old non-plurals msg
-            tmsg=$(mygettext "$umsg")
-
-            numsg='{num} new update available'
-            nmsg=$(myngettext '{num} new update available'  '{num} new updates available' $Count)
-            nmsg="${nmsg/\{num\}/$Count}"
-            numsg="${nmsg/\{num\}/$Count}"
-            ;;
-        *)  # untranslated old non-plurals msg
-            umsg='$count new updates available'
-            # translated old non-plurals msg
-            tmsg=$(mygettext "$umsg")
-            tmsg="${tmsg/\$count/$Count}"
-
-            numsg='{num} new updates available'
-            nmsg=$(myngettext '{num} new update available'  '{num} new updates available' $Count)
-            nmsg="${nmsg/\{num\}/$Count}"
-            numsg="${numsg/\{num\}/$Count}"
+        *)  msg=$(ngettext '%d new update available'  '%d new updates available' $Count)
+            msg="${nmsg//%d/$Count}"
             ;;
     esac
 
-
-    # check we have translations of the plurals msg
-    if [ "$nmsg" != "$numsg" ]; then
-        # yep, translated - we take the new plurals msg
-        msg="$nmsg"
-    else
-        # check we have translated old non-plurals msg
-        if [ "$tmsg" != "$umsg" ]; then
-            # yep, so we take the old translated one
-            msg=$tmsg
-        else
-            # neither old non-plurals nor new plurals are translated
-            # se we take the new plurals msg
-            msg=$nmsg
-        fi
-    fi
     UpdatesMsg=$msg
     echo "$UpdatesMsg"
     echo "($CountLine)";

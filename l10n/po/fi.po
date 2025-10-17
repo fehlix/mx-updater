@@ -4,11 +4,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Oi Suomi On! <oisuomion@protonmail.com>, 2025
 # asd asd <ekeimaja@gmail.com>, 2025
 # Dolphin Oracle <dolphinoracle@gmail.com>, 2025
 # En Kerro <inactive+ekeimaja@transifex.com>, 2025
 # fehlix, 2025
+# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-16 19:57-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2025\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2025\n"
 "Language-Team: Finnish (https://app.transifex.com/anticapitalista/teams/10162/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,12 +31,12 @@ msgstr ""
 #. system.  The string is used in various places. Keep the translation
 #. short and leave the string "MX Updater" untranslated if necessary.
 msgid "MX Updater"
-msgstr "MX Päivitys"
+msgstr "MX Päivitykset"
 
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "MX-päivitys-ohjelman kuvake telakassa"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -56,21 +56,22 @@ msgstr ""
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;päivitys;asennus;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr "MX päivityksen asetukset"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "MX Päivitysohjelman asetukset"
+msgstr "MX-päivitysohjelman lisäasetukset"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "MX Päivitykset autom. käynnistys"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -80,35 +81,35 @@ msgstr "Sovelma päivitysten näyttämiseen"
 #. TRANSLATORS: The string is displayed within the authentication window to
 #. disable unattended-upgrade (Auto-update)!
 msgid "Disable Auto-update"
-msgstr "Kytke automaattipäivitys pois"
+msgstr "Poista automaattiset päivitykset"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
 #. enabale unattended-upgrade (Auto-update)!
 msgid "Enable Auto-update"
-msgstr "Kytke päälle automaattipäivitys"
+msgstr "Käytä automaattisia päivityksiä"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
-msgstr "tavallinen päivitys"
+msgstr "Normaali päivitys"
 
 #. TRANSLATORS: The upgrade mode "full upgrade".
 msgid "full upgrade"
-msgstr "täydellinen päivitys"
+msgstr "Täydellinen päivitys"
 
 #. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
 msgid "Reload"
 msgstr "Lataa uudelleen"
 
 msgid "Press 'h' for help, 'q' to quit"
-msgstr "Paina 'h' saadaksesi apua, 'q' lopettaaksesi"
+msgstr "Paina \"h\" saadaksesi apua, \"q\" lopettaaksesi"
 
 msgid "No logs found."
 msgstr "Lokeja ei löytynyt."
 
 msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
 msgstr ""
-"Vähemmän yksityiskohtaista näkymää varten katso 'Automaattipäivitysten dpkg-"
-"ylöskirjaus (kirjaukset)' tai 'Historia'"
+"Katso vähemmän tietoja (\"dpkg-lokien automaattinen päivitys\" tai "
+"\"Historia\")."
 
 msgid "No updates available"
 msgstr "Ei päivityksiä saatavillla"
@@ -142,31 +143,28 @@ msgstr "tämän pääteikkunan voi nyt sulkea"
 
 msgid "press any key to stop automatic closing"
 msgstr ""
-"paina mitä tahansa näppäintä estääksesi automaattisen ikkunan sulkemisen"
+"paina mitä tahansa näppäintä estääksesi ikkunan automaattisen sulkemisen"
 
 msgid "press any key to close"
 msgstr "paina mitä tahansa näppäintä sulkeaksesi"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-msgstr ""
-"MX automaattipäivitys -- valvomattomien päivitysten dpkg-ylöskirjauskatselin"
+msgstr "MX Automaattinen päivitys -- dpkg-lokien katseluohjelma"
 
 msgid "Auto-update dpkg log(s)"
 msgstr "Päivitä dpkg loki(t) automaattisesti"
 
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
-msgstr ""
-"MX automaattipäivitys - valvomattomien päivitysten ylöskirjauskatselin "
+msgstr "MX Automaattinen päivitys -- päivitusten katseluohjelma"
 
 msgid "Auto-update log(s)"
-msgstr "Automaattipäivityksen loki(t)"
+msgstr "Automaattisen päivityksen loki(t)"
 
 msgid "Tray applet to notify of system and application updates"
-msgstr ""
-"Ilmaisinalueen sovelma joka ilmoittaa järjestelmä- ja sovelluspäivityksistä"
+msgstr "Sovelma telakassa, joka ilmoittaa päivityksistä"
 
 msgid "About MX Updater"
-msgstr "Tietoja MX Päivitys-sovelluksesta"
+msgstr "Tietoja MX Päivitykset"
 
 msgid "Close"
 msgstr "Sulje"
@@ -184,10 +182,10 @@ msgid "History"
 msgstr "Historia"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "Ei löytynyt apt-historiaa!"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "Virhe noudettaessa apt-historiaa:"
 
 msgid "Preferences"
 msgstr "Asetukset"
@@ -200,7 +198,7 @@ msgstr "Päivitystapa"
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
-msgstr "täydellinen päivitys   (suositeltu)"
+msgstr "täydellinen päivitys   (suositus)"
 
 #. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
 #. which tries to explain what this checkbox is about.
@@ -209,6 +207,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"Päivittää kaikki paketit uusimpiin versioihin, mikä\n"
+"voi sisältää pakettien lisäämistä tai poistamista\n"
+"järjestelmän pitämiseksi yhdenmukaisena."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -216,25 +217,27 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"Päivittää paketit uusimpiin versioihin asentamatta uusia\n"
+"riippuvuuksia tai poistamatta olemassa olevia paketteja."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "nala käytössä"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
 #. TRANSLATORS: Explains upgrade can be done by using nala package manager
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
-msgstr ""
+msgstr "Valitse käyttääksesi nala-paketinhallintaa apt:n sijaan."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "päivitä automaattisesti"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -244,16 +247,19 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"Tarkistaa ja asentaa päivitykset automaattisesti kerran päivässä.\n"
+"Päivittää vain olemassa olevat paketit muuttamatta kokoonpanoa.\n"
+"Päivityskuvake näyttää päivitysten määrän, mukaan lukien automaattiset päivitykset,\n"
+"kun lisäpäivityksiä on saatavilla."
 
 msgid "Left-click behaviour   (when updates are available)"
-msgstr ""
-"Vasemman hiiren painikkeen käyttäytyminen (kun päivityksiä on saatavilla)"
+msgstr "Vasen hiirenpainike  (kun päivityksiä on saatavilla)"
 
 msgid "opens Synaptic"
 msgstr "avaa Synapticin"
 
 msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "avaa MX Päivitysohjelman 'Tarkasta ja päivitä' -ikkunan"
+msgstr "avaa \"Tarkasta ja päivitykset\" ikkunan"
 
 msgid "Icons"
 msgstr "Kuvakkeet"
@@ -261,7 +267,7 @@ msgstr "Kuvakkeet"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "läpinäkyvä, ei päivityksiä"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -270,28 +276,29 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
+"Kun päivityksiä ei ole saatavilla näkyy läpinäkyvä kuvake ilman värejä."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "tumma"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "vaalea"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
-msgstr "ääriviivat"
+msgstr "lankamalli"
 
 #. TRANSLATORS: The pulse icon-set
 msgid "pulse"
-msgstr "pulse"
+msgstr "pulssi"
 
 #. TRANSLATORS: The classic icon-set
 msgid "classic"
-msgstr "classic"
+msgstr "perinteinen"
 
 msgid "Other options"
 msgstr "Muut asetukset"
@@ -300,7 +307,7 @@ msgstr "Muut asetukset"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "hyväksy automaattisesti kaikki pakettipäivitykset"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -309,12 +316,14 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"Vastaa automaattisesti \"kyllä\" ​​pakettien päivitysten aikana.\n"
+"Jotkin kokoonpanomuutokset saattavat edelleen vaatia manuaalisen vahvistuksen."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
-msgstr ""
+msgstr "suorita kirjautuessa \"MX Päivitykset\" viiveellä"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -322,18 +331,20 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"Valitse tämä, jos haluat käynnistää \"MX Päivitykset\" automaattisesti "
+"kirjautumisen yhteydessä määritetyn viiveen jälkeen."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "s"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "sulje pääteikkuna, jos on käyttämättä"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -341,12 +352,14 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"Sulkee pääteikkunan automaattisesti määritetyn joutoajan\n"
+"puitteissa päivitysten jälkeen."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
 #. shown .
 msgid "use desktop notifications"
-msgstr "Käytä työpöytäilmoituksia"
+msgstr "näytä ilmoitus työpöydällä"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -355,12 +368,14 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
+"Kuvakkeessa näkyvän muutoksen lisäksi näytetään\n"
+"ponnahdusikkua, kun päivityksiä on saatavilla."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
 #. the "MX Updater" systray icon until package upgrades are available.
 msgid "Hide until updates available"
-msgstr "Piilota kunnes päivityksiä on saatavilla"
+msgstr "Piilota kuvake kunnes päivityksiä on saatavilla"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -368,48 +383,52 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
+"Piilottaa kuvakkeen, kun päivityksiä ei ole saatavilla.\n"
+"Kuvake näkyy poistamalla valinnan ruudusta tai suorittamalla \"MX Päivitykset\" valikosta."
 
 msgid "MX Updater Help"
-msgstr "MX Päivitys -ohje"
+msgstr "MX Päivitykset -ohje"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
+"Automaattisen päivityksen asetus on jo halutussa tilassa. Muutoksia ei "
+"tehty."
 
 msgid "Success"
 msgstr "Onnistui"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr ""
+msgstr "Automaattisen päivityksen asetus onnistui."
 
 msgid "Failure"
 msgstr "Virhe"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr ""
+msgstr "Automaattisen päivityksen asetus epäonnistui."
 
 msgid "Error"
 msgstr "Virhe"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Odottamaton virhe:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "Päivitysten määritys epäonnistui"
 
 msgid "Could not change automatic upgrades configuration"
-msgstr ""
+msgstr "Automaattisten päivitysten asetuksia ei voitu muuttaa"
 
 msgid "Command failed"
-msgstr ""
+msgstr "Komento epäonnistui"
 
 msgid "View and Upgrade"
 msgstr "Katso ja päivitä"
 
 msgid "Unattended-upgrades"
-msgstr "Unattended-upgrades"
+msgstr "Valvomattomat päivitykset"
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Päivityksiä saatavilla"
 
 msgid "Check for Updates"
 msgstr "Tarkista päivitykset"
@@ -418,10 +437,10 @@ msgid "About"
 msgstr "Tietoja"
 
 msgid "Restart MX Updater"
-msgstr "Käynnistä MX Päivitys uudelleen"
+msgstr "Käynnistä päivitysohjelma uudelleen"
 
 msgid "Synaptic Help"
-msgstr "Synaptic -ohje"
+msgstr "Synaptic ohje"
 
 msgid "Quit"
 msgstr "Lopeta"
@@ -429,7 +448,7 @@ msgstr "Lopeta"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
-msgstr ""
+msgstr "sulje pääteikkuna, jos on käyttämättä"
 
 msgid "upgrade"
 msgstr "päivitä"

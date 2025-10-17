@@ -1,29 +1,29 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Fri, 17 Oct 2025 10:14:18 +0000
+# generated with tx-complete.sh at Fri, 17 Oct 2025 16:00:04 +0000
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
      1		  88	   100%    	ca      	ca	Catalan; Valencian
      2		  88	   100%    	de      	de	German
-     3		  54	    61%    	cs      	cs	Czech
-     4		  54	    61%    	el      	el	Greek, Modern (1453-)
-     5		  54	    61%    	es      	es	Spanish; Castilian
-     6		  54	    61%    	es_ES   	es	Spanish; Castilian @ Spain
-     7		  54	    61%    	fi      	fi	Finnish
-     8		  54	    61%    	fr      	fr	French
-     9		  54	    61%    	fr_BE   	fr	French @ Belgium
-    10		  54	    61%    	gl_ES   	gl	Galician @ Spain
-    11		  54	    61%    	hi      	hi	Hindi
-    12		  54	    61%    	hu      	hu	Hungarian
-    13		  54	    61%    	it      	it	Italian
-    14		  54	    61%    	ja      	ja	Japanese
-    15		  54	    61%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
-    16		  54	    61%    	nl      	nl	Dutch; Flemish
-    17		  54	    61%    	pl      	pl	Polish
-    18		  54	    61%    	pt      	pt	Portuguese
-    19		  54	    61%    	pt_BR   	pt	Portuguese @ Brazil
-    20		  54	    61%    	ru      	ru	Russian
-    21		  54	    61%    	sl      	sl	Slovenian
-    22		  54	    61%    	sv      	sv	Swedish
+     3		  88	   100%    	es      	es	Spanish; Castilian
+     4		  88	   100%    	es_ES   	es	Spanish; Castilian @ Spain
+     5		  88	   100%    	fr      	fr	French
+     6		  88	   100%    	fr_BE   	fr	French @ Belgium
+     7		  88	   100%    	nl      	nl	Dutch; Flemish
+     8		  88	   100%    	sv      	sv	Swedish
+     9		  87	    98%    	fi      	fi	Finnish
+    10		  54	    61%    	cs      	cs	Czech
+    11		  54	    61%    	el      	el	Greek, Modern (1453-)
+    12		  54	    61%    	gl_ES   	gl	Galician @ Spain
+    13		  54	    61%    	hi      	hi	Hindi
+    14		  54	    61%    	hu      	hu	Hungarian
+    15		  54	    61%    	it      	it	Italian
+    16		  54	    61%    	ja      	ja	Japanese
+    17		  54	    61%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
+    18		  54	    61%    	pl      	pl	Polish
+    19		  54	    61%    	pt      	pt	Portuguese
+    20		  54	    61%    	pt_BR   	pt	Portuguese @ Brazil
+    21		  54	    61%    	ru      	ru	Russian
+    22		  54	    61%    	sl      	sl	Slovenian
     23		  54	    61%    	tr      	tr	Turkish
     24		  52	    59%    	sq      	sq	Albanian
     25		  51	    57%    	nl_BE   	nl	Dutch; Flemish @ Belgium

@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Wallon Wallon, 2025
 # fehlix, 2025
+# Wallon Wallon, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-16 19:57-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2025\n"
+"Last-Translator: Wallon Wallon, 2025\n"
 "Language-Team: French (Belgium) (https://app.transifex.com/anticapitalista/teams/10162/fr_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,12 +28,12 @@ msgstr ""
 #. system.  The string is used in various places. Keep the translation
 #. short and leave the string "MX Updater" untranslated if necessary.
 msgid "MX Updater"
-msgstr "MX Mise à jour"
+msgstr "MX Mise à jour - MX Updater"
 
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "Applet MX Mise à jour dans la barre d’état système"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -53,26 +53,28 @@ msgstr ""
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;référentiel;mise"
+" à jour;mise à niveau;logiciel;paquet;dépôt;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr "Paramètres de MX Mise à jour - MX Updater"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "Préférences de MX Mise à jour"
+msgstr "Préférences de MX Mise à jour - MX Updater"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "Démarrage automatique de MX Mise à jour - MX Updater"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
 msgid "An applet to show updates"
-msgstr "Une applet pour montrer les mises à jour"
+msgstr "Un applet pour montrer les mises à jour"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
 #. disable unattended-upgrade (Auto-update)!
@@ -97,15 +99,15 @@ msgid "Reload"
 msgstr "Recharger"
 
 msgid "Press 'h' for help, 'q' to quit"
-msgstr "Appuyez « h » pour obtenir de l’aide, « q » pour quitter"
+msgstr "Appuyez « h » pour obtenir de l’aide, « q » pour quitter"
 
 msgid "No logs found."
 msgstr "Aucun journal trouvé."
 
 msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
 msgstr ""
-"Pour une vue moins détaillée, voir « Journ(al/aux) dpkg de mise à jour "
-"automatique » ou « Historique »."
+"Pour une vue moins détaillée, voir « Journ(al/aux) dpkg de mise à jour "
+"automatique » ou « Historique »"
 
 msgid "No updates available"
 msgstr "Aucune mise à jour disponible"
@@ -184,10 +186,10 @@ msgid "History"
 msgstr "Historique"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "Aucune donnée apt-history trouvée!"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "Erreur lors de la récupération d’apt-history:"
 
 msgid "Preferences"
 msgstr "Préférences"
@@ -209,6 +211,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"Mise à niveau de tous les paquets vers leurs dernières versions,\n"
+"ce qui peut inclure l’ajout ou la suppression de paquets\n"
+"afin de maintenir le système à jour et cohérent."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -216,12 +221,15 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"Mise à niveau des paquets existants vers leurs dernières\n"
+"versions sans installer de nouvelles dépendances ni\n"
+"supprimer les paquets existants."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "utilise nala"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
@@ -229,12 +237,14 @@ msgstr ""
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
 msgstr ""
+"Sélectionnez cette option pour utiliser le gestionnaire de paquets nala au "
+"lieu d’apt."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "mettre à niveau automatiquement"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -244,6 +254,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"Rechercher automatiquement les mises à jour des paquets une fois par jour et les installer.\n"
+"Met à jour uniquement les paquets existants sans modifier la configuration de votre système.\n"
+"L’icône du programme de mise à jour affiche le nombre total de mises à jour, y compris les mises à jour automatiques,\n"
+"lorsque des mises à jour supplémentaires sont disponibles."
 
 msgid "Left-click behaviour   (when updates are available)"
 msgstr "Comportement du clic gauche (quand des mises à jour sont disponibles)"
@@ -252,7 +266,7 @@ msgid "opens Synaptic"
 msgstr "lance Synaptic"
 
 msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "ouvre la fenêtre « Voir et mettre à niveau » de MX Mise à jour"
+msgstr "ouvre la fenêtre « Voir et mettre à niveau » de MX Mise à jour"
 
 msgid "Icons"
 msgstr "Icônes"
@@ -260,7 +274,7 @@ msgstr "Icônes"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "boîte filaire transparente pour aucune mise à jour"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -269,20 +283,22 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
+"Afficher les icônes de la boîte filaire transparente sans remplissage coloré"
+" lorsqu’aucune mise à jour n’est disponible."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "sombre"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "clair"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
-msgstr "boîte filaire"
+msgstr "boîte filaire - wireframe"
 
 #. TRANSLATORS: The pulse icon-set
 msgid "pulse"
@@ -299,7 +315,7 @@ msgstr "Autres options"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "confirmer automatiquement toutes les mises à jour de paquets"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -308,12 +324,15 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"Répond automatiquement « oui » aux invites de gestion des paquets lors des mises à niveau.\n"
+"Certaines modifications de configuration système peuvent nécessiter une confirmation manuelle."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
 msgstr ""
+"démarrer « MX Mise à jour - MX Updater » à la connexion après un délai"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -321,18 +340,21 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"Sélectionnez cette option pour lancer automatiquement\n"
+"« MX Mise à jour - MX Updater » à la connexion,\n"
+"après le délai spécifié en secondes."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "sec"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "fermer la fenêtre du terminal après un temps d’inactivité"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -340,6 +362,8 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"Ferme automatiquement la fenêtre du terminal après le \n"
+"nombre de secondes d’inactivité spécifié, à la suite des mises à jour du système."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -354,6 +378,10 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
+"En plus du changement de l’icône dans la zone\n"
+"de notification, des messages contextuels\n"
+"s’afficheront lorsque des mises à jour du système\n"
+"seront disponibles."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
@@ -367,39 +395,45 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
+"Masquer l’icône de mise à jour système lorsqu’aucune mise à jour n’est disponible.\n"
+"Décochez cette case ou exécutez « MX Mise à jour » depuis le menu pour rendre l’icône à nouveau visible."
 
 msgid "MX Updater Help"
-msgstr "Aide pour MX Mise à jour"
+msgstr "Aide pour MX Mise à jour - MX Updater"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
+"La mise à niveau automatique est déjà configurée. Aucune modification "
+"effectuée."
 
 msgid "Success"
 msgstr "Installation réussie"
 
 msgid "Auto-upgrade setting updated successfully."
 msgstr ""
+"Le paramètre de mise à niveau automatique a été mis à jour avec succès."
 
 msgid "Failure"
 msgstr "Échec"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr ""
+msgstr "Impossible de mettre à jour le paramètre de mise à jour automatique."
 
 msgid "Error"
 msgstr "Erreur"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Une erreur inattendue s’est produite:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "Impossible de configurer les mises à niveau automatiques"
 
 msgid "Could not change automatic upgrades configuration"
 msgstr ""
+"Impossible de modifier la configuration des mises à niveau automatiques"
 
 msgid "Command failed"
-msgstr ""
+msgstr "La commande a échoué"
 
 msgid "View and Upgrade"
 msgstr "Voir et mettre à niveau"
@@ -408,7 +442,7 @@ msgid "Unattended-upgrades"
 msgstr "Unattended-upgrades Mises à jour automatiques"
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Mises à niveau disponibles"
 
 msgid "Check for Updates"
 msgstr "Vérifier les mises à jour"
@@ -429,6 +463,7 @@ msgstr "Quitter"
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
 msgstr ""
+"fermer automatiquement la fenêtre du terminal après un temps d’inactivité"
 
 msgid "upgrade"
 msgstr "Mettre à niveau"

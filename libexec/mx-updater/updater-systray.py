@@ -1223,14 +1223,32 @@ class SystemTrayIcon(QSystemTrayIcon):
         full_upgrades_available = self._state.get("upgrades-available",{}).get('full-upgrade', (0, 0, 0, 0))[0:2]
         basic_upgrades_available = self._state.get("upgrades-available",{}).get('basic-upgrade', (0, 0, 0, 0))[0:2]
 
-
-
-        # plural form
+        # plural form {brace} format
+        """
         total_available = ngettext(
                             "{num} new update available",
                             "{num} new updates available",
                             self._total_updates
                             ).format(num=total_updates)
+        """
+
+        # plural form %d format
+        # TRANSLATORS: Plural Forms Guide
+        # Each language has unique rules for plurals. Fill in ALL plural forms specified for your language.
+        #
+        #- "%d" will be replaced by the actual number at runtime
+        #- Use grammatically correct translations for each form
+        #- Singular form (msgstr[0]): Typically for count of 1
+        #- Plural forms (msgstr[1], msgstr[2], etc.): Use appropriate grammatical variations
+        #
+        #Example (English):
+        #msgstr[0] "One new update"
+        #msgstr[1] "%d new updates"
+        #
+        #Tip: Consider your language's specific plural formation rules and grammatical nuances.
+        total_available = ngettext("%d new update available", "%d new updates available",
+                            self._total_updates
+                            ) % self._total_updates
 
         upgraded_and_new = _a("%lu upgraded, %lu newly installed, ")\
                             .replace("%lu", "{up:d}", 1)\
@@ -1481,17 +1499,17 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         synapic_label = self.get_app_name_from_path(
             "/usr/share/applications/synaptic.desktop"
-            ) or _("Synaptic Package Manager")
+            ) or _t("Synaptic Package Manager")
         logger.debug(f"Synaptic:'{synapic_label}'")
 
         packageinstaller_label = self.get_app_name_from_path(
             "/usr/share/applications/mx-packageinstaller.desktop"
-            ) or _("MX Package Installer")
+            ) or _t("MX Package Installer")
         logger.debug(f"MXPI:'{packageinstaller_label}'")
 
         repo_manager_label = self.get_app_name_from_path(
             "/usr/share/applications/mx-repo-manager.desktop"
-            ) or _("MX Repo Manager")
+            ) or _t("MX Repo Manager")
 
         logger.debug(f"REPO:'{repo_manager_label}'")
 
@@ -2273,6 +2291,9 @@ if __name__ == "__main__":
 
     # setup localization
     _ = L10N().tn.gettext
+
+    # use _t() to reuse existing translations (or hide until enabled)
+    _t = _
     _a = L10N().ta.gettext
     ngettext = L10N().tn.ngettext
 

@@ -28,6 +28,10 @@ from updater_translator import Translator
 translator = Translator(textdomain='mx-updater')
 _ = translator.translate
 
+# use _t() to reuse existing tranlations
+_t = _
+
+
 """
 import gettext
 LOCALE_DOMAIN = 'mx-updater'
@@ -40,7 +44,7 @@ _ = gettext.gettext
 """
 
 from PyQt6.QtWidgets import (
-    QApplication, QDialog, QVBoxLayout, QPlainTextEdit, QPushButton, 
+    QApplication, QDialog, QVBoxLayout, QPlainTextEdit, QPushButton,
     QHBoxLayout, QLineEdit, QStyle, QMessageBox
 )
 from PyQt6.QtGui import QFont, QIcon, QPixmap, QKeyEvent, QGuiApplication, QPalette, QAction, QColor
@@ -64,9 +68,12 @@ class FilterWithAction(QLineEdit):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # placeholder text 
-        placeholder_text = _("Filter by")
-        #print(f'placeholder_text = _("Filter by") : {placeholder_text}')
+        # TRANSLATORS:
+        # This is a placeholder string displayed within "search" field.
+        # When a "filter" string was enterd by the user, only lines
+        # that contain the "filter" string are displayed. So the field is
+        # actualy not a "search" field but rather a "filter-by" fieled.
+        placeholder_text = _t("Filter by")
         self.setPlaceholderText(f"{placeholder_text}...")
         self.setClearButtonEnabled(False)
 
@@ -77,7 +84,9 @@ class FilterWithAction(QLineEdit):
             clear_icon = QIcon(":/icons/clear.png")
 
         self.clear_action = QAction(clear_icon, "Clear text", self)
-        tooltip = _("Clear")
+        # TRANSLATORS:
+        # The tooltip shown at the "clear" button to empty the "filter-by" search field.
+        tooltip = _t("Clear")
         self.clear_action.setToolTip(f"  {tooltip}  ")
         self.clear_action.triggered.connect(self.clear)
 
@@ -89,13 +98,13 @@ class FilterWithAction(QLineEdit):
         self.textChanged.connect(lambda txt: self.clear_action.setVisible(bool(txt)))
 
         # set placeholde text for dark mode to "#888888"
-        # for lightmode it stays as default ( something like #555 or #777) 
+        # for lightmode it stays as default ( something like #555 or #777)
         if is_dark_palette(self.palette()):
             pal = self.palette()
             pal.setColor(QPalette.ColorRole.PlaceholderText, QColor("#888888"))
             self.setPalette(pal)
-    
-        # adjust padding 
+
+        # adjust padding
         self.setTextMargins(0, 0, 4, 0)
 
 class LogDialog(QDialog):
@@ -104,10 +113,15 @@ class LogDialog(QDialog):
 
         self.default_width  = default_width
         self.default_height = default_height
-        
+
         self.qsettings_section = "Geometry_Updater_History"
         self.qsettings = QSettings("MX-Linux", "mx-updater")
+
+        # TRANSLATORS: "History" menu item in right-click context
+        # Allows users to view logs of package installations and removals
+        # using dpkg and apt package management tools
         window_title_history = _("History")
+
         window_title_updater = _("MX Updater")
         window_title = f"[ {window_title_updater} ] -- {window_title_history}"
         window_icon = "/usr/share/icons/hicolor/scalable/mx-updater.svg"
@@ -124,7 +138,7 @@ class LogDialog(QDialog):
         #print("width height : ", self.width(), self.height())
         self.move((x - self.width()) // 2, (y - self.height()) // 2)
         self.setMinimumSize(600, 400)  # Optional: Set minimum size
-       
+
         # original log text
         self.original_log_text = log_text
 
@@ -134,7 +148,7 @@ class LogDialog(QDialog):
 
         # QPlainTextEdit for displaying log text
         self.log_text_edit = QPlainTextEdit(self)
-        self.log_text_edit.setPlainText(self.original_log_text) 
+        self.log_text_edit.setPlainText(self.original_log_text)
         self.log_text_edit.setReadOnly(True)  # read-only
 
         # monospace font
@@ -162,14 +176,14 @@ class LogDialog(QDialog):
         self.search_field = FilterWithAction(self)
         # placeholder text
         #placeholder_text = "Filter..."
-        placeholder_text = _("Filter by")
+        placeholder_text = _t("Filter by")
         #print(f'placeholder_text = _("Filter by") : {placeholder_text}')
 
         self.search_field.setPlaceholderText(f"{placeholder_text}...")
         # fixed width for search field
         self.search_field.setFixedWidth(200)
         # connect to filter function
-        self.search_field.textChanged.connect(self.filter_log_text) 
+        self.search_field.textChanged.connect(self.filter_log_text)
 
         """
         # clear button
@@ -179,18 +193,18 @@ class LogDialog(QDialog):
         self.clear_button.clicked.connect(self.clear_search)  # connect to clear function
         """
 
-        
+
         # copy and close button
-        copy_text = _("_Copy")
+        copy_text = _t("_Copy")
 
         self.copy_button = QPushButton(copy_text.replace('_','&'), self)
-        self.copy_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileIcon)) 
+        self.copy_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileIcon))
 
         # close button - using OK instead of Close
         OK_TEXT = get_standard_button_text(QMessageBox.StandardButton.Ok)
-        
+
         self.close_button = QPushButton(OK_TEXT, self)
-        self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton)) 
+        self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
 
         # connect buttons to functions
         self.close_button.clicked.connect(self.close_and_exit)
@@ -263,23 +277,23 @@ class LogDialog(QDialog):
         self.save_dialog_geometry()
         self.accept()  # Close the dialog
 
-   
+
     def resize_and_center(self):
         """
         Resize and center the window with scaling.
-        
+
         :param default_width: Desired window width
         :param default_height: Desired window height
         """
 
-        default_width  = self.default_width 
+        default_width  = self.default_width
         default_height = self.default_height
 
         #print(f"Original size: {default_width}x{default_height}")
 
         # Get the primary screen
         screen = QGuiApplication.primaryScreen()
-        
+
         # Get available screen geometry (accounting for panels)
         available_geometry = screen.availableGeometry()
         #print(f"Screen available: {available_geometry.width()}x{available_geometry.height()}")
@@ -288,44 +302,44 @@ class LogDialog(QDialog):
         max_width = int(available_geometry.width() * 0.9)  # 90% of available width
         max_height = int(available_geometry.height() * 0.9)  # 90% of available height
         #print(f"max_width x max_height: {max_width} x {max_height}")
-        
+
         # calculate scaling factors
         width_scale = max_width / default_width
         height_scale = max_height / default_height
-        
+
         # use the smaller scale to maintain aspect ratio, but not scale up
         scale = min(1.0, min(width_scale, height_scale))
-        
+
         # calculate final dimensions
         final_width = int(default_width * scale)
         final_height = int(default_height * scale)
-        
+
         # Resize the window to exact calculated dimensions
         self.resize(final_width, final_height)
-        
+
         # calculate center position
         center_point = available_geometry.center()
         frame_geometry = self.frameGeometry()
         frame_geometry.moveCenter(center_point)
-        
+
         # ensure window is within available screen space
         adjusted_pos = frame_geometry.topLeft()
-        adjusted_pos.setX(max(available_geometry.left(), 
-                               min(adjusted_pos.x(), 
+        adjusted_pos.setX(max(available_geometry.left(),
+                               min(adjusted_pos.x(),
                                    available_geometry.right() - frame_geometry.width())))
-        adjusted_pos.setY(max(available_geometry.top(), 
-                               min(adjusted_pos.y(), 
+        adjusted_pos.setY(max(available_geometry.top(),
+                               min(adjusted_pos.y(),
                                    available_geometry.bottom() - frame_geometry.height())))
-        
+
         # move window
         self.move(adjusted_pos)
-        
+
         print(f"Final size: {final_width}x{final_height}")
 
     def keyPressEvent_NotUsed(self, event):
         """
         Override key press event to close window when Esc is pressed.
-        
+
         :param event: Key press event
         """
         if event.key() == Qt.Key.Key_Escape:
@@ -336,7 +350,7 @@ class LogDialog(QDialog):
         # Save geometry when dialog is closed
         self.save_dialog_geometry()
         super().done(result)
-    
+
     def save_dialog_geometry(self):
         """
         Save dialog position and size to QSettings
@@ -344,7 +358,7 @@ class LogDialog(QDialog):
         section = self.qsettings_section
         self.qsettings.setValue(f'{section}/position', self.pos())
         self.qsettings.setValue(f'{section}/size', self.size())
-    
+
     def restore_dialog_geometry(self):
         """
         Restore dialog position and size, with fallback to 'resize_and_center' method
@@ -352,70 +366,70 @@ class LogDialog(QDialog):
         # get primary screen's available geometry
         screen = QGuiApplication.primaryScreen()
         available_geometry = screen.availableGeometry()
-        
+
         # check if valid geometry exists in settings
         section = self.qsettings_section
         saved_pos = self.qsettings.value(f'{section}/position', None)
         saved_size = self.qsettings.value(f'{section}/size', None)
-        
+
         # validate saved geometry
-        if (saved_pos is not None and saved_size is not None and 
+        if (saved_pos is not None and saved_size is not None and
             isinstance(saved_pos, QPoint) and isinstance(saved_size, QSize)):
-            
+
             # Adjust size to fit within available geometry
             adjusted_size = self.adjust_size_to_screen(saved_size, available_geometry)
-            
+
             # Adjust position to ensure dialog is within screen bounds
             adjusted_pos = self.adjust_position_to_screen(saved_pos, adjusted_size, available_geometry)
-            
+
             # Set the dialog geometry
             self.resize(adjusted_size)
             self.move(adjusted_pos)
-        
+
         else:
             # No valid saved geometry - use resize_and_center method
             self.resize_and_center()
-    
+
     def adjust_size_to_screen(self, size, available_geometry):
         """
         Ensure dialog size does not exceed available screen geometry
         """
         max_width = min(size.width(), available_geometry.width())
         max_height = min(size.height(), available_geometry.height())
-        
+
         return QSize(
             max(max_width, self.minimumWidth()),
             max(max_height, self.minimumHeight())
         )
-    
+
     def adjust_position_to_screen(self, pos, size, available_geometry):
         """
         Ensure dialog position is within available screen geometry
         """
         # Adjust x-coordinate
         x = max(
-            available_geometry.left(), 
+            available_geometry.left(),
             min(pos.x(), available_geometry.right() - size.width())
         )
-        
+
         # Adjust y-coordinate
         y = max(
-            available_geometry.top(), 
+            available_geometry.top(),
             min(pos.y(), available_geometry.bottom() - size.height())
         )
-       
+
         return QPoint(x, y)
 
-    
+
 def get_apt_history():
     try:
         # Run apt-history command and capture the output
         command = ["/usr/bin/apt-history"]
         result = subprocess.run(
-            command, 
+            command,
             shell=False,  # Use shell=True to execute the command as a single string
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
             text=True
         )
 

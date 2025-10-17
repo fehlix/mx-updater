@@ -30,6 +30,9 @@ gettext.bindtextdomain('mx-updater', locale_dir)
 gettext.textdomain('mx-updater')
 _ = gettext.gettext
 
+# A separate translation for 'apt'
+apt_translations = gettext.translation('apt', fallback=True)
+_a = apt_translations.gettext
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s [%(levelname)s] %(message)s')
@@ -366,8 +369,8 @@ class ViewAndUpgradeDialog(QDialog):
         #self.log.setPlainText(self.log_text)
 
         # Set initial placeholder text
-
-        self.apt_is_working = gettext.dgettext('apt', ' [Working]')
+        #self.apt_is_working = gettext.dgettext('apt', ' [Working]')
+        self.apt_is_working = _a(' [Working]')
         self.log.setPlainText(f"...{self.apt_is_working}")
 
         # main outer vbox layout
@@ -434,23 +437,48 @@ class ViewAndUpgradeDialog(QDialog):
         frame.setContentsMargins(5, 0, 5, 0)  # margins
         outer.addWidget(frame, stretch=0)
 
-
         # horizontal layout for buttons
-        reload_label = _("Reload")
-        upgrade_label = _("upgrade")
-        close_label = _("Close")
 
-        # fix lower/upper spelling
-        reload_label = reload_label[0].upper() + reload_label[1:]
-        upgrade_label = upgrade_label[0].upper() + upgrade_label[1:]
 
-        # if the very first character matches, insert '&' right after it in label1
-        if reload_label[0] == upgrade_label[0]:
-            reload_label = reload_label[0] + "&" + reload_label[1:]
+        reload_label_string = "_Reload"
+        upgrade_label_string = "_Upgrade"
+        close_label_string = "_Close"
+
+        # TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
+        reload_label = _("Reload").strip()
+        upgrade_label = _("upgrade").strip()
+        close_label = _("Close").strip()
+
+        cjk = any(os.environ.get("LANG").startswith(y) for y in ('zh', 'ja', 'ko'))
+        if cjk:
+            if reload_label != "Reload":
+                reload_label += " (&R)"
+            else:
+                reload_label = reload_label[0].upper() + reload_label[1:]
+                reload_label = "&" + reload_label
+
+            if upgrade_label != "upgrade":
+                upgrade_label += " (&U)"
+            else:
+                upgrade_label = upgrade_label[0].upper() + upgrade_label[1:]
+                upgrade_label = "&" + upgrade_label
+
+            if close_label != "Close":
+                close_label += " (&C)"
+            else:
+                close_label = "&" + close_label
         else:
-            reload_label = "&" + reload_label
-        upgrade_label = "&" + upgrade_label
-        close_label = "&" + close_label
+            # fix lower/upper spelling
+            reload_label = reload_label[0].upper() + reload_label[1:]
+            upgrade_label = upgrade_label[0].upper() + upgrade_label[1:]
+
+            # if the very first character matches, insert '&' right after it in label1
+            if reload_label[0] == upgrade_label[0] or not reload_label[0].isascii():
+                reload_label = reload_label[0] + "&" + reload_label[1:]
+            else:
+                reload_label = "&" + reload_label
+            upgrade_label = "&" + upgrade_label
+            close_label = "&" + close_label
 
 
         button_layout = QHBoxLayout()
@@ -544,20 +572,6 @@ class ViewAndUpgradeDialog(QDialog):
         # self.accept()
         self.reject()
 
-
-    def do_upgradeXXXXXX(self):
-        self.hide()
-        self.state = "do_upgrade"
-        dlg = QProgressDialog(
-            "Upgrading packages…", "", 0, 100, self
-        )
-        dlg.setWindowModality(Qt.WindowModality.ApplicationModal)
-        dlg.show()
-        for i in range(101):
-            time.sleep(0.05)
-            dlg.setValue(i)
-        dlg.close()
-        self.reject()
 
     def setlog_text(self):
         self.log_cnt +=1

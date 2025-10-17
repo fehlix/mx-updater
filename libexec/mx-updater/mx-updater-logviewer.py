@@ -38,6 +38,8 @@ LOCALE_DIR = '/usr/share/locale'
 translator = Translator(textdomain=LOCALE_DOMAIN)
 _ = translator.translate  # Use the translator function
 
+# use _t() to reuse existing tranlations
+_t = _
 
 '''
 import gettext
@@ -119,7 +121,7 @@ class LogViewer(QDialog):
 
         if not locale.startswith('en'):
             if close_text == "&Close":
-                close_text = _("_Close")
+                close_text = _t("_Close")
                 self.close_button.setText(close_text.replace('_','&'))
 
         # connect buttons to functions
@@ -182,7 +184,7 @@ class LogViewer(QDialog):
 
             # Ensure some content
             if not content:
-                content = _("Log file is empty.")
+                content = _("No logs found.")
 
             self.text_area.setPlainText(content)
         except Exception as e:

@@ -1,6 +1,6 @@
 [Desktop Entry]
-# The autostart desktop entry name will be shown within the list of autostart entries.
-Name=MX Updater
+# TRANSLATORS: The autostart desktop entry name will be shown within the list of autostart entries.
+Name=MX Updater Autostart
 # TRANSLATORS: The autostart desktop entry comment will be shown within 'Session and Startup' (Autostart).
 Comment=An applet to show updates
 Exec=/usr/bin/mx-updater-autostart

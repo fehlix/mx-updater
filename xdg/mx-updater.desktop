@@ -1,15 +1,37 @@
 [Desktop Entry]
-Type=Application
-# The desktop entry name will be displayed within the menu.
+# TRANSLATORS: The string "MX Updater" is the name of the tool that
+# appears in the system tray/taskbar to inform users about software
+# package updates and perform various actions to update and upgrade the
+# system.  The string is used in various places. Keep the translation
+# short and leave the string "MX Updater" untranslated if necessary.
 Name=MX Updater
 # TRANSLATORS: The desktop entry comment will be shown within the menu.
+# Keep it short.
 Comment=MX Updater system tray applet
 Exec=/usr/bin/mx-updater
 TryExec=/usr/bin/mx-updater
 Icon=mx-updater
 Terminal=false
+Type=Application
 StartupNotify=false
 Categories=System;Qt;KDE;Utility;X-KDE-Utilities-Desktop;MX-Software;
 StartupWMClass=mx-updater
-# TRANSLATORS: Keywords to search in the menu. Hint: Keep English keywords, add translated keywords to existing.
-Keywords=apt;nala;update;upgrade;notifier;
+# TRANSLATORS: Keywords for Menu Search
+#
+# Important Translation Guidance:
+# - Keep the original English keywords
+# - Add translated keywords
+# - IMPORTANT: End EACH keyword with a semicolon (;)
+# - Do NOT replace English keywords entirely
+#
+# Example:
+# English keywords: "repository;update;upgrade;"
+# French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à niveau;"
+#
+# Note the inclusion of:
+# - Accented characters (à, é)
+# - Non-ASCII translations
+# - Original English keywords preserved
+# - Each keyword ending with a semicolon
+#
+Keywords=apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;

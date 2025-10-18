@@ -8,7 +8,7 @@ Name=MX Updater
 # TRANSLATORS: The desktop entry comment will be shown within the menu.
 # Keep it short.
 Comment=MX Updater system tray applet
-Exec=/usr/bin/mx-updater
+Exec=/usr/bin/mx-updater --restart
 TryExec=/usr/bin/mx-updater
 Icon=mx-updater
 Terminal=false

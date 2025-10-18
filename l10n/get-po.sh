@@ -18,6 +18,7 @@ RESOURCE_SLUG="mx-updater"
 RESOURCE="${PROJECT_SLUG}.${RESOURCE_SLUG}"
 
 POT_FILE="mx-updater.pot"
+POT_FILE="mx-updater_new.pot"
 PO_DIR="po"
 PO_BAK="${PO_DIR}_$(date '+%Y-%m-%d_%H%M%S').bak"
 
@@ -54,4 +55,5 @@ echodo() {
 # echodo ${TXBIN} pull --force  -r "$RESOURCE" --all 
 
 # get all translations mentioned in LINGUAS
-echodo ${TXBIN} pull  -r "$RESOURCE" -t -l $(grep -v '^\s*#' ${PO_DIR}/LINGUAS | tr '\n' ',' | sed 's/,$//')
+# and retrieve pot file from transifix as "mx-updater_new.pot"
+echodo ${TXBIN} pull  -r "$RESOURCE" -s -t -l $(grep -v '^\s*#' ${PO_DIR}/LINGUAS | tr '\n' ',' | sed 's/,$//')

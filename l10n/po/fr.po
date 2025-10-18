@@ -305,7 +305,7 @@ msgstr "clair"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
-msgstr "boîte filaire - wireframe"
+msgstr "boîte filaire"
 
 #. TRANSLATORS: The pulse icon-set
 msgid "pulse"

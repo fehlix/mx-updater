@@ -35,8 +35,9 @@ type = PO
 EOF
 
 # tx push -r <project-slug>.<resource-slug> -s
-
-echodo ${TXBIN} push -r ${RESOURCE} -s 
+#echodo ${TXBIN} push -r ${RESOURCE} -s 
+echo "Run this command manually if you realy want to do this:"
+echo ${TXBIN} push -r ${RESOURCE} -s 
 
 exit
 

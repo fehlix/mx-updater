@@ -1,3 +1,10 @@
+mx-updater (25.10.01mx25+dev01) mx; urgency=medium
+
+  * Add restart option "--restart" as default to mx-updater.desktop
+  * Use latest translations from transifex
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 18 Oct 2025 12:28:20 -0400
+
 mx-updater (25.10.01mx25) mx; urgency=medium
 
   * Replace 2-apt-compat with 2-origin-patterns-daily

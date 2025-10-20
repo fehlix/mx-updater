@@ -66,8 +66,10 @@ case "$1" in
 	       /etc/apt/apt.conf.d/51unattended-upgrades-blacklist 2>/dev/null || :
 	fi
 
+        if [ -d /run/systemd/system ]; then
+            systemctl --system daemon-reload >/dev/null || :
+        fi
 	
 	;;
 esac
 exit 0
-

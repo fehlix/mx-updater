@@ -1,9 +1,10 @@
-mx-updater (25.10.01mx25+dev01) mx; urgency=medium
+mx-updater (25.10.02mx25) mx; urgency=medium
 
   * Add restart option "--restart" as default to mx-updater.desktop
-  * Use latest translations from transifex
+  * Adjust wait-online and origin-patterns-daily for apt-daily services
+  * Refresh latest translations from transifex
 
- -- fehlix <fehlix@mxlinux.org>  Sat, 18 Oct 2025 12:28:20 -0400
+ -- fehlix <fehlix@mxlinux.org>  Mon, 20 Oct 2025 07:18:32 -0400
 
 mx-updater (25.10.01mx25) mx; urgency=medium
 

@@ -1,5 +1,5 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Sat, 18 Oct 2025 16:58:29 +0000
+# generated with tx-complete.sh at Mon, 20 Oct 2025 09:11:03 +0000
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
      1		  88	   100%    	ca      	ca	Catalan; Valencian
@@ -9,17 +9,17 @@
      5		  88	   100%    	fr      	fr	French
      6		  88	   100%    	fr_BE   	fr	French @ Belgium
      7		  88	   100%    	nl      	nl	Dutch; Flemish
-     8		  88	   100%    	sv      	sv	Swedish
-     9		  87	    98%    	fi      	fi	Finnish
-    10		  54	    61%    	cs      	cs	Czech
-    11		  54	    61%    	el      	el	Greek, Modern (1453-)
-    12		  54	    61%    	gl_ES   	gl	Galician @ Spain
-    13		  54	    61%    	hi      	hi	Hindi
-    14		  54	    61%    	hu      	hu	Hungarian
-    15		  54	    61%    	it      	it	Italian
-    16		  54	    61%    	ja      	ja	Japanese
-    17		  54	    61%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
-    18		  54	    61%    	pl      	pl	Polish
+     8		  88	   100%    	pl      	pl	Polish
+     9		  88	   100%    	sv      	sv	Swedish
+    10		  87	    98%    	fi      	fi	Finnish
+    11		  54	    61%    	cs      	cs	Czech
+    12		  54	    61%    	el      	el	Greek, Modern (1453-)
+    13		  54	    61%    	gl_ES   	gl	Galician @ Spain
+    14		  54	    61%    	hi      	hi	Hindi
+    15		  54	    61%    	hu      	hu	Hungarian
+    16		  54	    61%    	it      	it	Italian
+    17		  54	    61%    	ja      	ja	Japanese
+    18		  54	    61%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
     19		  54	    61%    	pt      	pt	Portuguese
     20		  54	    61%    	pt_BR   	pt	Portuguese @ Brazil
     21		  54	    61%    	ru      	ru	Russian

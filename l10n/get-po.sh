@@ -57,3 +57,6 @@ echodo() {
 # get all translations mentioned in LINGUAS
 # and retrieve pot file from transifix as "mx-updater_new.pot"
 echodo ${TXBIN} pull  -r "$RESOURCE" -s -t -l $(grep -v '^\s*#' ${PO_DIR}/LINGUAS | tr '\n' ',' | sed 's/,$//')
+
+[ -f .tx/config ] && rm .tx/config
+[ -d .tx ]  && rmdir .tx

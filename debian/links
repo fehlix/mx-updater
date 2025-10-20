@@ -10,3 +10,6 @@ usr/libexec/mx-updater/mx-updater-logviewer.py      usr/libexec/mx-updater/mx-up
 usr/share/mx-updater/1-quick-live-update            etc/cron.daily/1-quick-live-update
 usr/share/mx-updater/2-origin-patterns-daily        etc/cron.daily/2-origin-patterns-daily
 usr/share/mx-updater/03mx-updater-update-stamp      etc/apt/apt.conf.d/03mx-updater-update-stamp
+usr/share/mx-updater/01-wait-online.conf            etc/systemd/system/apt-daily.service.d/01-wait-online.conf
+usr/share/mx-updater/01-wait-online.conf            etc/systemd/system/apt-daily-upgrade.service.d/01-wait-online.conf
+usr/share/mx-updater/02-origin-patterns-daily.conf  etc/systemd/system/apt-daily-upgrade.service.d/02-origin-patterns-daily.conf

@@ -5,7 +5,7 @@
 
 # translations are defined within apt-notifier python modules
 # define a function to make xgettext ignore translations used here
-mygettext() { gettext "$@"; }
+mygettext() { local gettext=gettext; ${gettext} "$@"; }
 
 # check privs
 if [ $(id -u) != 0 ]; then
@@ -18,7 +18,7 @@ fi
 # set less-prompt
 #
 export TEXTDOMAINDIR="/usr/share/locale"
-export LESS="-Ps"$(gettext -d util-linux "[Press space to continue, 'q' to quit.]")
+export LESS="-Ps"$(mygettext -d util-linux "[Press space to continue, 'q' to quit.]")
 
 :<<NotUsed
 if [ ! -e /etc/apt/sources.list ]; then
@@ -156,10 +156,11 @@ fi
 
 echo ""
 
+export TEXTDOMAIN="mx-updater"
 if [ "$UPGRADE_TYPE" = "upgrade" ]; then
-    mygettext "basic upgrade complete (or was canceled)"; echo
+    gettext "basic upgrade complete (or was canceled)"; echo
 else
-    mygettext "full upgrade complete (or was canceled)"; echo
+    gettext "full upgrade complete (or was canceled)"; echo
 fi
 
 # auto close timeout
@@ -176,7 +177,7 @@ if [ -f "$UPDATER_SHLIB" ]; then
       . "$UPDATER_SHLIB"
 fi
 echo
-mygettext "this terminal window can now be closed"
+gettext "this terminal window can now be closed"
 echo
 echo
 

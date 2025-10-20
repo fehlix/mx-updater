@@ -4,7 +4,7 @@
 PODIR=po
 LOG=$PODIR/TX-COMPLETE.LOG
 LINGUAS=$PODIR/LINGUAS
-EN_POT=apt-notifier.pot
+EN_POT=mx-updater.pot
 
 which isoquery >/dev/null || { 
     echo "Needed 'isoquery' not found. Install with: apt install isoquery"; 
@@ -12,7 +12,7 @@ which isoquery >/dev/null || {
     }
 
 #-----------------------------------
-echo "# Languages codes with translation completness  >= 5%"   | tee    $LOG
+echo "# Languages codes with translation completness  >= 25%"   | tee    $LOG
 echo "# generated with tx-complete.sh at $(TZ=EST  date -R)"   | tee -a $LOG
 
 printf '%6s\t\t%4s\t%7s\t\t%s\t\t%s\n' "Nr." "Cnt." "Compl." "Code" "Language" | tee -a $LOG
@@ -39,7 +39,7 @@ done | sort -t $'\t' -k2nr,2 -k4,4 | cat -n | tee -a $LOG
 
 # create LINGUAS with translations completness >= 5%
 #
-echo "# languages codes with translation completness  >= 5%"   >  $LINGUAS
+echo "# languages codes with translation completness  >= 25%"   >  $LINGUAS
 echo "# generated with tx-complete.sh at $(TZ=EST  date -R)"   >> $LINGUAS 
 echo "# "                                                      >> $LINGUAS
 grep -E '([5-9]|[0-9]{2})%' $LOG | grep -v '^#'  | awk '{print $4}' | sort -u >> $LINGUAS

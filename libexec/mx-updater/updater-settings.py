@@ -56,6 +56,9 @@ os.environ["EGL_LOG_LEVEL"] = "fatal"
 translator = Translator(textdomain='mx-updater')
 _ = translator.translate  # Use the translator function
 
+# use _t() to reuse existing translations (or hide until enabled)
+_t = _
+
 
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QFrame,
@@ -390,7 +393,7 @@ class SettingsEditorDialog(QDialog):
         window_title_preferences = _("Preferences")
         window_title  = f"[ {window_title_updater} ] -- {window_title_preferences}"
         self.setWindowTitle(window_title)
-        
+
         #self.setWindowIcon(QIcon("mx-updater-settings.svg"))
         self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/mx-updater-settings.svg"))
         self.setGeometry(100, 100, 400, 400)  # X, Y,  Width, Height
@@ -410,6 +413,8 @@ class SettingsEditorDialog(QDialog):
         #---------------------------------------------------------------
         # upgrade_frame: Upgrade mode
         #---------------------------------------------------------------
+        # TRANSLATORS: The label group-box, where user can select
+        # the "Upgrade mode" either "full upgrade" or "basic upgrade"
         upgrade_frame = QGroupBox(_("Upgrade mode"))
         upgrade_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
 
@@ -419,17 +424,27 @@ class SettingsEditorDialog(QDialog):
         upgrade_layout.setContentsMargins(*frame_margins)
 
         self.upgrade_button_group = QButtonGroup(self)
-        self.full_upgrade_radio = QRadioButton(self.squeeze_spaces(
-                _("full upgrade   (recommended)"))
-                )
-        self.full_upgrade_radio.setToolTip(
-        _(
-        """Upgrades all packages to their latest versions,
+
+        # TRANSLATORS: The label of the checkbox, where user can select
+        # the "Upgrade mode": "full upgrade"
+        self.full_upgrade_radio = QRadioButton(self.squeeze_spaces(_("full upgrade   (recommended)")))
+
+        # TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
+        # which tries to explain what this checkbox is about.
+        self.full_upgrade_radio.setToolTip(_("""Upgrades all packages to their latest versions,
 which may include adding or removing packages
 to keep the system up-to-date and consistent."""))
+
+        # keep the tranlatead string here, so xgettext will als extract from here
+        # TRANSLATORS: The upgrade mode "full upgrade".
+        _dummy = _("full upgrade")
+
+        # TRANSLATORS: The upgrade mode "basic upgrade".
         self.basic_upgrade_radio = QRadioButton(_("basic upgrade"))
-        self.basic_upgrade_radio.setToolTip(
-        _("""Upgrades existing packages to their latest versions
+
+        # TRANSLATORS: The tooltip of the checkbox "basic upgrade",
+        # which tries to explain what this checkbox is about.
+        self.basic_upgrade_radio.setToolTip(_("""Upgrades existing packages to their latest versions
 without installing new dependencies or removing existing packages."""))
 
         self.upgrade_button_map = {
@@ -449,8 +464,11 @@ without installing new dependencies or removing existing packages."""))
         except:
             self.full_upgrade_radio.setChecked(True)
 
-        # use_nala_checkbox with tooltip
+        # TRANSLATORS: The label of the checkbox, where user can select
+        # to use "nala" package manager instead of "apt"
         self.use_nala_checkbox = QCheckBox(_("use nala"))
+        # TRANSLATORS: The tooltip of the checkbox "use nala",
+        # which tries to explain what this checkbox is about.
         self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
 
         if self.settings["use_nala"]:
@@ -462,7 +480,7 @@ without installing new dependencies or removing existing packages."""))
             upgrade_h_layout = QHBoxLayout()
             upgrade_h_layout.addWidget(self.full_upgrade_radio)
 
-            # stretch space to pushuse_nala_checkbox right
+            # stretch space to push use_nala_checkbox right
             upgrade_h_layout.addStretch()  # This will take up all available space
 
             # use_nala_checkbox with a small fixed spacing
@@ -495,24 +513,25 @@ without installing new dependencies or removing existing packages."""))
 
         # Allow to select only automatic upgrade
 
-        self.auto_upgrade_checkbox = QCheckBox(
-            self.squeeze_spaces(
-              #_("update automatically")))
-              _("upgrade automatically")))
-        self.auto_upgrade_checkbox.setToolTip(
-        _("""Automatically check for package updates once a day and install them.
+        # TRANSLATORS: The label of the checkbox "upgrade automatically", where user can select
+        # to enabled "unattended-upgrade"
+        self.auto_upgrade_checkbox = QCheckBox(self.squeeze_spaces(_("upgrade automatically")))
+
+        # TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
+        # which tries to explain what this checkbox is about.
+        self.auto_upgrade_checkbox.setToolTip(_("""Automatically check for package updates once a day and install them.
 Only updates existing packages without changing your system configuration.
 The updater icon shows the total number of updates, including automatic updates,
 when additional updates are available."""))
 
 
-        self.auto_cache_update_checkbox = QCheckBox(
-            self.squeeze_spaces(
-              _("update automatically")))
-              #_("upgrade automatically")))
-        self.auto_cache_update_checkbox.setToolTip(
-        _("""Automatically update package cache with "apt update".
-          """))
+        # TRANSLATORS: The label of the checkbox "update automatically", where user can select
+        # to perform package cache update "apt-get update" automatically
+        self.auto_cache_update_checkbox = QCheckBox(self.squeeze_spaces(_t("update automatically")))
+
+        # TRANSLATORS: The tooltip of the checkbox "update automatically",
+        # which tries to explain what this checkbox is about.
+        self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
         # Allow to select automatic upgrade and pkg cache update
         if True:
@@ -615,30 +634,36 @@ when additional updates are available."""))
         icons_layout.setContentsMargins(*frame_margins)  # Remove margins if needed
 
         self.icon_radio_buttons = {}  # name -> icon radio button
-        self.wireframe_transparent_checkbox = QCheckBox(_("use transparent interior for no-updates wireframe"))
-        self.wireframe_transparent_checkbox.setToolTip(
-            _("""Display transparent wireframe icons without color fill
+
+        #self.wireframe_transparent_checkbox = QCheckBox(_("use transparent interior for no-updates wireframe"))
+
+        # TRANSLATORS: Please keep it short. Detailed explanation are with the tooltip.
+        self.wireframe_transparent_checkbox = QCheckBox(_("transparent wireframe for no updates"))
+
+        # TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no updates", which explains
+        # what the checkbox is about.
+        self.wireframe_transparent_checkbox.setToolTip(_("""Display transparent wireframe icons without color fill
 when no updates are available."""))
 
-        #TRANSLATORS: The strings is used for the 'dark' or 'light' icon-set
+        # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
         dark_string = _("dark")
-        
-        #TRANSLATORS: The strings is used for 'dark' or 'light' icon-set
+
+        # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
         light_string = _("light")
-        #TRANSLATORS: The wireframe icon-set
+        # TRANSLATORS: The wireframe icon-set
         wireframe_string = _("wireframe")
-        #TRANSLATORS: The pulse icon-set
+        # TRANSLATORS: The pulse icon-set
         pulse_string = _("pulse")
-        #TRANSLATORS: The classic icon-set
+        # TRANSLATORS: The classic icon-set
         classic_string = _("classic")
-        
+
         for icon_name in self.icon_order:
             #print(f"Icon_Look(name)={icon_name}")
             icon = self.icon_set.get(icon_name)
             icon_label_string = icon.get('label')
             icon_some = icon.get('icon_some')
             icon_none = icon.get('icon_none')
-            
+
             if icon_label_string == "wireframe dark":
                 icon_label = f"{wireframe_string} -- {dark_string}"
             elif icon_label_string == "wireframe light":
@@ -647,7 +672,7 @@ when no updates are available."""))
                 icon_label = f"{pulse_string} -- {light_string}"
             else:
                 icon_label = _(icon_label_string)
-            
+
             row_layout = QHBoxLayout()
             row_layout.setSpacing(20)  # smaller spacing between icons
             icon_radio_button = QRadioButton(icon_label)
@@ -697,9 +722,14 @@ when no updates are available."""))
         # upgrade_assume_yes_checkbox
         #---------------------------------------------------------------
 
+        # TRANSLATORS: The label of the checkbox, where user can select
+        # that "--assume-yes" option is added, so "apt" or "nala" won't ask
+        # for confirmations to install
         checkbox_label = _("automatically confirm all package upgrades")
-        checkbox_tooltip = _(
-            "Automatically answers 'yes' to package management prompts during upgrades.\n"
+
+        # TRANSLATORS: The tooltip of the checkbox "automatically confirm all package upgrades",
+        # which tries to explain what this checkbox is about.
+        checkbox_tooltip = _("Automatically answers 'yes' to package management prompts during upgrades.\n"
             "Some system configuration changes may still require manual confirmation."
             )
 
@@ -714,8 +744,6 @@ when no updates are available."""))
         if self.settings.get("upgrade_assume_yes"):
             self.upgrade_assume_yes_checkbox.setChecked(True)
 
-        #---------------------------------------------------------------
-         #---------------------------------------------------------------
         #---------------------------------------------------------------
         # start_8_login_checkbox
 
@@ -744,9 +772,6 @@ at login after the specified delay in seconds.""")
         value = default_value if value < 0 else min(value, 60)
         self.start_8_login_delay_spinbox.setValue(value)
 
-        # TRANSLATORS: This is the abriavated string for 'seconds' shown within
-        # the "start at login" selection field. Please use the most appropriate trnslated
-        # string for the singular or plural form.
         seconds_suffix = _("sec")
         self.start_8_login_delay_spinbox.setSuffix(f" {seconds_suffix}")
 
@@ -774,9 +799,6 @@ at login after the specified delay in seconds.""")
         start_8_login_layout.addWidget(self.start_8_login_delay_spinbox)
         start_8_login_layout.addStretch()
         #---------------------------------------------------------------
-        #---------------------------------------------------------------
-        #---------------------------------------------------------------
-        #---------------------------------------------------------------
         # auto_close_checkbox
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
@@ -803,9 +825,6 @@ at login after the specified delay in seconds.""")
         auto_close_timeout = self.load_setting("auto_close_timeout")
         self.auto_close_timeout.setValue(auto_close_timeout)
 
-        # TRANSLATORS: This is the abriavated string for 'seconds' shown within
-        # the timeout selection field. Please use the most appropriate trnslated
-        # string for the singular or plural form. Only one form is shown.
         seconds_suffix = _("sec")
         self.auto_close_timeout.setSuffix(f" {seconds_suffix}")
 
@@ -840,11 +859,13 @@ at login after the specified delay in seconds.""")
         timeout_layout.addWidget(self.auto_close_timeout)
         timeout_layout.addStretch()  # Pushes items to the left
 
-        #---------------------------------------------------------------
-        # use_dbus_notifications_checkbox
+        # TRANSLATORS: The label of the checkbox "use desktop notifications",
+        # where user can select to disabled or enable notification "popup" window shown .
         self.use_dbus_notifications_checkbox = QCheckBox(_("use desktop notifications"))
-        self.use_dbus_notifications_checkbox.setToolTip(
-        _("""In addition to change of the tray icon,
+
+        # TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
+        # which tries to exlpain what this checkbox is about.
+        self.use_dbus_notifications_checkbox.setToolTip(_("""In addition to change of the tray icon,
 pop-up messages will be shown when
 system updates are available."""))
 
@@ -859,15 +880,21 @@ system updates are available."""))
         #---------------------------------------------------------------
         # hide_until_upgrades_available_checkbox
         hide_until_updates_available_string = "Hide until updates available"
+
+        # TRANSLATORS: The label of the checkbox "Hide until updates available" and
+        # also of the right-click menu entry, where user can select to not show
+        # the "MX Updater" systray icon until package upgrades are available.
         hide_until_updates_available_translated = _("Hide until updates available")
         if hide_until_updates_available_string == hide_until_updates_available_translated:
             hide_until_updates_available_string = hide_until_updates_available_string.lower()
         else:
             hide_until_updates_available_string = hide_until_updates_available_translated
-            
+
         self.hide_until_upgrades_available_checkbox = QCheckBox(hide_until_updates_available_string)
-        self.hide_until_upgrades_available_checkbox.setToolTip(
-        _("""Hide the system update icon when no updates are available.
+
+        # TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
+        # which tries to exlpain what this checkbox is about.
+        self.hide_until_upgrades_available_checkbox.setToolTip(_("""Hide the system update icon when no updates are available.
 Untick this box or run "MX Updater" from the menu to make the icon visible again."""))
 
         # set inital state
@@ -937,6 +964,9 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
         # slots
         self.close_button.clicked.connect(self.on_close)
+
+        # set here so we get translations
+        updater_help = _("MX Updater Help")
 
         """
         # TODO:  when we have an actual help content
@@ -1233,9 +1263,11 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
             # Select appropriate command based on desired state
             if checked:
-                cmd = ['/usr/bin/pkexec', '/usr/lib/mx-updater/actions/auto-update-enable']
+                cmd = [ '/usr/bin/pkexec',
+                        '/usr/lib/mx-updater/actions/auto-update-enable']
             else:
-                cmd = ['/usr/bin/pkexec', '/usr/lib/mx-updater/actions/auto-update-disable']
+                cmd = [ '/usr/bin/pkexec',
+                        '/usr/lib/mx-updater/actions/auto-update-disable']
 
             # Run the command
             result = subprocess.run(

@@ -1,0 +1,33 @@
+[Desktop Entry]
+Type=Application
+# TRANSLATORS: The string "MX Updater Settings" is the desktop entry name displayed in the menu.
+Name=MX Updater Settings
+# TRANSLATORS: The string "MX Updater preferences" is desktop entry comment of the ""MX Updater Settings" menu entry.
+Comment=MX Updater preferences
+Exec=/usr/bin/mx-updater-settings
+TryExec=/usr/bin/mx-updater-settings
+Icon=mx-updater-settings
+Terminal=false
+StartupNotify=false
+Categories=System;MX-Software;
+StartupWMClass=mx-updater-settings
+NoDisplay=false
+# TRANSLATORS: Keywords for Menu Search
+#
+# Important Translation Guidance:
+# - Keep the original English keywords
+# - Add translated keywords
+# - IMPORTANT: End EACH keyword with a semicolon (;)
+# - Do NOT replace English keywords entirely
+#
+# Example:
+# English keywords: "repository;update;upgrade;"
+# French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à niveau;"
+#
+# Note the inclusion of:
+# - Accented characters (à, é)
+# - Non-ASCII translations
+# - Original English keywords preserved
+# - Each keyword ending with a semicolon
+#
+Keywords=apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;

@@ -8,8 +8,8 @@ XDGDIR := ../xdg
 
 LCMSGS := LC_MESSAGES/$(PKGNAM).mo
 
-DESKTOP_IN := $(wildcard $(XDGDIR)/*.desktop.in)
-DESKTOP    := $(addprefix $(BUILD)/xdg/,$(notdir $(basename $(DESKTOP_IN))))
+DESKTOP_IN := $(wildcard $(XDGDIR)/*.desktop)
+DESKTOP    := $(addprefix $(BUILD)/xdg/,$(notdir $(DESKTOP_IN)))
 
 ifneq ($(strip $(LINGUAS)),)
   LINGUAS := $(sort $(LINGUAS))
@@ -35,7 +35,7 @@ $(BUILD)/locale/%/$(LCMSGS): $(PO_DIR)/%.po
 
 desktop: $(DESKTOP)
 
-$(BUILD)/xdg/%.desktop: $(XDGDIR)/%.desktop.in
+$(BUILD)/xdg/%.desktop: $(XDGDIR)/%.desktop
 	@mkdir -p $(BUILD)/xdg
 	@echo "  " $@ 
 	msgfmt --desktop --template $< -d $(PO_DIR) -o $@ 

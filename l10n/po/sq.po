@@ -4,17 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Dolphin Oracle <dolphinoracle@gmail.com>, 2022
-# Besnik Bleta <besnik@programeshqip.org>, 2022
+# Dolphin Oracle <dolphinoracle@gmail.com>, 2025
+# Besnik Bleta <besnik@programeshqip.org>, 2025
+# fehlix, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 02:38+0100\n"
-"PO-Revision-Date: 2017-05-11 01:14+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2022\n"
+"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"PO-Revision-Date: 2025-10-17 07:23+0000\n"
+"Last-Translator: fehlix, 2025\n"
 "Language-Team: Albanian (https://app.transifex.com/anticapitalista/teams/10162/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,294 +23,409 @@ msgstr ""
 "Language: sq\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "$count new updates available"
-msgstr "$count përditësime të reja të gatshme"
+#. TRANSLATORS: The string "MX Updater" is the name of the tool that
+#. appears in the system tray/taskbar to inform users about software
+#. package updates and perform various actions to update and upgrade the
+#. system.  The string is used in various places. Keep the translation
+#. short and leave the string "MX Updater" untranslated if necessary.
+msgid "MX Updater"
+msgstr "Përditësues MX"
 
-msgid "0 updates available"
-msgstr "0 përditësime gati"
-
-msgid "1 new update available"
-msgstr "1 përditësim i ri i gatshëm"
-
-msgid "About"
-msgstr "Mbi"
-
-msgid "About MX Updater"
-msgstr "Mbi Përditësuesin MX"
-
-msgid "Auto-update"
-msgstr "Vetëpërditësim"
-
-msgid "Auto-update dpkg log(s)"
-msgstr "Vetëpërditëso regjistër(a) dpkg"
-
-msgid "Auto-update log(s)"
-msgstr "Regjistër(a) vetëpërditësimi"
-
-msgid "Automatically answer 'yes' to all prompts during full/basic upgrade"
+#. TRANSLATORS: The desktop entry comment will be shown within the menu.
+#. Keep it short.
+msgid "MX Updater system tray applet"
 msgstr ""
-"Përgjigje e automatizuar “po” për krejt hapat gjatë përmirësimi të "
-"plotë/elementar"
 
-msgid "Automatically answer 'yes' to all prompts during upgrade"
-msgstr "Përgjigje e automatizuar “po” për krejt hapat gjatë përmirësimi"
+#. TRANSLATORS: Keywords for Menu Search
+#. Important Translation Guidance:
+#. - Keep the original English keywords
+#. - Add translated keywords
+#. - IMPORTANT: End EACH keyword with a semicolon (;)
+#. - Do NOT replace English keywords entirely
+#. Example:
+#. English keywords: "repository;update;upgrade;"
+#. French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à
+#. niveau;"
+#. Note the inclusion of:
+#. - Accented characters (à, é)
+#. - Non-ASCII translations
+#. - Original English keywords preserved
+#. - Each keyword ending with a semicolon
+msgid ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
+msgstr ""
 
-msgid "Cancel"
-msgstr "Anullo"
+#. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
+#. displayed in the menu.
+msgid "MX Updater Settings"
+msgstr ""
 
-msgid "Changelog"
-msgstr "Ndryshimet"
+#. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
+#. of the ""MX Updater Settings" menu entry.
+msgid "MX Updater preferences"
+msgstr "Parapëlqime Përditësuesi MX"
 
-msgid "Check for Updates"
-msgstr "Kontrollo për Përditësime"
+#. TRANSLATORS: The autostart desktop entry name will be shown within the list
+#. of autostart entries.
+msgid "MX Updater Autostart"
+msgstr ""
 
-msgid "Close"
-msgstr "Mbyll"
+#. TRANSLATORS: The autostart desktop entry comment will be shown within
+#. 'Session and Startup' (Autostart).
+msgid "An applet to show updates"
+msgstr "Një aplikacion i vockël për të shfaqur përditësime"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. disable unattended-upgrade (Auto-update)!
+msgid "Disable Auto-update"
+msgstr "Çaktivizo Vetëpërditësime"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. enabale unattended-upgrade (Auto-update)!
+msgid "Enable Auto-update"
+msgstr "Aktivizo Vetëpërditësime"
+
+#. TRANSLATORS: The upgrade mode "basic upgrade".
+msgid "basic upgrade"
+msgstr "përmirësim elementar"
+
+#. TRANSLATORS: The upgrade mode "full upgrade".
+msgid "full upgrade"
+msgstr "përmirësim i plotë"
+
+#. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
+msgid "Reload"
+msgstr "Ringarkoje"
+
+msgid "Press 'h' for help, 'q' to quit"
+msgstr "Shtypni “h” për ndihmë, “q” për mbyllje"
+
+msgid "No logs found."
+msgstr "S’u gjetën regjistra."
 
 msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
 msgstr ""
 "Për një pamje më pak të hollësishme, shihni “Regjistër(a) dpkg auto-update”,"
 " ose “Historik”."
 
-msgid "Hide until updates available"
-msgstr "Fshihe, deri sa të ketë përditësime"
+msgid "No updates available"
+msgstr "S’ka përditësime gati"
 
-msgid "History"
-msgstr "Historik"
+#. TRANSLATORS: Plural Forms Guide
+#. Each language has unique rules for plurals. Fill in ALL plural forms
+#. specified for your language.
+#. - "%d" will be replaced by the actual number at runtime
+#. - Use grammatically correct translations for each form
+#. - Singular form (msgstr[0]): Typically for count of 1
+#. - Plural forms (msgstr[1], msgstr[2], etc.): Use appropriate grammatical
+#. variations
+#. Example (English):
+#. msgstr[0] "One new update"
+#. msgstr[1] "%d new updates"
+#. Tip: Consider your language's specific plural formation rules and
+#. grammatical nuances.
+msgid "%d new update available"
+msgid_plural "%d new updates available"
+msgstr[0] "%d përditësim i ri i gatshëm"
+msgstr[1] "%d përditësime të reja të gatshme"
 
-msgid "Icons"
-msgstr "Ikona"
+msgid "basic upgrade complete (or was canceled)"
+msgstr "përmirësim elementar i plotësuar (ose u anulua)"
 
-msgid "Left-click behaviour   (when updates are available)"
-msgstr "Sjellje e klikimit me të majtin (kur ka përditësime)"
+msgid "full upgrade complete (or was canceled)"
+msgstr "përmirësim tërësor i plotësuar (ose u anulua)"
 
-msgid "License"
-msgstr "Liçensa"
+msgid "this terminal window can now be closed"
+msgstr "kjo dritare terminali tani mund të mbyllet"
+
+msgid "press any key to stop automatic closing"
+msgstr "shtypni çfarëdo tasti, për të ndalur mbylljen automatike"
+
+msgid "press any key to close"
+msgstr "shtypni çfarëdo tasti që të mbyllet"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
 "MX Auto-update  --  parës regjistri dpkg përmirësimesh të pambikëqyrura"
 
+msgid "Auto-update dpkg log(s)"
+msgstr "Vetëpërditëso regjistër(a) dpkg"
+
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr "MX Auto-update  --  parës regjistri përmirësimesh të pambikëqyrura"
 
-msgid "MX Package Installer"
-msgstr "Instalues Paketash MX"
-
-#. The autostart desktop entry name will be shown within the list of autostart
-#. entries.
-#. The desktop entry name will be displayed within the menu.
-msgid "MX Updater"
-msgstr "Përditësues MX"
-
-msgid "MX Updater Help"
-msgstr "Ndihmë Përditësuesi MX"
-
-msgid "MX Updater preferences"
-msgstr "Parapëlqime Përditësuesi MX-i"
-
-msgid "MX Updater--View and Upgrade, previewing: basic upgrade"
-msgstr ""
-"Përditësues MX--Shihini dhe Përmirësoni, paraparje: përmirësim elementar"
-
-msgid "MX Updater--View and Upgrade, previewing: full upgrade"
-msgstr ""
-"Përditësues MX--Shihini dhe Përmirësoni, paraparje: përmirësim i plotë"
-
-msgid "No logs found."
-msgstr "S’u gjetën regjistra."
-
-msgid "No unattended-upgrades dpkg log(s) found."
-msgstr "S’u gjet regjistër(a) dpkg përmirësimesh të pambikëqyrur."
-
-msgid "No updates available"
-msgstr "S’ka përditësime gati"
-
-msgid "Other options"
-msgstr "Mundësi të tjera"
-
-msgid "Preferences"
-msgstr "Parapëlqime"
-
-msgid "Press 'h' for help, 'q' to quit"
-msgstr "Shtypni “h” për ndihmë, “q” për mbyllje"
-
-msgid "Quit"
-msgstr "Mbylle"
-
-msgid "Reload"
-msgstr "Ringarko"
-
-msgid ""
-"Reload the package information to become informed about new, removed or "
-"upgraded software packages. (apt-get update)"
-msgstr ""
-"Ringarko hollësi paketash, për të qenë i informuar rreth paketash software "
-"të reja, të hequra ose të përmirësuara. (apt-get update)"
-
-msgid "Restart MX Updater"
-msgstr "Rinis Përditësuesin e MX-it"
-
-msgid "Running apt-get autoremove, if you are unsure type 'n'."
-msgstr "Po xhirohet “apt-get autoremove”, nëse s’jeni të sigurt, shtypni “n”."
-
-msgid ""
-"Switches the type of Upgrade that will be performed, alternating back and "
-"forth between 'full upgrade' and 'basic upgrade'."
-msgstr ""
-"Ndërron llojin e Përmirësimit që do të kryhet, nga “përmirësim i plotë” në "
-"“përmirësim elementar” dhe anasjelltas."
-
-msgid "Synaptic Help"
-msgstr "Ndihmë për Synaptic-un"
+msgid "Auto-update log(s)"
+msgstr "Regjistër(a) vetëpërditësimi"
 
 msgid "Tray applet to notify of system and application updates"
 msgstr ""
 "Aplikacionth paneli, për të njoftuar rreth përditësimesh sistemi dhe "
 "aplikacionesh"
 
-msgid "Unattended-upgrades"
+msgid "About MX Updater"
+msgstr "Mbi Përditësuesin MX"
+
+msgid "Close"
+msgstr "Mbylle"
+
+msgid "License"
+msgstr "Licencë"
+
+msgid "Changelog"
+msgstr "Regjistër ndryshimesh"
+
+#. TRANSLATORS: "History" menu item in right-click context
+#. Allows users to view logs of package installations and removals
+#. using dpkg and apt package management tools
+msgid "History"
+msgstr "Historik"
+
+msgid "No apt-history data found!"
 msgstr ""
 
-msgid "Unneeded packages are installed that can be removed."
-msgstr "Janë instaluar paketa të panevojshme që mund të hiqen."
+msgid "Error retrieving apt-history:"
+msgstr ""
 
-msgid "Updates"
-msgstr "Përditësime"
+msgid "Preferences"
+msgstr "Parapëlqime"
 
+#. TRANSLATORS: The label group-box, where user can select
+#. the "Upgrade mode" either "full upgrade" or "basic upgrade"
 msgid "Upgrade mode"
 msgstr "Mënyrë përmirësimi"
 
-msgid "Upgrade using Synaptic"
-msgstr "Përmirësojeni duke përdorur Synaptic-un"
-
-msgid "Using basic upgrade (not recommended)"
-msgstr "Duke përdorur përmirësim elementar (e parekomanduar)"
-
-msgid "Using full upgrade"
-msgstr "Duke përdorur përmirësim të plotë"
-
-msgid "View and Upgrade"
-msgstr "Shiheni dhe Përmirësojeni"
-
-msgid "You have $count new updates available"
-msgstr "Keni $count përditësime të reja të gatshme"
-
-msgid "You have 1 new update available"
-msgstr "Keni 1 përditësim të ri të gatshëm"
-
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
-#, python-brace-format
-msgid "You have {num} new update available"
-msgid_plural "You have {num} new updates available"
-msgstr[0] "Keni të gatshëm {num} përditësim të ri"
-msgstr[1] "Keni të gatshme {num} përditësime të reja"
-
-msgid "automatically close terminal window when full/basic upgrade complete"
-msgstr ""
-"mbylle vetvetiu dritaren e terminalit, kur plotësohet përmirësimi i "
-"plotë/elementar"
-
-msgid "automatically close terminal window when upgrade complete"
-msgstr "mbylle vetvetiu dritaren e terminalit, kur plotësohet përmirësimi"
-
-msgid "basic upgrade"
-msgstr "përmirësim elementar"
-
-msgid "basic upgrade complete (or was canceled)"
-msgstr "përmirësim elementar i plotësuar (ose u anulua)"
-
-msgid "check for autoremovable packages after full/basic upgrade"
-msgstr ""
-"kontrollo për paketa të vetëheqshme, pas përmirësimi të plotë/elementar"
-
-msgid "classic"
-msgstr "klasike"
-
-msgid "full upgrade"
-msgstr "përmirësim i plotë"
-
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
 msgstr "përmirësim i plotë   (e rekomanduar)"
 
-msgid "full upgrade complete (or was canceled)"
-msgstr "përmirësim tërësor i plotësuar (ose u anulua)"
+#. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
+msgstr ""
 
-msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "hap dritaren “Shiheni dhe Përmirësojeni” të Përditësuesit MX"
+#. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. to use "nala" package manager instead of "apt"
+#. TRANSLATORS: Select this to use nala package manager instead of apt.
+msgid "use nala"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "use nala",
+#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: Explains upgrade can be done by using nala package manager
+#. instead of apt
+msgid "Select this to use nala package manager instead of apt."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
+#. can select
+#. to enabled "unattended-upgrade"
+msgid "upgrade automatically"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Automatically check for package updates once a day and install them.\n"
+"Only updates existing packages without changing your system configuration.\n"
+"The updater icon shows the total number of updates, including automatic updates,\n"
+"when additional updates are available."
+msgstr ""
+
+msgid "Left-click behaviour   (when updates are available)"
+msgstr "Sjellje e klikimit me të majtin (kur ka përditësime)"
 
 msgid "opens Synaptic"
 msgstr "hap Synaptic-un"
 
-msgid "press any key to close"
-msgstr "shtypni çfarëdo tasti që të mbyllet"
+msgid "opens MX Updater 'View and Upgrade' window"
+msgstr "hap dritaren “Shiheni dhe Përmirësojeni” të Përditësuesit MX"
 
-msgid "press any key to stop automatic closing"
-msgstr "shtypni çfarëdo tasti, për të ndalur mbylljen automatike"
+msgid "Icons"
+msgstr "Ikona"
 
-msgid "pulse"
-msgstr "puls"
-
-msgid "start MX Updater at login"
-msgstr "nise Përditësuesin MX gjatë hyrjes"
-
-msgid "switch to basic upgrade"
-msgstr "kalo te përmirësim elementar"
-
-msgid "switch to full upgrade"
-msgstr "kalo te përmirësim i plotë"
-
-msgid "this terminal window can now be closed"
-msgstr "kjo dritare terminali tani mund të mbyllet"
-
-msgid "update automatically   (will not add new or remove existing packages)"
-msgstr ""
-"përditësoje automatikisht   (s’do të shtohen paketa të reja apo hiqen "
-"ekzistuese)"
-
-msgid "upgrade"
-msgstr "përmirësim"
-
-msgid "use desktop notifications"
-msgstr "përdor njoftime desktopi"
-
-msgid "use transparent interior for no-updates wireframe"
+#. TRANSLATORS: Please keep it short. Detailed explanation are with the
+#. tooltip.
+msgid "transparent wireframe for no updates"
 msgstr ""
 
+#. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
+#. updates", which explains
+#. what the checkbox is about.
+msgid ""
+"Display transparent wireframe icons without color fill\n"
+"when no updates are available."
+msgstr ""
+
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "dark"
+msgstr ""
+
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "light"
+msgstr ""
+
+#. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
 msgstr ""
 
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
-#, python-brace-format
-msgid "{num} new update available"
-msgid_plural "{num} new updates available"
-msgstr[0] "{num} përditësim i ri i gatshëm"
-msgstr[1] "{num} përditësime të reja të gatshme"
+#. TRANSLATORS: The pulse icon-set
+msgid "pulse"
+msgstr "puls"
 
-#. TRANSLATORS:
-#. This autostart desktop entry comment will be shown within 'Session and
-#. Startup' (Autostart).
-msgid "An applet to show updates"
-msgstr "Një aplikacion i vockël për të shfaqur përditësime"
+#. TRANSLATORS: The classic icon-set
+msgid "classic"
+msgstr "klasike"
 
-#. TRANSLATORS:
-#. This desktop entry comment will be shown within the menu.
-msgid "Re-enable MX Updater icon even if no updates available"
+msgid "Other options"
+msgstr "Mundësi të tjera"
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. that "--assume-yes" option is added, so "apt" or "nala" won't ask
+#. for confirmations to install
+msgid "automatically confirm all package upgrades"
 msgstr ""
-"Riaktivizoni ikonën Përditësues MX, edhe pse s’ka përditësime të gatshme"
 
-msgid "Enable Auto-update"
-msgstr "Aktivizo Vetëpërditësime"
+#. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
+#. upgrades",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
+msgstr ""
 
-msgid "Disable Auto-update"
-msgstr "Çaktivizo Vetëpërditësime"
+#. TRANSLATORS: The label of the checkbox where user can select
+#. to start 'MX Updater' systray icon automatically at login
+#. after a delay of seconds.
+msgid "start \"MX Updater\" at login after delay"
+msgstr ""
+
+#. TRANSLATORS: Explains the start of MX Updater automatically
+#. after a delay of seconds. The user can select the number of seconds.
+msgid ""
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
+msgstr ""
+
+#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
+#. in the timeout/time delay selection field. Please use the most appropriate
+#. translated string for the singular or plural form. Only one form will
+#. be displayed.
+msgid "sec"
+msgstr ""
+
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window after idle time"
+msgstr ""
+
+#. TRANSLATORS: Explains the auto-close behavior of terminal window
+#. after system updates with a configurable idle time
+msgid ""
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "use desktop notifications",
+#. where user can select to disabled or enable notification "popup" window
+#. shown .
+msgid "use desktop notifications"
+msgstr "përdor njoftime desktopi"
+
+#. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"In addition to change of the tray icon,\n"
+"pop-up messages will be shown when\n"
+"system updates are available."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "Hide until updates available" and
+#. also of the right-click menu entry, where user can select to not show
+#. the "MX Updater" systray icon until package upgrades are available.
+msgid "Hide until updates available"
+msgstr "Fshihe, deri sa të ketë përditësime"
+
+#. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
+msgstr ""
+
+msgid "MX Updater Help"
+msgstr "Ndihmë Përditësuesi MX"
+
+msgid "Auto-upgrade setting is already in the desired state. No changes made."
+msgstr ""
+
+msgid "Success"
+msgstr "Sukses"
+
+msgid "Auto-upgrade setting updated successfully."
+msgstr ""
+
+msgid "Failure"
+msgstr "Dështim"
+
+msgid "Failed to update auto-upgrade setting."
+msgstr ""
+
+msgid "Error"
+msgstr "Gabim"
+
+msgid "An unexpected error occurred:"
+msgstr ""
+
+msgid "Unattended Upgrades Configuration Failed"
+msgstr ""
+
+msgid "Could not change automatic upgrades configuration"
+msgstr ""
+
+msgid "Command failed"
+msgstr ""
+
+msgid "View and Upgrade"
+msgstr "Shiheni dhe Përmirësojeni"
+
+msgid "Unattended-upgrades"
+msgstr ""
+
+msgid "Upgrades available"
+msgstr ""
+
+msgid "Check for Updates"
+msgstr "Kontrollo për Përditësime"
+
+msgid "About"
+msgstr "Mbi"
+
+msgid "Restart MX Updater"
+msgstr "Rinis Përditësuesin e MX-it"
+
+msgid "Synaptic Help"
+msgstr "Ndihmë për Synaptic-un"
+
+msgid "Quit"
+msgstr "Mbylle"
+
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window automatically after idle time"
+msgstr ""
+
+msgid "upgrade"
+msgstr "përmirësim"

@@ -15,6 +15,9 @@ case "$1" in
         rm -f /etc/xdg/autostart/mx-updater-autostart.desktop     || :
         rm -f /etc/apt/apt.conf.d/51unattended-upgrades-default-origins || :
         rm -f /etc/apt/apt.conf.d/51unattended-upgrades-blacklist || :
+        if [ -d /run/systemd/system ]; then
+            systemctl --system daemon-reload >/dev/null || :
+        fi
         ;;
     esac
 exit 0

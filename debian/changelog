@@ -1,3 +1,23 @@
+mx-updater (25.10.02mx25) mx; urgency=medium
+
+  * Add restart option "--restart" as default to mx-updater.desktop
+  * Adjust wait-online and origin-patterns-daily for apt-daily services
+  * Refresh latest translations from transifex
+
+ -- fehlix <fehlix@mxlinux.org>  Mon, 20 Oct 2025 07:18:32 -0400
+
+mx-updater (25.10.01mx25) mx; urgency=medium
+
+  * Replace 2-apt-compat with 2-origin-patterns-daily
+  * Keep mx-updater-autostart.desktop as conffile
+  * Adjust more translation strings
+  * Add more translator comments
+  * Replace python brace-format with %d-format in translation strings
+  * Adjust accelarator shortcuts
+  * Use latest translations from transifex
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 17 Oct 2025 12:12:03 -0400
+
 mx-updater (25.09.07mx25) mx; urgency=medium
 
   * List to be installed packages one per-line in unattended-upgrade logs. Thanks kmathern.

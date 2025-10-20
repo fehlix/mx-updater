@@ -38,6 +38,8 @@ LOCALE_DIR = '/usr/share/locale'
 translator = Translator(textdomain=LOCALE_DOMAIN)
 _ = translator.translate  # Use the translator function
 
+# use _t() to reuse existing tranlations
+_t = _
 
 '''
 import gettext
@@ -119,7 +121,7 @@ class LogViewer(QDialog):
 
         if not locale.startswith('en'):
             if close_text == "&Close":
-                close_text = _("_Close")
+                close_text = _t("_Close")
                 self.close_button.setText(close_text.replace('_','&'))
 
         # connect buttons to functions
@@ -182,7 +184,7 @@ class LogViewer(QDialog):
 
             # Ensure some content
             if not content:
-                content = _("Log file is empty.")
+                content = _("No logs found.")
 
             self.text_area.setPlainText(content)
         except Exception as e:
@@ -382,14 +384,16 @@ def main():
         # ignore if not found
         pass
 
-
     window_title_updater = _("MX Updater")
-
-
     if "dpkg_log" in os.path.basename(os.path.abspath(__file__)):
 
         default_width  = 800
         default_height = 500
+        # original title was:
+        # "MX Auto-update  --  unattended-upgrades dpkg log viewer"
+        # so we keep translations, for now
+        window_title = _("MX Auto-update  --  unattended-upgrades dpkg log viewer")
+
         log_view_title = _('Auto-update dpkg log(s)')
         window_title = f"[ {window_title_updater} ] -- {log_view_title}"
 
@@ -402,8 +406,13 @@ def main():
 
         default_width  = 900
         default_height = 600
+        # original title was:
+        # "MX Auto-update  --  unattended-upgrades log viewer"
+        window_title = _("MX Auto-update  --  unattended-upgrades log viewer")
+
         log_view_title = _('Auto-update log(s)')
         window_title = f"[ {window_title_updater} ] -- {log_view_title}"
+
         view_cmd = [
             '/usr/bin/pkexec',
             '/usr/libexec/mx-updater/updater_auto_upgrades_log_view'

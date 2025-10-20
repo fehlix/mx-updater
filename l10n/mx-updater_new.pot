@@ -3,26 +3,20 @@
 # This file is distributed under the same license as the mx-updater package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# James Bowlin <BitJam@gmail.com>, 2025
-# Geoff Gigg <geoffgigg@hotmail.com>, 2025
-# Dolphin Oracle <dolphinoracle@gmail.com>, 2025
-# Eadwine Rose, 2025
-# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-16 19:57-0400\n"
-"PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: Eadwine Rose, 2025\n"
-"Language-Team: Dutch (https://app.transifex.com/anticapitalista/teams/10162/nl/)\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. TRANSLATORS: The string "MX Updater" is the name of the tool that
 #. appears in the system tray/taskbar to inform users about software
@@ -35,7 +29,7 @@ msgstr "MX Updater"
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr "MX Updater-systeemvakapplet"
+msgstr "MX Updater system tray applet"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -60,12 +54,12 @@ msgstr ""
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr "MX Updater-instellingen"
+msgstr "MX Updater Settings"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "MX Updater voorkeuren"
+msgstr "MX Updater preferences"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
@@ -75,43 +69,41 @@ msgstr "MX Updater Autostart"
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
 msgid "An applet to show updates"
-msgstr "Een applet om updates te laten zien"
+msgstr "An applet to show updates"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
 #. disable unattended-upgrade (Auto-update)!
 msgid "Disable Auto-update"
-msgstr "Auto-opwaarderen Uitschakelen"
+msgstr "Disable Auto-update"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
 #. enabale unattended-upgrade (Auto-update)!
 msgid "Enable Auto-update"
-msgstr "Auto-opwaarderen Inschakelen"
+msgstr "Enable Auto-update"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
-msgstr "basis opwaardering"
+msgstr "basic upgrade"
 
 #. TRANSLATORS: The upgrade mode "full upgrade".
 msgid "full upgrade"
-msgstr "volle opwaardering"
+msgstr "full upgrade"
 
 #. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
 msgid "Reload"
-msgstr "Herladen"
+msgstr "Reload"
 
 msgid "Press 'h' for help, 'q' to quit"
-msgstr "Gebruik 'h' voor hulp. Gebruik 'q' om te stoppen"
+msgstr "Press 'h' for help, 'q' to quit"
 
 msgid "No logs found."
-msgstr "Geen logs gevonden."
+msgstr "No logs found."
 
 msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
-msgstr ""
-"Voor een minder gedetailleerd overzicht zie 'Auto-opwaarderen dpkg log(s)' "
-"or 'Geschiedenis'."
+msgstr "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
 
 msgid "No updates available"
-msgstr "Geen updates beschikbaar"
+msgstr "No updates available"
 
 #. TRANSLATORS: Plural Forms Guide
 #. Each language has unique rules for plurals. Fill in ALL plural forms
@@ -128,48 +120,47 @@ msgstr "Geen updates beschikbaar"
 #. grammatical nuances.
 msgid "%d new update available"
 msgid_plural "%d new updates available"
-msgstr[0] "%d nieuwe update beschikbaar"
-msgstr[1] "%d nieuwe updates beschikbaar"
+msgstr[0] "%d new update available"
+msgstr[1] "%d new updates available"
 
 msgid "basic upgrade complete (or was canceled)"
-msgstr "basis opwaardering compleet (of was geannuleerd)"
+msgstr "basic upgrade complete (or was canceled)"
 
 msgid "full upgrade complete (or was canceled)"
-msgstr "volle opwaardering compleet (of was geannuleerd)"
+msgstr "full upgrade complete (or was canceled)"
 
 msgid "this terminal window can now be closed"
-msgstr "dit terminal scherm kan nu gesloten worden"
+msgstr "this terminal window can now be closed"
 
 msgid "press any key to stop automatic closing"
-msgstr "druk een toets om automatisch sluiten te voorkomen"
+msgstr "press any key to stop automatic closing"
 
 msgid "press any key to close"
-msgstr "druk een toets om te sluiten"
+msgstr "press any key to close"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-msgstr "MX Auto-opwaarderen  --  onbewaakte opwaarderingen dpkg log bekijken"
+msgstr "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 
 msgid "Auto-update dpkg log(s)"
-msgstr "Auto-opwaarderen dpkg log(s)"
+msgstr "Auto-update dpkg log(s)"
 
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
-msgstr "MX Auto-opwaarderen  --  onbewaakte opwaarderingen log bekijken"
+msgstr "MX Auto-update  --  unattended-upgrades log viewer"
 
 msgid "Auto-update log(s)"
-msgstr "Auto-opwaarderen log(s)"
+msgstr "Auto-update log(s)"
 
 msgid "Tray applet to notify of system and application updates"
-msgstr ""
-"Tray applet om te laten weten dat er systeem en applicatie updates zijn"
+msgstr "Tray applet to notify of system and application updates"
 
 msgid "About MX Updater"
-msgstr "Over MX Updater"
+msgstr "About MX Updater"
 
 msgid "Close"
-msgstr "Sluiten"
+msgstr "Close"
 
 msgid "License"
-msgstr "Licentie"
+msgstr "License"
 
 msgid "Changelog"
 msgstr "Changelog"
@@ -178,26 +169,26 @@ msgstr "Changelog"
 #. Allows users to view logs of package installations and removals
 #. using dpkg and apt package management tools
 msgid "History"
-msgstr "Geschiedenis"
+msgstr "History"
 
 msgid "No apt-history data found!"
-msgstr "Geen apt-geschiedenisgegevens gevonden!"
+msgstr "No apt-history data found!"
 
 msgid "Error retrieving apt-history:"
-msgstr "Fout bij het ophalen van apt-history:"
+msgstr "Error retrieving apt-history:"
 
 msgid "Preferences"
-msgstr "Voorkeuren"
+msgstr "Preferences"
 
 #. TRANSLATORS: The label group-box, where user can select
 #. the "Upgrade mode" either "full upgrade" or "basic upgrade"
 msgid "Upgrade mode"
-msgstr "Opwaardeer modus"
+msgstr "Upgrade mode"
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
-msgstr "volle opwaardering   (aanbevolen)"
+msgstr "full upgrade   (recommended)"
 
 #. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
 #. which tries to explain what this checkbox is about.
@@ -206,9 +197,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
-"Upgradet alle pakketten naar hun nieuwste versies,\n"
-"wat het toevoegen of verwijderen van pakketten kan omvatten\n"
-"om het systeem up-to-date en consistent te houden."
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -216,27 +207,27 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
-"Upgrades bestaande pakketten naar hun nieuwste versies\n"
-"zonder nieuwe afhankelijkheden te installeren of bestaande pakketten te verwijderen."
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr "gebruik nala"
+msgstr "use nala"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
 #. TRANSLATORS: Explains upgrade can be done by using nala package manager
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
-msgstr "Selecteer dit om nala pakketbeheerder te gebruiken in plaats van apt."
+msgstr "Select this to use nala package manager instead of apt."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr "automatisch upgraden"
+msgstr "upgrade automatically"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -246,27 +237,27 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
-"Controleer één keer per dag automatisch op pakketupdates en installeer deze. \n"
-"Alleen bestaande pakketten worden bijgewerkt zonder dat uw systeemconfiguratie wordt gewijzigd. \n"
-"Het pictogram van het updateprogramma geeft het totale aantal updates weer, inclusief automatische updates, \n"
-"wanneer er aanvullende updates beschikbaar zijn."
+"Automatically check for package updates once a day and install them.\n"
+"Only updates existing packages without changing your system configuration.\n"
+"The updater icon shows the total number of updates, including automatic updates,\n"
+"when additional updates are available."
 
 msgid "Left-click behaviour   (when updates are available)"
-msgstr "Links-klik gedrag (wanneer updates beschikbaar zijn)"
+msgstr "Left-click behaviour   (when updates are available)"
 
 msgid "opens Synaptic"
-msgstr "opent Synaptic"
+msgstr "opens Synaptic"
 
 msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "opent MX Updater 'Bekijk en Opwaardeer' scherm"
+msgstr "opens MX Updater 'View and Upgrade' window"
 
 msgid "Icons"
-msgstr "Iconen"
+msgstr "Icons"
 
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr "transparant draadmodel voor geen updates"
+msgstr "transparent wireframe for no updates"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -275,18 +266,18 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
-"Geef transparante wireframe-pictogrammen zonder kleurvulling weer\n"
-"wanneer er geen updates beschikbaar zijn."
+"Display transparent wireframe icons without color fill\n"
+"when no updates are available."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr "donker"
+msgstr "dark"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr "licht"
+msgstr "light"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
@@ -298,16 +289,16 @@ msgstr "pulse"
 
 #. TRANSLATORS: The classic icon-set
 msgid "classic"
-msgstr "klassiek"
+msgstr "classic"
 
 msgid "Other options"
-msgstr "Andere opties"
+msgstr "Other options"
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr "automatisch alle pakketupgrades bevestigen"
+msgstr "automatically confirm all package upgrades"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -316,14 +307,14 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
-"Beantwoordt automatisch 'ja' op vragen over pakketbeheer tijdens upgrades.\n"
-"Voor sommige wijzigingen in de systeemconfiguratie kan nog steeds handmatige bevestiging nodig zijn."
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
-msgstr "start \"MX Updater\" bij het inloggen na vertraging"
+msgstr "start \"MX Updater\" at login after delay"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -331,8 +322,8 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
-"Selecteer dit om \"MX Updater\" automatisch te starten\n"
-"bij het inloggen na de opgegeven vertraging in seconden."
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
@@ -344,7 +335,7 @@ msgstr "sec"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr "sluit terminalvenster na inactiviteit"
+msgstr "close terminal window after idle time"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -352,14 +343,14 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
-"Sluit automatisch het terminalvenster na het opgegeven\n"
-"aantal seconden van inactiviteit na systeemupdates."
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
 #. shown .
 msgid "use desktop notifications"
-msgstr "gebruik bureaubladnotificaties"
+msgstr "use desktop notifications"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -368,15 +359,15 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
-"Naast de wijziging van het pictogram in het systeemvak,\n"
-"worden er pop-upberichten weergegeven wanneer\n"
-"er systeemupdates beschikbaar zijn."
+"In addition to change of the tray icon,\n"
+"pop-up messages will be shown when\n"
+"system updates are available."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
 #. the "MX Updater" systray icon until package upgrades are available.
 msgid "Hide until updates available"
-msgstr "Verberg tot updates beschikbaar"
+msgstr "Hide until updates available"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -384,73 +375,71 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
-"Verberg het pictogram voor systeemupdates wanneer er geen updates beschikbaar zijn.\n"
-"Schakel dit selectievakje uit of voer \"MX Updater\" uit via het menu om het pictogram weer zichtbaar te maken."
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 
 msgid "MX Updater Help"
-msgstr "MX Updater Hulp"
+msgstr "MX Updater Help"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
-"De instelling voor automatische upgrades is al in de gewenste staat. Er zijn"
-" geen wijzigingen aangebracht."
+"Auto-upgrade setting is already in the desired state. No changes made."
 
 msgid "Success"
-msgstr "Gelukt"
+msgstr "Success"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr "Instelling voor automatische upgrades succesvol bijgewerkt."
+msgstr "Auto-upgrade setting updated successfully."
 
 msgid "Failure"
-msgstr "Fout"
+msgstr "Failure"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr "Kan de instelling voor automatische upgrades niet bijwerken."
+msgstr "Failed to update auto-upgrade setting."
 
 msgid "Error"
-msgstr "Fout"
+msgstr "Error"
 
 msgid "An unexpected error occurred:"
-msgstr "Er is een onverwachte fout opgetreden:"
+msgstr "An unexpected error occurred:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr "Onbeheerde Upgrades Configuratie Mislukt"
+msgstr "Unattended Upgrades Configuration Failed"
 
 msgid "Could not change automatic upgrades configuration"
-msgstr "De configuratie voor automatische upgrades kon niet worden gewijzigd"
+msgstr "Could not change automatic upgrades configuration"
 
 msgid "Command failed"
-msgstr "Commando mislukt"
+msgstr "Command failed"
 
 msgid "View and Upgrade"
-msgstr "Bekijken en Opwaarderen"
+msgstr "View and Upgrade"
 
 msgid "Unattended-upgrades"
-msgstr "Onbeheerde-upgrades"
+msgstr "Unattended-upgrades"
 
 msgid "Upgrades available"
-msgstr "Upgrades beschikbaar"
+msgstr "Upgrades available"
 
 msgid "Check for Updates"
-msgstr "Controleer op Updates"
+msgstr "Check for Updates"
 
 msgid "About"
-msgstr "Over"
+msgstr "About"
 
 msgid "Restart MX Updater"
-msgstr "Herstart MX Updater"
+msgstr "Restart MX Updater"
 
 msgid "Synaptic Help"
 msgstr "Synaptic Help"
 
 msgid "Quit"
-msgstr "Stop"
+msgstr "Quit"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
-msgstr ""
-"sluit het terminalvenster automatisch na een bepaalde tijd van inactiviteit"
+msgstr "close terminal window automatically after idle time"
 
 msgid "upgrade"
-msgstr "opwaardering"
+msgstr "upgrade"

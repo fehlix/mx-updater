@@ -1,11 +1,11 @@
 #!/bin/bash
 
+# part of "MX Updater" package
 # script to refresh pakages lists by running apt-get update
 # with adding count lines of available and held back upgrades
-# part of apt-notifier package
 
 # define a function to make xgettext ignore translations used here
-updater_gettext() { gettext "$@"; }
+updater_gettext() { local gettext=gettext; ${gettext} "$@"; }
 
 # check privileges
 if [ $(id -u) != 0 ]; then
@@ -28,7 +28,7 @@ read -r AUTO_CLOSE  < <(get_config_item "auto_close" "true")
 : ${UPDATER_USE_NALA:=false}
 export UPDATER_USE_NALA
 if [ "${UPDATER_USE_NALA}" = "true" ]; then
-    if ! which nala >/dev/null; then
+    if ! command -v nala >/dev/null; then
         UPDATER_USE_NALA="false"
     fi
 fi
@@ -37,10 +37,10 @@ fi
 if [ "${UPDATER_USE_NALA}" = "true" ]; then
         NalaPrefs="--option Nala::update_show_packages=false"
         echo "nala update"
-        LC_CTYPE="C.UTF-8" nala update $NalaPrefs 
+        LC_CTYPE="C.UTF-8" LC_COLLATE="C.UTF-8" nala update $NalaPrefs 
 else
         echo "apt update"
-        LC_CTYPE="C.UTF-8" apt update  --option 'APT::Cmd::Show-Update-Stats=0'
+        LC_CTYPE="C.UTF-8" LC_COLLATE="C.UTF-8" apt update  --option 'APT::Cmd::Show-Update-Stats=0'
 fi
 [ -d /var/lib/apt/periodic ] || mkdir -p /var/lib/apt/periodic
 touch /var/lib/apt/periodic/update-stamp

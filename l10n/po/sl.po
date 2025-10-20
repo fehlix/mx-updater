@@ -4,19 +4,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Mario <al.manja@gmx.com>, 2022
-# Dolphin Oracle <dolphinoracle@gmail.com>, 2022
-# fehlix, 2023
-# Arnold Marko <arnold.marko@gmail.com>, 2024
+# Dolphin Oracle <dolphinoracle@gmail.com>, 2025
+# fehlix, 2025
+# Arnold Marko <arnold.marko@gmail.com>, 2025
+# Mario <al.manja@gmx.com>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 02:38+0100\n"
-"PO-Revision-Date: 2017-05-11 01:14+0000\n"
-"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2024\n"
+"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"PO-Revision-Date: 2025-10-17 07:23+0000\n"
+"Last-Translator: Mario <al.manja@gmx.com>, 2025\n"
 "Language-Team: Slovenian (https://app.transifex.com/anticapitalista/teams/10162/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,291 +24,410 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-msgid "$count new updates available"
-msgstr "$countposodobitev je na voljo"
+#. TRANSLATORS: The string "MX Updater" is the name of the tool that
+#. appears in the system tray/taskbar to inform users about software
+#. package updates and perform various actions to update and upgrade the
+#. system.  The string is used in various places. Keep the translation
+#. short and leave the string "MX Updater" untranslated if necessary.
+msgid "MX Updater"
+msgstr "MX posodobitev"
 
-msgid "0 updates available"
-msgstr "Nobena posodobitev ni na voljo"
-
-msgid "1 new update available"
-msgstr "Ena posodobitev je na voljo"
-
-msgid "About"
-msgstr "O programu"
-
-msgid "About MX Updater"
-msgstr "O MX posodobitev"
-
-msgid "Auto-update"
-msgstr "Samodejna posodobitev"
-
-msgid "Auto-update dpkg log(s)"
-msgstr "Samodejna posodobitev dpkg dnevnikov"
-
-msgid "Auto-update log(s)"
-msgstr "Samodejna posodobitev dnevnikov"
-
-msgid "Automatically answer 'yes' to all prompts during full/basic upgrade"
+#. TRANSLATORS: The desktop entry comment will be shown within the menu.
+#. Keep it short.
+msgid "MX Updater system tray applet"
 msgstr ""
-"Samodejno odgovori z 'yes' na vsa vprašanja med celotno/osnovno nadgradnjo"
 
-msgid "Automatically answer 'yes' to all prompts during upgrade"
-msgstr "Samodejno odgovori z 'yes' na vsa vprašanja med nadgradnjo"
+#. TRANSLATORS: Keywords for Menu Search
+#. Important Translation Guidance:
+#. - Keep the original English keywords
+#. - Add translated keywords
+#. - IMPORTANT: End EACH keyword with a semicolon (;)
+#. - Do NOT replace English keywords entirely
+#. Example:
+#. English keywords: "repository;update;upgrade;"
+#. French keywords: "repository;update;upgrade;référentiel;mise à jour;mise à
+#. niveau;"
+#. Note the inclusion of:
+#. - Accented characters (à, é)
+#. - Non-ASCII translations
+#. - Original English keywords preserved
+#. - Each keyword ending with a semicolon
+msgid ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
+msgstr ""
 
-msgid "Cancel"
-msgstr "Prekliči"
+#. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
+#. displayed in the menu.
+msgid "MX Updater Settings"
+msgstr ""
 
-msgid "Changelog"
-msgstr "Dnevnik sprememb"
+#. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
+#. of the ""MX Updater Settings" menu entry.
+msgid "MX Updater preferences"
+msgstr "Nastavitve za MX posodobitev"
 
-msgid "Check for Updates"
-msgstr "Preveri za posodobitve"
+#. TRANSLATORS: The autostart desktop entry name will be shown within the list
+#. of autostart entries.
+msgid "MX Updater Autostart"
+msgstr ""
 
-msgid "Close"
-msgstr "Zapri"
+#. TRANSLATORS: The autostart desktop entry comment will be shown within
+#. 'Session and Startup' (Autostart).
+msgid "An applet to show updates"
+msgstr "Aplet za prikaz posodobitev"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. disable unattended-upgrade (Auto-update)!
+msgid "Disable Auto-update"
+msgstr "Izklopi samodejno posodabljanje"
+
+#. TRANSLATORS: The string is displayed within the authentication window to
+#. enabale unattended-upgrade (Auto-update)!
+msgid "Enable Auto-update"
+msgstr "Omogoči samodejno posodabljanje"
+
+#. TRANSLATORS: The upgrade mode "basic upgrade".
+msgid "basic upgrade"
+msgstr "osnovna nadgradnja"
+
+#. TRANSLATORS: The upgrade mode "full upgrade".
+msgid "full upgrade"
+msgstr "Celotna nadgradnja"
+
+#. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
+msgid "Reload"
+msgstr "Ponovno naloži"
+
+msgid "Press 'h' for help, 'q' to quit"
+msgstr "Pritisnite 'h' za pomoč ali 'q' za izhod"
+
+msgid "No logs found."
+msgstr "Noben dnevnik ni bil najden."
 
 msgid "For a less detailed view see 'Auto-update dpkg log(s)' or 'History'."
 msgstr ""
 "Za manj podroben prikaz si oglejte 'Dnevnik samodejne nadgradnje' ali "
 "'Zgodovina'."
 
-msgid "Hide until updates available"
-msgstr "Skrij, dokler ne obstajajo nove posodobitve"
+msgid "No updates available"
+msgstr "Ni posodobitev"
 
-msgid "History"
-msgstr "Zgodovina"
+#. TRANSLATORS: Plural Forms Guide
+#. Each language has unique rules for plurals. Fill in ALL plural forms
+#. specified for your language.
+#. - "%d" will be replaced by the actual number at runtime
+#. - Use grammatically correct translations for each form
+#. - Singular form (msgstr[0]): Typically for count of 1
+#. - Plural forms (msgstr[1], msgstr[2], etc.): Use appropriate grammatical
+#. variations
+#. Example (English):
+#. msgstr[0] "One new update"
+#. msgstr[1] "%d new updates"
+#. Tip: Consider your language's specific plural formation rules and
+#. grammatical nuances.
+msgid "%d new update available"
+msgid_plural "%d new updates available"
+msgstr[0] "%d posodobitev je na voljo"
+msgstr[1] "%d posodobitvi sta na voljo"
+msgstr[2] "%d posodobitve so na voljo"
+msgstr[3] "%d posodobitev je na voljo"
 
-msgid "Icons"
-msgstr "Ikone"
+msgid "basic upgrade complete (or was canceled)"
+msgstr "osnovna nadgradnja je končana (če ni bila preklicana)"
 
-msgid "Left-click behaviour   (when updates are available)"
-msgstr "Obnašanje ob levem kliku (ko so posodobitve na voljo)"
+msgid "full upgrade complete (or was canceled)"
+msgstr "celotna nadgradnja je končana (če ni bila preklicana)"
 
-msgid "License"
-msgstr "Licenca"
+msgid "this terminal window can now be closed"
+msgstr "to okno terminala lahko sedaj zaprete"
+
+msgid "press any key to stop automatic closing"
+msgstr "pritisnite poljubno tipko, da preprečite samodejno zapiranje"
+
+msgid "press any key to close"
+msgstr "pritisnite poljubno tipko za izhod"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
 "MX samodejna posodobitev - prikazovalnik dpkg dnevnika za nenadzorovane "
 "nadgradnje"
 
+msgid "Auto-update dpkg log(s)"
+msgstr "Samodejna posodobitev dpkg dnevnikov"
+
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr "MX samodejna posodobitev - ogled dnevnika za nenadzorovane nadgradnje"
 
-msgid "MX Package Installer"
-msgstr "MX namestilnik paketov"
-
-#. The autostart desktop entry name will be shown within the list of autostart
-#. entries.
-#. The desktop entry name will be displayed within the menu.
-msgid "MX Updater"
-msgstr "MX posodobitev"
-
-msgid "MX Updater Help"
-msgstr "MX pomoč za nadgradnjo"
-
-msgid "MX Updater preferences"
-msgstr "Nastavitve za MX posodobitev"
-
-msgid "MX Updater--View and Upgrade, previewing: basic upgrade"
-msgstr "MX posodobitev--Oglej in nadgradi, predogled: osnovna nadgradnja"
-
-msgid "MX Updater--View and Upgrade, previewing: full upgrade"
-msgstr "MX posodobitev--Oglej in nadgradi, predogled: celotna nadgradnja"
-
-msgid "No logs found."
-msgstr "Noben dnevnik ni bil najden."
-
-msgid "No unattended-upgrades dpkg log(s) found."
-msgstr "Dnevnik nenadzorovanih nadgradenj ni bil najden"
-
-msgid "No updates available"
-msgstr "Ni posodobitev"
-
-msgid "Other options"
-msgstr "Druge možnosti"
-
-msgid "Preferences"
-msgstr "Možnosti"
-
-msgid "Press 'h' for help, 'q' to quit"
-msgstr "Pritisnite 'h' za pomoč ali 'q' za izhod"
-
-msgid "Quit"
-msgstr "Končaj"
-
-msgid "Reload"
-msgstr "Ponovno naloži"
-
-msgid ""
-"Reload the package information to become informed about new, removed or "
-"upgraded software packages. (apt-get update)"
-msgstr ""
-"Ponovno naloži podatke o paketih in tako osveži podatke o novih, "
-"odstranjenih ali nadgrajenih programskih paketih. (apt-get update)"
-
-msgid "Restart MX Updater"
-msgstr "Ponovni zagon MX posodobitev"
-
-msgid "Running apt-get autoremove, if you are unsure type 'n'."
-msgstr "Izvajam apt-get autoremove. Će ste v dvomih, odgovorite z 'n'"
-
-msgid ""
-"Switches the type of Upgrade that will be performed, alternating back and "
-"forth between 'full upgrade' and 'basic upgrade'."
-msgstr ""
-"Preklaplja med načinom nadgradnje, ki se bo izvedla tj. med 'celotno "
-"nadgradnjo' in 'osnovno nadgradnjo'."
-
-msgid "Synaptic Help"
-msgstr "Synaptic pomoč"
+msgid "Auto-update log(s)"
+msgstr "Samodejna posodobitev dnevnikov"
 
 msgid "Tray applet to notify of system and application updates"
 msgstr "Aplet v sistemski pasici, ki opozarja na posodobitve"
 
-msgid "Unattended-upgrades"
-msgstr "Nenadzorovano posodabljanje"
+msgid "About MX Updater"
+msgstr "O MX posodobitev"
 
-msgid "Unneeded packages are installed that can be removed."
-msgstr "Nameščeni so nepotrebni paketi, ki jih lahko odstranite."
+msgid "Close"
+msgstr "Zapri"
 
-msgid "Updates"
-msgstr "Posodobitve"
+msgid "License"
+msgstr "Licenca"
 
+msgid "Changelog"
+msgstr "Dnevnik sprememb"
+
+#. TRANSLATORS: "History" menu item in right-click context
+#. Allows users to view logs of package installations and removals
+#. using dpkg and apt package management tools
+msgid "History"
+msgstr "Zgodovina"
+
+msgid "No apt-history data found!"
+msgstr ""
+
+msgid "Error retrieving apt-history:"
+msgstr ""
+
+msgid "Preferences"
+msgstr "Možnosti"
+
+#. TRANSLATORS: The label group-box, where user can select
+#. the "Upgrade mode" either "full upgrade" or "basic upgrade"
 msgid "Upgrade mode"
 msgstr "Način nadgradnje"
 
-msgid "Upgrade using Synaptic"
-msgstr "Nadgradnja z uporabo Synaptic"
-
-msgid "Using basic upgrade (not recommended)"
-msgstr "Izvedba osnovne posodobitve (odsvetujemo)"
-
-msgid "Using full upgrade"
-msgstr "Izvedba celotne posodobitve"
-
-msgid "View and Upgrade"
-msgstr "Preglej in nadgradi"
-
-msgid "You have $count new updates available"
-msgstr "Na voljo imate $count posodobitve"
-
-msgid "You have 1 new update available"
-msgstr "Na voljo imate eno posodobitev"
-
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
-#, python-brace-format
-msgid "You have {num} new update available"
-msgid_plural "You have {num} new updates available"
-msgstr[0] "Na voljo je {num} nova posodobitev"
-msgstr[1] "Na voljo sta {num} novi posodobitvi"
-msgstr[2] "Na voljo so {num} nove posodobitve"
-msgstr[3] "Na voljo je {num} novih posodobitev"
-
-msgid "automatically close terminal window when full/basic upgrade complete"
-msgstr "samodejno zapri okno terminala po končani celotni/osnovni nadgradnji"
-
-msgid "automatically close terminal window when upgrade complete"
-msgstr "po končani nadgradnji samodejno zapri okno terminala"
-
-msgid "basic upgrade"
-msgstr "osnovna nadgradnja"
-
-msgid "basic upgrade complete (or was canceled)"
-msgstr "osnovna nadgradnja je končana (če ni bila preklicana)"
-
-msgid "check for autoremovable packages after full/basic upgrade"
-msgstr ""
-"po končani celotni/osnovni nadgradnji preveri, katere pakete je mogoče "
-"samodejno odstraniti"
-
-msgid "classic"
-msgstr "klasična"
-
-msgid "full upgrade"
-msgstr "Celotna nadgradnja"
-
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
 msgstr "celotna posodobitev (priporočeno)"
 
-msgid "full upgrade complete (or was canceled)"
-msgstr "celotna nadgradnja je končana (če ni bila preklicana)"
+#. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades all packages to their latest versions,\n"
+"which may include adding or removing packages\n"
+"to keep the system up-to-date and consistent."
+msgstr ""
 
-msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "odpre okno MX posodobitev 'Ogled in nadgraditev'"
+#. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Upgrades existing packages to their latest versions\n"
+"without installing new dependencies or removing existing packages."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. to use "nala" package manager instead of "apt"
+#. TRANSLATORS: Select this to use nala package manager instead of apt.
+msgid "use nala"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "use nala",
+#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: Explains upgrade can be done by using nala package manager
+#. instead of apt
+msgid "Select this to use nala package manager instead of apt."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
+#. can select
+#. to enabled "unattended-upgrade"
+msgid "upgrade automatically"
+msgstr ""
+
+#. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Automatically check for package updates once a day and install them.\n"
+"Only updates existing packages without changing your system configuration.\n"
+"The updater icon shows the total number of updates, including automatic updates,\n"
+"when additional updates are available."
+msgstr ""
+
+msgid "Left-click behaviour   (when updates are available)"
+msgstr "Obnašanje ob levem kliku (ko so posodobitve na voljo)"
 
 msgid "opens Synaptic"
 msgstr "odpre Synaptic"
 
-msgid "press any key to close"
-msgstr "pritisnite poljubno tipko za izhod"
+msgid "opens MX Updater 'View and Upgrade' window"
+msgstr "odpre okno MX posodobitev 'Ogled in nadgraditev'"
 
-msgid "press any key to stop automatic closing"
-msgstr "pritisnite poljubno tipko, da preprečite samodejno zapiranje"
+msgid "Icons"
+msgstr "Ikone"
 
-msgid "pulse"
-msgstr "pulz"
-
-msgid "start MX Updater at login"
-msgstr "po prijavi zaženi MX posodobitev"
-
-msgid "switch to basic upgrade"
-msgstr "preklop na osnovno nadgradnjo"
-
-msgid "switch to full upgrade"
-msgstr "preklop na celotno nadgradnjo"
-
-msgid "this terminal window can now be closed"
-msgstr "to okno terminala lahko sedaj zaprete"
-
-msgid "update automatically   (will not add new or remove existing packages)"
+#. TRANSLATORS: Please keep it short. Detailed explanation are with the
+#. tooltip.
+msgid "transparent wireframe for no updates"
 msgstr ""
-"Samodejna posodobitev (ne bodo dodani novi ali odstranjeni obstoječi paketi)"
 
-msgid "upgrade"
-msgstr "nadgradnja"
+#. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
+#. updates", which explains
+#. what the checkbox is about.
+msgid ""
+"Display transparent wireframe icons without color fill\n"
+"when no updates are available."
+msgstr ""
 
-msgid "use desktop notifications"
-msgstr "uporabi namizna obvestila"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "dark"
+msgstr ""
 
-msgid "use transparent interior for no-updates wireframe"
-msgstr "uporabi prozorno notranjost za okvirje brez posodobitev"
+#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
+#. “light” icon-set, respectively.
+msgid "light"
+msgstr ""
 
+#. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
 msgstr "obris"
 
-#. TRANSLATORS: Fill in all plural forms. The parenthesized expression '{num}'
-#. is replaced by the actual number of updates available at runtime.
-#. For the singular form, you can replace '{num}' with 'one'.
-#. Example with 2 plural forms:
-#. msgstr[0] -> singular form: use 'one new update' or '{num} new update'.
-#. msgstr[1] -> plural form: use '{num} new updates'.
-#, python-brace-format
-msgid "{num} new update available"
-msgid_plural "{num} new updates available"
-msgstr[0] "{num} posodobitev je na voljo"
-msgstr[1] "{num} posodobitvi sta na voljo"
-msgstr[2] "{num} posodobitve so na voljo"
-msgstr[3] "{num} posodobitev je na voljo"
+#. TRANSLATORS: The pulse icon-set
+msgid "pulse"
+msgstr "pulz"
 
-#. TRANSLATORS:
-#. This autostart desktop entry comment will be shown within 'Session and
-#. Startup' (Autostart).
-msgid "An applet to show updates"
-msgstr "Aplet za prikaz posodobitev"
+#. TRANSLATORS: The classic icon-set
+msgid "classic"
+msgstr "klasična"
 
-#. TRANSLATORS:
-#. This desktop entry comment will be shown within the menu.
-msgid "Re-enable MX Updater icon even if no updates available"
-msgstr "Reaktiviraj ikono za MX posodobitev, četudi ni na voljo posodobitev"
+msgid "Other options"
+msgstr "Druge možnosti"
 
-msgid "Enable Auto-update"
-msgstr "Omogoči samodejno posodabljanje"
+#. TRANSLATORS: The label of the checkbox, where user can select
+#. that "--assume-yes" option is added, so "apt" or "nala" won't ask
+#. for confirmations to install
+msgid "automatically confirm all package upgrades"
+msgstr ""
 
-msgid "Disable Auto-update"
-msgstr "Izklopi samodejno posodabljanje"
+#. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
+#. upgrades",
+#. which tries to explain what this checkbox is about.
+msgid ""
+"Automatically answers 'yes' to package management prompts during upgrades.\n"
+"Some system configuration changes may still require manual confirmation."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox where user can select
+#. to start 'MX Updater' systray icon automatically at login
+#. after a delay of seconds.
+msgid "start \"MX Updater\" at login after delay"
+msgstr ""
+
+#. TRANSLATORS: Explains the start of MX Updater automatically
+#. after a delay of seconds. The user can select the number of seconds.
+msgid ""
+"Select this to launch \"MX Updater\" automatically\n"
+"at login after the specified delay in seconds."
+msgstr ""
+
+#. TRANSLATORS: This is the abbreviated string for "seconds" that appears
+#. in the timeout/time delay selection field. Please use the most appropriate
+#. translated string for the singular or plural form. Only one form will
+#. be displayed.
+msgid "sec"
+msgstr ""
+
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window after idle time"
+msgstr ""
+
+#. TRANSLATORS: Explains the auto-close behavior of terminal window
+#. after system updates with a configurable idle time
+msgid ""
+"Automatically closes the terminal window after the specified\n"
+"number of seconds of inactivity following system updates."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "use desktop notifications",
+#. where user can select to disabled or enable notification "popup" window
+#. shown .
+msgid "use desktop notifications"
+msgstr "uporabi namizna obvestila"
+
+#. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"In addition to change of the tray icon,\n"
+"pop-up messages will be shown when\n"
+"system updates are available."
+msgstr ""
+
+#. TRANSLATORS: The label of the checkbox "Hide until updates available" and
+#. also of the right-click menu entry, where user can select to not show
+#. the "MX Updater" systray icon until package upgrades are available.
+msgid "Hide until updates available"
+msgstr "Skrij, dokler ne obstajajo nove posodobitve"
+
+#. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
+#. which tries to exlpain what this checkbox is about.
+msgid ""
+"Hide the system update icon when no updates are available.\n"
+"Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
+msgstr ""
+
+msgid "MX Updater Help"
+msgstr "MX pomoč za nadgradnjo"
+
+msgid "Auto-upgrade setting is already in the desired state. No changes made."
+msgstr ""
+
+msgid "Success"
+msgstr "Uspešno"
+
+msgid "Auto-upgrade setting updated successfully."
+msgstr ""
+
+msgid "Failure"
+msgstr "Napaka"
+
+msgid "Failed to update auto-upgrade setting."
+msgstr ""
+
+msgid "Error"
+msgstr "Napaka"
+
+msgid "An unexpected error occurred:"
+msgstr ""
+
+msgid "Unattended Upgrades Configuration Failed"
+msgstr ""
+
+msgid "Could not change automatic upgrades configuration"
+msgstr ""
+
+msgid "Command failed"
+msgstr ""
+
+msgid "View and Upgrade"
+msgstr "Preglej in nadgradi"
+
+msgid "Unattended-upgrades"
+msgstr "Nenadzorovano posodabljanje"
+
+msgid "Upgrades available"
+msgstr ""
+
+msgid "Check for Updates"
+msgstr "Preveri za posodobitve"
+
+msgid "About"
+msgstr "O programu"
+
+msgid "Restart MX Updater"
+msgstr "Ponovni zagon MX posodobitev"
+
+msgid "Synaptic Help"
+msgstr "Synaptic pomoč"
+
+msgid "Quit"
+msgstr "Končaj"
+
+#. TRANSLATORS: After the idle time in seconds has elapsed,
+#. the terminal window is closed once the system update is complete.
+msgid "close terminal window automatically after idle time"
+msgstr ""
+
+msgid "upgrade"
+msgstr "nadgradnja"

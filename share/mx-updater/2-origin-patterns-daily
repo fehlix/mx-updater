@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# This script is part of MX Updater
+#
+# The purpose of this script is to update Origin-Patterns used
+# by unattended-upgrade script.
+
+# check apt-config existence
+if ! command -v apt-config >/dev/null; then
+    exit 0
+fi
+
+# check if the user really wants to do something
+AutoAptEnable=1  # default is yes
+eval $(apt-config shell AutoAptEnable APT::Periodic::Enable/i)
+
+if [ "$AutoAptEnable" = 0 ]; then
+    exit 0
+fi
+
+DownloadUpgradeableInterval=0
+eval $(apt-config shell DownloadUpgradeableInterval APT::Periodic::Download-Upgradeable-Packages)
+
+UnattendedUpgradeInterval=0
+eval $(apt-config shell UnattendedUpgradeInterval APT::Periodic::Unattended-Upgrade)
+
+# check if we actually have to do anything that requires locking the cache
+if   [ "$DownloadUpgradeableInterval" = 0 ] &&   [ "$UnattendedUpgradeInterval" = 0 ]; then
+    exit 0
+fi
+
+if command -v update-Origins-Pattern >/dev/null; then
+    update-Origins-Pattern -d
+fi
+
+exit 0

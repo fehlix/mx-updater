@@ -164,19 +164,19 @@ class LogViewer(QDialog):
 
         #--------------------------------------------------------------
 
-        # TRANSLATORS: This is the first line of the tooltip of the 
+        # TRANSLATORS: This is the first line of the tooltip of the
         # button with an arrorw down symbol to jump to the next found "search string"
         next_label = _("Find Next")
-        # TRANSLATORS: This is the first line of the tooltip of the 
+        # TRANSLATORS: This is the first line of the tooltip of the
         # button with an arrorw up symbol to jump to the previous found "search string"
         prev_label = _("Find Previous")
-        # TRANSLATORS: This is the first line of the tooltip of the 
+        # TRANSLATORS: This is the first line of the tooltip of the
         # button with a symbol "[Aa]" to toggle on/off case sensitive search.
         case_label = _("Match Case")
-        # TRANSLATORS: This is the first line of the tooltip of the 
+        # TRANSLATORS: This is the first line of the tooltip of the
         # button with an ellipsis symbol "[...]" to toggle "whole word" search.
         word_label = _("Whole Word")
-        # TRANSLATORS: This is the first line of the tooltip of the 
+        # TRANSLATORS: This is the first line of the tooltip of the
         # button with an "star" symbol "[*]" to toggle highlight of all searches found.
         mark_label = _("Mark All")
         # TRANSLATORS: This is the string used to label the "Ctrl" key on the keyboard.
@@ -365,9 +365,9 @@ class LogViewer(QDialog):
 
         # Adjust highlight colors based on current theme
         is_dark_theme = QApplication.palette().color(QPalette.ColorRole.Window).lightness() < 128
-        
+
         #highlight_color = "#707070" if is_dark_theme else "#FFFF00"
-        
+
         highlight_color = "#5C5C0A" if is_dark_theme else "#FFFF00"
 
         # Get the visible area's first and last positions
@@ -472,7 +472,7 @@ class LogViewer(QDialog):
             no_match_popup = QMessageBox()
             no_match_popup.setIcon(QMessageBox.Icon.Information)
 
-            # TRANSLATORS: This is the title of the popup window indicating that the 
+            # TRANSLATORS: This is the title of the popup window indicating that the
             # search string was not found.
             not_found_title = _('Not Found')
 
@@ -485,7 +485,7 @@ class LogViewer(QDialog):
                 not_found_msg = not_found_msg % { "s": search_text}
             except:
                 not_found_msg = f'"{search_text}" was not found.'
-            
+
             no_match_popup.setText(not_found_msg)
             no_match_popup.setWindowTitle(not_found_title)
             no_match_popup.setStandardButtons(QMessageBox.StandardButton.Ok)
@@ -551,7 +551,7 @@ class LogViewer(QDialog):
             no_match_popup = QMessageBox()
             no_match_popup.setIcon(QMessageBox.Icon.Information)
 
-            # TRANSLATORS: This is the title of the popup window indicating that the 
+            # TRANSLATORS: This is the title of the popup window indicating that the
             # search string was not found.
             not_found_title = _('Not Found')
 
@@ -564,7 +564,7 @@ class LogViewer(QDialog):
                 not_found_msg = not_found_msg % { "s": search_text}
             except:
                 not_found_msg = f'"{search_text}" was not found.'
-            
+
             no_match_popup.setText(not_found_msg)
             no_match_popup.setWindowTitle(not_found_title)
             no_match_popup.setStandardButtons(QMessageBox.StandardButton.Ok)

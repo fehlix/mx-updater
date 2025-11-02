@@ -22,14 +22,18 @@ from updater_translator import Translator
 
 from PyQt6.QtWidgets import (
     QApplication, QDialog, QTextEdit, QVBoxLayout, QHBoxLayout,
-    QPushButton, QDialogButtonBox, QMessageBox, QStyle
+    QPushButton, QDialogButtonBox, QMessageBox, QStyle,
+    QLineEdit
 )
-from PyQt6.QtGui import QIcon, QFont, QGuiApplication
+from PyQt6.QtGui import QIcon, QFont, QGuiApplication, QShortcut, QKeySequence, QTextCursor
 from PyQt6.QtCore import Qt, QRect, QTranslator, QLocale, QLibraryInfo
-
 from PyQt6.QtCore import QSettings, QPoint, QSize
-from PyQt6.QtGui import QGuiApplication
+from PyQt6.QtGui import QTextDocument, QPalette
+from PyQt6.QtCore import QRegularExpressionMatch, QRegularExpression
 
+
+from PyQt6.QtGui import QColor, QTextDocument
+from PyQt6.QtCore import Qt
 
 # localization
 LOCALE_DOMAIN = 'mx-updater'
@@ -71,6 +75,9 @@ class LogViewer(QDialog):
         self.default_width  = default_width
         self.default_height = default_height
 
+        self.cursor = None
+        self.highlight_all = False
+        self.extra_selections = []
 
         self.setWindowTitle(window_title)
 
@@ -88,7 +95,7 @@ class LogViewer(QDialog):
         layout = QVBoxLayout()
 
         #--------------------------------------------------------------
-        # text area
+        # Text area
         self.text_area = QTextEdit()
         self.text_area.setReadOnly(True)
 
@@ -99,44 +106,174 @@ class LogViewer(QDialog):
 
         layout.addWidget(self.text_area)
 
+        # Search layout
+        search_layout = QHBoxLayout()
+
+        # Search field
+        self.search_field = QLineEdit()
+        #--------------------------------------------------------------
+
+        #--------------------------------------------------------------
+        palette = QApplication.palette()
+
+        # Dynamically adjust colors based on current theme
+        is_dark_theme = palette.color(QPalette.ColorRole.Window).lightness() < 128
+
+        # Enhanced color selection for light theme
+        base_color = (
+            palette.color(QPalette.ColorRole.Base) if is_dark_theme
+            else palette.color(QPalette.ColorRole.Base).lighter(110)
+        )
+
+        placeholder_color = (
+            palette.color(QPalette.ColorRole.Light) if is_dark_theme
+            else palette.color(QPalette.ColorRole.Dark).darker(150)
+        )
+
+        # Specific clear button color for light theme
+        clear_button_color = (
+            palette.color(QPalette.ColorRole.Mid) if is_dark_theme
+            else QColor("#707070")  # Darker grey for light theme
+        )
+
+        self.search_field.setStyleSheet(f"""
+            QLineEdit {{
+                border: 1px solid {palette.color(QPalette.ColorRole.Mid).name()};
+                border-radius: 4px;
+                background-color: {base_color.name()};
+                color: {palette.color(QPalette.ColorRole.Text).name()};
+                padding: 4px;
+            }}
+
+            QLineEdit::placeholder {{
+                color: {placeholder_color.name()};
+                font-weight: bold;
+            }}
+
+            QLineEdit QToolButton {{
+                background-color: {clear_button_color.name()};
+                color: {palette.color(QPalette.ColorRole.Text).name()};
+                border: none;
+                border-radius: 2px;
+            }}
+
+            QLineEdit QToolButton:hover {{
+                background-color: {palette.color(QPalette.ColorRole.Highlight).name()};
+            }}
+        """)
+
+        #--------------------------------------------------------------
+
+        # TRANSLATORS: This is the first line of the tooltip of the 
+        # button with an arrorw down symbol to jump to the next found "search string"
+        next_label = _("Find Next")
+        # TRANSLATORS: This is the first line of the tooltip of the 
+        # button with an arrorw up symbol to jump to the previous found "search string"
+        prev_label = _("Find Previous")
+        # TRANSLATORS: This is the first line of the tooltip of the 
+        # button with a symbol "[Aa]" to toggle on/off case sensitive search.
+        case_label = _("Match Case")
+        # TRANSLATORS: This is the first line of the tooltip of the 
+        # button with an ellipsis symbol "[...]" to toggle "whole word" search.
+        word_label = _("Whole Word")
+        # TRANSLATORS: This is the first line of the tooltip of the 
+        # button with an "star" symbol "[*]" to toggle highlight of all searches found.
+        mark_label = _("Mark All")
+        # TRANSLATORS: This is the string used to label the "Ctrl" key on the keyboard.
+        ctrl_label = _("Ctrl")
+        # TRANSLATORS: This is the string used to label the "Shift" key on the keyboard.
+        shift_label = _("Shift")
+        # TRANSLATORS: This is the placeholder string shown within in the search field.
+        # The string is also shown as the first line within the tooltip.
+        find_label = _("Search...")
+
+        #--------------------------------------------------------------
+        search_placeholdertext = f"{find_label}"
+        search_tooltip = f"{search_placeholdertext}\n{ctrl_label}+F"
+        #--------------------------------------------------------------
+        self.search_field.setPlaceholderText(search_placeholdertext)
+        self.search_field.setToolTip(search_tooltip)
+        self.search_field.setClearButtonEnabled(True)
+        search_layout.addWidget(self.search_field)
+
+        """
+        BLACK DOWN-POINTING TRIANGLE ▼  U+25bc
+        BLACK UP-POINTING TRIANGLE   ▲  U+25b2
+        """
+        # Create search buttons
+        self.next_button = QPushButton("▼")
+        self.prev_button = QPushButton("▲")
+        self.case_button = QPushButton("[Aa]")
+        self.word_button = QPushButton("[...]")
+        self.mark_button = QPushButton("[ * ]")
+
+        search_buttons = [
+            self.next_button, self.prev_button, self.case_button,
+            self.word_button, self.mark_button
+        ]
+
+        # Fixed width
+        fixed_width = 48
+        for button in search_buttons:
+            button.setFixedWidth(fixed_width)
+            search_layout.addWidget(button)
+
+        fixed_width = 64
+        self.next_button.setFixedWidth(fixed_width)
+        self.prev_button.setFixedWidth(fixed_width)
+
+        self.next_button.setToolTip(f"{next_label}\n{ctrl_label}+G\n{ctrl_label}+N")
+        self.prev_button.setToolTip(f"{prev_label}\n{shift_label}+{ctrl_label}+G\n{ctrl_label}+P")
+        self.case_button.setToolTip(f"{case_label}\n{ctrl_label}+I")
+        self.word_button.setToolTip(f"{word_label}\n{ctrl_label}+W")
+        self.mark_button.setToolTip(f"{mark_label}\n{ctrl_label}+M")
+
+        self.case_button.setCheckable(True)
+        self.word_button.setCheckable(True)
+        self.mark_button.setCheckable(True)
+
         #--------------------------------------------------------------
         # standard button box with Close
-        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
-        button_box.rejected.connect(self.reject)  # Close and Esc
+        #button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        #button_box.rejected.connect(self.reject)  # Close and Esc
 
         # widgets to layout
         # layout.addWidget(button_box)
 
         #--------------------------------------------------------------
         # horizontal layout for buttons and search field
+
+        # Button layout (Close button on the right)
         button_layout = QHBoxLayout()
+        button_layout.addLayout(search_layout)
+        button_layout.addStretch()
 
-        # close button - using OK instead of Close
+        # Close button
         close_text = get_standard_button_text(QMessageBox.StandardButton.Close)
-
         self.close_button = QPushButton(close_text, self)
         self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
 
+        # translate close label
         locale = QLocale.system().name()  # system locale
-
         if not locale.startswith('en'):
             if close_text == "&Close":
                 close_text = _t("_Close")
                 self.close_button.setText(close_text.replace('_','&'))
-
-        # connect buttons to functions
+        # Set connection
         self.close_button.clicked.connect(self.close_and_exit)
-
-        # stretch space before close button
-        button_layout.addStretch()
+        # Add close button to button layout
         button_layout.addWidget(self.close_button)
 
-        # button layout to main layout
+        # Add button layout to main layout
         layout.addLayout(button_layout)
-        #--------------------------------------------------------------
+
+        # Set the layout
         self.setLayout(layout)
 
-        # load file if it exists
+        # Setup search functionality
+        self.setup_search_functionality()
+
+        # Load file if it exists
         if file_path and view_cmd:
             self.load_file(file_path=file_path, view_cmd=view_cmd)
         elif  not file_path and view_cmd:
@@ -150,9 +287,307 @@ class LogViewer(QDialog):
         # Restore dialog geometry
         self.restore_dialog_geometry()
 
+    def setup_search_functionality(self):
+        # Ctrl+F shortcut to focus search field
+        self.search_shortcut = QShortcut(QKeySequence("Ctrl+F"), self)
+        self.search_shortcut.activated.connect(self.focus_search_field)
+
+        # Connect buttons
+        self.next_button.clicked.connect(self.find_next)
+        self.prev_button.clicked.connect(self.find_previous)
+        self.case_button.clicked.connect(self.highlight_matches)
+        self.word_button.clicked.connect(self.highlight_matches)
+        self.mark_button.clicked.connect(self.mark_matches)
+
+
+        self.search_field.textChanged.connect(self.highlight_matches)
+        self.ctrl_g_shortcut = QShortcut(QKeySequence("Ctrl+G"), self)
+        self.ctrl_n_shortcut = QShortcut(QKeySequence("Ctrl+N"), self)
+
+        self.shift_ctrl_g_shortcut = QShortcut(QKeySequence("Shift+Ctrl+G"), self)
+        self.ctrl_p_shortcut = QShortcut(QKeySequence("Ctrl+P"), self)
+
+        self.ctrl_i_shortcut = QShortcut(QKeySequence("Ctrl+I"), self)
+        self.ctrl_w_shortcut = QShortcut(QKeySequence("Ctrl+W"), self)
+        self.ctrl_m_shortcut = QShortcut(QKeySequence("Ctrl+M"), self)
+
+        # shortcut connections
+        self.ctrl_g_shortcut.activated.connect(self.find_next)
+        self.ctrl_n_shortcut.activated.connect(self.find_next)
+
+        self.shift_ctrl_g_shortcut.activated.connect(self.find_previous)
+        self.ctrl_p_shortcut.activated.connect(self.find_previous)
+
+        self.ctrl_i_shortcut.activated.connect(self.toggle_ignore_case)
+        self.ctrl_w_shortcut.activated.connect(self.toggle_whole_word)
+        self.ctrl_m_shortcut.activated.connect(self.toggle_mark_matches)
+
+    def focus_search_field(self):
+        """Set focus to the search field."""
+        self.search_field.setFocus()
+        self.search_field.selectAll()
+
+    def toggle_mark_matches(self):
+        """Toggle all highlighted matches in the text."""
+        self.mark_button.setChecked(not self.mark_button.isChecked())
+        self.mark_matches()
+
+    def mark_matches(self):
+        """Toggle all highlighted matches in the text."""
+        self.highlight_all = not self.highlight_all
+        if self.highlight_all:
+            self.text_area.setExtraSelections(self.extra_selections)
+        else:
+            self.text_area.setExtraSelections([])
+
+    def highlight_matches(self):
+        """Highlight all matches in the text."""
+        search_text = self.search_field.text()
+
+        # Clear all highlights and reset cursor if no valid matches
+        if not search_text:
+            self.extra_selections = []
+            self.text_area.setExtraSelections([])
+
+            # Reset cursor to avoid keeping any previous highlight
+            cursor = self.text_area.textCursor()
+            cursor.clearSelection()
+            self.text_area.setTextCursor(cursor)
+            return
+
+        # Prepare search flags
+        flags = QTextDocument.FindFlag(0)
+        if self.case_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindCaseSensitively
+
+        if self.word_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindWholeWords
+
+        # Adjust highlight colors based on current theme
+        is_dark_theme = QApplication.palette().color(QPalette.ColorRole.Window).lightness() < 128
+        
+        #highlight_color = "#707070" if is_dark_theme else "#FFFF00"
+        
+        highlight_color = "#5C5C0A" if is_dark_theme else "#FFFF00"
+
+        # Get the visible area's first and last positions
+        first_visible_pos = self.text_area.viewport().rect().topLeft()
+        last_visible_pos = self.text_area.viewport().rect().bottomRight()
+        first_visible_cursor = self.text_area.cursorForPosition(first_visible_pos)
+
+        # Find all matches
+        self.extra_selections = []
+        first_match = None
+        cursor = self.text_area.document().find(search_text, 0, flags)
+
+        while not cursor.isNull():
+            selection = QTextEdit.ExtraSelection()
+            selection.format.setBackground(QColor(highlight_color))
+            selection.cursor = cursor
+            self.extra_selections.append(selection)
+
+            # Store the first match separately
+            if first_match is None:
+                first_match = QTextCursor(cursor)
+
+            cursor = self.text_area.document().find(search_text, cursor, flags)
+
+        # Set highlights
+        if self.highlight_all:
+            self.text_area.setExtraSelections(self.extra_selections)
+
+        # If no matches found, ensure no lingering highlights or cursor selection
+        if not self.extra_selections:
+            cursor = self.text_area.textCursor()
+            cursor.clearSelection()
+            self.text_area.setTextCursor(cursor)
+            return
+
+        # Set cursor to first match, preferring matches in visible area
+        if first_match:
+            # Try to find first match in visible area
+            visible_match = None
+            for selection in self.extra_selections:
+                if (first_visible_cursor.position() <= selection.cursor.position() <=
+                    self.text_area.cursorForPosition(last_visible_pos).position()):
+                    visible_match = selection.cursor
+                    break
+
+            # Use visible match if found, otherwise use first overall match
+            cursor_to_set = visible_match or first_match
+            self.text_area.setTextCursor(cursor_to_set)
+            self.text_area.ensureCursorVisible()
+
+
+    def find_next(self):
+        """Find and select the next match with improved search behavior."""
+        search_text = self.search_field.text()
+        if not search_text:
+            return
+
+        # Prepare search flags
+        flags = QTextDocument.FindFlag(0)
+        if self.case_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindCaseSensitively
+
+        if self.word_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindWholeWords
+
+        # Current cursor and visible area
+        current_cursor = self.text_area.textCursor()
+        current_position = current_cursor.position()
+
+        first_visible_pos = self.text_area.viewport().rect().topLeft()
+        last_visible_pos = self.text_area.viewport().rect().bottomRight()
+
+        first_visible_cursor = self.text_area.cursorForPosition(first_visible_pos)
+        last_visible_cursor = self.text_area.cursorForPosition(last_visible_pos)
+
+        first_visible_cursor = self.text_area.cursorForPosition(first_visible_pos)
+        last_visible_cursor = self.text_area.cursorForPosition(last_visible_pos)
+
+        # First, try to find next match in the visible area
+        if first_visible_cursor.position() <= current_position <= last_visible_cursor.position():
+            search_start_cursor = current_cursor
+        else:
+            search_start_cursor = first_visible_cursor
+
+        # First, try to find next match in the visible area
+        next_in_view = self.text_area.document().find(
+            search_text,
+            search_start_cursor,
+            flags
+        )
+
+        # If no match from current cursor, search from the beginning
+        if next_in_view.isNull():
+            next_in_view = self.text_area.document().find(
+                search_text,
+                0,
+                flags
+            )
+
+        # If still no match is found
+        if next_in_view.isNull():
+            no_match_popup = QMessageBox()
+            no_match_popup.setIcon(QMessageBox.Icon.Information)
+
+            # TRANSLATORS: This is the title of the popup window indicating that the 
+            # search string was not found.
+            not_found_title = _('Not Found')
+
+            # TRANSLATORS: This is the text shown within the Not-found  popup window.
+            # The token '%(s)s' will be replaced with the search text at runtime.
+            not_found_msg = _('"%(s)s" was not found.')
+            if not "%(s)s" in not_found_msg:
+                not_found_msg = '"%(s)s" was not found.'
+            try:
+                not_found_msg = not_found_msg % { "s": search_text}
+            except:
+                not_found_msg = f'"{search_text}" was not found.'
+            
+            no_match_popup.setText(not_found_msg)
+            no_match_popup.setWindowTitle(not_found_title)
+            no_match_popup.setStandardButtons(QMessageBox.StandardButton.Ok)
+            no_match_popup.exec()
+            return
+
+        # Set the cursor to the found match and ensure it's visible
+        self.text_area.setTextCursor(next_in_view)
+        self.text_area.ensureCursorVisible()
+
+
+    def find_previous(self):
+        """Find and select the previous match with improved search behavior."""
+        search_text = self.search_field.text()
+        if not search_text:
+            return
+
+        # Prepare search flags backwards
+        flags = QTextDocument.FindFlag.FindBackward
+        if self.case_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindCaseSensitively
+
+        if self.word_button.isChecked():
+            flags |= QTextDocument.FindFlag.FindWholeWords
+
+        # Current cursor and visible area
+        current_cursor = self.text_area.textCursor()
+        current_position = current_cursor.position()
+
+        first_visible_pos = self.text_area.viewport().rect().topLeft()
+        last_visible_pos = self.text_area.viewport().rect().bottomRight()
+
+        first_visible_cursor = self.text_area.cursorForPosition(first_visible_pos)
+        last_visible_cursor = self.text_area.cursorForPosition(last_visible_pos)
+
+        first_visible_cursor = self.text_area.cursorForPosition(first_visible_pos)
+        last_visible_cursor = self.text_area.cursorForPosition(last_visible_pos)
+
+        # First, try to find previous match in the visible area
+        if first_visible_cursor.position() <= current_position <= last_visible_cursor.position():
+            search_start_cursor = current_cursor
+        else:
+            search_start_cursor = last_visible_cursor
+
+
+        # First, try to find previous match in the visible area
+        prev_in_view = self.text_area.document().find(
+            search_text,
+            search_start_cursor,
+            flags
+        )
+
+        # If no match from current cursor, search from the end
+        if prev_in_view.isNull():
+            prev_in_view = self.text_area.document().find(
+                search_text,
+                self.text_area.document().characterCount(),
+                flags
+            )
+
+        # If no match is found anywhere
+        if prev_in_view.isNull():
+            no_match_popup = QMessageBox()
+            no_match_popup.setIcon(QMessageBox.Icon.Information)
+
+            # TRANSLATORS: This is the title of the popup window indicating that the 
+            # search string was not found.
+            not_found_title = _('Not Found')
+
+            # TRANSLATORS: This is the text shown within the Not-found  popup window.
+            # The token '%(s)s' will be replaced with the search text at runtime.
+            not_found_msg = _('"%(s)s" was not found.')
+            if not "%(s)s" in not_found_msg:
+                not_found_msg = '"%(s)s" was not found.'
+            try:
+                not_found_msg = not_found_msg % { "s": search_text}
+            except:
+                not_found_msg = f'"{search_text}" was not found.'
+            
+            no_match_popup.setText(not_found_msg)
+            no_match_popup.setWindowTitle(not_found_title)
+            no_match_popup.setStandardButtons(QMessageBox.StandardButton.Ok)
+            no_match_popup.exec()
+            return
+
+        # Set the cursor to the found match and ensure it's visible
+        self.text_area.setTextCursor(prev_in_view)
+        self.text_area.ensureCursorVisible()
+
+    def toggle_ignore_case(self):
+        """Toggle match case button and update highlights."""
+        self.case_button.setChecked(not self.case_button.isChecked())
+        self.highlight_matches()
+
+    def toggle_whole_word(self):
+        """Toggle whole word button and update highlights."""
+        print(f"Clicked toggle_whole_word")
+        self.word_button.setChecked(not self.word_button.isChecked())
+        self.highlight_matches()
+
     def close_and_exit(self):
         self.accept()  # Close the dialog
-
 
     def load_file(self, file_path=None, view_cmd=None):
         """
@@ -432,49 +867,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-'''
-
-TODO if files check permssions and use pkexec for the view cmd
-import os
-import glob
-
-def files_exist(filepath_glob):
-    """
-    Check if any files match the given glob pattern exist.
-
-    Args:
-        filepath_glob (str): A file path glob pattern (e.g., '*.txt', '/path/to/files/*.log')
-
-    Returns:
-        bool: True if at least one file matching the pattern exists, False otherwise
-    """
-    return len(glob.glob(filepath_glob)) > 0
-
-def files_readable(filepath_glob):
-    """
-    Check if all files matching the given glob pattern are readable by the current user.
-
-    Args:
-        filepath_glob (str): A file path glob pattern (e.g., '*.txt', '/path/to/files/*.log')
-
-    Returns:
-        bool: True if all matching files are readable, False if any file is not readable
-    """
-    # Get all files matching the glob pattern
-    matching_files = glob.glob(filepath_glob)
-
-    # If no files match, return False
-    if not matching_files:
-        return False
-
-    # Check readability for each file
-    return all(os.access(file, os.R_OK) for file in matching_files)
-
-
-
-'''
-
 
 
 

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
 "Last-Translator: Ioannis LM, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/anticapitalista/teams/10162/el/)\n"
@@ -35,7 +35,7 @@ msgstr "MX Ενημερώσεις"
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "Εφαρμογή ενημερώσεων του MX"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -55,11 +55,12 @@ msgstr ""
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;εγκατάσταση;ειδοποίηση;πρόγραμμα;πακέτο;αποθετήριο;ενημέρωση;αναβάθμιση;αναφορά;αυτόματα;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr " MX Ρυθμίσεις ενημερώσεων"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
@@ -69,7 +70,7 @@ msgstr "Προτιμήσεις του MX Ενημερώσεις"
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "Αυτόματη εκκίνηση του MX Ενημερώσεις"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -137,31 +138,84 @@ msgid "full upgrade complete (or was canceled)"
 msgstr "Η πλήρης αναβάθμιση ολοκληρώθηκε (ή ακυρώθηκε)"
 
 msgid "this terminal window can now be closed"
-msgstr "αυτό το παράθυρο τερματικού μπορεί τώρα να κλείσει"
+msgstr "τώρα αυτό το παράθυρο τερματικού μπορεί να κλείσει"
 
 msgid "press any key to stop automatic closing"
 msgstr "πατήστε οποιοδήποτε πλήκτρο για να σταματήσετε το αυτόματο κλείσιμο"
 
 msgid "press any key to close"
-msgstr "πατήστε οποιοδήποτε πλήκτρο να κλείσει"
+msgstr "πατήστε οποιοδήποτε πλήκτρο για να κλείσει"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw down symbol to jump to the next found "search string"
+msgid "Find Next"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw up symbol to jump to the previous found "search
+#. string"
+msgid "Find Previous"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with a symbol "[Aa]" to toggle on/off case sensitive search.
+msgid "Match Case"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an ellipsis symbol "[...]" to toggle "whole word" search.
+msgid "Whole Word"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an "star" symbol "[*]" to toggle highlight of all searches
+#. found.
+msgid "Mark All"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Ctrl" key on the
+#. keyboard.
+msgid "Ctrl"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Shift" key on the
+#. keyboard.
+msgid "Shift"
+msgstr ""
+
+#. TRANSLATORS: This is the placeholder string shown within in the search
+#. field.
+#. The string is also shown as the first line within the tooltip.
+msgid "Search..."
+msgstr ""
+
+#. TRANSLATORS: This is the title of the popup window indicating that the
+#. search string was not found.
+msgid "Not Found"
+msgstr ""
+
+#. TRANSLATORS: This is the text shown within the Not-found  popup window.
+#. The token '%(s)s' will be replaced with the search text at runtime.
+msgid "\"%(s)s\" was not found."
+msgstr ""
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
-"MX Αυτόματη ενημέρωση -- αρχείο αλλαγών των χωρίς επίβλεψη αναβαθμίσεων dpkg"
+"MX Αυτόματη ενημέρωση -- αρχείο αλλαγών των αυτοματοποιημένων αναβαθμίσεων "
+"dpkg"
 
 msgid "Auto-update dpkg log(s)"
 msgstr "Αυτόματη ενημέρωση αρχείου(ων) καταγραφής dpkg"
 
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr ""
-"MX Αυτόματη ενημέρωση -- αρχείο αλλαγών των χωρίς επίβλεψη αναβαθμίσεων"
+"MX Αυτόματη ενημέρωση -- αρχείο αλλαγών των αυτοματοποιημένων αναβαθμίσεων"
 
 msgid "Auto-update log(s)"
 msgstr "Αυτόματη ενημέρωση αρχείου(ων) καταγραφής"
 
 msgid "Tray applet to notify of system and application updates"
-msgstr ""
-"Εφαρμογή ειδοποίησης για τις ενημερώσεις του συστήματος και των εφαρμογών"
+msgstr "Εφαρμογή ειδοποίησης για τις ενημερώσεις συστήματος και εφαρμογών"
 
 msgid "About MX Updater"
 msgstr "Περί του MX Ενημερώσεις"
@@ -182,10 +236,10 @@ msgid "History"
 msgstr "Ιστορικό"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "Δεν βρέθηκαν δεδομένα ιστορικού!"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "Σφάλμα ανάκτησης του ιστορικού apt:"
 
 msgid "Preferences"
 msgstr "Προτιμήσεις"
@@ -198,7 +252,7 @@ msgstr "Τρόπος αναβάθμισης"
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
-msgstr "πλήρης αναβάθμιση  (συνιστάται)"
+msgstr "πλήρης αναβάθμιση   (συνιστάται)"
 
 #. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
 #. which tries to explain what this checkbox is about.
@@ -207,6 +261,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"Αναβαθμίζει όλα τα πακέτα στη τελευταία έκδοση,\n"
+"μπορεί να περιλαμβάνει προσθήκη ή αφαίρεση πακέτων\n"
+"για να διατηρείται το σύστημα ενημερωμένο και σταθερό."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -214,12 +271,14 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"Αναβαθμίζει τα υπάρχοντα πακέτα στις πιο πρόσφατες εκδόσεις\n"
+"χωρίς να εγκαθιστά νέες εξαρτήσεις ή να αφαιρεί υπάρχοντα πακέτα."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "χρήση nala"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
@@ -227,12 +286,13 @@ msgstr ""
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
 msgstr ""
+"Επιλέξτε το για να χρησιμοποιηθεί ο διαχειριστής πακέτων nala αντί του apt."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "αυτόματη ενημέρωση"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -242,9 +302,13 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"Αυτόματος έλεγχος ενημερώσεων και εγκατάσταση τους μια φορά την ημέρα.\n"
+"Ενημερώνει μόνο τα υπάρχοντα πακέτα χωρίς να αλλάζει τη διαμόρφωση του συστήματός σας.\n"
+"Το εικονίδιο του προγράμματος εμφανίζει τον συνολικό αριθμό των ενημερώσεων,\n"
+"όταν υπάρχουν επιπλέον διαθέσιμες ενημερώσεις."
 
 msgid "Left-click behaviour   (when updates are available)"
-msgstr "Αριστερό κλικ  (όταν υπάρχουν διαθέσιμες ενημερώσεις)"
+msgstr "Αριστερό κλικ   (όταν υπάρχουν διαθέσιμες ενημερώσεις)"
 
 msgid "opens Synaptic"
 msgstr "ανοίγει το  Synaptic"
@@ -258,7 +322,7 @@ msgstr "Εικονίδια"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "διαφανή wireframe όταν δεν υπάρχουν ενημερώσεις"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -267,16 +331,18 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
+"Εμφάνιση των διαφανών εικονιδίων wireframe, χωρίς το χρωματικό γέμισμα\n"
+"όταν δεν υπάρχουν διαθέσιμες ενημερώσεις."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "σκοτεινό"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "φωτεινό"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
@@ -297,7 +363,7 @@ msgstr "Άλλες επιλογές"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "αυτόματη έγκριση αναβάθμισης όλων των πακέτων"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -306,12 +372,14 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"Αυτόματη απάντηση 'ναι' στις ερωτήσεις του διαχειριστή πακέτων κατά την αναβάθμιση.\n"
+"Ενδέχεται ορισμένες αλλαγές του συστήματος να απαιτούν χειροκίνητη επιβεβαίωση."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
-msgstr ""
+msgstr "εκκίνηση του \"MX Ενημερώσεις\" μετά από καθυστέριση"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -319,18 +387,20 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"Επιλέξτε το για να εκκινηθεί αυτόματα με τη σύνδεση το \"MX Ενημερώσεις\"\n"
+"μετά την ορισθείσα καθυστέρηση σε δευτερόλεπτα."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "δευτ."
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "κλείσιμο του παραθύρου μετά το χρόνο αδράνειας"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -338,6 +408,8 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"Αυτόματο κλείσιμο του παραθύρου τερματικού, μετά τον καθορισμένο\n"
+"αριθμό δευτερολέπτων αδράνειας του συστήματος ενημερώσεων."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -352,6 +424,9 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
+"Εκτός από την αλλαγή του εικονιδίου ενημερώσεων,\n"
+"θα εμφανιστεί και αναδυόμενο μήνυμα όταν\n"
+"υπάρχουν διαθέσιμες ενημερώσεις."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
@@ -365,48 +440,52 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
+"Απόκρυψη του εικονιδίου ενημερώσεων όταν δεν υπάρχουν διαθέσιμες ενημερώσεις.\n"
+"Αποεπιλέξτε το ή εκκινήστε από το μενού το \"MX Ενημερώσεις\" για να εμφανιστεί ξανά το εικονίδιο."
 
 msgid "MX Updater Help"
 msgstr "Βοήθεια του MX Ενημερώσεις"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
+"Οι ρυθμίσεις αυτόματης αναβάθμισης είναι στην επιθυμητή κατάσταση. Δεν "
+"χρειάζονται αλλαγές."
 
 msgid "Success"
 msgstr "Επιτυχία"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr ""
+msgstr "Οι ρυθμίσεις αυτόματης αναβάθμισης ενημερώθηκαν με επιτυχία."
 
 msgid "Failure"
 msgstr "Αποτυχία"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr ""
+msgstr "Απέτυχε η ενημέρωση των ρυθμίσεων αυτόματης αναβάθμισης"
 
 msgid "Error"
 msgstr "Σφάλμα"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Παρουσιάστηκε μη αναμενόμενο σφάλμα:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "Απέτυχε η ρύθμιση των αυτοματοποιημένων αναβαθμίσεων"
 
 msgid "Could not change automatic upgrades configuration"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η αλλαγή ρυθμίσεων της αυτόματης αναβάθμισης"
 
 msgid "Command failed"
-msgstr ""
+msgstr "Απέτυχε η εντολή"
 
 msgid "View and Upgrade"
 msgstr "Προβολή και αναβάθμιση"
 
 msgid "Unattended-upgrades"
-msgstr "Αναβαθμίσεις χωρίς επίβλεψη"
+msgstr "Αυτοματοποιημένες αναβαθμίσεις"
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Διαθέσιμες ενημερώσεις"
 
 msgid "Check for Updates"
 msgstr "Έλεγχος για ενημερώσεις"
@@ -426,7 +505,7 @@ msgstr "Έξοδος "
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
-msgstr ""
+msgstr "αυτόματο κλείσιμο του παραθύρου μετά το χρόνο αδράνειας"
 
 msgid "upgrade"
 msgstr "αναβάθμιση"

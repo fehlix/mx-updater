@@ -5,18 +5,18 @@
 # 
 # Translators:
 # b3a601cea954ec302ff861c4e4267715_658d0ac <5d11351aabbb363b7934638cd728c892_933757>, 2025
-# Kempelen <antixhu@netengine.hu>, 2025
 # Tamas Szarvas <szarvy@gmail.com>, 2025
 # fehlix, 2025
+# Kempelen <antixhu@netengine.hu>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2025\n"
+"Last-Translator: Kempelen <antixhu@netengine.hu>, 2025\n"
 "Language-Team: Hungarian (https://app.transifex.com/anticapitalista/teams/10162/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr "MX frissítéskezelő"
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "MX frissítéskezelő rendszertálca alkalmazás"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -55,11 +55,12 @@ msgstr ""
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;értesítő;frissítés;szoftver;csomagforrás;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr "MX frissítéskezelő beállítások"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
@@ -69,7 +70,7 @@ msgstr "MX frissítéskezelő beállításai"
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "MX frissítéskezelő automatikus indítás"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -145,9 +146,62 @@ msgstr "nyomjon meg egy billentyűt az automatikus bezárás megakadályozásáh
 msgid "press any key to close"
 msgstr "nyomjon meg egy billentyűt a bezáráshoz"
 
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw down symbol to jump to the next found "search string"
+msgid "Find Next"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw up symbol to jump to the previous found "search
+#. string"
+msgid "Find Previous"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with a symbol "[Aa]" to toggle on/off case sensitive search.
+msgid "Match Case"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an ellipsis symbol "[...]" to toggle "whole word" search.
+msgid "Whole Word"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an "star" symbol "[*]" to toggle highlight of all searches
+#. found.
+msgid "Mark All"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Ctrl" key on the
+#. keyboard.
+msgid "Ctrl"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Shift" key on the
+#. keyboard.
+msgid "Shift"
+msgstr ""
+
+#. TRANSLATORS: This is the placeholder string shown within in the search
+#. field.
+#. The string is also shown as the first line within the tooltip.
+msgid "Search..."
+msgstr ""
+
+#. TRANSLATORS: This is the title of the popup window indicating that the
+#. search string was not found.
+msgid "Not Found"
+msgstr ""
+
+#. TRANSLATORS: This is the text shown within the Not-found  popup window.
+#. The token '%(s)s' will be replaced with the search text at runtime.
+msgid "\"%(s)s\" was not found."
+msgstr ""
+
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
-"MX Automatikus-frissítéskezelő -- felügyeletlen-frissítések dpkg napló "
+"MX Automatikus-frissítéskezelő -- felügyelet nélküli frissítési dpkg napló "
 "megjelenítő"
 
 msgid "Auto-update dpkg log(s)"
@@ -155,7 +209,7 @@ msgstr "Automatikus-frissítés dpkg napló(k)"
 
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr ""
-"MX Automatikus-frissítéskezelő -- felügyeletlen-frissítések napló "
+"MX Automatikus-frissítéskezelő -- felügyelet nélküli frissítési napló "
 "megjelenítő"
 
 msgid "Auto-update log(s)"
@@ -183,10 +237,10 @@ msgid "History"
 msgstr "Frissítési előzmények"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "Nincsenek apt előzményadatok!"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "Hiba az apt előzmények betőltésekor:"
 
 msgid "Preferences"
 msgstr "Beállítások"
@@ -208,6 +262,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"Minden csomagot frissít a legfrissebb verzióra,\n"
+"melynek részeként telepíthet és eltávolíthat csomagokat\n"
+"a rendszer frissen és egységesen tartása érdekében."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -215,12 +272,14 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"Frissíti a meglévő csomagokat a legfrissebb verzióra,\n"
+"további csomagok telepítése vagy meglévők eltávolítása nélkül."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "nala használata"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
@@ -228,12 +287,13 @@ msgstr ""
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
 msgstr ""
+"Bejelölésekor az apt helyett a nala csomagkezelővel történik a telepítés."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "frissítés automatikusan"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -243,6 +303,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"Naponta automatikusan ellenőrzi és telepíti rendelkezésre álló frissítéseket.\n"
+"Csak meglévő csomagokat frissít, a rendszerbeállítások módosítása nélkül.\n"
+"A frissítéskezelő ikon az összes frissítést mutatja, beleértve az automatikus frissítéseket,\n"
+"amikor további frissítések állnak rendelkezésre."
 
 msgid "Left-click behaviour   (when updates are available)"
 msgstr "Bal egérgomb kattintás (amikor frissítések érhetőek el)"
@@ -259,7 +323,7 @@ msgstr "Ikonok"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "áttetsző drótváz ha nincs frissítés"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -268,16 +332,18 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
+"Áttetsző vonalas ikonok megjelenítése, kitöltési szín nélkül,\n"
+"amikor nem állnak rendelkezésre frissítések."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "sötét"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "világos"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
@@ -298,7 +364,7 @@ msgstr "Egyéb beállítások"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "minden csomagfrissítés automatikus jóváhagyása"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -307,12 +373,14 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"A frissítés folyamán automatikusan 'igen' választ alkalmaz a csomagkezelő kérdéseire.\n"
+"Bizonyos rendszerbeállítási változtatások még ekkor is kézi beavatkozást igényelhetnek."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
-msgstr ""
+msgstr "az MX frissítéskezelő indítása bejelentkezéskor, késleltetéssel"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -320,18 +388,20 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"Bejelölésekor az 'MX frissítéskezelő' automatikusan elindul a\n"
+"bejelentkezéskor, egy megadott idejű késleltetés után."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "mp"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "terminálablak bezárása késleltetés után"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -339,6 +409,8 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"A frissítések végrehajtása után automatikusan bezárja a\n"
+"terminálablakot, a megadott idejű késleltetés után."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -353,12 +425,15 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
+"A rendszertálca ikon megváltoztatásán felül,\n"
+"felugró értesítést is megjelenik, amikor frissítések\n"
+"érhetők el."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
 #. the "MX Updater" systray icon until package upgrades are available.
 msgid "Hide until updates available"
-msgstr "Elrejtés, amíg lesz elérhető frissítés"
+msgstr "Elrejtés, amíg nincs elérhető frissítés"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -366,48 +441,53 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
+"Az értesítési ikon elrejtése amikor nincsenek elérhető frissítések.\n"
+"Kapcsolja ki ezt, vagy indítsa el a menüből az \"MX frissítéskezelőt\"\n"
+"az ikon újbóli megjelenítéséhez."
 
 msgid "MX Updater Help"
 msgstr "MX frissítéskezelő súgó"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
+"Az automatikus frissítés már megfelelően be van állítva. Nem szükséges "
+"változtatás."
 
 msgid "Success"
 msgstr "Sikeres"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr ""
+msgstr "Az automatikus frissítés beállítás frissítve."
 
 msgid "Failure"
-msgstr "Hiba"
+msgstr "Sikertelen"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr ""
+msgstr "Nem sikerült az automatikus frissítés beállításainak módosítása."
 
 msgid "Error"
 msgstr "Hiba"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Váratlan hiba történt:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "Felügyelet nélküli frissítések beállítása nem sikerült"
 
 msgid "Could not change automatic upgrades configuration"
-msgstr ""
+msgstr "Nem sikerült az automatikus frissítések beállításainak módosítása"
 
 msgid "Command failed"
-msgstr ""
+msgstr "Parancs sikertelen"
 
 msgid "View and Upgrade"
 msgstr "Megtekintés és frissítés"
 
 msgid "Unattended-upgrades"
-msgstr "Felügyeletlen-frissítések"
+msgstr "Felügyelet nélküli frissítések"
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Frissítések érhetők el"
 
 msgid "Check for Updates"
 msgstr "Frissítések keresése"
@@ -427,7 +507,7 @@ msgstr "Kilépés"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
-msgstr ""
+msgstr "terminálablak automatikus bezárása, késleltetés után"
 
 msgid "upgrade"
 msgstr "frissítés"

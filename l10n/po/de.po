@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
 "Last-Translator: fehlix, 2025\n"
 "Language-Team: German (https://app.transifex.com/anticapitalista/teams/10162/de/)\n"
@@ -142,6 +142,59 @@ msgstr "Mit beliebiger Taste das Schließen abbrechen"
 
 msgid "press any key to close"
 msgstr "Schließen mit beliebiger Taste"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw down symbol to jump to the next found "search string"
+msgid "Find Next"
+msgstr "Nächstes suchen"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw up symbol to jump to the previous found "search
+#. string"
+msgid "Find Previous"
+msgstr "Vorheriges suchen"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with a symbol "[Aa]" to toggle on/off case sensitive search.
+msgid "Match Case"
+msgstr "Groß-/Kleinschreibung"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an ellipsis symbol "[...]" to toggle "whole word" search.
+msgid "Whole Word"
+msgstr "Ganzes Wort"
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an "star" symbol "[*]" to toggle highlight of all searches
+#. found.
+msgid "Mark All"
+msgstr "Alle markieren"
+
+#. TRANSLATORS: This is the string used to label the "Ctrl" key on the
+#. keyboard.
+msgid "Ctrl"
+msgstr "Strg"
+
+#. TRANSLATORS: This is the string used to label the "Shift" key on the
+#. keyboard.
+msgid "Shift"
+msgstr "Umschalttaste"
+
+#. TRANSLATORS: This is the placeholder string shown within in the search
+#. field.
+#. The string is also shown as the first line within the tooltip.
+msgid "Search..."
+msgstr "Suchen..."
+
+#. TRANSLATORS: This is the title of the popup window indicating that the
+#. search string was not found.
+msgid "Not Found"
+msgstr "Nichts gefunden"
+
+#. TRANSLATORS: This is the text shown within the Not-found  popup window.
+#. The token '%(s)s' will be replaced with the search text at runtime.
+msgid "\"%(s)s\" was not found."
+msgstr "\"%(s)s\" wurde nicht gefunden."
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""

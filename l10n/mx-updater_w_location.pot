@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. short and leave the string "MX Updater" untranslated if necessary.
 #: ../xdg/mx-updater.desktop:7 ../lib/mx-updater/bin/updater_reload_run:68
 #: ../lib/mx-updater/bin/updater_upgrade_run:69
-#: ../libexec/mx-updater/mx-updater-logviewer.py:387
+#: ../libexec/mx-updater/mx-updater-logviewer.py:822
 #: ../libexec/mx-updater/updater_about.py:77
 #: ../libexec/mx-updater/updater-changelog.py:213
 #: ../libexec/mx-updater/updater-history.py:125
@@ -121,7 +121,7 @@ msgstr ""
 
 #: ../bin/mx-updater_unattended_upgrades_dpkg_log_view:28
 #: ../bin/mx-updater_unattended_upgrades_log_view:40
-#: ../libexec/mx-updater/mx-updater-logviewer.py:187
+#: ../libexec/mx-updater/mx-updater-logviewer.py:622
 msgid "No logs found."
 msgstr ""
 
@@ -175,20 +175,80 @@ msgstr ""
 msgid "press any key to close"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:395
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw down symbol to jump to the next found "search string"
+#: ../libexec/mx-updater/mx-updater-logviewer.py:169
+msgid "Find Next"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw up symbol to jump to the previous found "search string"
+#: ../libexec/mx-updater/mx-updater-logviewer.py:172
+msgid "Find Previous"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with a symbol "[Aa]" to toggle on/off case sensitive search.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:175
+msgid "Match Case"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an ellipsis symbol "[...]" to toggle "whole word" search.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:178
+msgid "Whole Word"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an "star" symbol "[*]" to toggle highlight of all searches found.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:181
+msgid "Mark All"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Ctrl" key on the keyboard.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:183
+msgid "Ctrl"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Shift" key on the keyboard.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:185
+msgid "Shift"
+msgstr ""
+
+#. TRANSLATORS: This is the placeholder string shown within in the search field.
+#. The string is also shown as the first line within the tooltip.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:188
+msgid "Search..."
+msgstr ""
+
+#. TRANSLATORS: This is the title of the popup window indicating that the
+#. search string was not found.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:477
+#: ../libexec/mx-updater/mx-updater-logviewer.py:556
+msgid "Not Found"
+msgstr ""
+
+#. TRANSLATORS: This is the text shown within the Not-found  popup window.
+#. The token '%(s)s' will be replaced with the search text at runtime.
+#: ../libexec/mx-updater/mx-updater-logviewer.py:481
+#: ../libexec/mx-updater/mx-updater-logviewer.py:560
+msgid "\"%(s)s\" was not found."
+msgstr ""
+
+#: ../libexec/mx-updater/mx-updater-logviewer.py:830
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:397
+#: ../libexec/mx-updater/mx-updater-logviewer.py:832
 #: ../libexec/mx-updater/updater-systray.py:1525
 msgid "Auto-update dpkg log(s)"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:411
+#: ../libexec/mx-updater/mx-updater-logviewer.py:846
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
 msgstr ""
 
-#: ../libexec/mx-updater/mx-updater-logviewer.py:413
+#: ../libexec/mx-updater/mx-updater-logviewer.py:848
 #: ../libexec/mx-updater/updater-systray.py:1524
 msgid "Auto-update log(s)"
 msgstr ""

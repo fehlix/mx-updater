@@ -1,3 +1,10 @@
+mx-updater (25.11.01mx25) mx; urgency=medium
+
+  * Add a search field to the unattended-upgrade log viewers
+  * Refresh latest translations from transifex
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 01 Nov 2025 17:40:52 -0400
+
 mx-updater (25.10.02mx25) mx; urgency=medium
 
   * Add restart option "--restart" as default to mx-updater.desktop

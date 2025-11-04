@@ -5,22 +5,22 @@
 # 
 # Translators:
 # Transifex Bot <>, 2025
-# anticapitalista <anticapitalista@riseup.net>, 2025
-# Green <usergreen@users.osdn.me>, 2025
 # night1ynx <night1ynxd@gmail.com>, 2025
+# anticapitalista <anticapitalista@riseup.net>, 2025
 # Dolphin Oracle <dolphinoracle@gmail.com>, 2025
 # 🎈 BALLOON | FU-SEN, 2025
 # Geoff Gigg <geoffgigg@hotmail.com>, 2025
 # fehlix, 2025
+# green <usergreen@users.osdn.me>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 19:57-0400\n"
+"POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2025\n"
+"Last-Translator: green <usergreen@users.osdn.me>, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/anticapitalista/teams/10162/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,12 +34,12 @@ msgstr ""
 #. system.  The string is used in various places. Keep the translation
 #. short and leave the string "MX Updater" untranslated if necessary.
 msgid "MX Updater"
-msgstr "MX アップデーター"
+msgstr "MX アップデータ"
 
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "MX アップデータ・システムトレイアプレット"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -63,17 +63,17 @@ msgstr ""
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr "MX アップデータの設定"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "MX アップデーターの設定"
+msgstr "MX アップデータを設定します"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "MX アップデータの自動起動"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -146,8 +146,61 @@ msgstr "いずれかのキーを押して自動終了を中止"
 msgid "press any key to close"
 msgstr "何かキーを押して閉じる"
 
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw down symbol to jump to the next found "search string"
+msgid "Find Next"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an arrorw up symbol to jump to the previous found "search
+#. string"
+msgid "Find Previous"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with a symbol "[Aa]" to toggle on/off case sensitive search.
+msgid "Match Case"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an ellipsis symbol "[...]" to toggle "whole word" search.
+msgid "Whole Word"
+msgstr ""
+
+#. TRANSLATORS: This is the first line of the tooltip of the
+#. button with an "star" symbol "[*]" to toggle highlight of all searches
+#. found.
+msgid "Mark All"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Ctrl" key on the
+#. keyboard.
+msgid "Ctrl"
+msgstr ""
+
+#. TRANSLATORS: This is the string used to label the "Shift" key on the
+#. keyboard.
+msgid "Shift"
+msgstr ""
+
+#. TRANSLATORS: This is the placeholder string shown within in the search
+#. field.
+#. The string is also shown as the first line within the tooltip.
+msgid "Search..."
+msgstr ""
+
+#. TRANSLATORS: This is the title of the popup window indicating that the
+#. search string was not found.
+msgid "Not Found"
+msgstr ""
+
+#. TRANSLATORS: This is the text shown within the Not-found  popup window.
+#. The token '%(s)s' will be replaced with the search text at runtime.
+msgid "\"%(s)s\" was not found."
+msgstr ""
+
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
-msgstr "MX 自動更新 -- 自動更新の dpkg ログビューアー"
+msgstr "MX 自動更新 -- 自動更新の dpkg ログビューア"
 
 msgid "Auto-update dpkg log(s)"
 msgstr "自動更新された dpkg のログ"
@@ -162,7 +215,7 @@ msgid "Tray applet to notify of system and application updates"
 msgstr "システムおよびアプリケーションの更新通知トレイアプレット"
 
 msgid "About MX Updater"
-msgstr "MX アップデーターについて"
+msgstr "MX アップデータについて"
 
 msgid "Close"
 msgstr "閉じる"
@@ -180,10 +233,10 @@ msgid "History"
 msgstr "履歴"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "apt-history データが見つかりません！"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "apt-history 取得中にエラーが発生しました:"
 
 msgid "Preferences"
 msgstr "設定"
@@ -230,7 +283,7 @@ msgstr ""
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "自動アップグレード"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -269,12 +322,12 @@ msgstr ""
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "ダーク"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "ライト"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
@@ -365,7 +418,7 @@ msgid ""
 msgstr ""
 
 msgid "MX Updater Help"
-msgstr "MXアップデーターのヘルプ"
+msgstr "MX アップデータのヘルプ"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
@@ -413,13 +466,13 @@ msgid "About"
 msgstr "情報"
 
 msgid "Restart MX Updater"
-msgstr "MX アップデーターの再起動"
+msgstr "MX アップデータの再起動"
 
 msgid "Synaptic Help"
 msgstr "Synaptic のヘルプ"
 
 msgid "Quit"
-msgstr "終了"
+msgstr "中止"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.

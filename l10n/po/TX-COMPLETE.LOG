@@ -1,37 +1,37 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Mon, 20 Oct 2025 09:11:03 +0000
+# generated with tx-complete.sh at Sun, 02 Nov 2025 00:16:57 +0000
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
-     1		  88	   100%    	ca      	ca	Catalan; Valencian
-     2		  88	   100%    	de      	de	German
-     3		  88	   100%    	es      	es	Spanish; Castilian
-     4		  88	   100%    	es_ES   	es	Spanish; Castilian @ Spain
-     5		  88	   100%    	fr      	fr	French
-     6		  88	   100%    	fr_BE   	fr	French @ Belgium
-     7		  88	   100%    	nl      	nl	Dutch; Flemish
-     8		  88	   100%    	pl      	pl	Polish
-     9		  88	   100%    	sv      	sv	Swedish
-    10		  87	    98%    	fi      	fi	Finnish
-    11		  54	    61%    	cs      	cs	Czech
-    12		  54	    61%    	el      	el	Greek, Modern (1453-)
-    13		  54	    61%    	gl_ES   	gl	Galician @ Spain
-    14		  54	    61%    	hi      	hi	Hindi
-    15		  54	    61%    	hu      	hu	Hungarian
-    16		  54	    61%    	it      	it	Italian
-    17		  54	    61%    	ja      	ja	Japanese
-    18		  54	    61%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
-    19		  54	    61%    	pt      	pt	Portuguese
-    20		  54	    61%    	pt_BR   	pt	Portuguese @ Brazil
-    21		  54	    61%    	ru      	ru	Russian
-    22		  54	    61%    	sl      	sl	Slovenian
-    23		  54	    61%    	tr      	tr	Turkish
-    24		  52	    59%    	sq      	sq	Albanian
-    25		  51	    57%    	nl_BE   	nl	Dutch; Flemish @ Belgium
-    26		  47	    53%    	da      	da	Danish
-    27		  46	    52%    	fil_PH  		Filipino @ Philippines
-    28		  35	    39%    	fa      	fa	Persian
-    29		  34	    38%    	lt      	lt	Lithuanian
-    30		  31	    35%    	am      	am	Amharic
-    31		  31	    35%    	sk      	sk	Slovak
-    32		  30	    34%    	th      	th	Thai
-    33		  29	    32%    	hr      	hr	Croatian
+     1		  98	   100%    	de      	de	German
+     2		  88	    89%    	ca      	ca	Catalan; Valencian
+     3		  88	    89%    	el      	el	Greek, Modern (1453-)
+     4		  88	    89%    	es      	es	Spanish; Castilian
+     5		  88	    89%    	es_ES   	es	Spanish; Castilian @ Spain
+     6		  88	    89%    	fr      	fr	French
+     7		  88	    89%    	fr_BE   	fr	French @ Belgium
+     8		  88	    89%    	hu      	hu	Hungarian
+     9		  88	    89%    	nl      	nl	Dutch; Flemish
+    10		  88	    89%    	pl      	pl	Polish
+    11		  88	    89%    	sv      	sv	Swedish
+    12		  87	    88%    	fi      	fi	Finnish
+    13		  62	    63%    	ja      	ja	Japanese
+    14		  54	    55%    	cs      	cs	Czech
+    15		  54	    55%    	gl_ES   	gl	Galician @ Spain
+    16		  54	    55%    	hi      	hi	Hindi
+    17		  54	    55%    	it      	it	Italian
+    18		  54	    55%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
+    19		  54	    55%    	pt      	pt	Portuguese
+    20		  54	    55%    	pt_BR   	pt	Portuguese @ Brazil
+    21		  54	    55%    	ru      	ru	Russian
+    22		  54	    55%    	sl      	sl	Slovenian
+    23		  54	    55%    	tr      	tr	Turkish
+    24		  52	    53%    	sq      	sq	Albanian
+    25		  51	    52%    	nl_BE   	nl	Dutch; Flemish @ Belgium
+    26		  47	    47%    	da      	da	Danish
+    27		  46	    46%    	fil_PH  		Filipino @ Philippines
+    28		  35	    35%    	fa      	fa	Persian
+    29		  34	    34%    	lt      	lt	Lithuanian
+    30		  31	    31%    	am      	am	Amharic
+    31		  31	    31%    	sk      	sk	Slovak
+    32		  30	    30%    	th      	th	Thai
+    33		  29	    29%    	hr      	hr	Croatian

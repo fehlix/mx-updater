@@ -1,0 +1,54 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 06 Nov 2025 17:21:52 -0500
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 25.11.02mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (25.11.02mx25) mx; urgency=medium
+ .
+   * Set no-autoremove for "nala" and "apt" to avoid kernel removal
+   * Translation refresh
+Checksums-Sha1:
+ e373f7404e61109054b4565927bb133021d4fad9 1624 mx-updater_25.11.02mx25.dsc
+ 32f5d4adb530ad208d4bbba23d3bea986f4daeae 160720 mx-updater_25.11.02mx25.tar.xz
+ d863baaa8c3e5ae9036e595ac74b7eaefcc8e837 355816 mx-updater_25.11.02mx25_all.deb
+ 5b21cdb54c1ab1d822e1d510e745966c187b7827 7531 mx-updater_25.11.02mx25_amd64.buildinfo
+Checksums-Sha256:
+ b9f2a0d4dc0dc01e5334c24f34006f13d22145de1112bb93d36ae382c261b19e 1624 mx-updater_25.11.02mx25.dsc
+ e90f60d5fb5d44aedd1ec74663f7bb1a4730e8704795f48613b8a108a114281b 160720 mx-updater_25.11.02mx25.tar.xz
+ 122b9eeef45458a63c5f60fa06f7bf6dd8ebf7f6f2b28759266f8455e80de27d 355816 mx-updater_25.11.02mx25_all.deb
+ d5539f7ccbc425369f505a6484c4b4ff1978624d0211e1c9875303e5f6baa0b6 7531 mx-updater_25.11.02mx25_amd64.buildinfo
+Files:
+ 3d63d8c07385155f482949f127822064 1624 admin optional mx-updater_25.11.02mx25.dsc
+ 5bc9d86bfcaf229ce3e98fb7d03348ca 160720 admin optional mx-updater_25.11.02mx25.tar.xz
+ 8c9b2b6d2938bc5024d9482261d454c1 355816 admin optional mx-updater_25.11.02mx25_all.deb
+ 9e3b6f047bde95cc055f842e2a291aec 7531 admin optional mx-updater_25.11.02mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmkNILYTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6WtFD/9ctheNiFLynHe969YS4JOiVTLCs3Pe
+ePy2P5U9yunLGah9u+gNiHVCf450Ijk3SDB62L0ONv8FQXVrU2/bOzg1JE59eyhi
+eUSEGt1+NgeKL3SpjeM63qz2f80a7HnOmrohIUkjRf0VFb9UmVBVcDCbkVnEvU/u
+Arv7MaArhHK/Qi2+suv1wDLq+WDVWei2kIc8tkagfoEOqz6ooFMjJqcIsZbMo9nf
+QU1c3PP2gYJGoLntKXa6qYmwyYPWPynzfnC7/hSLDKf3pvS6HhlZ40iCmxiVeFkt
+T5VJaNaB2y2mDAtHktVpKWWswepdSR+6w8HLWpqFv+Z6CRxCJm45qgp0t5+KdK8t
+70yElf07I8e0qol+5pfdXSxGjxNSs7655Z2cWN/fvp7gSoTv3UdTZfFYtZ6v9t0G
+nu0Jr5MOOmxDd4V9qA6ggxyW8DrG4FJry/qeFAiQsCRWTgAHLalsep1MrFhHuz5M
+x39MPY/3Yyr2Q2+MYjEni1ovej2MVuUrYZyVxv0/TFgHhuzvIp4sRGvfusPCAqUg
+kM1jQJWD5jCnhIIIiUUtLv9n4F0TgMRFbpNCi+blfMRzgupGWuf2rscfwxjzLL6/
+h83EFXM2mDrkgyHiUYG/e+ZZfHc3ozAjKwjHOegCUGp+hprF3zh9Dg2SuBWRI/yw
+lDtGdKx5aa15/w==
+=j1zL
+-----END PGP SIGNATURE-----

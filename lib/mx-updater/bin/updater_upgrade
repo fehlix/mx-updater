@@ -45,17 +45,6 @@ read -r UPDATER_USE_NALA < <(get_config_item "use_nala" "false")
 read -r AUTO_CLOSE_TIMEOUT < <(get_config_item "auto_close_timeout" "10")
 
 
-# use nala if needed
-#
-
-#UPGRADE_TYPE=$(     grep -oP '^UPGRADE_TYPE=\K.*'      "$APT_NOTIFIERRC" 2>/dev/null)
-#UPGRADE_ASSUME_YES=$(grep -oP '^UPGRADE_ASSUME_YES=\K.*' "$APT_NOTIFIERRC" 2>/dev/null)
-#AUTO_CLOSE=$(grep -oP '^AUTO_CLOSE=\K.*' "$APT_NOTIFIERRC" 2>/dev/null)
-
-read -r UPGRADE_TYPE < <(get_config_item "upgrade_type" "full-upgrade")
-read -r UPGRADE_ASSUME_YES < <(get_config_item "upgrade_assume_yes" "false")
-read -r AUTO_CLOSE  < <(get_config_item "auto_close" "true")
-
 # upgrade type dist-upgrade or upgrade
 if [ "$UPGRADE_TYPE" != "full-upgrade" ]; then
     UPGRADE_TYPE="upgrade"
@@ -64,7 +53,6 @@ fi
 if [ "$UPGRADE_TYPE" = "full-upgrade" ]; then
     APTGET_UPGRADETYPE="dist-upgrade"
 fi
-
 
 export TEXTDOMAIN=mx-updater
 
@@ -83,21 +71,23 @@ if [ -f "$UPDATER_APTPREF" ]; then
 fi
 
 # use nala if desired and available
-
+# use nala if desired and available
 : ${UPDATER_USE_NALA:=false}
 export UPDATER_USE_NALA
-if [ x"${APT_NOTIFIER_CONFIG_ITEMS[use_nala]}" = x"true" ]; then
-    UPDATER_USE_NALA=true
-    if ! which nala >/dev/null; then
-       UPDATER_USE_NALA=false
+if [ "${UPDATER_USE_NALA}" = "true" ]; then
+    if ! command -v nala >/dev/null; then
+        UPDATER_USE_NALA="false"
     fi
 fi
+
 
 # check if the last apt update run was less than 2 minutes ago
 update_stamp=$(find /var/lib/apt/periodic/update-stamp -mmin -2 2>/dev/null)
 
+Auto_Remove_Pref="--no-autoremove"
+
 if [ x"$UPDATER_USE_NALA" = x"true" ]; then
-    Nala_Pref="--no-autoremove"
+    Nala_Auto_Remove_Pref="$Auto_Remove_Pref"
     if [ -z "$update_stamp" ]; then
         Nala_Update_Pref="--update"
         nala update
@@ -127,8 +117,8 @@ if [ x"$UPDATER_USE_NALA" = x"true" ]; then
     fi
 
     [ y"${DEBUG_MX_UPDATER/true/es}" = "yes" ] &&  echo nala upgrade $AptPref_Opts $Nala_UPGRADE_TYPE $Nala_Pref $AssumeYes
-    echo "nala upgrade $Nala_UPGRADE_TYPE $Nala_Pref $Nala_Update_Pref_Raw"
-    nala upgrade $AptPref_Opts $Nala_UPGRADE_TYPE $Nala_Pref $Nala_Update_Pref $Nala_Update_Pref_Raw $AssumeYes
+    echo "nala upgrade $Nala_UPGRADE_TYPE $Nala_Auto_Remove_Pref $Nala_Update_Pref_Raw"
+    nala upgrade $AptPref_Opts $Nala_UPGRADE_TYPE  $Nala_Auto_Remove_Pref $Nala_Update_Pref $Nala_Update_Pref_Raw $AssumeYes
     if [ "$Nala_Update_Pref" = "--update" ]; then
        [ -d /var/lib/apt/periodic ] || mkdir -p /var/lib/apt/periodic
        touch /var/lib/apt/periodic/update-stamp
@@ -141,15 +131,16 @@ else
        [ -d /var/lib/apt/periodic ] || mkdir -p /var/lib/apt/periodic
        touch /var/lib/apt/periodic/update-stamp
     fi
-    echo apt $UPGRADE_TYPE
-        if [ "$UPGRADE_TYPE" = "upgrade" ]
-          then
-            AptPref_Opts+=" -o APT::Get::Upgrade-Allow-New=false"
-            AptPref_Opts+=" -o Binary::apt::APT::Get::Upgrade-Allow-New=false"
-          else
-            AptPref_Opts+=" -o APT::Get::Upgrade-Allow-New=true"
-            AptPref_Opts+=" -o Binary::apt::APT::Get::Upgrade-Allow-New=true"
-        fi
+    echo apt $UPGRADE_TYPE $Auto_Remove_Pref
+    if [ "$UPGRADE_TYPE" = "upgrade" ]
+      then
+        AptPref_Opts+=" -o APT::Get::Upgrade-Allow-New=false"
+        AptPref_Opts+=" -o Binary::apt::APT::Get::Upgrade-Allow-New=false"
+      else
+        AptPref_Opts+=" -o APT::Get::Upgrade-Allow-New=true"
+        AptPref_Opts+=" -o Binary::apt::APT::Get::Upgrade-Allow-New=true"
+    fi
+    AptPref_Opts+=" $Auto_Remove_Pref"
     [ y"${DEBUG_MX_UPDATER/true/es}" = "yes" ] &&  echo apt --verbose-versions $AssumeYes $AptPref_Opts $UPGRADE_TYPE
     apt --verbose-versions $AssumeYes $AptPref_Opts $UPGRADE_TYPE
 fi

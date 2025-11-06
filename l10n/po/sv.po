@@ -150,55 +150,55 @@ msgstr "tryck på valfri tangent för att stänga"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr ""
+msgstr "Hitta nästa"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
 #. string"
 msgid "Find Previous"
-msgstr ""
+msgstr "Hitta föregående"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with a symbol "[Aa]" to toggle on/off case sensitive search.
 msgid "Match Case"
-msgstr ""
+msgstr "Matcha gemener och versaler"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an ellipsis symbol "[...]" to toggle "whole word" search.
 msgid "Whole Word"
-msgstr ""
+msgstr "Helt ord"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "Markera alla"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "Sök..."
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "Hittades inte"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.
 msgid "\"%(s)s\" was not found."
-msgstr ""
+msgstr "\"%(s)s\" hittades inte."
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr "MX Auto-uppdatera -- obevakade-uppgraderingar dpkg loggvisare"

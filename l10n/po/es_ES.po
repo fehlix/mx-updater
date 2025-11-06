@@ -7,6 +7,7 @@
 # Casper, 2025
 # fehlix, 2025
 # Manuel <senpai99@hotmail.com>, 2025
+# José Vidal <joviarts@gmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: Manuel <senpai99@hotmail.com>, 2025\n"
+"Last-Translator: José Vidal <joviarts@gmail.com>, 2025\n"
 "Language-Team: Spanish (Spain) (https://app.transifex.com/anticapitalista/teams/10162/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,39 +150,39 @@ msgstr "pulse cualquier tecla para cerrar"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr ""
+msgstr "Encontrar siguiente"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
 #. string"
 msgid "Find Previous"
-msgstr ""
+msgstr "Encontrar anterior"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with a symbol "[Aa]" to toggle on/off case sensitive search.
 msgid "Match Case"
-msgstr ""
+msgstr "Coincidir capitalización"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an ellipsis symbol "[...]" to toggle "whole word" search.
 msgid "Whole Word"
-msgstr ""
+msgstr "Toda la palabra"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "Marcar todo"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Mayúsc."
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
@@ -192,7 +193,7 @@ msgstr ""
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "No encontrado"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.

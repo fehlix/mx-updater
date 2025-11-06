@@ -5,8 +5,8 @@
 # 
 # Translators:
 # Dolphin Oracle <dolphinoracle@gmail.com>, 2025
-# Besnik Bleta <besnik@programeshqip.org>, 2025
 # fehlix, 2025
+# Besnik Bleta <besnik@programeshqip.org>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-01 19:19-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2025\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2025\n"
 "Language-Team: Albanian (https://app.transifex.com/anticapitalista/teams/10162/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "Përditësues MX"
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr ""
+msgstr "Aplikacionth “Përditësues MX” për panel sistemi"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -54,11 +54,13 @@ msgstr ""
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;instalim;mxpi;nala;njoftues;software;paketë;depo;synaptic;pa "
+"prani;përditësim;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr ""
+msgstr "Rregullime Përditësuesi MX"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
@@ -68,7 +70,7 @@ msgstr "Parapëlqime Përditësuesi MX"
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr ""
+msgstr "Vetënisje Përditësuesi MX"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -147,55 +149,55 @@ msgstr "shtypni çfarëdo tasti që të mbyllet"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr ""
+msgstr "Gjej Pasuesen"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
 #. string"
 msgid "Find Previous"
-msgstr ""
+msgstr "Gjej të Mëparshmen"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with a symbol "[Aa]" to toggle on/off case sensitive search.
 msgid "Match Case"
-msgstr ""
+msgstr "Siç Është Shkruar"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an ellipsis symbol "[...]" to toggle "whole word" search.
 msgid "Whole Word"
-msgstr ""
+msgstr "Krejt Fjalën"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "Vëru Shenjë të Tërave"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "Kërkoni…"
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "S’u Gjet"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.
 msgid "\"%(s)s\" was not found."
-msgstr ""
+msgstr "“%(s)s” s’u gjet."
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""
@@ -234,10 +236,10 @@ msgid "History"
 msgstr "Historik"
 
 msgid "No apt-history data found!"
-msgstr ""
+msgstr "S’u gjetën të dhëna për apt-history!"
 
 msgid "Error retrieving apt-history:"
-msgstr ""
+msgstr "Gabim në marrje të apt-history:"
 
 msgid "Preferences"
 msgstr "Parapëlqime"
@@ -259,6 +261,10 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"Përmirëson krejt paketat me versionet e tyre më\n"
+"të reja, çka mund të përfshijë shtim ose heqje\n"
+"paketash, për ta mbajtur sistemin të përditësuar\n"
+"dhe të qëndrueshëm."
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -266,12 +272,14 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"Përmirëson paketat ekzistuese me versionet e tyre\n"
+"më të reja, pa instaluar varësi të reja, apo hequr paketa ekzistuese."
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "përdor nala-n"
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
@@ -279,12 +287,14 @@ msgstr ""
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
 msgstr ""
+"Përzgjidhni këtë, që të përdoret përgjegjësi nala i paketave, në vend se "
+"apt."
 
 #. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
 #. can select
 #. to enabled "unattended-upgrade"
 msgid "upgrade automatically"
-msgstr ""
+msgstr "përmirësoje automatikisht"
 
 #. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
 #. which tries to explain what this checkbox is about.
@@ -294,6 +304,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"Kontrollo automatikisht një herë në ditë për përditësime paketash dhe instaloji.\n"
+"Përditësim vetëm paketa ekzistuese, pa ndryshuar formësimin tuaj të sistemit.\n"
+"Ikona e përditësuesit shfaq numrin gjithsej të përditësimeve, përfshi përditësime\n"
+"të automatizuara, kur ka përditësime shtesë."
 
 msgid "Left-click behaviour   (when updates are available)"
 msgstr "Sjellje e klikimit me të majtin (kur ka përditësime)"
@@ -310,7 +324,7 @@ msgstr "Ikona"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "kornizë e tejdukshme për kur s’ka përditësime"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -319,20 +333,22 @@ msgid ""
 "Display transparent wireframe icons without color fill\n"
 "when no updates are available."
 msgstr ""
+"Shfaq ikona kornize të tejdukshme, pa mbushje me ngjyrë,\n"
+"kur s’ka përditësime të gatshme."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "dark"
-msgstr ""
+msgstr "e errët"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
 #. “light” icon-set, respectively.
 msgid "light"
-msgstr ""
+msgstr "e çelët"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
-msgstr ""
+msgstr "kornizë"
 
 #. TRANSLATORS: The pulse icon-set
 msgid "pulse"
@@ -349,7 +365,7 @@ msgstr "Mundësi të tjera"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "ripoho automatikisht krejt përmirësimet e paketave"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -358,12 +374,14 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"Përgjigju automatikisht “po” pyetjes nga administrim paketash gjatë përmirësimesh.\n"
+"Disa ndryshime formësimi sistemi mund të duan ende ripohim dorazi."
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "start \"MX Updater\" at login after delay"
-msgstr ""
+msgstr "nise “Përditësuesin MX” gjatë hyrjes, pas vonese"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -371,18 +389,21 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"Përzgjidheni këtë që “Përditësuesi MX” të niset\n"
+"automatikisht në hyrje, pas vonesës së dhënë\n"
+"në sekonda."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "sek"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "mbylle dritaren e terminalit pas kohe plogështie"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -390,6 +411,9 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"Bën mbylljen vetvetiu të dritares së terminalit pas numrit\n"
+"të dhënë të sekondave plogështie në vijim të përditësimeve\n"
+"të sistemit."
 
 #. TRANSLATORS: The label of the checkbox "use desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -404,6 +428,9 @@ msgid ""
 "pop-up messages will be shown when\n"
 "system updates are available."
 msgstr ""
+"Tej ndryshimit të ikonës së panelit,\n"
+"do të shfaqen flluska mesazhesh, kur\n"
+"të ketë gati përditësime sistemi."
 
 #. TRANSLATORS: The label of the checkbox "Hide until updates available" and
 #. also of the right-click menu entry, where user can select to not show
@@ -417,39 +444,44 @@ msgid ""
 "Hide the system update icon when no updates are available.\n"
 "Untick this box or run \"MX Updater\" from the menu to make the icon visible again."
 msgstr ""
+"Fshihe ikonën e përditësimit të sistemit, kur s’ka përditësime gati.\n"
+"Që ta bëni të dukshme sërish ikonën, hiqjani shenjën kësaj kutize,\n"
+"ose xhirojeni “Përditësuesin MX” që nga menuja."
 
 msgid "MX Updater Help"
 msgstr "Ndihmë Përditësuesi MX"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
+"Rregullimi për vetëpërmirësime është tashmë në gjendjen e dëshiruar. S’u "
+"bënë ndryshime."
 
 msgid "Success"
 msgstr "Sukses"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr ""
+msgstr "Rregullimi për vetëpërmirësime u përditësua me sukses."
 
 msgid "Failure"
 msgstr "Dështim"
 
 msgid "Failed to update auto-upgrade setting."
-msgstr ""
+msgstr "S’u arrit të përditësohej rregullimi për vetë-përmirësim."
 
 msgid "Error"
 msgstr "Gabim"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Ndodhi një gabim i papritur:"
 
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "Formësimi i Përmirësimeve Pa Ndërhyrje Përdoruesi Dështoi"
 
 msgid "Could not change automatic upgrades configuration"
-msgstr ""
+msgstr "S’u ndryshua dot formësimi për përmirësime të automatizuara"
 
 msgid "Command failed"
-msgstr ""
+msgstr "Urdhri dështoi"
 
 msgid "View and Upgrade"
 msgstr "Shiheni dhe Përmirësojeni"
@@ -458,7 +490,7 @@ msgid "Unattended-upgrades"
 msgstr ""
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Ka përmirësime gati"
 
 msgid "Check for Updates"
 msgstr "Kontrollo për Përditësime"
@@ -478,7 +510,7 @@ msgstr "Mbylle"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
-msgstr ""
+msgstr "mbylle vetvetiu dritaren e terminalit pas kohe plogështie"
 
 msgid "upgrade"
 msgstr "përmirësim"

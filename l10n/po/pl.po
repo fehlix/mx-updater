@@ -154,55 +154,55 @@ msgstr "naciśnij dowolny klawisz, aby zamknąć"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr ""
+msgstr "Znajdź następny"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
 #. string"
 msgid "Find Previous"
-msgstr ""
+msgstr "Znajdź poprzedni"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with a symbol "[Aa]" to toggle on/off case sensitive search.
 msgid "Match Case"
-msgstr ""
+msgstr "Uwzględnij wielkośc liter"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an ellipsis symbol "[...]" to toggle "whole word" search.
 msgid "Whole Word"
-msgstr ""
+msgstr "Całe słowo"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "Wyróżnij wszystkie"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "Szukaj..."
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "Nie znaleziono"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.
 msgid "\"%(s)s\" was not found."
-msgstr ""
+msgstr "Nie znaleziono „%(s)s”."
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr ""

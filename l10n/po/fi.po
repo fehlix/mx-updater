@@ -36,7 +36,7 @@ msgstr "MX Päivitykset"
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
 msgid "MX Updater system tray applet"
-msgstr "MX-päivitys-ohjelman kuvake telakassa"
+msgstr "MX Päivitykset telakan kuvake"
 
 #. TRANSLATORS: Keywords for Menu Search
 #. Important Translation Guidance:
@@ -66,12 +66,12 @@ msgstr "MX päivityksen asetukset"
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "MX-päivitysohjelman lisäasetukset"
+msgstr "MX Päivitykset lisäasetukset"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr "MX Päivitykset autom. käynnistys"
+msgstr "MX Päivitykset autom. käynnistyminen"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -94,7 +94,7 @@ msgstr "normaali päivitys"
 
 #. TRANSLATORS: The upgrade mode "full upgrade".
 msgid "full upgrade"
-msgstr "täydellinen päivitys"
+msgstr "täysi päivitys"
 
 #. TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
 msgid "Reload"
@@ -136,7 +136,7 @@ msgid "basic upgrade complete (or was canceled)"
 msgstr "tavallinen päivitys valmistui (tai keskeytettiin)"
 
 msgid "full upgrade complete (or was canceled)"
-msgstr "täydellinen päivitys valmistui (tai keskeytettiin)"
+msgstr "täysi päivitys valmistui (tai keskeytettiin)"
 
 msgid "this terminal window can now be closed"
 msgstr "tämän pääteikkunan voi nyt sulkea"
@@ -151,55 +151,55 @@ msgstr "paina mitä tahansa näppäintä sulkeaksesi"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr ""
+msgstr "Hae suraava"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
 #. string"
 msgid "Find Previous"
-msgstr ""
+msgstr "Hae edellinen"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with a symbol "[Aa]" to toggle on/off case sensitive search.
 msgid "Match Case"
-msgstr ""
+msgstr "Osumat"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an ellipsis symbol "[...]" to toggle "whole word" search.
 msgid "Whole Word"
-msgstr ""
+msgstr "Koko sana"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "Merkitse kaikki"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "Haku..."
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "Ei löytynyt"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.
 msgid "\"%(s)s\" was not found."
-msgstr ""
+msgstr "\"%(s)s\" ei löytynyt"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr "MX Automaattinen päivitys -- dpkg-lokien katseluohjelma"
@@ -251,7 +251,7 @@ msgstr "Päivitystapa"
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. the "Upgrade mode": "full upgrade"
 msgid "full upgrade   (recommended)"
-msgstr "täydellinen päivitys   (suositus)"
+msgstr "täysi päivitys   (suositus)"
 
 #. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
 #. which tries to explain what this checkbox is about.
@@ -309,10 +309,10 @@ msgid "Left-click behaviour   (when updates are available)"
 msgstr "Vasen hiirenpainike  (kun päivityksiä on saatavilla)"
 
 msgid "opens Synaptic"
-msgstr "avaa Synapticin"
+msgstr "avaa \"Synaptic\""
 
 msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "avaa \"Tarkasta ja päivitykset\" ikkunan"
+msgstr "avaa \"Tarkasta ja päivitykset\""
 
 msgid "Icons"
 msgstr "Kuvakkeet"
@@ -320,7 +320,7 @@ msgstr "Kuvakkeet"
 #. TRANSLATORS: Please keep it short. Detailed explanation are with the
 #. tooltip.
 msgid "transparent wireframe for no updates"
-msgstr "läpinäkyvä, ei päivityksiä"
+msgstr "läpinäkyvä, päivityksiä ei ole saatavilla"
 
 #. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
 #. updates", which explains
@@ -360,7 +360,7 @@ msgstr "Muut asetukset"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr "hyväksy automaattisesti kaikki pakettipäivitykset"
+msgstr "hyväksy kaikki pakettipäivitykset automaattisesti"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -397,7 +397,7 @@ msgstr "s"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr "sulje pääteikkuna, jos on käyttämättä"
+msgstr "sulje päätteen ikkuna, jos käyttämättä"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -428,7 +428,7 @@ msgstr ""
 #. also of the right-click menu entry, where user can select to not show
 #. the "MX Updater" systray icon until package upgrades are available.
 msgid "Hide until updates available"
-msgstr "Piilota kuvake kunnes päivityksiä on saatavilla"
+msgstr "piilota kuvake kunnes päivityksiä on jälleen saatavilla"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -451,7 +451,7 @@ msgid "Success"
 msgstr "Onnistui"
 
 msgid "Auto-upgrade setting updated successfully."
-msgstr "Automaattisen päivityksen asetus onnistui."
+msgstr "Automaattisen päivityksen asetusten päivitys onnistui."
 
 msgid "Failure"
 msgstr "Virhe"

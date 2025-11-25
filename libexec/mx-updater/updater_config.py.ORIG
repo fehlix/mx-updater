@@ -528,25 +528,14 @@ if __name__ == '__main__':
     print(f"icon_look = {icon_look}")
 
     print("#------------------------------------------------------------------")
-    # Load all settings
-    print("all_settings :")
     print("#------------------------------------------------------------------")
+    # Load all settings
     all_settings = settings_manager.load_all_settings()
+    print("all_settings :")
     pprint(all_settings)
     print("#------------------------------------------------------------------")
     print("#------------------------------------------------------------------")
-
-    print("#------------------------------------------------------------------")
-    # Load all settings
-    print("get_icon_set_config :")
-    print("#------------------------------------------------------------------")
-    icon_set_config = settings_manager.get_icon_set_config()
-    pprint(icon_set_config)
-    print("#------------------------------------------------------------------")
-    print("#------------------------------------------------------------------")
     exit(0)
-
-
 
     upgrade_type = settings_manager.load_setting('upgrade_type')
     print(f"upgrade_type = {upgrade_type}")

@@ -126,8 +126,6 @@ from xdg.DesktopEntry import DesktopEntry
 from pprint import pprint
 from typing import Any, Dict, List, Set, Tuple, Optional
 
-from updater_config import UpdaterSettingsManager
-
 #----------
 # Check autostart is enabled
 #----------
@@ -305,9 +303,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         # Connect directly to the service's Qt signal (avoids DBus loopback)
         # self.service.value_changed_qt.connect(self.on_value_changed)
 
-        self.settings_manager = UpdaterSettingsManager()
-        self.qsettings = self.settings_manager.qsettings
-        #self.qsettings = QSettings("MX-Linux", "mx-updater")
+        self.qsettings = QSettings("MX-Linux", "mx-updater")
 
         # initialize state and settings
         self._state = {
@@ -546,7 +542,144 @@ class SystemTrayIcon(QSystemTrayIcon):
 
 
     def get_defaults(self):
-        self.defaults = self.settings_manager.defaults
+        self.defaults = {
+            'Settings' : {
+                'icon_look_default' : 'wireframe-dark',
+                'icon_look_allowed' : ('wireframe-dark', 'wireframe-light', 'classic', 'pulse', 'pulse-light'),
+                'wireframe_transparent_default' : True,
+                'wireframe_transparent' : True,
+                'left_click' : 'view_and_upgrade',
+
+                'left_click_allowed' : ('view_and_upgrade', 'ViewAndUpgrade',
+                                        'package_installer', 'packageinstaller','PackageInstaller',
+                                        'package_manager', 'packagemanager','PackageManager'
+                                        ),
+                'upgrade_assume_yes' : False,
+                'upgrade_type_default' : 'full-upgrade',
+                'upgrade_type_allowed' : ('dist-upgrade', 'full-upgrade', 'basic-upgrade', 'upgrade'),
+                'auto_close' : False,
+                'auto_close_timeout' : 10,
+                'use_dbus_notifications' : True,
+                'use_nala_default' : False,
+                'use_nala' : False,
+                'hide_until_upgrades_available' : False,
+                #'''
+                #IconLook=wireframe-dark
+                #LeftClick=ViewAndUpgrade
+                #UpgradeAssumeYes=false
+                #UpgradeAutoClose=false
+                #UpgradeType=dist-upgrade
+                #WireframeTransparent=false
+                #'''
+                },
+
+                'Icons' : {
+                'icon_order' : [
+                        'wireframe-dark',
+                        'wireframe-light',
+                        'classic',
+                        'pulse',
+                        'pulse-light',
+                        ],
+
+                'wireframe-dark' : {
+                    'label' : 'wireframe dark',
+                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-dark.png',
+                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-dark-transparent.png',
+                    },
+
+                'wireframe-light' : {
+                    'label' : 'wireframe light',
+                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-light.png',
+                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-light-transparent.png',
+                    },
+
+                'classic' : {
+                    'label' : 'classic',
+                    'icon_some' : '/usr/share/icons/mnotify-some-classic.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-classic.png',
+                    },
+                'pulse' : {
+                    'label' : 'pulse',
+                    'icon_some' : '/usr/share/icons/mnotify-some-pulse.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-pulse.png',
+                    },
+                'pulse-light' : {
+                    'label' : 'pulse light',
+                    'icon_some' : '/usr/share/icons/mnotify-pulse-green.png',
+                    'icon_none' : '/usr/share/icons/mnotify-pulse-white.png',
+                    },
+                },
+            }
+
+
+
+        self.defaultsXXX = {
+            'Settings' : {
+                'icon_look_default' : 'wireframe-dark',
+                'icon_look_allowed' : ('wireframe-dark', 'wireframe-light', 'classic', 'pulse', 'pulse-light'),
+                'wireframe_transparent_default' : 'true',
+                'wireframe_transparent' : 'true',
+                'left_click' : 'view_and_upgrade',
+                'left_click_allowed' : ('view_and_upgrade','package_manager','packagemanager', 'ViewAndUpgrade','PackageManager'),
+                'upgrade_assume_yes' : "false",
+                'upgrade_type_default' : 'full-upgrade',
+                'upgrade_type_allowed' : ('dist-upgrade', 'full-upgrade', 'basic-upgrade', 'upgrade'),
+                'auto_close' : 'false',
+                'auto_close_timeout' : 10,
+                'use_nala_default' : 'false',
+                'use_nala' : 'false',
+                #'''
+                #IconLook=wireframe-dark
+                #LeftClick=ViewAndUpgrade
+                #UpgradeAssumeYes=false
+                #UpgradeAutoClose=false
+                #UpgradeType=dist-upgrade
+                #WireframeTransparent=false
+                #'''
+                },
+
+                'Icons' : {
+                'icon_order' : [
+                        'wireframe-dark',
+                        'wireframe-light',
+                        'classic',
+                        'pulse',
+                        'pulse-light',
+                        ],
+
+                'wireframe-dark' : {
+                    'label' : 'wireframe dark',
+                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-dark.png',
+                    },
+
+                'wireframe-light' : {
+                    'label' : 'wireframe light',
+                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-light.png',
+                    },
+
+                'classic' : {
+                    'label' : 'classic',
+                    'icon_some' : '/usr/share/icons/mnotify-some-classic.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-classic.png',
+                    },
+                'pulse' : {
+                    'label' : 'pulse',
+                    'icon_some' : '/usr/share/icons/mnotify-some-pulse.png',
+                    'icon_none' : '/usr/share/icons/mnotify-none-pulse.png',
+                    },
+                'pulse-light' : {
+                    'label' : 'pulse light',
+                    'icon_some' : '/usr/share/icons/mnotify-pulse-green.png',
+                    'icon_none' : '/usr/share/icons/mnotify-pulse-white.png',
+                    },
+                },
+            }
+
 
 
     def load_settings(self):

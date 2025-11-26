@@ -1,6 +1,7 @@
-mx-updater (25.11.03mx25~dev01) mx; urgency=medium
+mx-updater (25.11.03mx25~dev02) mx; urgency=medium
 
   * use settings-manager to retrieve settings for systray icon
+  * keep args.autostart within launcher
 
  -- fehlix <fehlix@mxlinux.org>  Tue, 25 Nov 2025 17:37:16 -0500
 

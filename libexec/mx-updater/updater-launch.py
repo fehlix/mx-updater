@@ -175,6 +175,7 @@ delay = max(0, delay)
 
 # delay launch if autostart is specified
 if args.autostart:
+    launch_args += ['--autostart'] 
     if delay > 0:
         launch_args += ['--autostart'] 
         logger.info(f"MX Updater autostart is waiting {delay} seconds before starting")
@@ -193,9 +194,6 @@ logger.info("MX Updater systray icon start:")
 ret=0
 while True:
     if args.debug:
-        print()
-        print(" ".join(launch_args[:-2]).replace("--", "\n--"))
-        print(" ".join(launch_args[-2:]))
         logger.info(" ")
         logger.info(" ".join(launch_args[:-2]).replace("--", "\n--"))
         logger.info(" ".join(launch_args[-2:]))

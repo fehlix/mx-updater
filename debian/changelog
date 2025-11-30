@@ -1,9 +1,10 @@
-mx-updater (25.11.03mx25~dev02) mx; urgency=medium
+mx-updater (25.11.03mx25~dev03) mx; urgency=medium
 
   * use settings-manager to retrieve settings for systray icon
-  * keep args.autostart within launcher
+  * keep args.autostart in launcher to handle 'hide until updates available' at login
+  * disable non-working notification callbacks in Enlightenment
 
- -- fehlix <fehlix@mxlinux.org>  Tue, 25 Nov 2025 17:37:16 -0500
+ -- fehlix <fehlix@mxlinux.org>  Sun, 30 Nov 2025 15:53:05 -0500
 
 mx-updater (25.11.02mx25) mx; urgency=medium
 

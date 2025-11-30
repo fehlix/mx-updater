@@ -784,7 +784,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         has_actions = "actions" in self._notify_caps
         is_not_enlightenment = os.environ.get('DESKTOP', '').lower() != 'enlightenment'
-
+        
         # action callback if avialable - not working in Enlightenment
         if has_actions and is_not_enlightenment:
             def on_notify_action(n_obj, action_key):

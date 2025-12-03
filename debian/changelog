@@ -1,3 +1,10 @@
+mx-updater (25.12.01mx25) mx; urgency=medium
+
+  * Keep 'hide until updates available' enabled after autostart
+  * Disable non-working notification callbacks in Enlightenment
+
+ -- fehlix <fehlix@mxlinux.org>  Wed, 03 Dec 2025 17:56:55 -0500
+
 mx-updater (25.11.02mx25) mx; urgency=medium
 
   * Set no-autoremove for "nala" and "apt" to avoid kernel removal

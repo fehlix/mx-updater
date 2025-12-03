@@ -915,8 +915,11 @@ class SystemTrayIcon(QSystemTrayIcon):
         n.set_urgency(notify2.URGENCY_NORMAL)
         n.set_timeout(10000)  # 10 seconds
 
-        # action callback if avialable
-        if "actions" in self._notify_caps:
+        has_actions = 'actions' in self._notify_caps
+        is_not_enlightenment = os.environ.get('DESKTOP', '').lower() != 'enlightenment'
+
+        # action callback if available - not working in Enlightenment
+        if has_actions and is_not_enlightenment:
             def on_notify_action(n_obj, action_key):
                 # action_key will be equal to action_tag by our choice below
                 launcher = self.make_launcher(action_key)

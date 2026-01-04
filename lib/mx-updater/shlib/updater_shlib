@@ -86,19 +86,19 @@ get_config_item() {
 
     # If config file doesn't exist, return default settings
     if [ ! -f "$config_file" ]; then
-        warn "get_config_item" "Config file '$config_file' not found or is not a regular file. Using default value: '$default_value'" >&2
+        #warn "get_config_item" "Config file '$config_file' not found or is not a regular file. Using default value: '$default_value'" >&2
         echo "$default_value"
         return 0
     fi
 
     if [ ! -r "$config_file" ]; then
-        warn "get_config_item" "Config file '$config_file' not readable. Using default: '$default_value'" >&2
+        #warn "get_config_item" "Config file '$config_file' not readable. Using default: '$default_value'" >&2
         echo "$default_value"
         return 0
     fi
 
     if [ ! -s "$config_file" ]; then
-        warn "get_config_item" "Config file '$config_file' is empty. Using default: '$default_value'" >&2
+        #warn "get_config_item" "Config file '$config_file' is empty. Using default: '$default_value'" >&2
         echo "$default_value"
         return 0
     fi
@@ -142,17 +142,17 @@ read_auto_close_timeout() {
 
     # If config file doesn't exist, return default settings
     if [ ! -f "$config_file" ]; then
-        echo "[Info] Config file '$config_file' not found or is not a regular file. Using defaults." >&2
+        #echo "[Info] Config file '$config_file' not found or is not a regular file. Using defaults." >&2
         return 0
     fi
 
     if [ ! -r "$config_file" ]; then
-        echo "[Info] Config file '$config_file' not readable. Using defaults." >&2
+        #echo "[Info] Config file '$config_file' not readable. Using defaults." >&2
         return 0
     fi
 
     if [ ! -s "$config_file" ]; then
-        echo "[Info] Config file '$config_file' is empty. Using defaults." >&2
+        #echo "[Info] Config file '$config_file' is empty. Using defaults." >&2
         return 0
     fi
 

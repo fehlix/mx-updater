@@ -1,3 +1,9 @@
+mx-updater (26.01.01mx25) mx; urgency=medium
+
+  * Suppress unnecessary warnings when default values are used
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 04 Jan 2026 16:23:57 -0500
+
 mx-updater (25.12.01mx25) mx; urgency=medium
 
   * Keep 'hide until updates available' enabled after autostart

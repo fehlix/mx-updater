@@ -1,3 +1,9 @@
+mx-updater (26.01.02mx25) mx; urgency=medium
+
+  * Always recreate the system-wide autostart entry if it is missing.
+
+ -- fehlix <fehlix@mxlinux.org>  Wed, 14 Jan 2026 19:10:17 -0500
+
 mx-updater (26.01.01mx25) mx; urgency=medium
 
   * Suppress unnecessary warnings when default values are used

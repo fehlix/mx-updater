@@ -16,3 +16,4 @@ version/build/version.py                     usr/libexec/mx-updater/version
 dbus/59updater-system-monitor                 etc/apt/apt.conf.d
 dbus/org.mxlinux.UpdaterSystemMonitor.conf    usr/share/dbus-1/system.d
 dbus/org.mxlinux.UpdaterSystemMonitor.service usr/share/dbus-1/system-services
+logrotate/mx-updater-monitor                  etc/logrotate.d

@@ -1,0 +1,53 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 16 Jan 2026 15:24:01 -0500
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.01.03mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.01.03mx25) mx; urgency=medium
+ .
+   * Enable log rotation for mx-updater-monitor logs
+Checksums-Sha1:
+ 22773084429a177743a6860091d0a1c272287453 1624 mx-updater_26.01.03mx25.dsc
+ 4d7b22da2e281b35554b5df8f59f90e1478ed916 160924 mx-updater_26.01.03mx25.tar.xz
+ 36909c4896cbb64ec8ee3a22a18f60b72cbb9e1b 356028 mx-updater_26.01.03mx25_all.deb
+ 22114a78578574b0fe355d8399cda3aa2430d1c5 7564 mx-updater_26.01.03mx25_amd64.buildinfo
+Checksums-Sha256:
+ 7e7cf5b1c88bd191df8eb270939922b351fa8df3bde18d1c215104991454f331 1624 mx-updater_26.01.03mx25.dsc
+ 4e1321fb21addc98f92e9e33e5de18eae384b0bb3751be599d76c2802cdcee48 160924 mx-updater_26.01.03mx25.tar.xz
+ 05e6fbce9056ffab05c3b57cbb59903a3a48cc10acd67bcef504788456ebc4a2 356028 mx-updater_26.01.03mx25_all.deb
+ 369c8eadf1dd2f9c2b91ee4cbc3f3dddbc4714e3b2191f7ef45d93f742de0d00 7564 mx-updater_26.01.03mx25_amd64.buildinfo
+Files:
+ e1323f5ac6bbbf5a762f44cd563c7a27 1624 admin optional mx-updater_26.01.03mx25.dsc
+ 65ce563f85fd9697f426e5b6910de163 160924 admin optional mx-updater_26.01.03mx25.tar.xz
+ fc778c1857caba5cad35b8f71ccba1f2 356028 admin optional mx-updater_26.01.03mx25_all.deb
+ a0c26719d14238b27887bf04b90d3502 7564 admin optional mx-updater_26.01.03mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmlqpJ0THGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6RVYEACeaHfsQfi/mrmIT/5hsEdGeYMRsOhi
+VKs3P+DjiEnt+RPqmIpQkboRQ/zvckTvKnAmujI2/saMYTg1Qerk5NQdfy+xPSrL
+Qx+SsjoYAa0NiAmNr6jqM30vMAUph4S+M0r3CVN/o0csDlQE2VHSc7he3RcqkDEw
+/hn1ievZHQCTjJIzNqIOPEMWjtR5ktAQr1O4lHdINgCZViXg724/nAGIpgMxY+pW
+U6uF8mu8CKRBCSsL/itD5Vz1jZArkcqiS8Xn4pwYH0VdcY9bXUt4dE2AqkMW5ObT
+rCTvFHtWQunTJ0aH6EASlEKuG3LKtbMqtDHbgyQVfneh/cLRnjAnOl28GMLgSthZ
+n411qNEylaOsW2U4d0uo1Q7Y27JXoBuv0/D82w3YxbZm1X+pt1YOV7WSj9Mz4kJg
+kCKPn78YgO8OBHq0AHAkAx8EJmGJjfmRMoqJ/AStL9eLibu6P61kKa9F1yhKU4lV
+egMtZim2cDOo7AcflFAnIdKQItnleW28l3PuS1VnssfyzEZ+M76gBbLNyH67WXfF
+1neaGEkfAuPfti7NiJhLNdMeCWAT1U5f33sng55PiMVNtfme4biA3mQQ6wo5cMhi
+Bt4KEfGFEEE4Qy91AasHnSugwNTnJj+ej0vzp62n/Ccp3kqkWREVc6lg0W1lpA60
+RAIM1elUSULgQg==
+=TJkr
+-----END PGP SIGNATURE-----

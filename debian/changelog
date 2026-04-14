@@ -1,3 +1,9 @@
+mx-updater (26.01.03mx25) mx; urgency=medium
+
+  * Enable log rotation for mx-updater-monitor logs
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 16 Jan 2026 15:24:01 -0500
+
 mx-updater (26.01.02mx25) mx; urgency=medium
 
   * Always recreate the system-wide autostart entry if it is missing.

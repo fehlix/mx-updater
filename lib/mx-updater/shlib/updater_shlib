@@ -283,8 +283,7 @@ translate() {
 
 
 
-updater_get_screen_info()
-{
+updater_get_screen_info_ORIG() {
 # Usage
 # read -r DW DH XOFF YOFF < <(updater_get_screen_info)
 /usr/bin/python3 -c "
@@ -297,7 +296,61 @@ print(f'{geo.width()} {geo.height()} {geo.x()} {geo.y()}'
 )"
 }
 
-updater_show() {
+
+updater_get_screen_info() {
+# Usage
+# read -r DW DH XOFF YOFF SCALE < <(updater_get_screen_info)
+#
+# On X11 with Xfce DPI/font scaling, Qt6 auto-HiDPI returns logical pixels
+# while xdotool and --geometry strings use physical X11 pixels.
+# Multiplying by devicePixelRatio converts back to physical pixels so
+# both the size calculation and window positioning stay in the same
+# coordinate space.
+# On Wayland everything is already in logical pixels and xdotool is
+# disabled, so the multiply is a no-op (devicePixelRatio == 1.0 there).
+if ! /usr/bin/python3 -c "from PyQt6.QtWidgets import QApplication" 2>/dev/null; then
+    echo "ERROR: python3-pyqt6 is not installed" >&2
+    return 1
+fi
+EGL_LOG_LEVEL=fatal /usr/bin/python3 -c "
+import os, subprocess
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QGuiApplication
+app = QApplication([])
+primary_screen = QGuiApplication.primaryScreen()
+geo = primary_screen.geometry()
+dpr = primary_screen.devicePixelRatio()
+is_wayland = bool(os.environ.get('WAYLAND_DISPLAY'))
+# On Wayland: keep logical pixels (dpr=1 for positioning); true scale is dpr
+# On X11: multiply by dpr to convert Qt logical pixels back to physical X11 pixels
+scale = 1.0 if is_wayland else dpr
+# On X11 also check xrandr --scale: dpr stays 1.0 when xrandr scaling is used
+# since the X server already presents the scaled coordinate space to Qt.
+# Parse the transform matrix from xrandr --verbose to catch this case.
+xrandr_scale = 1.0
+if not is_wayland:
+    try:
+        out = subprocess.check_output(['xrandr', '--verbose'],
+                                      text=True, stderr=subprocess.DEVNULL)
+        primary_found = False
+        for line in out.splitlines():
+            if 'connected primary' in line:
+                primary_found = True
+            if primary_found and 'Transform:' in line:
+                xrandr_scale = float(line.split()[1])
+                break
+    except Exception:
+        pass
+# Combined display scale from user perspective:
+# - dpr reflects DE scaling (Xfce/GNOME): higher dpr = more scaling
+# - xrandr --scale is inverse: 0.5 means 2x HiDPI, so divide by xrandr_scale
+display_scale = dpr / xrandr_scale
+print(f'{int(geo.width()*scale)} {int(geo.height()*scale)} {int(geo.x()*scale)} {int(geo.y()*scale)} {display_scale:g}')
+" 2>/dev/null
+}
+
+
+updater_show_ORIG() {
 
     local msg="$1"
     local cmd="$2"
@@ -307,6 +360,8 @@ updater_show() {
 
     local T="$title"
     local I="$icon"
+    
+    local is_wayland=""
 
     read -r DW DH XOFF YOFF < <(updater_get_screen_info)
 
@@ -340,7 +395,7 @@ updater_show() {
 
     XDO=""
     # Wayland check - no xdotool
-    # if wayland is running, no xdotool or otehr X11 tool will work
+    # if wayland is running, no xdotool or other X11 tool will work
     # we disable xdo here, with a dummy command ": "
 
     # - systemd is running
@@ -348,15 +403,18 @@ updater_show() {
         # - systemd is running
         # session type either "Type=wayland" or  "Type=x11"
         if  [ x"$(loginctl show-session $(echo $XDG_SESSION_ID) -p Type)" == x"Type=wayland" ]; then
-
-            XDO=": " # noop cmd for XDO
+            is_wayland="true"
         fi
     else
         # - no systemd , so we chweck only WAYLAND_DISPLAY env paramter
         if  [ -n "$WAYLAND_DISPLAY" ]; then
-            XDO=": " # noop cmd for XDO
+            is_wayland="true"
         fi
 
+    fi
+    
+    if [ "$is_wayland" = true ]; then
+            XDO=": " # noop cmd for XDO
     fi
 
     if [ -z "$XDO" ]; then
@@ -382,8 +440,21 @@ updater_show() {
 
     XTE=$(readlink -e /usr/bin/x-terminal-emulator)
 
+    # foot on wayland only
+    if [ -n "${XTE}" ] && [ -z "${XTE##*foot*}" ] && [ -z "$is_wayland" ]; then
+        if [ -x /usr/bin/xfce4-terminal ]; then
+            # use xfce4-terminal if installed
+            XTE=usr/bin/xfce4-terminal
+        else
+            # use best alternative
+            XTE=$(update-alternatives --display x-terminal-emulator | \
+                grep '^/' | cut -d ' ' -f4,1 |  grep -v foot | \
+                sort -k2nr  |  head -1 | cut -d ' ' -f1)
+        fi
+    fi
+
     # check whether the installed qterminal version is up-to-date enough
-    if [ -z "${XTE##*qterminal*}" ]; then
+    if [ -n "${XTE}" ] && [ -z "${XTE##*qterminal*}" ]; then
        CUR_QTV=$(dpkg-query -f '${Version}' -W qterminal 2>/dev/null)
        MIN_QTV="1.2.0"
        # compare versions
@@ -394,7 +465,7 @@ updater_show() {
             else
                 # use best alternative
                 XTE=$(update-alternatives --display x-terminal-emulator | \
-                    grep '^/' | cut -d ' ' -f4,1 |  grep -v qterminal | \
+                    grep '^/' | cut -d ' ' -f4,1 |  grep -vE "qterminal|foot" | \
                     sort -k2nr  |  head -1 | cut -d ' ' -f1)
             fi
        fi
@@ -441,6 +512,218 @@ updater_show() {
             ;;
       *)    if [ -x /usr/bin/xfce4-terminal ]; then
                 xfce4-terminal --disable-server --hide-menubar --geometry="$G"  --icon="$icon"  -T "$T" -e "$C" 2>&1 | grep -v 'SESSION_MANAGER environment variable not defined'
+            else
+                x-terminal-emulator -T "$T" -e "$C"
+            fi
+            ;;
+    esac
+}
+
+
+updater_show() {
+
+    local msg="$1"
+    local cmd="$2"
+    local title="$3"
+    local icon="$4"
+    local icon_kde="$5"
+
+    local T="$title"
+    local DW DH XOFF YOFF TW TH TX TY SCALE
+    local CLASS_NAME XDO XSEARCH XSIZE XMOVE XCLASS
+    local CW CH G C K XTE CUR_QTV MIN_QTV CMD
+    local SCALE
+
+    read -r DW DH XOFF YOFF SCALE < <(updater_get_screen_info 2>/dev/null)
+
+    # xdo
+    # read DW DH < <(xdotool getdisplaygeometry)
+    #if [ -z "$DW" ]; then
+    #    sleep 2
+    #    read DW DH < <(xdotool getdisplaygeometry)
+    #fi
+
+    # Terminal size: width at 3/5 (avoids overly wide terminals on large screens),
+    # height at 2/3 (vertical space is used well in a terminal).
+    # Caps per resolution tier for cases where even 3/5 width is still too wide.
+
+    # Defaults:
+    TW=$((DW*3/5))
+    ((DW < 1920)) && TW=$((DW*2/3)) || TW=$((DW*3/5))
+    TH=$((DH*2/3))
+
+    if   ((DW >= 3840)); then ((TW > 1600)) && TW=1600; ((TH > 1080)) && TH=1080  # 4K   : 3/5=2304 -> cap 1600×1080
+    elif ((DW >= 2560)); then ((TW > 1280)) && TW=1280; ((TH > 900))  && TH=900   # QHD  : 3/5=1536 -> cap 1280×900
+    elif ((DW >= 1920)); then ((TW > 1152)) && TW=1152; ((TH > 720))  && TH=720   # FHD  : 3/5=1152 -> cap 1152×720
+    elif ((DW >= 1600)); then ((TW > 1066)) && TW=1066; ((TH > 600))  && TH=600   # HD+  : 2/3=1066 -> cap 1066×600
+    elif ((DW >= 1440)); then ((TW >  960)) && TW=960;  ((TH > 600))  && TH=600   #      : 2/3=960  -> cap 960×600
+    else TW=$((DW*5/6)); TH=$((DH*5/6))   # smaller screens proporation 83%
+    fi
+    # read -r XOFF YOFF < <(xrandr | sed -n -r '/connected primary/{/.*[0-9]+x[0-9]+\+([0-9]+)\+([0-9]+).*/{s::\1 \2:p;q}}')
+
+    : ${XOFF:=0}
+    : ${YOFF:=0}
+
+    TX=$(((DW-TW)/2 + XOFF))
+    TY=$(((DH-TH)/2 + YOFF))
+
+    CLASS_NAME='mx-updater'
+
+    XDO=""
+    # Wayland check - no xdotool
+    # if wayland is running, no xdotool or other X11 tool will work
+    # we disable xdo here, with a dummy command ": "
+
+    # - systemd is running
+    if [ -d /run/systemd/system ]; then
+        # - systemd is running
+        # session type either "Type=wayland" or  "Type=x11"
+        if  [ x"$(loginctl show-session $(echo $XDG_SESSION_ID) -p Type)" == x"Type=wayland" ]; then
+            is_wayland="true"
+        fi
+    else
+        # - no systemd , so we chweck only WAYLAND_DISPLAY env paramter
+        if  [ -n "$WAYLAND_DISPLAY" ]; then
+            is_wayland="true"
+        fi
+
+    fi
+    
+    if [ "$is_wayland" = true ]; then
+            XDO=": " # noop cmd for XDO
+    fi
+
+    if [ -z "$XDO" ]; then
+
+        XSEARCH="timeout 1 xdotool search --sync --onlyvisible --name '$T'"
+        XSIZE="windowsize $TW $TH"
+        XMOVE="windowmove $TX $TY"
+        XCLASS="set_window --classname ${CLASS_NAME} --class ${CLASS_NAME}"
+
+        XDO="$XSEARCH $XSIZE $XMOVE $XCLASS"
+    fi
+
+    CW=10 # char width - rough default
+    CH=20 # char hight - rough default
+
+    G="$(($TW/$CW))x$(($TH/$CH))+$TX+$TY"
+
+    C='bash -c "test -n '"'${msg}'"' && echo '"'$msg'"';'" $XDO;"' '"${cmd}"'"'
+    K='bash -c "test -n '"'${msg}'"' && echo '"'$msg'"'; sleep 1;  '"${cmd}"'"'
+
+    XTE=$(readlink -e /usr/bin/x-terminal-emulator)
+
+    # foot on wayland only
+    if [ -n "${XTE}" ] && [ -z "${XTE##*foot*}" ] && [ -z "$is_wayland" ]; then
+        if [ -x /usr/bin/xfce4-terminal ]; then
+            # use xfce4-terminal if installed
+            XTE=usr/bin/xfce4-terminal
+        else
+            # use best alternative
+            XTE=$(update-alternatives --display x-terminal-emulator | \
+                grep '^/' | cut -d ' ' -f4,1 |  grep -v foot | \
+                sort -k2nr  |  head -1 | cut -d ' ' -f1)
+        fi
+    fi
+
+    # check whether the installed qterminal version is up-to-date enough
+    if [ -n "${XTE}" ] && [ -z "${XTE##*qterminal*}" ]; then
+       CUR_QTV=$(dpkg-query -f '${Version}' -W qterminal 2>/dev/null)
+       MIN_QTV="1.2.0"
+       # compare versions
+       if dpkg --compare-versions "$CUR_QTV" lt  "$MIN_QTV"; then
+            if [ -x /usr/bin/xfce4-terminal ]; then
+                # use xfce4-terminal if installed
+                XTE=usr/bin/xfce4-terminal
+            else
+                # use best alternative
+                XTE=$(update-alternatives --display x-terminal-emulator | \
+                    grep '^/' | cut -d ' ' -f4,1 |  grep -vE "qterminal|foot" | \
+                    sort -k2nr  |  head -1 | cut -d ' ' -f1)
+            fi
+       fi
+    fi
+
+    case "$XTE" in
+      *alacritty)
+            # --option requires alacritty >= 0.12; size in chars, position in pixels
+            alacritty --title "$T" \
+                --option "window.dimensions.columns=$((TW/CW))" \
+                --option "window.dimensions.lines=$((TH/CH))" \
+                --option "window.position.x=$TX" \
+                --option "window.position.y=$TY" \
+                -e bash -c "$K"
+            ;;
+      *foot)
+            # Wayland-native: size in pixels, position is managed by the compositor
+            EGL_LOG_LEVEL=fatal foot --title="$T" \
+                --window-size-pixels=${TW}x${TH} -- \
+                bash -c "$K" 2> >(grep -vE '^MESA|^warn' >&2)
+            ;;
+      *gnome-terminal.wrapper|*gnome-terminal)
+            CMD="test -n '${msg}' && echo '$msg'; sleep 0.5; $XDO; $cmd"
+            gnome-terminal --wait --hide-menubar \
+                --geometry "$G" --title "$T" -- \
+                bash -c "$CMD"
+            ;;
+      *kitty)
+            # Size in pixels via override; position handled by xdotool on X11
+            kitty --title "$T" \
+                --override "initial_window_width=${TW}" \
+                --override "initial_window_height=${TH}" \
+                -e bash -c "$C"
+            ;;
+      *konsole)
+            if pgrep -x plasmashell >/dev/null; then
+               EGL_LOG_LEVEL=fatal  konsole --nofork --hide-menubar \
+                    -qwindowgeometry "${TW}x${TH}+$TX+$TY" \
+                    -qwindowicon "$icon_kde" \
+                    -qwindowtitle "$T" \
+                    -e "$K" 2>/dev/null
+            else
+               konsole -e "$C"
+               sleep 5
+            fi
+            ;;
+      *lxterminal)
+            lxterminal --no-remote -T "$T" -e "$C"
+            ;;
+      *mate-terminal|*mate-terminal.wrapper)
+            mate-terminal --hide-menubar --geometry="$G" \
+                --class="${CLASS_NAME}" --role="${CLASS_NAME}" \
+                --title="$T" --sm-client-disable --disable-factory  -- \
+                sh -c "$C" 2>/dev/null
+            ;;
+      *qterminal)
+               EGL_LOG_LEVEL=fatal qterminal \
+               -qwindowgeometry "${TW}x${TH}+$TX+$TY" \
+               -qwindowicon "$icon" -qwindowtitle "$T" \
+               -e "$K" 2> >(grep -v 'MESA' >&2)
+            ;;
+      *roxterm)
+            roxterm --hide-menubar --separate "--geometry=$G" -T "$T" -e "$C" 2>/dev/null
+            ;;
+      *terminator)
+            terminator --no-dbus --icon="$icon" --geometry="$G" -T "$T" -e "$C" 2>/dev/null
+            ;;
+      *tilix*)
+            tilix --geometry="$G" --title="$T" -e "$K"
+            ;;
+      *urxvt)
+            urxvt  -geometry "$G" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"
+            ;;
+      *xterm)
+            xterm  -fa monaco -fs 12 -bg black -fg white  -xrm 'XTerm.vt100.allowTitleOps: false' -T "$T"  -e "$C"
+            ;;
+      *zutty)
+            EGL_LOG_LEVEL=fatal zutty -title "$T" \
+                -geometry "$(($TW/$CW))x$(($TH/$CH))+$TX+$TY" \
+                -e sh -c "$C"
+            ;;
+      *)    if [ -x /usr/bin/xfce4-terminal ]; then
+                xfce4-terminal --disable-server --hide-menubar \
+                --geometry="$G"  --icon="$icon"  -T "$T" \
+                -e "$C" 2> >(grep -v 'SESSION_MANAGER environment variable not defined' >&2) 
             else
                 x-terminal-emulator -T "$T" -e "$C"
             fi

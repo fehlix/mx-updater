@@ -1,3 +1,13 @@
+mx-updater (26.01.03mx25+dev01) mx; urgency=medium
+
+  * Add display scaling detection for terminal size and placement
+  * Add terminal support for alacritty, foot (wayland), kitty, tilix
+
+  [ dolphinoracle ]
+  * Add python3-xdg to depends
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 17 Apr 2026 14:17:38 -0400
+
 mx-updater (26.01.03mx25) mx; urgency=medium
 
   * Enable log rotation for mx-updater-monitor logs

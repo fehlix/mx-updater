@@ -1,0 +1,57 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 17 Apr 2026 14:17:38 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.01.03mx25+dev01
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.01.03mx25+dev01) mx; urgency=medium
+ .
+   * Add display scaling detection to terminal size and placement
+   * Add terminal support for alacritty, foot, kitty, tilix
+ .
+   [ dolphinoracle ]
+   * Add python3-xdg to depends
+Checksums-Sha1:
+ 6dbf7d5ed0ec106bc37d381445d1eab610ca01aa 1648 mx-updater_26.01.03mx25+dev01.dsc
+ 4b53bccb914dc0f66c2558e3d46ffc5f8857f9cb 162728 mx-updater_26.01.03mx25+dev01.tar.xz
+ e7ab52c37d2d832104fb79ca267d5cc1f6c86c72 357976 mx-updater_26.01.03mx25+dev01_all.deb
+ d2051df089a9439370e473e58b7cab0e1db83d3f 7629 mx-updater_26.01.03mx25+dev01_amd64.buildinfo
+Checksums-Sha256:
+ 914948d577fec22d6e552d828a4c477a078797cbfbdb2443f4978efcab181dc7 1648 mx-updater_26.01.03mx25+dev01.dsc
+ 05fe24218fe219223cb4641e63926acc635b3ab37b9f02d3b09b1b0612c02d24 162728 mx-updater_26.01.03mx25+dev01.tar.xz
+ a9814b601dd4be605d2fd2b9b18bf0e401b9c2fc7f581195a81136aba5d10383 357976 mx-updater_26.01.03mx25+dev01_all.deb
+ fdae6339d676d4772ae8f573f3acaed370ca081078c49d7be311b87046a3a044 7629 mx-updater_26.01.03mx25+dev01_amd64.buildinfo
+Files:
+ a623b8e646f7e7b098f97430f40d0d21 1648 admin optional mx-updater_26.01.03mx25+dev01.dsc
+ 122f2d011c0fcc50fcf14e3c95b1242f 162728 admin optional mx-updater_26.01.03mx25+dev01.tar.xz
+ 8ee78c59f83049a405a6b730c9dc1016 357976 admin optional mx-updater_26.01.03mx25+dev01_all.deb
+ 5a8420f827aa6074a81a9454a05bb958 7629 admin optional mx-updater_26.01.03mx25+dev01_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmnihvETHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6aH3D/0fR58S0DCPAxB+ng3Sw9iEKeHGtKCF
+XqzjAAV/DmLd5WvqwAofkVfwzeku45EEY+UJX6qAgWBMgBfHRZmTZdvQzCocSNV7
+cAoS93w5SD/m3N65rp+rrPHT8UumMOKoe68sIldWL7z9yruW5E3oQ1fWswfDrOSJ
+46y20vh9akq6dfjruV6phlrP7ybLy0vZwYv8Fvqv0q/1nh2Q2PEcM50gpS9KFmTV
+fbh2+1FCRYIBRSRoFo0WunWy0Qo/TKPcZeovixy6bkrmzpprdZ2vfrs7i9sYjW7M
+tKes8uMmTNH9B3wdkbSQdOd2I18Byg81gB2GRSH1I2qmw+JLiJg+mFKLqFZF8gvb
+NywCb8fBpOsVextzzT4bN1h+5BoONZ5j4hJCMHB8nTIP62gdfE5wBuH0K6tYHqff
+yThlct60KWrgxB+cz2RF+hHSrP3yBGWY/sxkCk9jrS7JB10rVIDnA7AlQQ1TJVwO
+sjGgdp6W51JMHOjdAClLxG22PrgFV5leoqlxUBz7uNSPXuHSf5WJ7HjbyI52MW5R
+BapN9VeBausgg+ejbp8+kJXi50UBIO5zn/1AFHt9oc8VoOlajYB+LfWDYc5Nj7JQ
+xS3U4YaNNMzxmtxcY0BTTgzEbzKHJW/HmVG6MLp3M9x/sDSbN/NNR5pxozvoH+Cv
+LKhQl3OXj9VYDg==
+=NF80
+-----END PGP SIGNATURE-----

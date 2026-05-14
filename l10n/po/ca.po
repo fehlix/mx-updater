@@ -29,7 +29,7 @@ msgstr ""
 #. system.  The string is used in various places. Keep the translation
 #. short and leave the string "MX Updater" untranslated if necessary.
 msgid "MX Updater"
-msgstr "MX Updater"
+msgstr "Actualitzador de l'MX"
 
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
@@ -65,12 +65,12 @@ msgstr "Configuració de l'actualitzador de l'MX"
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
 msgid "MX Updater preferences"
-msgstr "Preferències de MX Updater"
+msgstr "Preferències de l'Actualitzador de l'MX"
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list
 #. of autostart entries.
 msgid "MX Updater Autostart"
-msgstr "Inici automàtic de l'actualitzador de l'MX"
+msgstr "Inici automàtic de l'Actualitzador de l'MX"
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within
 #. 'Session and Startup' (Autostart).
@@ -220,7 +220,7 @@ msgstr ""
 "sistema."
 
 msgid "About MX Updater"
-msgstr "Quant a MX Updater"
+msgstr "Quant a l'Actualitzador de l'MX"
 
 msgid "Close"
 msgstr "Tanca"
@@ -280,7 +280,7 @@ msgstr ""
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr "usa nala"
+msgstr "Usa el gestor nala."
 
 #. TRANSLATORS: The tooltip of the checkbox "use nala",
 #. which tries to explain what this checkbox is about.
@@ -315,7 +315,8 @@ msgid "opens Synaptic"
 msgstr "obre Synaptic"
 
 msgid "opens MX Updater 'View and Upgrade' window"
-msgstr "Obre la finestra de MX Updater 'Veure i actualitzar' "
+msgstr ""
+"Obre la finestra de l'Actualitzador de l'MX de visualització i actualització"
 
 msgid "Icons"
 msgstr "Icones"
@@ -364,7 +365,7 @@ msgstr "Altres opcions"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "automatically confirm all package upgrades"
-msgstr "confirma automàticament totes les actualitzacions del paquet"
+msgstr "Confirma automàticament totes les actualitzacions de paquets."
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -401,7 +402,7 @@ msgstr " s"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window after idle time"
-msgstr "tanca la finestra del terminal després d'un temps d'inactivitat"
+msgstr "Tanca la finestra del terminal després d'un temps d'inactivitat."
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -446,7 +447,7 @@ msgstr ""
 "per fer que la icona torni a ser visible."
 
 msgid "MX Updater Help"
-msgstr "Ajuda de MX Updater"
+msgstr "Ajuda de l'Actualitzador de l'MX"
 
 msgid "Auto-upgrade setting is already in the desired state. No changes made."
 msgstr ""
@@ -484,7 +485,7 @@ msgid "Command failed"
 msgstr "Ha fallat l'ordre."
 
 msgid "View and Upgrade"
-msgstr "Veure i actualitzar"
+msgstr "Visualització i actualització"
 
 msgid "Unattended-upgrades"
 msgstr "Actualitzacions desateses"
@@ -499,7 +500,7 @@ msgid "About"
 msgstr "Quant a "
 
 msgid "Restart MX Updater"
-msgstr "Torna a iniciar MX Updater"
+msgstr "Torna a iniciar Actualitzador de l'MX"
 
 msgid "Synaptic Help"
 msgstr "Ajuda de Synaptic"
@@ -511,8 +512,8 @@ msgstr "Surt"
 #. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
 msgstr ""
-"tanca la finestra del terminal automàticament després d'un temps "
-"d'inactivitat"
+"Tanca la finestra del terminal automàticament després d'un temps "
+"d'inactivitat."
 
 msgid "upgrade"
 msgstr "actualitza"

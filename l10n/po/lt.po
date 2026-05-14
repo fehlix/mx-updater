@@ -439,7 +439,7 @@ msgid "Error"
 msgstr "Klaida"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "Įvyko netikėta klaida:"
 
 msgid "Unattended Upgrades Configuration Failed"
 msgstr ""
@@ -448,7 +448,7 @@ msgid "Could not change automatic upgrades configuration"
 msgstr ""
 
 msgid "Command failed"
-msgstr ""
+msgstr "Komanda patyrė nesėkmę"
 
 msgid "View and Upgrade"
 msgstr "Rodyti ir naujinti"

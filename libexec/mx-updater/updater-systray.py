@@ -109,6 +109,7 @@ import re
 import gettext
 import threading
 import json
+import time
 
 import dbus
 import dbus.service
@@ -2041,6 +2042,21 @@ def main(bus, logger):
 
     app = QApplication(sys.argv)
     app.setApplicationName("mx-updater")
+
+    if args.autostart and not QSystemTrayIcon.isSystemTrayAvailable():
+        _poll_interval = 2
+        _poll_timeout = 60
+        _elapsed = 0
+        logger.info("Systray not yet available; waiting up to %ds...", _poll_timeout)
+        while _elapsed < _poll_timeout:
+            time.sleep(_poll_interval)
+            _elapsed += _poll_interval
+            if QSystemTrayIcon.isSystemTrayAvailable():
+                logger.info("Systray became available after %ds", _elapsed)
+                break
+            logger.debug("Systray not yet available (%ds elapsed)", _elapsed)
+        else:
+            logger.warning("Systray still not available after %ds; starting anyway", _poll_timeout)
 
     tray_icon = SystemTrayIcon(service, session_bus, system_bus)
 

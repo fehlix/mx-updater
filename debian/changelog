@@ -1,3 +1,14 @@
+mx-updater (26.05.01mx25+dev02) UNRELEASED; urgency=medium
+
+  * Fix autostart on slow-starting DEs (e.g. Enlightenment at first launch):
+    if the systray host is not yet ready after the initial delay, poll
+    up to 60s before proceeding. No change on fast DEs where it is already up.
+  * History, changelog and log viewers: replace hard-coded font names and
+    sizes with the system fixed/general font via QFontDatabase.systemFont,
+    so viewers follow the user's system font settings.
+
+ -- fehlix <fehlix@mxlinux.org>  Mon, 25 May 2026 14:44:16 -0400
+
 mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
 
   * Unify icon set definitions: updater-systray now uses updater_config
@@ -6,6 +17,8 @@ mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
     /usr/local/etc/mx-updater.conf (priority) or /etc/mx-updater.conf.
     Up to 4 custom icon sets can be defined; replaces built-in sets when
     present. Falls back through locations and to built-ins on any error.
+  * Install example admin icon set config as
+    /usr/share/doc/mx-updater/examples/admin-mx-updater.conf.
   * Settings editor: hide wireframe-transparent toggle when admin icon
     sets are active; disable icon selection when only one set is defined.
   * Sync disk, GUI and systray on load: invalid stored icon preference is

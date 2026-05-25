@@ -1,0 +1,57 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Mon, 25 May 2026 14:44:16 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.05.01mx25+dev02
+Distribution: UNRELEASED
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.05.01mx25+dev02) UNRELEASED; urgency=medium
+ .
+   * Fix autostart on slow-starting DEs (e.g. Enlightenment at first launch):
+     if the systray host is not yet ready after the initial delay, poll
+     up to 60s before proceeding. No change on fast DEs where it is already up.
+   * History, changelog and log viewers: replace hard-coded font names and
+     sizes with the system fixed/general font via QFontDatabase.systemFont,
+     so viewers follow the user's system font settings.
+Checksums-Sha1:
+ 329c36e02468119be33a174c5762f87d3ff8848e 1619 mx-updater_26.05.01mx25+dev02.dsc
+ 9386d1300c29be5c99567238e18d54cfd7c7fd6f 165220 mx-updater_26.05.01mx25+dev02.tar.xz
+ 1d7526a82d4b38cd9f015ddbac4b7513e4ae31c7 360400 mx-updater_26.05.01mx25+dev02_all.deb
+ f68ad744dcedcc3315fdd2a933c44e219a2ee829 7895 mx-updater_26.05.01mx25+dev02_amd64.buildinfo
+Checksums-Sha256:
+ 27f7152912f4ca29c539d282617a6d97263d89847ece09762fd383b43f92df07 1619 mx-updater_26.05.01mx25+dev02.dsc
+ ab6655681183515d8d745675caeee89a21e5cca094f3abc64c08709f8dadcce3 165220 mx-updater_26.05.01mx25+dev02.tar.xz
+ 0c458aef4c0b1882f2728ea974fe7533e04f499188179e8e397e53ab5a8f2baa 360400 mx-updater_26.05.01mx25+dev02_all.deb
+ b86824dba4e560a64192f47bac718b91fec86dda6e65fe5ffee37e9f2b8f6fa8 7895 mx-updater_26.05.01mx25+dev02_amd64.buildinfo
+Files:
+ a79f4bcfbca625ad96db766e089eff35 1619 admin optional mx-updater_26.05.01mx25+dev02.dsc
+ 1c0bd069658eeefdd8ddbf38fb40dce9 165220 admin optional mx-updater_26.05.01mx25+dev02.tar.xz
+ 5ffc8905991bbce89c8760e0c9c7a44c 360400 admin optional mx-updater_26.05.01mx25+dev02_all.deb
+ 9f9b676b52d1bc257b8f4f311c9dae7d 7895 admin optional mx-updater_26.05.01mx25+dev02_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmoUqfAACgkQL1ePG6yd
+m+m1lQ//XiWb/Pk3MzMrqWxenj5BbZWDfzN7Yw28LmZFutE5p9VHew9zubVe6WhH
+uO9Fxo2DQ9nFkM/ENtNyK7GkwZs44kNik8UDTh1g78zeh41tSs2hSh28apVUkmCR
+5fgoNDj1i1Bo8brKqJVnXGIl7fzfEVhWTL9ea6oOnpdCnwCQGqXsz0unLJ01Huo2
+VuYAr2tqPFEf4Lj94oJqP/pihYgm0ob+GnlQjZeQ7B7YN4uhDgZlO0zBvzI5f0Jl
+sxnG/ry4IFVUomHNYk2XhZc4o47IA37PQbhLYhep+zQuzHzKr22sHC0ubrgB9YxT
+1DtAYI2n3WE8CwTob2L52vGb3h8k9syru/fXBzikbaWLmJPhafHOy2/eGI2nCIuh
+CEWLjv2C8wP4zFyys72qCty3G0zwddyQyAiUfVg35M+Wl6C2IO6xOJNCuoGUNzQY
+lo3MFhI6jevvu9MIQqzYNAnyDI5OQ9bQnF374K2FDBimzipc0QPHe4XCznlIsEYm
+vryTVqE/0xH2yV6kXZUlw99Gf92Es6P63ES8KxZdbFhB9CPUxI6N5E/ONBEePSYr
+SfrITqS6X7Pigq1XURv28zKEkj3KcGjwRYcyWK+rIPvYhLc0LN0vDgkrU/WjE/h7
+JUldkeJlsWgZJmt1pqnznWmzKQyXZnmPbGaUi+dL66jNJP86lpc=
+=c8yA
+-----END PGP SIGNATURE-----

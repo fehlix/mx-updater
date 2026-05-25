@@ -1,0 +1,41 @@
+Format: 1.8
+Date: Sun, 24 May 2026 20:31:22 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.05.01mx25+dev01
+Distribution: UNRELEASED
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
+ .
+   * Unify icon set definitions: updater-systray now uses updater_config
+     as its sole source, thereby removing the duplicate hard-coded block.
+   * Add support for admin-defined icon sets via
+     /usr/local/etc/mx-updater.conf (priority) or /etc/mx-updater.conf.
+     Up to 4 custom icon sets can be defined; replaces built-in sets when
+     present. Falls back through locations and to built-ins on any error.
+   * Settings editor: hide wireframe-transparent toggle when admin icon
+     sets are active; disable icon selection when only one set is defined.
+   * Sync disk, GUI and systray on load: invalid stored icon preference is
+     corrected and written back immediately rather than silently ignored.
+Checksums-Sha1:
+ 9afbca5647991c819e67d297b4a8f40ed6b688ae 736 mx-updater_26.05.01mx25+dev01.dsc
+ 6c6e15c71a91bc51aa2094b018e8db018aa72a72 164972 mx-updater_26.05.01mx25+dev01.tar.xz
+ ef1b6198a54f1dc141e9e6063361e71afd5424b0 360052 mx-updater_26.05.01mx25+dev01_all.deb
+ 8799046710b52ddb76e243819efb33965f3c5022 7009 mx-updater_26.05.01mx25+dev01_amd64.buildinfo
+Checksums-Sha256:
+ 4f5ebe2980460746ea79ef95315207f045da0e7255091240b063accbe4031db3 736 mx-updater_26.05.01mx25+dev01.dsc
+ 730b94b2860ae67e5b6c4a60cd9f32109b93c6659cc0965de5b347a6abb4afc3 164972 mx-updater_26.05.01mx25+dev01.tar.xz
+ a32fb7cc688a89e74d327d2c4d440c8e1109284c4386f4a28e55777372350fa3 360052 mx-updater_26.05.01mx25+dev01_all.deb
+ 2791a814b1ea9883cdab8eb277f094ddc4bc17348420b6356ef80c5c0356af59 7009 mx-updater_26.05.01mx25+dev01_amd64.buildinfo
+Files:
+ e5971ac3293a6a94b5724f4a7ab1aa0f 736 admin optional mx-updater_26.05.01mx25+dev01.dsc
+ 2cab8fef40269e694fcae4d5674aaf93 164972 admin optional mx-updater_26.05.01mx25+dev01.tar.xz
+ 811a3e16eb36c7ffd581f1a20b587662 360052 admin optional mx-updater_26.05.01mx25+dev01_all.deb
+ e64b78894f8d5d076478fe3ee3079da6 7009 admin optional mx-updater_26.05.01mx25+dev01_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>

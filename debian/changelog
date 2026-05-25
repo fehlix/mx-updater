@@ -1,3 +1,18 @@
+mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
+
+  * Unify icon set definitions: updater-systray now uses updater_config
+    as its sole source, thereby removing the duplicate hard-coded block.
+  * Add support for admin-defined icon sets via
+    /usr/local/etc/mx-updater.conf (priority) or /etc/mx-updater.conf.
+    Up to 4 custom icon sets can be defined; replaces built-in sets when
+    present. Falls back through locations and to built-ins on any error.
+  * Settings editor: hide wireframe-transparent toggle when admin icon
+    sets are active; disable icon selection when only one set is defined.
+  * Sync disk, GUI and systray on load: invalid stored icon preference is
+    corrected and written back immediately rather than silently ignored.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 24 May 2026 20:31:22 -0400
+
 mx-updater (26.05.01mx25) mx; urgency=medium
 
   * Add missing dependency on python3-xdg

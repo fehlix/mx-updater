@@ -100,6 +100,7 @@ except KeyError:
 sys.path.insert(0, MX_UPDATER_PATH)
 
 from version.version import VersionMonitor
+from updater_config import UpdaterSettingsManager
 
 
 #----------
@@ -320,6 +321,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         self._notified_upgrades = (0, 0, 0, 0)
 
+        self.settings_manager = UpdaterSettingsManager()
         self.get_defaults()
         self.load_settings()
 
@@ -573,112 +575,17 @@ class SystemTrayIcon(QSystemTrayIcon):
                 #'''
                 },
 
-                'Icons' : {
-                'icon_order' : [
-                        'wireframe-dark',
-                        'wireframe-light',
-                        'classic',
-                        'pulse',
-                        'pulse-light',
-                        ],
-
-                'wireframe-dark' : {
-                    'label' : 'wireframe dark',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-dark.png',
-                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-dark-transparent.png',
-                    },
-
-                'wireframe-light' : {
-                    'label' : 'wireframe light',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-light.png',
-                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-light-transparent.png',
-                    },
-
-                'classic' : {
-                    'label' : 'classic',
-                    'icon_some' : '/usr/share/icons/mnotify-some-classic.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-classic.png',
-                    },
-                'pulse' : {
-                    'label' : 'pulse',
-                    'icon_some' : '/usr/share/icons/mnotify-some-pulse.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-pulse.png',
-                    },
-                'pulse-light' : {
-                    'label' : 'pulse light',
-                    'icon_some' : '/usr/share/icons/mnotify-pulse-green.png',
-                    'icon_none' : '/usr/share/icons/mnotify-pulse-white.png',
-                    },
-                },
+                'Icons' : self.settings_manager.defaults.get('Icons', {}),
             }
 
-
-
-        self.defaultsXXX = {
-            'Settings' : {
-                'icon_look_default' : 'wireframe-dark',
-                'icon_look_allowed' : ('wireframe-dark', 'wireframe-light', 'classic', 'pulse', 'pulse-light'),
-                'wireframe_transparent_default' : 'true',
-                'wireframe_transparent' : 'true',
-                'left_click' : 'view_and_upgrade',
-                'left_click_allowed' : ('view_and_upgrade','package_manager','packagemanager', 'ViewAndUpgrade','PackageManager'),
-                'upgrade_assume_yes' : "false",
-                'upgrade_type_default' : 'full-upgrade',
-                'upgrade_type_allowed' : ('dist-upgrade', 'full-upgrade', 'basic-upgrade', 'upgrade'),
-                'auto_close' : 'false',
-                'auto_close_timeout' : 10,
-                'use_nala_default' : 'false',
-                'use_nala' : 'false',
-                #'''
-                #IconLook=wireframe-dark
-                #LeftClick=ViewAndUpgrade
-                #UpgradeAssumeYes=false
-                #UpgradeAutoClose=false
-                #UpgradeType=dist-upgrade
-                #WireframeTransparent=false
-                #'''
-                },
-
-                'Icons' : {
-                'icon_order' : [
-                        'wireframe-dark',
-                        'wireframe-light',
-                        'classic',
-                        'pulse',
-                        'pulse-light',
-                        ],
-
-                'wireframe-dark' : {
-                    'label' : 'wireframe dark',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-dark.png',
-                    },
-
-                'wireframe-light' : {
-                    'label' : 'wireframe light',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-light.png',
-                    },
-
-                'classic' : {
-                    'label' : 'classic',
-                    'icon_some' : '/usr/share/icons/mnotify-some-classic.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-classic.png',
-                    },
-                'pulse' : {
-                    'label' : 'pulse',
-                    'icon_some' : '/usr/share/icons/mnotify-some-pulse.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-pulse.png',
-                    },
-                'pulse-light' : {
-                    'label' : 'pulse light',
-                    'icon_some' : '/usr/share/icons/mnotify-pulse-green.png',
-                    'icon_none' : '/usr/share/icons/mnotify-pulse-white.png',
-                    },
-                },
-            }
+        # sync icon_look_allowed and default from settings_manager (covers admin overrides)
+        icon_order = self.settings_manager.get_icon_order()
+        if icon_order:
+            self.defaults['Settings']['icon_look_allowed'] = tuple(icon_order)
+            if self.is_detect_fluxbox and 'pulse-light' in icon_order:
+                self.defaults['Settings']['icon_look_default'] = 'pulse-light'
+            else:
+                self.defaults['Settings']['icon_look_default'] = icon_order[0]
 
 
 
@@ -927,7 +834,7 @@ class SystemTrayIcon(QSystemTrayIcon):
                 # optionally close the notification right away
                 n_obj.close()
 
-            # notify2 requires you pass an “action key” string, a label, and a callback
+            # notify2 requires you pass an "action key" string, a label, and a callback
             n.add_action(
                 action_tag,      # action_key
                 label,           # button text
@@ -1140,14 +1047,12 @@ class SystemTrayIcon(QSystemTrayIcon):
 
             case 'icon_look':
                 icon_look = value
-                if value.startswith("wireframe"):
+                if ':' in value:
                     logger.debug("[%s] transparent value %s", me, value)
-                    icon_look, _, transparent = value.partition(':')
-
+                    icon_look, _, transparent_str = value.partition(':')
+                    transparent = transparent_str == "transparent"
                     logger.debug("[%s] icon_look transparent  %s %s", me, icon_look, transparent)
-                    transparent = transparent == "transparent"
-                    logger.debug("[%s] itransparent  %s ", me, transparent)
-                    self._settings['wireframe_transparent'] = transparent == "transparent"
+                    self._settings['wireframe_transparent'] = transparent
                     self.qsettings.sync()
                     qtransparent = self.qsettings.value('Settings/wireframe_transparent')
                     logger.debug("[%s] qtransparent  %s ", me, qtransparent)
@@ -1433,7 +1338,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         wireframe_transparent = str(wireframe_transparent).lower() in ['true', 'on', '1']
         logger.debug("[%s] self.qsettings.value('Settings/wireframe_transparent') : %s [%s]", me, wireframe_transparent, type(wireframe_transparent))
 
-        if icon_look.startswith('wireframe') and wireframe_transparent:
+        if wireframe_transparent and 'icon_none_transparent' in icons:
             icon_none = icons.get('icon_none_transparent', icon_none)
 
         self._icon_none = icon_none
@@ -1717,7 +1622,7 @@ class SystemTrayIcon(QSystemTrayIcon):
     def handleQuit(self):
         """
         Any cleanup you need to do *before* the app closes
-        (e.g. save settings, log messages, notify others…)
+        (e.g. save settings, log messages, notify others...)
         """
         if self.notification:
             self.notification.close()
@@ -2027,7 +1932,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 def make_notification(title, message, icon=None, timeout=10_000):
     """
     Create notify2.Notification whose own _closed_callback is silenced
-    so it won’t raise KeyErrors if the notification disappears early.
+    so it won't raise KeyErrors if the notification disappears early.
     """
     n = notify2.Notification(title, message, icon)
     n.set_timeout(timeout)

@@ -696,6 +696,19 @@ when no updates are available."""))
             icons_layout.addLayout(row_layout)
             self.icon_radio_buttons[icon_name] = icon_radio_button  # Store the radio button
 
+        # single admin icon set: show for preview but prevent deselection
+        if len(self.icon_order) == 1:
+            for btn in self.icon_radio_buttons.values():
+                btn.setEnabled(False)
+
+        # wireframe transparent toggle: hidden for admin icon sets, otherwise
+        # enabled only when the selected icon provides a transparent variant
+        _admin_active = self.settings_manager.admin_icon_set_count > 0
+        _cur_icon_cfg = self.settings_manager.get_icon_look_config(
+            self.settings.get('icon_look', ''))
+        _wireframe_enabled = (not _admin_active
+                              and 'icon_none_transparent' in _cur_icon_cfg)
+
         # set connection
         self.wireframe_transparent_checkbox.toggled.connect(
             lambda checked:
@@ -704,6 +717,8 @@ when no updates are available."""))
         if self.settings["wireframe_transparent"]:
             self.wireframe_transparent_checkbox.setChecked(True)
 
+        self.wireframe_transparent_checkbox.setEnabled(_wireframe_enabled)
+        self.wireframe_transparent_checkbox.setVisible(not _admin_active)
         icons_layout.addWidget(self.wireframe_transparent_checkbox)
         icons_frame.setLayout(icons_layout)
         layout.addWidget(icons_frame)
@@ -1316,8 +1331,9 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.settings["wireframe_transparent"] = checked
         self.qsettings.setValue(f"Settings/wireframe_transparent", checked)
         self.qsettings.sync()
-        name = self.settings.get("icon_look")
-        if name.startswith("wireframe"):
+        name = self.settings.get("icon_look", '')
+        icon_config = self.settings_manager.get_icon_look_config(name)
+        if 'icon_none_transparent' in icon_config:
             if checked:
                 self.update_systray_icon("icon_look", f"{name}:transparent")
             else:
@@ -1333,16 +1349,16 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             self.qsettings.setValue(f"Settings/icon_look", name)
             self.qsettings.sync()
 
-            if name.startswith("wireframe"):
+            icon_config = self.settings_manager.get_icon_look_config(name)
+            has_transparent = 'icon_none_transparent' in icon_config
+            if has_transparent:
                 self.wireframe_transparent_checkbox.setEnabled(True)
-                # Attempt to update the running UpdaterSystemTray icon via D-Bus
                 if self.settings.get("wireframe_transparent"):
                     self.update_systray_icon("icon_look", f"{name}:transparent")
                 else:
                     self.update_systray_icon("icon_look", f"{name}:non-transparent")
             else:
                 self.wireframe_transparent_checkbox.setEnabled(False)
-                # Attempt to update the running UpdaterSystemTray icon via D-Bus
                 self.update_systray_icon("icon_look", name)
 
     def on_upgrade_assume_yes_checkbox_toggled(self, checked):

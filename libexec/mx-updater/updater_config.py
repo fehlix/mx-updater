@@ -1,9 +1,14 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import logging
+import os
+import configparser
 from PyQt6.QtCore import QSettings
 from typing import Dict, Any, Optional, List, Union, Type
 from pprint import pprint
+
+logger = logging.getLogger(__name__)
 
 class UpdaterSettingsManager:
     def __init__(self, application_name: str = 'mx-updater'):
@@ -15,12 +20,13 @@ class UpdaterSettingsManager:
         # default settings section
         self.section = 'Settings'
         # Initialize QSettings
-        print(f'self.qsettings = QSettings("MX-Linux", "{application_name}")')
+        logger.debug('QSettings("MX-Linux", "%s")', application_name)
         self.qsettings = QSettings("MX-Linux", application_name)
 
         # internal settings dictionary
         self.settings: Dict[str, Any] = {}
         self.icons: Dict[str, Any] = {}
+        self.admin_icon_set_count = 0
 
         
         # internal default settings 
@@ -105,6 +111,8 @@ class UpdaterSettingsManager:
         if self.is_fluxbox_running():
             icon_look_fluxbox = 'pulse-light'
             self.defaults['Settings']['icon_look'] = icon_look_fluxbox
+
+        self._load_admin_icon_sets()
 
 
     def get_typed_setting(self,
@@ -254,7 +262,10 @@ class UpdaterSettingsManager:
         if allowed_values and value not in allowed_values:
             # Fallback to default if value is not in allowed list
             value = default_value
-        
+            # write back so disk, GUI and systray all show the same value
+            self.qsettings.setValue(qsettings_key, value)
+            self.qsettings.sync()
+
         # save retrieved and validated settings internally
         if self.section not in self.settings:
             self.settings[self.section] = {}
@@ -361,7 +372,74 @@ class UpdaterSettingsManager:
         
         except Exception:
             return False
-    
+
+    def _load_admin_icon_sets(self) -> None:
+        """Load admin-defined icon sets; /usr/local/etc takes priority over /etc.
+        Falls back to the next candidate if a file is corrupt or yields no valid sets."""
+        self.admin_icon_set_count = 0
+
+        conf_candidates = [
+            '/usr/local/etc/mx-updater.conf',
+            '/etc/mx-updater.conf',
+        ]
+
+        for conf_path in conf_candidates:
+            if not (os.path.isfile(conf_path) and os.access(conf_path, os.R_OK)):
+                continue
+
+            logger.debug('Trying admin config: %s', conf_path)
+            config = configparser.ConfigParser()
+            try:
+                config.read(conf_path, encoding='utf-8')
+            except Exception as e:
+                logger.warning('Failed to parse admin config %s: %s -- trying next', conf_path, e)
+                continue
+
+            if 'MX-Updater-Icons' not in config:
+                logger.debug('No [MX-Updater-Icons] section in %s -- trying next', conf_path)
+                continue
+
+            section = config['MX-Updater-Icons']
+            admin_icons: Dict[str, Any] = {}
+            admin_order: List[str] = []
+
+            for n in range(1, 5):
+                label = section.get(f'icon_set_{n}_label', '').strip()
+                path_some = section.get(f'icon_set_{n}_path_some', '').strip()
+                path_none = section.get(f'icon_set_{n}_path_none', '').strip()
+
+                if not (label and path_some and path_none):
+                    continue
+
+                key = f'icon_set_{n}'
+                entry: Dict[str, str] = {
+                    'label': label,
+                    'icon_some': path_some,
+                    'icon_none': path_none,
+                }
+
+                path_none_transparent = section.get(f'icon_set_{n}_path_none_transparent', '').strip()
+                if path_none_transparent:
+                    entry['icon_none_transparent'] = path_none_transparent
+
+                admin_icons[key] = entry
+                admin_order.append(key)
+                logger.debug('Loaded admin icon set %d: label=%r', n, label)
+
+            if not admin_order:
+                logger.debug('No valid icon sets in [MX-Updater-Icons] in %s -- trying next', conf_path)
+                continue
+
+            admin_icons['icon_order'] = admin_order
+            self.defaults['Icons'] = admin_icons
+            self.defaults['Settings']['icon_look_allowed'] = tuple(admin_order)
+            self.defaults['Settings']['icon_look'] = admin_order[0]
+            self.admin_icon_set_count = len(admin_order)
+            logger.debug('Loaded %d admin icon set(s) from %s', self.admin_icon_set_count, conf_path)
+            return
+
+        logger.debug('No usable admin icon config found (checked: %s)', ', '.join(conf_candidates))
+
 
 from PyQt6.QtCore import QSettings
 from pprint import pprint

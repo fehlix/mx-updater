@@ -23,7 +23,7 @@ from updater_translator import Translator
 
 from PyQt6.QtWidgets import (QApplication, QDialog, QTextEdit, QVBoxLayout,
                              QDialogButtonBox, QMessageBox)
-from PyQt6.QtGui import QIcon, QFont, QGuiApplication
+from PyQt6.QtGui import QIcon, QFont, QFontDatabase, QGuiApplication
 from PyQt6.QtCore import Qt, QRect, QTranslator, QLocale, QLibraryInfo
 
 # localization
@@ -74,10 +74,9 @@ class LogViewer(QDialog):
         self.text_area = QTextEdit()
         self.text_area.setReadOnly(True)
 
-        #self.text_area.setFont(QFont('monospace', 10))
-        #self.text_area.setFont(QFont('Liberation Mono Regular', 11))
-        self.text_area.setFont(QFont('Liberation Sans Regular', 11))
-        #self.text_area.setFont(QFont('Courier New', 11))
+        # system general font
+        _font = QFontDatabase.systemFont(QFontDatabase.SystemFont.GeneralFont)
+        self.text_area.setFont(_font)
 
         # standard button box with Close
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)

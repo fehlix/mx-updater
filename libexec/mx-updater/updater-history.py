@@ -47,7 +47,7 @@ from PyQt6.QtWidgets import (
     QApplication, QDialog, QVBoxLayout, QPlainTextEdit, QPushButton,
     QHBoxLayout, QLineEdit, QStyle, QMessageBox
 )
-from PyQt6.QtGui import QFont, QIcon, QPixmap, QKeyEvent, QGuiApplication, QPalette, QAction, QColor
+from PyQt6.QtGui import QFont, QFontDatabase, QIcon, QPixmap, QKeyEvent, QGuiApplication, QPalette, QAction, QColor
 
 from PyQt6.QtCore import QTranslator, QLocale, QLibraryInfo, QSettings
 
@@ -151,11 +151,9 @@ class LogDialog(QDialog):
         self.log_text_edit.setPlainText(self.original_log_text)
         self.log_text_edit.setReadOnly(True)  # read-only
 
-        # monospace font
-        log_text_font = "Courier New"
-        #log_text_font = "Liberation Mono Regular"
-        #log_text_font = "Monospace"
-        self.log_text_edit.setFont(QFont(log_text_font, 11))
+        # system monospace font
+        _mono_font = QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
+        self.log_text_edit.setFont(_mono_font)
         # disable line wrapping
         self.log_text_edit.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
 

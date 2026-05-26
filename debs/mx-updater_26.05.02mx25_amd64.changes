@@ -1,0 +1,69 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Tue, 26 May 2026 07:22:29 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.05.02mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.05.02mx25) mx; urgency=medium
+ .
+   * Unify icon set definitions: updater-systray now uses updater_config
+     as its sole source, thereby removing the duplicate hard-coded block.
+   * Add support for admin-defined icon sets via
+     /usr/local/etc/mx-updater.conf (priority) or /etc/mx-updater.conf.
+     Up to 4 custom icon sets can be defined; replaces built-in sets when
+     present. Falls back through locations and to built-ins on any error.
+   * Install example admin icon set config as
+     /usr/share/doc/mx-updater/examples/admin-mx-updater.conf.
+   * Settings editor: hide wireframe-transparent toggle when admin icon
+     sets are active; disable icon selection when only one set is defined.
+   * Sync disk, GUI and systray on load: invalid stored icon preference is
+     corrected and written back immediately rather than silently ignored.
+   * Fix autostart on slow-starting DEs (e.g. Enlightenment at first launch):
+     if the systray host is not yet ready after the initial delay, poll
+     up to 60s before proceeding. No change on fast DEs where it is already up.
+   * History, changelog and log viewers: replace hard-coded font names and
+     sizes with system font defaults via QFontDatabase.systemFont.
+Checksums-Sha1:
+ 891a1cd2290df8fe33bfef2e4d64f7a5f6d0d363 1624 mx-updater_26.05.02mx25.dsc
+ ed78c466940efdf2aee0caaa4824c9a2a6b92b05 165224 mx-updater_26.05.02mx25.tar.xz
+ b0b0de7bb89159666a32af735fb4050e7c9a87df 360260 mx-updater_26.05.02mx25_all.deb
+ 0956d6b6131fd324a67bdb59c980913a130e2ae5 7882 mx-updater_26.05.02mx25_amd64.buildinfo
+Checksums-Sha256:
+ 0ab19d211d3d81bf00fb0cb7c3b01ed2219a7e950874697e2782758a8c827d15 1624 mx-updater_26.05.02mx25.dsc
+ ab8cfdd90f32128a67db6c2917a3bc4f76d88765c2cc08bc54e7a9ba9051bccf 165224 mx-updater_26.05.02mx25.tar.xz
+ ab535858b1a69716c284f0dc7ae867358bf9261d476c3bf4cf3d78ee41f47fc0 360260 mx-updater_26.05.02mx25_all.deb
+ bfab3759915bf999d870f4f31eb5edf9e95c4ac8c0fe6289a05051a5aa9cb257 7882 mx-updater_26.05.02mx25_amd64.buildinfo
+Files:
+ a570fa47f58d56a90694f030dc2f4ba0 1624 admin optional mx-updater_26.05.02mx25.dsc
+ c17a12694f3f65babb7ee25bcbd0f506 165224 admin optional mx-updater_26.05.02mx25.tar.xz
+ e055000c15b2ffbc7749da4cc494cb1d 360260 admin optional mx-updater_26.05.02mx25_all.deb
+ c35978921e512811dbf3732442502a7e 7882 admin optional mx-updater_26.05.02mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmoVg54THGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6YXVD/9Aj07zVE8h9UH1y4wwCwowQiAZX9YK
+rzgna4/bRzkN5hb25aUtvaGCIb9KoOsE2g701o0COTTyaOvW88dCVG4p+mtJ4w4z
+pql6tEYxbbGzaS1ugsO6B1P/c5RBvr29WzdX06W0Z/olO9W8IVC+elY4WcQMk8pj
+HRpWawcLELhJlW3L33WopvM1wCggJdZefPZUQfY/XzPIMG96PNYPbDSIhdkbf/Id
+44bhZiugyZIPVvZ+XyYVqSeZLDHfQgzgJa+3kDTuciXx840nRgUSbwzrjY89AbBG
+3uK4sAeKEjJeAVBteqODvNIayRP5XsHACSUoBhpFmrY20xFJT8/9kNaNv+DAIdjn
+sB8NwcPSpCENjBfwt7KvI4u4MoSBW/FX15/EyhPf/CQwoOUP2ssSTog8qaZeDhNK
+XHLdStZqGK1lL0l009EBQwMWYlNF6MuTetnzIPCfJLYGjbZb0b8hgVyLuTIDwyHA
+Xv7yyP9PC1NvgzV02BCbPLb4ca8Pd9o+Qfl4RMutWu9iRVdn2cxEZLui6Ky/0qus
+H1Hk95RcC4ZIPay1hm8+XEg8XTckA7F+slIcJkFcBCgw4886BgVsJulAvtKfGGmp
+rlF+geRQooc2UT77lRO5RLNXXzoTsKtTdL1IPPIsQACzJTe6rnzwQ39FGuwWxd6J
+uiw7v2NkJY5KJQ==
+=tsSv
+-----END PGP SIGNATURE-----

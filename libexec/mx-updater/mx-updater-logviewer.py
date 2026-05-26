@@ -25,7 +25,7 @@ from PyQt6.QtWidgets import (
     QPushButton, QDialogButtonBox, QMessageBox, QStyle,
     QLineEdit
 )
-from PyQt6.QtGui import QIcon, QFont, QGuiApplication, QShortcut, QKeySequence, QTextCursor
+from PyQt6.QtGui import QIcon, QFont, QFontDatabase, QGuiApplication, QShortcut, QKeySequence, QTextCursor
 from PyQt6.QtCore import Qt, QRect, QTranslator, QLocale, QLibraryInfo
 from PyQt6.QtCore import QSettings, QPoint, QSize
 from PyQt6.QtGui import QTextDocument, QPalette
@@ -99,10 +99,9 @@ class LogViewer(QDialog):
         self.text_area = QTextEdit()
         self.text_area.setReadOnly(True)
 
-        #self.text_area.setFont(QFont('monospace', 10))
-        #self.text_area.setFont(QFont('Liberation Mono Regular', 11))
-        self.text_area.setFont(QFont('Liberation Sans Regular', 11))
-        #self.text_area.setFont(QFont('Courier New', 11))
+        # system general font
+        _font = QFontDatabase.systemFont(QFontDatabase.SystemFont.GeneralFont)
+        self.text_area.setFont(_font)
 
         layout.addWidget(self.text_area)
 

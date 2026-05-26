@@ -1,15 +1,4 @@
-mx-updater (26.05.01mx25+dev02) UNRELEASED; urgency=medium
-
-  * Fix autostart on slow-starting DEs (e.g. Enlightenment at first launch):
-    if the systray host is not yet ready after the initial delay, poll
-    up to 60s before proceeding. No change on fast DEs where it is already up.
-  * History, changelog and log viewers: replace hard-coded font names and
-    sizes with the system fixed/general font via QFontDatabase.systemFont,
-    so viewers follow the user's system font settings.
-
- -- fehlix <fehlix@mxlinux.org>  Mon, 25 May 2026 14:44:16 -0400
-
-mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
+mx-updater (26.05.02mx25) mx; urgency=medium
 
   * Unify icon set definitions: updater-systray now uses updater_config
     as its sole source, thereby removing the duplicate hard-coded block.
@@ -23,8 +12,13 @@ mx-updater (26.05.01mx25+dev01) UNRELEASED; urgency=medium
     sets are active; disable icon selection when only one set is defined.
   * Sync disk, GUI and systray on load: invalid stored icon preference is
     corrected and written back immediately rather than silently ignored.
+  * Fix autostart on slow-starting DEs (e.g. Enlightenment at first launch):
+    if the systray host is not yet ready after the initial delay, poll
+    up to 60s before proceeding. No change on fast DEs where it is already up.
+  * History, changelog and log viewers: replace hard-coded font names and
+    sizes with system font defaults via QFontDatabase.systemFont.
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 24 May 2026 20:31:22 -0400
+ -- fehlix <fehlix@mxlinux.org>  Tue, 26 May 2026 07:22:29 -0400
 
 mx-updater (26.05.01mx25) mx; urgency=medium
 

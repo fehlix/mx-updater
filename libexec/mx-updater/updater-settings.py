@@ -64,7 +64,7 @@ from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QFrame,
     QRadioButton, QCheckBox, QLabel, QPushButton, QWidget, QGroupBox,
     QButtonGroup, QGridLayout, QSizePolicy, QDialog, QDialogButtonBox,
-    QMessageBox, QSpinBox, QToolTip
+    QMessageBox, QSpinBox, QToolTip, QComboBox
 )
 from PyQt6.QtGui import QPixmap, QIcon, QKeyEvent, QGuiApplication, QFont, QPalette
 from PyQt6.QtCore import Qt, QSettings
@@ -874,6 +874,84 @@ at login after the specified delay in seconds.""")
         timeout_layout.addWidget(self.auto_close_timeout)
         timeout_layout.addStretch()  # Pushes items to the left
 
+        #---------------------------------------------------------------
+        # terminal size and position -- single line with two comboboxes
+
+        # TRANSLATORS: Label before the terminal window size dropdown
+        terminal_label = QLabel(_("terminal size"))
+
+        self.terminal_size_combo = QComboBox()
+        # TRANSLATORS: terminal window size option: default auto-sizing (original behavior)
+        self.terminal_size_combo.addItem(_("default (auto)"), "default")
+        # TRANSLATORS: terminal window size option: one third of the screen
+        self.terminal_size_combo.addItem(_("1/3 screen"),    "one-third")
+        # TRANSLATORS: terminal window size option: half the screen
+        self.terminal_size_combo.addItem(_("1/2 screen"),    "half")
+        # TRANSLATORS: terminal window size option: two thirds of the screen
+        self.terminal_size_combo.addItem(_("2/3 screen"),    "two-thirds")
+        # TRANSLATORS: terminal window size option: three quarters of the screen
+        self.terminal_size_combo.addItem(_("3/4 screen"),    "three-quarters")
+        # TRANSLATORS: terminal window size option: nine tenths of the screen
+        self.terminal_size_combo.addItem(_("9/10 screen"),   "nine-tenths")
+        # TRANSLATORS: terminal window size option: full screen
+        self.terminal_size_combo.addItem(_("full screen"),   "full")
+
+        # TRANSLATORS: Label before the terminal window position dropdown
+        terminal_position_label = QLabel(_("position"))
+
+        self.terminal_position_combo = QComboBox()
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("center"),       "center")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("top-left"),     "top-left")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("top-right"),    "top-right")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("bottom-left"),  "bottom-left")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("bottom-right"), "bottom-right")
+
+        # TRANSLATORS: Tooltip for the terminal window size label and dropdown.
+        # "default (auto)" means the original automatic sizing is used.
+        _terminal_size_tooltip = _("""Select the size of the terminal window opened for system updates.
+"default (auto)" uses the original automatic sizing.""")
+        terminal_label.setToolTip(_terminal_size_tooltip)
+        self.terminal_size_combo.setToolTip(_terminal_size_tooltip)
+
+        # TRANSLATORS: Tooltip for the terminal window position dropdown.
+        # The option is disabled when "full screen" size is selected.
+        self.terminal_position_combo.setToolTip(_("""Select where the terminal window appears on the screen.
+Disabled when "full screen" size is selected."""))
+
+        # load saved values
+        terminal_size = self.load_setting("terminal_size")
+        idx = self.terminal_size_combo.findData(terminal_size)
+        if idx >= 0:
+            self.terminal_size_combo.setCurrentIndex(idx)
+
+        terminal_position = self.load_setting("terminal_position")
+        idx = self.terminal_position_combo.findData(terminal_position)
+        if idx >= 0:
+            self.terminal_position_combo.setCurrentIndex(idx)
+
+        # position is irrelevant when full screen
+        if terminal_size == "full":
+            self.terminal_position_combo.setEnabled(False)
+
+
+        self.terminal_size_combo.currentIndexChanged.connect(self.on_terminal_size_changed)
+        self.terminal_position_combo.currentIndexChanged.connect(self.on_terminal_position_changed)
+
+        terminal_layout = QHBoxLayout()
+        terminal_layout.addWidget(terminal_label)
+        terminal_layout.addSpacing(4)
+        terminal_layout.addWidget(self.terminal_size_combo)
+        terminal_layout.addSpacing(8)
+        terminal_layout.addWidget(terminal_position_label)
+        terminal_layout.addSpacing(4)
+        terminal_layout.addWidget(self.terminal_position_combo)
+        terminal_layout.addStretch()
+
         # TRANSLATORS: The label of the checkbox "use desktop notifications",
         # where user can select to disabled or enable notification "popup" window shown .
         self.use_dbus_notifications_checkbox = QCheckBox(_("use desktop notifications"))
@@ -931,6 +1009,8 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         other_options_layout.addWidget(self.upgrade_assume_yes_checkbox)
         #other_options_layout.addWidget(self.auto_close_checkbox)
         other_options_layout.addLayout(timeout_layout)
+        other_options_layout.addLayout(terminal_layout)
+        # comment the line below to hide the desktop notifications toggle
         other_options_layout.addWidget(self.use_dbus_notifications_checkbox)
         other_options_layout.addLayout(start_8_login_layout)
         if not any(self.disable_hide_until):
@@ -1399,6 +1479,19 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.qsettings.setValue("Settings/auto_close_timeout", value)
         self.qsettings.sync()
         self.update_view_and_upgrade("auto_close_timeout", value)
+
+    def on_terminal_size_changed(self, index):
+        value = self.terminal_size_combo.itemData(index)
+        self.settings["terminal_size"] = value
+        self.qsettings.setValue("Settings/terminal_size", value)
+        self.qsettings.sync()
+        self.terminal_position_combo.setEnabled(value != "full")
+
+    def on_terminal_position_changed(self, index):
+        value = self.terminal_position_combo.itemData(index)
+        self.settings["terminal_position"] = value
+        self.qsettings.setValue("Settings/terminal_position", value)
+        self.qsettings.sync()
 
     def toggle_auto_close_timeout_spinbox(self, state):
         # Enable/disable spinbox based on checkbox state

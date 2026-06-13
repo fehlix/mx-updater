@@ -55,6 +55,10 @@ class UpdaterSettingsManager:
                 'auto_close' : True,
                 'auto_close_timeout' : 10,
                 'use_dbus_notifications' : True,
+                'terminal_size' : 'default',
+                'terminal_size_allowed' : ('default', 'one-third', 'half', 'two-thirds', 'three-quarters', 'nine-tenths', 'full'),
+                'terminal_position' : 'center',
+                'terminal_position_allowed' : ('center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
                 'use_nala' : False,
                 'hide_until_upgrades_available' : False,
                 #'''

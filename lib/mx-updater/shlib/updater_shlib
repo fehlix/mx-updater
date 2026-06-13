@@ -129,75 +129,13 @@ get_config_item() {
 }
 
 
-read_auto_close_timeout() {
-    # Usage
-    # read -r AUTO_CLOSE_TIMEOUT < <(read_auto_close_timeout)
-    local home_dir=$(eval echo ~$(logname))
-    local config_file="${home_dir}/.config/MX-Linux/mx-updater.conf"
-    local sed_pattern="auto_close_timeout"
-    local LC_CTYPE="C.UTF-8"
-    local LC_COLLATE="C.UTF-8"
-
-    local default_value=10
-
-    # If config file doesn't exist, return default settings
-    if [ ! -f "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' not found or is not a regular file. Using defaults." >&2
-        return 0
-    fi
-
-    if [ ! -r "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' not readable. Using defaults." >&2
-        return 0
-    fi
-
-    if [ ! -s "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' is empty. Using defaults." >&2
-        return 0
-    fi
-
-    IFS=$'\t' read -r key value < <(
-                    sed -nr "/^[[]Settings[]]/,/^[[]/{
-                        s/\s*//g;
-                        s/^(${sed_pattern})=([0-9]+)/\1\t\2/p
-                        }" "$config_file" 2>/dev/null
-                        )
-
-    # trim both left and right whitespace
-    # value=$(echo "$value" | xargs)
-    value="${value#"${value%%[![:space:]]*}"}"
-    value="${value%"${value##*[![:space:]]}"}"
-
-    # check whether value is empty
-    if [ -z "${value}" ]; then
-        echo "$default_value"
-        return 0
-    fi
-    # check value contains digits only
-    if [ -n "${value//[0-9]/}" ]; then
-        echo "$default_value"
-        return 0
-    fi
-
-    echo "$value"
-    return 0
-}
-
-get_auto_close_timeout() {
-# Usage
-# read -r AUTO_CLOSE_TIMEOUT < <(get_auto_close_timeout)
-/usr/bin/python3 -c "
-from PyQt6.QtCore import QSettings;
-settings = QSettings('MX-Linux', 'mx-updater');
-print(settings.value('Settings/auto_close_timeout', 17))
-"
-}
 
 press_any_key_stop_auto_close() {
     local default_timeout=10
 
-    read -r AUTO_CLOSE_TIMEOUT < <(read_auto_close_timeout)
-
+    if [ -z "${AUTO_CLOSE_TIMEOUT}" ]; then
+        read -r AUTO_CLOSE_TIMEOUT < <(get_config_item "auto_close_timeout" "$default_timeout")
+    fi
     if [ -z "${AUTO_CLOSE_TIMEOUT}" ]; then
         AUTO_CLOSE_TIMEOUT=$default_timeout
     fi
@@ -317,12 +255,8 @@ updater_show() {
     #    read DW DH < <(xdotool getdisplaygeometry)
     #fi
 
-    TH=$((DH*2/3))  # desired terminal hight
-    if ((DW <= 1440)); then
-        TW=$((DW*2/3))  # desired terminal width
-    else
-        TW=$((DW*2/3))  # desired terminal width
-    fi
+    TH=$((DH*2/3))
+    TW=$((DW*2/3))
 
     if ((DW >= 1600)); then
         TW=$(( 1600 * 3 / 5 ))

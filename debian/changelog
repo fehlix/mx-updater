@@ -1,3 +1,41 @@
+mx-updater (26.06.1mx25~dev03) UNRELEASED; urgency=medium
+
+  * updater_upgrade: fix nala update flow -- run nala update and nala
+    upgrade as two separate steps (mirroring the apt path), touch
+    update-stamp after nala update, pass --no-update to nala upgrade
+    to prevent a redundant second update run.
+  * shlib: remove read_auto_close_timeout function; press_any_key_stop_auto_close
+    now uses AUTO_CLOSE_TIMEOUT already set by the calling script, falling back
+    to get_config_item only if unset. Removes ~50 lines of duplicated config
+    reading logic.
+  * updater_action: remove dead UPDATER_AUTO_CLOSE_TIMEOUT handling --
+    the variable was exported but never read by any downstream script.
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 11:59:47 -0400
+
+mx-updater (26.06.1mx25~dev02) UNRELEASED; urgency=medium
+
+  * updater_upgrade, updater_reload: fix missing shlib guard before
+    press_any_key_stop_auto_close / press_any_key_to_close calls;
+    without the guard those calls would fail with "command not found"
+    if the shlib was absent.
+  * updater_upgrade: remove dead NotUsed heredoc block; remove
+    duplicate AUTO_CLOSE_TIMEOUT validation block.
+  * shlib: remove unused get_auto_close_timeout function
+    (PyQt6/QSettings based, never called from any script).
+  * shlib: simplify terminal size calculation in updater_show;
+    remove redundant if/else where both branches computed identical TW.
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 12 Jun 2026 21:30:00 -0400
+
+mx-updater (26.06.1mx25~dev01) UNRELEASED; urgency=medium
+
+  * Cleaning up mx-updater reload/upgrade action scripts.
+  * Remove dead root-terminal code.
+  * Fix authenticator detection.
+  
+ -- fehlix <fehlix@mxlinux.org>  Fri, 12 Jun 2026 13:09:30 -0400
+
 mx-updater (26.05.02mx25) mx; urgency=medium
 
   * Unify icon set definitions: updater-systray now uses updater_config

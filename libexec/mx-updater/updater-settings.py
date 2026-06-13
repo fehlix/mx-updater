@@ -919,9 +919,9 @@ at login after the specified delay in seconds.""")
         self.terminal_size_combo.setToolTip(_terminal_size_tooltip)
 
         # TRANSLATORS: Tooltip for the terminal window position dropdown.
-        # The option is disabled when "full screen" size is selected.
+        # The option is disabled when "full screen" size is selected, or on Wayland.
         self.terminal_position_combo.setToolTip(_("""Select where the terminal window appears on the screen.
-Disabled when "full screen" size is selected."""))
+Disabled when "full screen" size is selected or when running on Wayland."""))
 
         # load saved values
         terminal_size = self.load_setting("terminal_size")
@@ -934,8 +934,11 @@ Disabled when "full screen" size is selected."""))
         if idx >= 0:
             self.terminal_position_combo.setCurrentIndex(idx)
 
-        # position is irrelevant when full screen
-        if terminal_size == "full":
+        # position not supported on Wayland; also irrelevant when full screen
+        _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
+                       or bool(os.environ.get("WAYLAND_DISPLAY")))
+        if _on_wayland or terminal_size == "full":
+            terminal_position_label.setEnabled(False)
             self.terminal_position_combo.setEnabled(False)
 
 
@@ -1485,7 +1488,10 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.settings["terminal_size"] = value
         self.qsettings.setValue("Settings/terminal_size", value)
         self.qsettings.sync()
-        self.terminal_position_combo.setEnabled(value != "full")
+        _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
+                       or bool(os.environ.get("WAYLAND_DISPLAY")))
+        if not _on_wayland:
+            self.terminal_position_combo.setEnabled(value != "full")
 
     def on_terminal_position_changed(self, index):
         value = self.terminal_position_combo.itemData(index)

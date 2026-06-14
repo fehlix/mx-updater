@@ -897,7 +897,7 @@ at login after the specified delay in seconds.""")
         self.terminal_size_combo.addItem(_("full screen"),   "full")
 
         # TRANSLATORS: Label before the terminal window position dropdown
-        terminal_position_label = QLabel(_("position"))
+        self.terminal_position_label = QLabel(_("position"))
 
         self.terminal_position_combo = QComboBox()
         # TRANSLATORS: terminal window position option
@@ -937,8 +937,11 @@ Disabled when "full screen" size is selected or when running on Wayland."""))
         # position not supported on Wayland; also irrelevant when full screen
         _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
                        or bool(os.environ.get("WAYLAND_DISPLAY")))
-        if _on_wayland or terminal_size == "full":
-            terminal_position_label.setEnabled(False)
+        if _on_wayland:
+            self.terminal_position_label.setVisible(False)
+            self.terminal_position_combo.setVisible(False)
+        elif terminal_size == "full":
+            self.terminal_position_label.setEnabled(False)
             self.terminal_position_combo.setEnabled(False)
 
 
@@ -950,7 +953,7 @@ Disabled when "full screen" size is selected or when running on Wayland."""))
         terminal_layout.addSpacing(4)
         terminal_layout.addWidget(self.terminal_size_combo)
         terminal_layout.addSpacing(8)
-        terminal_layout.addWidget(terminal_position_label)
+        terminal_layout.addWidget(self.terminal_position_label)
         terminal_layout.addSpacing(4)
         terminal_layout.addWidget(self.terminal_position_combo)
         terminal_layout.addStretch()
@@ -1491,7 +1494,9 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
                        or bool(os.environ.get("WAYLAND_DISPLAY")))
         if not _on_wayland:
-            self.terminal_position_combo.setEnabled(value != "full")
+            enabled = (value != "full")
+            self.terminal_position_label.setEnabled(enabled)
+            self.terminal_position_combo.setEnabled(enabled)
 
     def on_terminal_position_changed(self, index):
         value = self.terminal_position_combo.itemData(index)

@@ -10,8 +10,10 @@ mx-updater (26.06.1mx25~dev04) UNRELEASED; urgency=medium
     for existing users.
   * Terminal window positioning now uses availableGeometry() so all
     sizes and positions respect desktop panels and avoid overlap.
-  * Position dropdown greyed out on Wayland (compositor controls window
+  * Position dropdown hidden on Wayland (compositor controls window
     placement); size dropdown remains enabled as size hints are honoured.
+    shlib also ignores any saved terminal_position on Wayland, so a
+    position set under X11 has no effect when the user switches to Wayland.
 
  -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 18:10:56 -0400
 

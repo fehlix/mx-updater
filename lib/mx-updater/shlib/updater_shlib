@@ -258,6 +258,11 @@ updater_show() {
     local terminal_size=$(get_config_item "terminal_size" "two-thirds")
     local terminal_position=$(get_config_item "terminal_position" "center")
 
+    # On Wayland the compositor ignores position hints; ignore any saved position
+    if [ -n "$WAYLAND_DISPLAY" ] || [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
+        terminal_position="center"
+    fi
+
     case "$terminal_size" in
         one-third)      TW=$((DW/3));    TH=$((DH/3))    ;;
         half)           TW=$((DW/2));    TH=$((DH/2))    ;;

@@ -1,3 +1,34 @@
+mx-updater (26.06.1mx25~dev12) UNRELEASED; urgency=medium
+
+  * updater-settings.py: rename Left-click group box title to "Left-click"
+    (was "Left-click behaviour   (when updates are available)"). Add tooltips
+    to radio buttons explaining actual behavior including the no-updates
+    fallback for "View and Upgrade". Add tooltip to the group box frame
+    documenting the hidden middle-click action (opens MX Package Installer,
+    or Synaptic if not installed).
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
+mx-updater (26.06.1mx25~dev11) UNRELEASED; urgency=medium
+
+  * updater-settings.py: shorten Left-click behaviour labels to reduce
+    dialog width. "opens Synaptic" becomes "Synaptic", "opens MX Updater
+    'View and Upgrade' window" becomes "View and Upgrade". Old strings kept
+    as _dummy calls so xgettext still extracts them for existing translators.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
+mx-updater (26.06.1mx25~dev10) UNRELEASED; urgency=medium
+
+  * updater-settings.py: shorten Upgrade mode labels to reduce dialog width
+    (helps keep translations compact). "full upgrade (recommended)" becomes
+    "full", "basic upgrade" becomes "basic", "upgrade automatically" becomes
+    "automatic". Old strings kept as _dummy calls so xgettext still extracts
+    them for existing translators. Layout: full/basic radios on row 1,
+    automatic/use-nala on row 2.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev09) UNRELEASED; urgency=medium
 
   * updater-settings.py: compact Upgrade mode and Left-click behaviour

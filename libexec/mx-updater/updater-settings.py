@@ -425,22 +425,26 @@ class SettingsEditorDialog(QDialog):
 
         self.upgrade_button_group = QButtonGroup(self)
 
-        # TRANSLATORS: The label of the checkbox, where user can select
-        # the "Upgrade mode": "full upgrade"
-        self.full_upgrade_radio = QRadioButton(self.squeeze_spaces(_("full upgrade   (recommended)")))
+        # TRANSLATORS: The label of the radio button for "full" upgrade mode.
+        self.full_upgrade_radio = QRadioButton(_("full"))
 
-        # TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
-        # which tries to explain what this checkbox is about.
+        # TRANSLATORS: The tooltip of the radio button "full" (full upgrade, recommended).
         self.full_upgrade_radio.setToolTip(_("""Upgrades all packages to their latest versions,
 which may include adding or removing packages
 to keep the system up-to-date and consistent."""))
 
-        # keep the tranlatead string here, so xgettext will als extract from here
+        # keep old translated strings so xgettext still extracts them
         # TRANSLATORS: The upgrade mode "full upgrade".
         _dummy = _("full upgrade")
+        # TRANSLATORS: The upgrade mode "full upgrade (recommended)".
+        _dummy = _("full upgrade   (recommended)")
 
+        # TRANSLATORS: The label of the radio button for "basic" upgrade mode.
+        self.basic_upgrade_radio = QRadioButton(_("basic"))
+
+        # keep old translated string so xgettext still extracts it
         # TRANSLATORS: The upgrade mode "basic upgrade".
-        self.basic_upgrade_radio = QRadioButton(_("basic upgrade"))
+        _dummy = _("basic upgrade")
 
         # TRANSLATORS: The tooltip of the checkbox "basic upgrade",
         # which tries to explain what this checkbox is about.
@@ -474,19 +478,11 @@ without installing new dependencies or removing existing packages."""))
         if self.settings["use_nala"]:
             self.use_nala_checkbox.setChecked(True)
 
-        # compact row: full radio, basic radio, use_nala checkbox on one line
+        # row 1: full + basic radios
         upgrade_h_layout = QHBoxLayout()
         upgrade_h_layout.addWidget(self.full_upgrade_radio)
         upgrade_h_layout.addSpacing(8)
         upgrade_h_layout.addWidget(self.basic_upgrade_radio)
-
-        # Does /usr/bin/nala exists and is executable
-        if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
-            upgrade_h_layout.addSpacing(16)
-            upgrade_h_layout.addWidget(self.use_nala_checkbox)
-        else:
-            self.use_nala_checkbox.setChecked(False)
-
         upgrade_h_layout.addStretch()
         upgrade_layout.addLayout(upgrade_h_layout)
 
@@ -507,9 +503,12 @@ without installing new dependencies or removing existing packages."""))
 
         # Allow to select only automatic upgrade
 
-        # TRANSLATORS: The label of the checkbox "upgrade automatically", where user can select
-        # to enabled "unattended-upgrade"
-        self.auto_upgrade_checkbox = QCheckBox(self.squeeze_spaces(_("upgrade automatically")))
+        # TRANSLATORS: The label of the checkbox to enable unattended upgrades.
+        self.auto_upgrade_checkbox = QCheckBox(_("automatic"))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the checkbox "upgrade automatically".
+        _dummy = _("upgrade automatically")
 
         # TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
         # which tries to explain what this checkbox is about.
@@ -527,24 +526,19 @@ when additional updates are available."""))
         # which tries to explain what this checkbox is about.
         self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
-        # Allow to select automatic upgrade and pkg cache update
-        if True:
-            # Only allow to select automatic upgrade
-            upgrade_layout.addWidget(self.auto_upgrade_checkbox)
+        # row 2: automatic checkbox + use nala checkbox
+        auto_nala_h_layout = QHBoxLayout()
+        auto_nala_h_layout.addWidget(self.auto_upgrade_checkbox)
+
+        # Does /usr/bin/nala exists and is executable
+        if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
+            auto_nala_h_layout.addSpacing(16)
+            auto_nala_h_layout.addWidget(self.use_nala_checkbox)
         else:
-            # Allow to select automatic upgrade and pkg cache update
-            # horizontal layout for auto-upgrade and cache-updater
-            auto_upgrade_h_layout = QHBoxLayout()
-            auto_upgrade_h_layout.addWidget(self.auto_upgrade_checkbox)
+            self.use_nala_checkbox.setChecked(False)
 
-            # stretch space to pushuse_nala_checkbox right
-            # auto_upgrade_h_layout.addStretch()  # This will take up all available space
-
-            # use_nala_checkbox with a small fixed spacing
-            auto_upgrade_h_layout.addWidget(self.auto_cache_update_checkbox)
-            auto_upgrade_h_layout.addSpacing(20)  # fixed 20 pixels
-
-            upgrade_layout.addLayout(auto_upgrade_h_layout)
+        auto_nala_h_layout.addStretch()
+        upgrade_layout.addLayout(auto_nala_h_layout)
 
         #---------------------------------------------------------------
         # auto_upgrade checkbox set initilal state
@@ -571,17 +565,54 @@ when additional updates are available."""))
         # left_click_frame: Left-click behaviour
         #---------------------------------------------------------------
 
-        left_click_frame = QGroupBox(_("Left-click behaviour   (when updates are available)"))
+        left_click_frame = QGroupBox(_("Left-click"))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the group box for left-click behaviour.
+        _dummy = _("Left-click behaviour   (when updates are available)")
         left_click_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+
+        # TRANSLATORS: Tooltip for the Left-click behaviour group box.
+        # Explains left-click behavior and the hidden middle-click action.
+        left_click_frame.setToolTip(_(
+            "Left-click opens the selected application.\n"
+            "Middle-click opens MX Package Installer\n"
+            "(or Synaptic if MX Package Installer is not installed)."
+        ))
+
         left_click_layout = QVBoxLayout()
         left_click_layout.setSpacing(1)  # smaller spacing between options
         # layout margins (left, top, right, bottom)
         #left_click_layout.setContentsMargins(0, 10, 0, 0)  # adjust margins
         left_click_layout.setContentsMargins(*frame_margins)  # adjust margins
 
-        # Check if /usr/bin/synaptic-pkexec exists and is executable
-        self.opens_synaptic_radio = QRadioButton(_("opens Synaptic"))
-        self.opens_view_and_upgrade_radio = QRadioButton(_("opens MX Updater 'View and Upgrade' window"))
+        # TRANSLATORS: The label of the radio button to open Synaptic on left-click.
+        self.opens_synaptic_radio = QRadioButton(_("Synaptic"))
+
+        # TRANSLATORS: Tooltip for the "Synaptic" radio button.
+        self.opens_synaptic_radio.setToolTip(_(
+            "Left-click always opens Synaptic package manager,\n"
+            "with or without updates available."
+        ))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the radio button "opens Synaptic".
+        _dummy = _("opens Synaptic")
+
+        # TRANSLATORS: The label of the radio button to open the View and Upgrade window on left-click.
+        self.opens_view_and_upgrade_radio = QRadioButton(_("View and Upgrade"))
+
+        # TRANSLATORS: Tooltip for the "View and Upgrade" radio button.
+        self.opens_view_and_upgrade_radio.setToolTip(_(
+            "Left-click opens the \"View and Upgrade\" window\n"
+            "when updates are available.\n"
+            "When no updates are available, opens Synaptic\n"
+            "or MX Package Installer instead."
+        ))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the radio button "opens MX Updater 'View and Upgrade' window".
+        _dummy = _("opens MX Updater 'View and Upgrade' window")
 
 
         # Add the radio buttons to button group

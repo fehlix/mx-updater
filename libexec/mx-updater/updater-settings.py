@@ -599,6 +599,15 @@ when additional updates are available."""))
         # TRANSLATORS: The label of the radio button "opens Synaptic".
         _dummy = _("opens Synaptic")
 
+        # TRANSLATORS: The label of the radio button to open MX Package Installer on left-click.
+        self.opens_mxpi_radio = QRadioButton(_("MX Package Installer"))
+
+        # TRANSLATORS: Tooltip for the "MX Package Installer" radio button.
+        self.opens_mxpi_radio.setToolTip(_(
+            "Left-click always opens MX Package Installer,\n"
+            "with or without updates available."
+        ))
+
         # TRANSLATORS: The label of the radio button to open the View and Upgrade window on left-click.
         self.opens_view_and_upgrade_radio = QRadioButton(_("View and Upgrade"))
 
@@ -614,18 +623,28 @@ when additional updates are available."""))
         # TRANSLATORS: The label of the radio button "opens MX Updater 'View and Upgrade' window".
         _dummy = _("opens MX Updater 'View and Upgrade' window")
 
+        _synaptic_available = (os.path.isfile('/usr/bin/synaptic-pkexec') and
+                               os.access('/usr/bin/synaptic-pkexec', os.X_OK))
+        _mxpi_available = (os.path.isfile('/usr/bin/mx-packageinstaller') and
+                           os.access('/usr/bin/mx-packageinstaller', os.X_OK))
 
         # Add the radio buttons to button group
         self.left_click_button_group = QButtonGroup(self)
         self.left_click_button_group.addButton(self.opens_synaptic_radio)
+        self.left_click_button_group.addButton(self.opens_mxpi_radio)
         self.left_click_button_group.addButton(self.opens_view_and_upgrade_radio)
 
         self.left_click_button_map = {
             self.opens_synaptic_radio: "package_manager",
+            self.opens_mxpi_radio: "package_installer",
             self.opens_view_and_upgrade_radio: "view_and_upgrade",
         }
 
-        if self.settings.get("left_click") in 'package_manager':
+        # set initial state
+        _left_click = self.settings.get("left_click", "view_and_upgrade")
+        if _left_click == "package_installer" and _mxpi_available:
+            self.opens_mxpi_radio.setChecked(True)
+        elif _left_click == "package_manager" and _synaptic_available:
             self.opens_synaptic_radio.setChecked(True)
         else:
             self.opens_view_and_upgrade_radio.setChecked(True)
@@ -633,17 +652,18 @@ when additional updates are available."""))
         #---------------------------------------------------------------
         # left_click_frame connections
         #---------------------------------------------------------------
-        # set connection
 
         # Connect button group signal to slot
         self.left_click_button_group.buttonClicked.connect(self.on_left_click_button_clicked)
 
-        if (os.path.isfile('/usr/bin/synaptic-pkexec') and
-            os.access('/usr/bin/synaptic-pkexec', os.X_OK)
-            ):
+        if _synaptic_available or _mxpi_available:
             left_click_h_layout = QHBoxLayout()
-            left_click_h_layout.addWidget(self.opens_synaptic_radio)
-            left_click_h_layout.addSpacing(8)
+            if _synaptic_available:
+                left_click_h_layout.addWidget(self.opens_synaptic_radio)
+                left_click_h_layout.addSpacing(8)
+            if _mxpi_available:
+                left_click_h_layout.addWidget(self.opens_mxpi_radio)
+                left_click_h_layout.addSpacing(8)
             left_click_h_layout.addWidget(self.opens_view_and_upgrade_radio)
             left_click_h_layout.addStretch()
             left_click_layout.addLayout(left_click_h_layout)

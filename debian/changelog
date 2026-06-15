@@ -1,3 +1,18 @@
+mx-updater (26.06.1mx25~dev13) UNRELEASED; urgency=medium
+
+  * updater-settings.py: add MX Package Installer as an explicit left-click
+    option alongside Synaptic and View and Upgrade. Frame is shown when at
+    least one of Synaptic or MXPI is installed; each radio only appears when
+    its app is available. Fixes stale initial-state check (was using `in`
+    instead of `==`).
+  * updater-systray.py: when Synaptic or MXPI is the configured left-click
+    action, respect that choice even when no updates are available instead of
+    always falling back to the hardcoded Synaptic-first order. View and
+    Upgrade still falls back to the first available package manager when no
+    updates are present.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev12) UNRELEASED; urgency=medium
 
   * updater-settings.py: rename Left-click group box title to "Left-click"

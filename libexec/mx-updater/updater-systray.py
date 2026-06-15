@@ -1688,7 +1688,16 @@ class SystemTrayIcon(QSystemTrayIcon):
             action = None
             if self._total_updates:
                 action = self.actions.get(left_click)
+            elif left_click in ("synaptic", "packageinstaller"):
+                # user chose a package manager: respect it even with no updates
+                action = self.actions.get(left_click)
+                if not action:
+                    for x in ("synaptic", "packageinstaller", "view_and_upgrade"):
+                        if self.actions.get(x):
+                            action = self.actions.get(x)
+                            break
             else:
+                # view_and_upgrade: fall back to package manager when no updates
                 for x in ("synaptic", "packageinstaller", "view_and_upgrade"):
                     if self.actions.get(x):
                         action = self.actions.get(x)

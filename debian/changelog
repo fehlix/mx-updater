@@ -1,3 +1,13 @@
+mx-updater (26.06.1mx25~dev09) UNRELEASED; urgency=medium
+
+  * updater-settings.py: compact Upgrade mode and Left-click behaviour
+    sections into single horizontal rows to reduce settings dialog height
+    on small screens (e.g. 1366x768). Full/basic upgrade radio buttons and
+    the use nala checkbox now share one line; Synaptic and View and Upgrade
+    radio buttons share one line.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev08) UNRELEASED; urgency=medium
 
   * updater_action: fix check_authenticator to properly detect running

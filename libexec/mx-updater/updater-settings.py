@@ -474,27 +474,21 @@ without installing new dependencies or removing existing packages."""))
         if self.settings["use_nala"]:
             self.use_nala_checkbox.setChecked(True)
 
+        # compact row: full radio, basic radio, use_nala checkbox on one line
+        upgrade_h_layout = QHBoxLayout()
+        upgrade_h_layout.addWidget(self.full_upgrade_radio)
+        upgrade_h_layout.addSpacing(8)
+        upgrade_h_layout.addWidget(self.basic_upgrade_radio)
+
         # Does /usr/bin/nala exists and is executable
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
-            # horizontal layout for full upgrade radio button and use_nala checkbox
-            upgrade_h_layout = QHBoxLayout()
-            upgrade_h_layout.addWidget(self.full_upgrade_radio)
-
-            # stretch space to push use_nala_checkbox right
-            upgrade_h_layout.addStretch()  # This will take up all available space
-
-            # use_nala_checkbox with a small fixed spacing
+            upgrade_h_layout.addSpacing(16)
             upgrade_h_layout.addWidget(self.use_nala_checkbox)
-            upgrade_h_layout.addSpacing(20)  # fixed 20 pixels
         else:
             self.use_nala_checkbox.setChecked(False)
-            # no nala, add radio button only
-            upgrade_h_layout = QHBoxLayout()
-            upgrade_h_layout.addWidget(self.full_upgrade_radio)
 
-         # Add horizontal layout and other widgets to upgrade layout
+        upgrade_h_layout.addStretch()
         upgrade_layout.addLayout(upgrade_h_layout)
-        upgrade_layout.addWidget(self.basic_upgrade_radio)
 
         #---------------------------------------------------------------
         # upgrade_frame connections
@@ -616,8 +610,12 @@ when additional updates are available."""))
         if (os.path.isfile('/usr/bin/synaptic-pkexec') and
             os.access('/usr/bin/synaptic-pkexec', os.X_OK)
             ):
-            left_click_layout.addWidget(self.opens_synaptic_radio)
-            left_click_layout.addWidget(self.opens_view_and_upgrade_radio)
+            left_click_h_layout = QHBoxLayout()
+            left_click_h_layout.addWidget(self.opens_synaptic_radio)
+            left_click_h_layout.addSpacing(8)
+            left_click_h_layout.addWidget(self.opens_view_and_upgrade_radio)
+            left_click_h_layout.addStretch()
+            left_click_layout.addLayout(left_click_h_layout)
             left_click_frame.setLayout(left_click_layout)
             layout.addWidget(left_click_frame)
         else:

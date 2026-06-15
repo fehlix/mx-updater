@@ -1,3 +1,10 @@
+mx-updater (26.06.1mx25~dev14) UNRELEASED; urgency=medium
+
+  * updater-settings.py: "Synaptic" and "MXPI" radio labels are proper names,
+    not wrapped in _() -- no translation needed or wanted.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev13) UNRELEASED; urgency=medium
 
   * updater-settings.py: add MX Package Installer as an explicit left-click

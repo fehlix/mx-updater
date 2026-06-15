@@ -586,23 +586,13 @@ when additional updates are available."""))
         #left_click_layout.setContentsMargins(0, 10, 0, 0)  # adjust margins
         left_click_layout.setContentsMargins(*frame_margins)  # adjust margins
 
-        # TRANSLATORS: The label of the radio button to open Synaptic on left-click.
-        self.opens_synaptic_radio = QRadioButton(_("Synaptic"))
-
-        # TRANSLATORS: Tooltip for the "Synaptic" radio button.
+        self.opens_synaptic_radio = QRadioButton("Synaptic")
         self.opens_synaptic_radio.setToolTip(_(
             "Left-click always opens Synaptic package manager,\n"
             "with or without updates available."
         ))
 
-        # keep old translated string so xgettext still extracts it
-        # TRANSLATORS: The label of the radio button "opens Synaptic".
-        _dummy = _("opens Synaptic")
-
-        # TRANSLATORS: The label of the radio button to open MX Package Installer on left-click.
-        self.opens_mxpi_radio = QRadioButton(_("MX Package Installer"))
-
-        # TRANSLATORS: Tooltip for the "MX Package Installer" radio button.
+        self.opens_mxpi_radio = QRadioButton("MXPI")
         self.opens_mxpi_radio.setToolTip(_(
             "Left-click always opens MX Package Installer,\n"
             "with or without updates available."

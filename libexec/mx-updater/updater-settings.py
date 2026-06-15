@@ -674,8 +674,9 @@ when additional updates are available."""))
         icons_layout.setContentsMargins(*frame_margins)
         icons_layout.setHorizontalSpacing(8)
         icons_layout.setVerticalSpacing(2)
-        icons_layout.setColumnMinimumWidth(2, 32)
-        icons_layout.setColumnStretch(4, 1)
+        icons_layout.setColumnMinimumWidth(1, 32)
+        icons_layout.setColumnMinimumWidth(3, 32)
+        icons_layout.setColumnStretch(5, 1)
 
         self.icon_radio_buttons = {}  # name -> icon radio button
 
@@ -729,8 +730,8 @@ when no updates are available."""))
                 icon_radio_button.setChecked(True)
 
             icons_layout.addWidget(icon_radio_button, row_idx, 0)
-            icons_layout.addWidget(self.create_icon_label(icon_some), row_idx, 1)
-            icons_layout.addWidget(self.create_icon_label(icon_none), row_idx, 3)
+            icons_layout.addWidget(self.create_icon_label(icon_some), row_idx, 2)
+            icons_layout.addWidget(self.create_icon_label(icon_none), row_idx, 4)
             self.icon_radio_buttons[icon_name] = icon_radio_button  # Store the radio button
 
         # single admin icon set: show for preview but prevent deselection
@@ -756,7 +757,7 @@ when no updates are available."""))
 
         self.wireframe_transparent_checkbox.setEnabled(_wireframe_enabled)
         self.wireframe_transparent_checkbox.setVisible(not _admin_active)
-        icons_layout.addWidget(self.wireframe_transparent_checkbox, len(self.icon_order), 0, 1, 4)
+        icons_layout.addWidget(self.wireframe_transparent_checkbox, len(self.icon_order), 0, 1, 5)
         icons_frame.setLayout(icons_layout)
         layout.addWidget(icons_frame)
 

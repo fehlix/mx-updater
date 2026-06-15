@@ -7,6 +7,8 @@ mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
     "skip upgrade confirmation" (was "automatically confirm all package upgrades").
     Add _dummy for "opens Synaptic" (old left-click radio label, replaced by
     bare "Synaptic" in dev13) so existing translations are not lost on Transifex.
+    Icon grid: add equal 32px gap before first icon column (was 8px) to match
+    the gap between the two icon columns.
 
  -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
 

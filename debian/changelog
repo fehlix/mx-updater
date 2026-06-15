@@ -1,9 +1,22 @@
+mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
+
+  * updater-settings.py: shorten three checkbox labels, keeping old strings
+    as _dummy for xgettext/Transifex:
+    "autostart after delay" (was "start 'MX Updater' at login after delay"),
+    "close terminal when idle" (was "close terminal window after idle time"),
+    "skip upgrade confirmation" (was "automatically confirm all package upgrades").
+    Add _dummy for "opens Synaptic" (old left-click radio label, replaced by
+    bare "Synaptic" in dev13) so existing translations are not lost on Transifex.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev15) UNRELEASED; urgency=medium
 
   * updater-settings.py: let Qt size the settings dialog to its natural
     minimum content width instead of forcing a fixed 400px initial hint.
-    Replace fixed 100px gap and 60px trailing space in icon rows with a
-    20px gap and addStretch() so they no longer force a wide minimum width.
+    Replace icon row HBoxLayouts with a QGridLayout so all icon columns
+    align regardless of label width. Use a dedicated empty column between
+    the two icon columns (min-width 32px) for visual separation.
 
  -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
 

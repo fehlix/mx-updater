@@ -587,6 +587,7 @@ when additional updates are available."""))
         left_click_layout.setContentsMargins(*frame_margins)  # adjust margins
 
         self.opens_synaptic_radio = QRadioButton("Synaptic")
+        _dummy = _("opens Synaptic")
         self.opens_synaptic_radio.setToolTip(_(
             "Left-click always opens Synaptic package manager,\n"
             "with or without updates available."
@@ -776,7 +777,8 @@ when no updates are available."""))
         # TRANSLATORS: The label of the checkbox, where user can select
         # that "--assume-yes" option is added, so "apt" or "nala" won't ask
         # for confirmations to install
-        checkbox_label = _("automatically confirm all package upgrades")
+        checkbox_label = _("skip upgrade confirmation")
+        _dummy = _("automatically confirm all package upgrades")
 
         # TRANSLATORS: The tooltip of the checkbox "automatically confirm all package upgrades",
         # which tries to explain what this checkbox is about.
@@ -801,7 +803,8 @@ when no updates are available."""))
         # TRANSLATORS: The label of the checkbox where user can select
         #to start 'MX Updater' systray icon automatically at login
         #after a delay of seconds.
-        checkbox_label = _('start "MX Updater" at login after delay')
+        checkbox_label = _('autostart after delay')
+        _dummy = _('start "MX Updater" at login after delay')
 
         # TRANSLATORS: Explains the start of MX Updater automatically
         # after a delay of seconds. The user can select the number of seconds.
@@ -854,7 +857,8 @@ at login after the specified delay in seconds.""")
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        checkbox_label = _("close terminal window after idle time")
+        checkbox_label = _("close terminal when idle")
+        _dummy = _("close terminal window after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window
         # after system updates with a configurable idle time

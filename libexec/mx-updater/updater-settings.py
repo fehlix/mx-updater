@@ -396,7 +396,7 @@ class SettingsEditorDialog(QDialog):
 
         #self.setWindowIcon(QIcon("mx-updater-settings.svg"))
         self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/mx-updater-settings.svg"))
-        self.setGeometry(100, 100, 400, 400)  # X, Y,  Width, Height
+        self.setGeometry(100, 100, 1, 1)  # X, Y ignored (center() overrides); 1,1 lets Qt size to content
 
         # margins for main layout (left, top, right, bottom)
         overall_margins = (8, 5, 8, 5)
@@ -667,10 +667,14 @@ when additional updates are available."""))
         #---------------------------------------------------------------
         icons_frame = QGroupBox(_("Icons"))
         icons_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
-        icons_layout = QVBoxLayout()
+        icons_layout = QGridLayout()
 
         # layout margins (left, top, right, bottom)
-        icons_layout.setContentsMargins(*frame_margins)  # Remove margins if needed
+        icons_layout.setContentsMargins(*frame_margins)
+        icons_layout.setHorizontalSpacing(8)
+        icons_layout.setVerticalSpacing(2)
+        icons_layout.setColumnMinimumWidth(2, 32)
+        icons_layout.setColumnStretch(4, 1)
 
         self.icon_radio_buttons = {}  # name -> icon radio button
 
@@ -696,7 +700,7 @@ when no updates are available."""))
         # TRANSLATORS: The classic icon-set
         classic_string = _("classic")
 
-        for icon_name in self.icon_order:
+        for row_idx, icon_name in enumerate(self.icon_order):
             #print(f"Icon_Look(name)={icon_name}")
             icon = self.icon_set.get(icon_name)
             icon_label_string = icon.get('label')
@@ -712,8 +716,6 @@ when no updates are available."""))
             else:
                 icon_label = _(icon_label_string)
 
-            row_layout = QHBoxLayout()
-            row_layout.setSpacing(20)  # smaller spacing between icons
             icon_radio_button = QRadioButton(icon_label)
             icon_radio_button.toggled.connect(
                 lambda checked, label=icon_label, name=icon_name:
@@ -725,14 +727,9 @@ when no updates are available."""))
             if icon_name == icon_look:
                 icon_radio_button.setChecked(True)
 
-            row_layout.addWidget(icon_radio_button)
-            row_layout.addSpacing(10)  # spacing of 10 pixels
-            row_layout.addWidget(self.create_icon_label(icon_some))
-            row_layout.addSpacing(100)  # spacing of 100 pixels between icons
-            row_layout.addWidget(self.create_icon_label(icon_none))
-            row_layout.addSpacing(60)  # spacing of 60 pixels
-
-            icons_layout.addLayout(row_layout)
+            icons_layout.addWidget(icon_radio_button, row_idx, 0)
+            icons_layout.addWidget(self.create_icon_label(icon_some), row_idx, 1)
+            icons_layout.addWidget(self.create_icon_label(icon_none), row_idx, 3)
             self.icon_radio_buttons[icon_name] = icon_radio_button  # Store the radio button
 
         # single admin icon set: show for preview but prevent deselection
@@ -758,7 +755,7 @@ when no updates are available."""))
 
         self.wireframe_transparent_checkbox.setEnabled(_wireframe_enabled)
         self.wireframe_transparent_checkbox.setVisible(not _admin_active)
-        icons_layout.addWidget(self.wireframe_transparent_checkbox)
+        icons_layout.addWidget(self.wireframe_transparent_checkbox, len(self.icon_order), 0, 1, 4)
         icons_frame.setLayout(icons_layout)
         layout.addWidget(icons_frame)
 

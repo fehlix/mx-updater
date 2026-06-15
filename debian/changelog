@@ -1,3 +1,12 @@
+mx-updater (26.06.1mx25~dev15) UNRELEASED; urgency=medium
+
+  * updater-settings.py: let Qt size the settings dialog to its natural
+    minimum content width instead of forcing a fixed 400px initial hint.
+    Replace fixed 100px gap and 60px trailing space in icon rows with a
+    20px gap and addStretch() so they no longer force a wide minimum width.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev14) UNRELEASED; urgency=medium
 
   * updater-settings.py: "Synaptic" and "MXPI" radio labels are proper names,

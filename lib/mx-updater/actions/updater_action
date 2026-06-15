@@ -80,7 +80,7 @@ if [ "$EUID" != 0 ]; then
             ;;
         *sudo)
             sudo -k
-            sudo "$RUN"
+            sudo "$ME"
             ;;
     esac
     exit $?

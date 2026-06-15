@@ -1,11 +1,31 @@
+mx-updater (26.06.1mx25~dev08) UNRELEASED; urgency=medium
+
+  * updater_action: fix check_authenticator to properly detect running
+    polkit agents via pgrep, so the sudo and gksu fallback paths are
+    used when no polkit agent is running instead of always attempting
+    pkexec. Also route sudo and gksu paths through the root section of
+    updater_action (call "$ME" instead of "$RUN" directly) so that
+    XDG_RUNTIME_DIR and other root environment setup is applied
+    consistently regardless of auth method.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+
+mx-updater (26.06.1mx25~dev05) UNRELEASED; urgency=medium
+
+  * updater_action: pass DISPLAY and XAUTHORITY from the user environment
+    into the pkexec/polkit root environment so debconf can initialize its
+    X11 frontend (prevents "cannot initialize frontend" errors).
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 14 Jun 2026 13:14:54 -0400
+
 mx-updater (26.06.1mx25~dev04) UNRELEASED; urgency=medium
 
   * Add terminal window size and position settings: new single-line
     control in preferences with size and position dropdowns.
-    Size options: default (auto), 1/3, 1/2, 2/3, 3/4, 9/10, full screen.
+    Size options: default, terminal's own, 1/3, 1/2, 2/3, 3/4, 9/10, full screen.
     Position options: center, top-left, top-right, bottom-left, bottom-right;
     disabled when full screen is selected.
-    Default (auto) preserves original sizing behavior exactly, including
+    "default" preserves original sizing behavior exactly, including
     the 960x600 cap on screens wider than 1600px -- no visible change
     for existing users.
   * Terminal window positioning now uses availableGeometry() so all
@@ -14,8 +34,12 @@ mx-updater (26.06.1mx25~dev04) UNRELEASED; urgency=medium
     placement); size dropdown remains enabled as size hints are honoured.
     shlib also ignores any saved terminal_position on Wayland, so a
     position set under X11 has no effect when the user switches to Wayland.
+  * Add "terminal's own" size option: passes no geometry hints to the
+    terminal emulator, letting it use its own remembered size and position
+    (e.g. Konsole's "remember window size/position"). Position dropdown
+    hidden when this option is selected. All terminal emulators supported.
 
- -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 18:10:56 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 12:00:00 -0400
 
 mx-updater (26.06.1mx25~dev03) UNRELEASED; urgency=medium
 

@@ -257,6 +257,7 @@ updater_show() {
 
     local terminal_size=$(get_config_item "terminal_size" "two-thirds")
     local terminal_position=$(get_config_item "terminal_position" "center")
+    local use_own_geometry=false
 
     # On Wayland the compositor ignores position hints; ignore any saved position
     if [ -n "$WAYLAND_DISPLAY" ] || [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
@@ -270,6 +271,7 @@ updater_show() {
         three-quarters) TW=$((DW*3/4));  TH=$((DH*3/4))  ;;
         nine-tenths)    TW=$((DW*9/10)); TH=$((DH*9/10)) ;;
         full)           TW=$DW;          TH=$DH           ;;
+        own)            use_own_geometry=true              ;;
         *)              # default: original sizing, capped on large screens
                         TW=$((DW*2/3)); TH=$((DH*2/3))
                         if ((DW >= 1600)); then
@@ -284,17 +286,19 @@ updater_show() {
     : ${XOFF:=0}
     : ${YOFF:=0}
 
-    if [ "$terminal_size" = "full" ]; then
-        TX=$XOFF
-        TY=$YOFF
-    else
-        case "$terminal_position" in
-            top-left)     TX=$XOFF;              TY=$YOFF              ;;
-            top-right)    TX=$((DW-TW+XOFF));    TY=$YOFF              ;;
-            bottom-left)  TX=$XOFF;              TY=$((DH-TH+YOFF))   ;;
-            bottom-right) TX=$((DW-TW+XOFF));    TY=$((DH-TH+YOFF))   ;;
-            *)            TX=$(((DW-TW)/2+XOFF)); TY=$(((DH-TH)/2+YOFF)) ;;
-        esac
+    if ! $use_own_geometry; then
+        if [ "$terminal_size" = "full" ]; then
+            TX=$XOFF
+            TY=$YOFF
+        else
+            case "$terminal_position" in
+                top-left)     TX=$XOFF;              TY=$YOFF              ;;
+                top-right)    TX=$((DW-TW+XOFF));    TY=$YOFF              ;;
+                bottom-left)  TX=$XOFF;              TY=$((DH-TH+YOFF))   ;;
+                bottom-right) TX=$((DW-TW+XOFF));    TY=$((DH-TH+YOFF))   ;;
+                *)            TX=$(((DW-TW)/2+XOFF)); TY=$(((DH-TH)/2+YOFF)) ;;
+            esac
+        fi
     fi
 
     CLASS_NAME='mx-updater'
@@ -320,6 +324,9 @@ updater_show() {
 
     fi
 
+    # Also skip xdotool when letting the terminal manage its own geometry
+    $use_own_geometry && XDO=": "
+
     if [ -z "$XDO" ]; then
 
         XSEARCH="xdotool sleep 0.2 search --onlyvisible --name '$T'"
@@ -333,7 +340,17 @@ updater_show() {
     CW=10 # char width - rough default
     CH=20 # char hight - rough default
 
-    G="$(($TW/$CW))x$(($TH/$CH))+$TX+$TY"
+    G=""
+    $use_own_geometry || G="$(($TW/$CW))x$(($TH/$CH))+$TX+$TY"
+
+    local kgeo_flags=() geo_flags=() rox_flags=() urxvt_flags=() zutty_flags=()
+    if ! $use_own_geometry; then
+        kgeo_flags=(-qwindowgeometry "${TW}x${TH}+$TX+$TY")
+        geo_flags=(--geometry "$G")
+        rox_flags=("--geometry=$G")
+        urxvt_flags=(-geometry "$G")
+        zutty_flags=(-geometry "$(($TW/$CW))x$(($TH/$CH))")
+    fi
 
     SLEEP=0.3 # sleep
 
@@ -365,11 +382,11 @@ updater_show() {
 
       *gnome-terminal.wrapper|*gnome-terminal)
             CMD="test -n '${msg}' && echo '$msg'; sleep 0.5; $XDO; $cmd"
-            gnome-terminal --wait --hide-menubar --geometry "$G" --title "$T" -- bash -c "$CMD"
+            gnome-terminal --wait --hide-menubar "${geo_flags[@]}" --title "$T" -- bash -c "$CMD"
             ;;
       *konsole)
             if pgrep -x plasmashell >/dev/null; then
-               konsole --nofork --hide-menubar -qwindowgeometry "${TW}x${TH}+$TX+$TY" -qwindowicon "$icon_kde" -qwindowtitle "$T" -e "$K"
+               konsole --nofork --hide-menubar "${kgeo_flags[@]}" -qwindowicon "$icon_kde" -qwindowtitle "$T" -e "$K"
             else
                konsole -e "$C"
                sleep 5
@@ -379,29 +396,29 @@ updater_show() {
             lxterminal --no-remote -T "$T" -e "$C"
             ;;
       *mate-terminal|*mate-terminal.wrapper)
-            mate-terminal --hide-menubar --geometry="$G" --class="${CLASS_NAME}" --role="${CLASS_NAME}" --title="$T" --sm-client-disable --disable-factory  -- sh -c "$C" 2>&1
+            mate-terminal --hide-menubar "${geo_flags[@]}" --class="${CLASS_NAME}" --role="${CLASS_NAME}" --title="$T" --sm-client-disable --disable-factory  -- sh -c "$C" 2>&1
             ;;
       *qterminal)
-               qterminal -qwindowgeometry "${TW}x${TH}+$TX+$TY" -qwindowicon "$icon" -qwindowtitle "$T" -e "$C"
+               qterminal "${kgeo_flags[@]}" -qwindowicon "$icon" -qwindowtitle "$T" -e "$C"
             ;;
       *roxterm)
-            roxterm --hide-menubar --separate "--geometry=$G" -T "$T" -e "$C" 2>/dev/null
+            roxterm --hide-menubar --separate "${rox_flags[@]}" -T "$T" -e "$C" 2>/dev/null
             ;;
       *terminator)
             terminator --no-dbus --icon=""$icon -T "$T" -e "$C" 2>/dev/null
             ;;
       *urxvt)
-            urxvt  -geometry "$G" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"
+            urxvt  "${urxvt_flags[@]}" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"
             ;;
       *xterm)
             xterm  -fa monaco -fs 12 -bg black -fg white  -xrm 'XTerm.vt100.allowTitleOps: false' -T "$T"  -e "$C"
             ;;
       *zutty)
             export EGL_LOG_LEVEL=fatal
-            zutty -title "$T" -geometry "$(($TW/$CW))x$(($TH/$CH))" -e sh -c "$C"
+            zutty -title "$T" "${zutty_flags[@]}" -e sh -c "$C"
             ;;
       *)    if [ -x /usr/bin/xfce4-terminal ]; then
-                xfce4-terminal --disable-server --hide-menubar --geometry="$G"  --icon="$icon"  -T "$T" -e "$C" 2>&1 | grep -v 'SESSION_MANAGER environment variable not defined'
+                xfce4-terminal --disable-server --hide-menubar "${geo_flags[@]}"  --icon="$icon"  -T "$T" -e "$C" 2>&1 | grep -v 'SESSION_MANAGER environment variable not defined'
             else
                 x-terminal-emulator -T "$T" -e "$C"
             fi

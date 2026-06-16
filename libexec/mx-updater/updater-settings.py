@@ -478,13 +478,15 @@ without installing new dependencies or removing existing packages."""))
         if self.settings["use_nala"]:
             self.use_nala_checkbox.setChecked(True)
 
-        # row 1: full + basic radios
-        upgrade_h_layout = QHBoxLayout()
-        upgrade_h_layout.addWidget(self.full_upgrade_radio)
-        upgrade_h_layout.addSpacing(8)
-        upgrade_h_layout.addWidget(self.basic_upgrade_radio)
-        upgrade_h_layout.addStretch()
-        upgrade_layout.addLayout(upgrade_h_layout)
+        # grid: full/basic on row 0, automatic/use-nala on row 1 -- col 0 width
+        # is the same for both rows so "basic" and "use nala" always align
+        upgrade_grid = QGridLayout()
+        upgrade_grid.setHorizontalSpacing(4)
+        upgrade_grid.setVerticalSpacing(2)
+        upgrade_grid.setColumnMinimumWidth(1, 16)
+        upgrade_grid.setColumnStretch(3, 1)
+        upgrade_grid.addWidget(self.full_upgrade_radio, 0, 0)
+        upgrade_grid.addWidget(self.basic_upgrade_radio, 0, 2)
 
         #---------------------------------------------------------------
         # upgrade_frame connections
@@ -526,19 +528,15 @@ when additional updates are available."""))
         # which tries to explain what this checkbox is about.
         self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
-        # row 2: automatic checkbox + use nala checkbox
-        auto_nala_h_layout = QHBoxLayout()
-        auto_nala_h_layout.addWidget(self.auto_upgrade_checkbox)
+        upgrade_grid.addWidget(self.auto_upgrade_checkbox, 1, 0)
 
         # Does /usr/bin/nala exists and is executable
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
-            auto_nala_h_layout.addSpacing(16)
-            auto_nala_h_layout.addWidget(self.use_nala_checkbox)
+            upgrade_grid.addWidget(self.use_nala_checkbox, 1, 2)
         else:
             self.use_nala_checkbox.setChecked(False)
 
-        auto_nala_h_layout.addStretch()
-        upgrade_layout.addLayout(auto_nala_h_layout)
+        upgrade_layout.addLayout(upgrade_grid)
 
         #---------------------------------------------------------------
         # auto_upgrade checkbox set initilal state
@@ -577,7 +575,8 @@ when additional updates are available."""))
         left_click_frame.setToolTip(_(
             "Left-click opens the selected application.\n"
             "Middle-click opens MX Package Installer\n"
-            "(or Synaptic if MX Package Installer is not installed)."
+            "(or Synaptic if MX Package Installer is not installed).\n"
+            "Middle-click does nothing if neither is installed."
         ))
 
         left_click_layout = QVBoxLayout()
@@ -595,7 +594,7 @@ when additional updates are available."""))
 
         self.opens_mxpi_radio = QRadioButton("MXPI")
         self.opens_mxpi_radio.setToolTip(_(
-            "Left-click always opens MX Package Installer,\n"
+            "Left-click always opens MX Package Installer (MXPI),\n"
             "with or without updates available."
         ))
 

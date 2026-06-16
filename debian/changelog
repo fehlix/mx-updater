@@ -9,8 +9,25 @@ mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
     bare "Synaptic" in dev13) so existing translations are not lost on Transifex.
     Icon grid: add equal 32px gap before first icon column (was 8px) to match
     the gap between the two icon columns.
+    Upgrade Mode: replace two HBoxLayouts with a QGridLayout so "basic" and
+    "use nala" always align with each other; insert a 16px spacer column
+    between the label and second option to prevent crowding with long translations.
+  * updater-view-and-upgrade.py: sync shortened labels from settings:
+    "skip upgrade confirmation" (was "automatically confirm all package upgrades"),
+    "close terminal when idle" (was "close terminal window automatically after idle time").
+    Old strings kept as _dummy for Transifex.
+  * updater-systray.py: fix middle-click always opening MXPI regardless of
+    availability -- handler was re-iterating the raw action dict instead of
+    using the pre-computed middle_click action. Also fix typo
+    "sview_and_upgrade" in the middle_click fallback assignment.
+    Remove dead first assignment of synaptic_is_available (was immediately
+    overwritten by the fuller check that includes bool(self.actions["synaptic"])).
+    Remove VaU fallback from middle-click -- middle-click is for package managers
+    only; if neither MXPI nor Synaptic is installed it now does nothing instead
+    of opening VaU. Update Left-click frame tooltip accordingly.
+    Add "(MXPI)" to MXPI radio tooltip so the abbreviation is explained.
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Mon, 16 Jun 2026 00:00:00 -0400
 
 mx-updater (26.06.1mx25~dev15) UNRELEASED; urgency=medium
 

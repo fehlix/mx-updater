@@ -1488,9 +1488,6 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         # Check and set visibility for synaptic
         synaptic_is_available = (os.path.isfile('/usr/bin/synaptic-pkexec')
-                                and os.access('/usr/bin/synaptic-pkexec', os.X_OK))
-
-        synaptic_is_available = (os.path.isfile('/usr/bin/synaptic-pkexec')
                                 and os.access('/usr/bin/synaptic-pkexec', os.X_OK)
                                 and bool(self.actions["synaptic"]))
         self.set_action_visble("synaptic", synaptic_is_available)
@@ -1509,8 +1506,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         elif synaptic_is_available:
             self.actions["middle_click"] = self.actions["synaptic"]
         else:
-            # fallback to view-and_upgrade
-            self.actions["middle_click"] = self.actions["sview_and_upgrade"]
+            self.actions["middle_click"] = None
 
         # Check and set visibility for unattended-upgrades log
 
@@ -1706,13 +1702,10 @@ class SystemTrayIcon(QSystemTrayIcon):
                 action.trigger()
 
         elif reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            # middle-click -> custom action (if defined) or popup menu
+            # middle-click -> use pre-computed middle_click action (MXPI if
+            # available, else Synaptic, else View and Upgrade)
             logger.debug("self.middle_click()")
-            action = None
-            for x in ("packageinstaller", "synaptic", "view_and_upgrade"):
-                if self.actions.get(x):
-                    action = self.actions.get(x)
-                    break
+            action = self.actions.get("middle_click")
             if action:
                 action.trigger()
 

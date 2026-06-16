@@ -382,7 +382,8 @@ class ViewAndUpgradeDialog(QDialog):
         grid = QGridLayout()
         # row 0
 
-        checkbox_label = _("automatically confirm all package upgrades")
+        checkbox_label = _("skip upgrade confirmation")
+        _dummy = _("automatically confirm all package upgrades")
         checkbox_tooltip = _("Automatically answers 'yes' to package management prompts during upgrades.\n"
                              "Some system configuration changes may still require manual confirmation.")
         self.upgrade_assume_yes_checkbox = QCheckBox(checkbox_label)
@@ -404,7 +405,8 @@ class ViewAndUpgradeDialog(QDialog):
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        auto_close_label = _("close terminal window automatically after idle time")
+        auto_close_label = _("close terminal when idle")
+        _dummy = _("close terminal window automatically after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window
         # after system updates with a configurable idle time

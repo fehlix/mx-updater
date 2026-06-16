@@ -1592,10 +1592,13 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
     def create_icon_label(self, icon_path):
         label = QLabel()
-        pixmap = QPixmap(icon_path)
+        display_path = icon_path.replace('/256x256/', '/32x32/')
+        pixmap = QPixmap(display_path)
+        if pixmap.isNull():
+            pixmap = QPixmap(icon_path)
         label.setPixmap(pixmap)
-        label.setFixedSize(32, 32)  # Set a fixed size for the icon
-        label.setScaledContents(True)  # Scale the pixmap to fit the label
+        label.setFixedSize(32, 32)
+        label.setScaledContents(True)
         return label
 
     def name(self):
@@ -1776,7 +1779,7 @@ def tooltip_stylesheet():
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)  # QApplication instance
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("mx-updater-settings")
     app.setStyleSheet(tooltip_stylesheet())
 
     bus = SessionBus()

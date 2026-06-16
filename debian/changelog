@@ -1,3 +1,49 @@
+mx-updater (26.06.1mx25~dev17) UNRELEASED; urgency=medium
+
+  * icons/Makefile: rename mx-updater icon to updater-mx to prevent Papirus
+    icon theme from hijacking it. Move scalable symlink from hicolor/scalable/
+    to hicolor/scalable/apps/ (correct per Freedesktop spec).
+  * updater_config.py: switch tray icon paths from flat 32px PNG symlinks to
+    hicolor/256x256/apps PNGs for all icon sets except "classic" (classic
+    kept as flat PNG symlink for backward compatibility with long-time users).
+    256px PNGs are rendered from SVG by rsvg-convert; scaling down 256px to
+    panel size is clean. Avoids Papirus icon theme hijack: Papirus provides
+    icons under all mnotify-* names, so QIcon.fromTheme("mnotify-some-*")
+    would return Papirus icons when Papirus is the active theme. Direct path
+    loading bypasses the theme lookup entirely.
+  * updater-systray.py, updater_about.py, updater-history.py,
+    updater-changelog.py, mx-updater-logviewer.py: update window icon path
+    from hicolor/scalable/mx-updater.svg to hicolor/scalable/apps/updater-mx.svg.
+  * All Python apps: setApplicationName("updater-mx") so WM_CLASS matches
+    the new StartupWMClass in desktop files. updater-settings.py uses
+    "mx-updater-settings" (fixes pre-existing mismatch with its desktop file).
+  * xdg/mx-updater.desktop, xdg/mx-updater-autostart.desktop: update
+    Icon= and StartupWMClass= to updater-mx.
+  * updater-view-and-upgrade.py: fix missing window icon update (still
+    referenced old hicolor/scalable/mx-updater.svg path).
+  * updater-settings.py: fix icon preview in settings dialog showing blank
+    for white-on-transparent icons (e.g. wireframe-some). create_icon_label
+    now substitutes 32x32 for 256x256 in hicolor paths so the purpose-built
+    32px PNG is used for display; falls back to the original path if missing.
+  * updater-systray.py: load tray icons with a multi-size QIcon built at
+    runtime from all available hicolor/NxN/apps/ PNG variants (16, 22, 24,
+    32, 48, 64px). Qt picks the exact or nearest size for the panel so no
+    heavy downscaling occurs; works correctly on HiDPI too. Falls back to
+    QIcon(path) for non-hicolor paths (classic flat PNG).
+    QIcon.fromTheme was tried and reverted: Papirus hijacks all mnotify-*
+    names so fromTheme always returned Papirus icons instead of ours.
+    QIcon(256px PNG) was also tried and reverted: Qt downscaled 256->22px
+    with bilinear interpolation which looked blurry in the systray.
+  * icons/Makefile: add mx-updater.png and mx-updater.svg compat symlinks
+    pointing to updater-mx in each hicolor size dir and scalable/apps/.
+    Ensures old Icon=mx-updater references (user-copied .desktop files,
+    Fluxbox/Openbox generated menus) continue to resolve after the rename.
+  * debian/mx-updater.postinst: run gtk-update-icon-cache after install so
+    the hicolor icon cache is rebuilt immediately and the renamed icons are
+    found by name without requiring a reboot.
+
+ -- fehlix <fehlix@mxlinux.org>  Mon, 16 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
 
   * updater-settings.py: shorten three checkbox labels, keeping old strings

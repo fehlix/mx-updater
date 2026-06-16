@@ -356,7 +356,7 @@ class ViewAndUpgradeDialog(QDialog):
         window_title_updater = _("MX Updater")
         window_title_view_and_upgrade = _("View and Upgrade")
         window_title = f"[ {window_title_updater} ] -- {window_title_view_and_upgrade}"
-        window_icon = "/usr/share/icons/hicolor/scalable/mx-updater.svg"
+        window_icon = "/usr/share/icons/hicolor/scalable/apps/updater-mx.svg"
 
         self.setWindowTitle(window_title)
         self.setWindowIcon(QIcon(window_icon))
@@ -858,7 +858,7 @@ if __name__ == "__main__":
     service = ViewAndUpgradeService(session_bus, VIEW_AND_UPGRADE_OBJECT_PATH)
 
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
     app.setStyleSheet(tooltip_stylesheet())
 
     default_width  = 900

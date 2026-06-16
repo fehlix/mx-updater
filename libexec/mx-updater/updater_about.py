@@ -78,12 +78,12 @@ class UpdaterAbout():
         about_updater        =  _("Tray applet to notify of system and application updates")
         about_updater_title  = _("About MX Updater")
         about_copyright      = 'Copyright (c) MX Linux'
-        about_window_icon    = '/usr/share/icons/hicolor/scalable/mx-updater.svg'
+        about_window_icon    = '/usr/share/icons/hicolor/scalable/apps/updater-mx.svg'
 
         about_box_icon       = '/usr/share/icons/hicolor/96x96/apps/mx-updater.png'
         about_box_url        = 'https://mxlinux.org'
         about_copyright      = 'Copyright (c) MX Linux'
-        about_window_icon    = '/usr/share/icons/hicolor/scalable/mx-updater.svg'
+        about_window_icon    = '/usr/share/icons/hicolor/scalable/apps/updater-mx.svg'
         changelog_file       = '/usr/share/doc/mx-updater/changelog.gz'
         license_file         = '/usr/share/doc/mx-updater/license.html'
         
@@ -222,7 +222,7 @@ class UpdaterAbout():
 
     def displayAbout(self):
         app = QApplication(sys.argv)
-        app.setApplicationName("mx-updater")
+        app.setApplicationName("updater-mx")
 
         if is_dark_theme():
             IS_DARK_THEME = True
@@ -271,7 +271,7 @@ def debug_p(text=''):
 def main():
 
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
     about = UpdaterAbout()
 
     

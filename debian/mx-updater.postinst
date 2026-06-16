@@ -69,7 +69,9 @@ case "$1" in
         if [ -d /run/systemd/system ]; then
             systemctl --system daemon-reload >/dev/null || :
         fi
-	
+
+	gtk-update-icon-cache -f -t /usr/share/icons/hicolor/ 2>/dev/null || true
+
 	;;
 esac
 exit 0

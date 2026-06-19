@@ -1,0 +1,4 @@
+# Allow users in the sudo group to run the mx-updater reload action without
+# a password prompt. Matches the polkit reload policy which also requires no
+# authentication (allow_any/allow_active = yes).
+%sudo ALL=(root) NOPASSWD: /usr/lib/mx-updater/actions/updater_reload_action

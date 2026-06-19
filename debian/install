@@ -4,6 +4,7 @@ l10n/build/locale    usr/share
 lib/mx-updater       usr/lib
 libexec/mx-updater   usr/libexec
 polkit/actions       usr/share/polkit-1
+polkit/rules.d       usr/share/polkit-1
 share/mx-updater     usr/share
 share/doc            usr/share
 
@@ -17,3 +18,4 @@ dbus/59updater-system-monitor                 etc/apt/apt.conf.d
 dbus/org.mxlinux.UpdaterSystemMonitor.conf    usr/share/dbus-1/system.d
 dbus/org.mxlinux.UpdaterSystemMonitor.service usr/share/dbus-1/system-services
 logrotate/mx-updater-monitor                  etc/logrotate.d
+sudoers.d/mx-updater-reload                   etc/sudoers.d

@@ -64,7 +64,7 @@ from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QFrame,
     QRadioButton, QCheckBox, QLabel, QPushButton, QWidget, QGroupBox,
     QButtonGroup, QGridLayout, QSizePolicy, QDialog, QDialogButtonBox,
-    QMessageBox, QSpinBox, QToolTip
+    QMessageBox, QSpinBox, QToolTip, QComboBox
 )
 from PyQt6.QtGui import QPixmap, QIcon, QKeyEvent, QGuiApplication, QFont, QPalette
 from PyQt6.QtCore import Qt, QSettings
@@ -396,7 +396,7 @@ class SettingsEditorDialog(QDialog):
 
         #self.setWindowIcon(QIcon("mx-updater-settings.svg"))
         self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/mx-updater-settings.svg"))
-        self.setGeometry(100, 100, 400, 400)  # X, Y,  Width, Height
+        self.setGeometry(100, 100, 1, 1)  # X, Y ignored (center() overrides); 1,1 lets Qt size to content
 
         # margins for main layout (left, top, right, bottom)
         overall_margins = (8, 5, 8, 5)
@@ -425,22 +425,26 @@ class SettingsEditorDialog(QDialog):
 
         self.upgrade_button_group = QButtonGroup(self)
 
-        # TRANSLATORS: The label of the checkbox, where user can select
-        # the "Upgrade mode": "full upgrade"
-        self.full_upgrade_radio = QRadioButton(self.squeeze_spaces(_("full upgrade   (recommended)")))
+        # TRANSLATORS: The label of the radio button for "full" upgrade mode.
+        self.full_upgrade_radio = QRadioButton(_("full"))
 
-        # TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
-        # which tries to explain what this checkbox is about.
+        # TRANSLATORS: The tooltip of the radio button "full" (full upgrade, recommended).
         self.full_upgrade_radio.setToolTip(_("""Upgrades all packages to their latest versions,
 which may include adding or removing packages
 to keep the system up-to-date and consistent."""))
 
-        # keep the tranlatead string here, so xgettext will als extract from here
+        # keep old translated strings so xgettext still extracts them
         # TRANSLATORS: The upgrade mode "full upgrade".
         _dummy = _("full upgrade")
+        # TRANSLATORS: The upgrade mode "full upgrade (recommended)".
+        _dummy = _("full upgrade   (recommended)")
 
+        # TRANSLATORS: The label of the radio button for "basic" upgrade mode.
+        self.basic_upgrade_radio = QRadioButton(_("basic"))
+
+        # keep old translated string so xgettext still extracts it
         # TRANSLATORS: The upgrade mode "basic upgrade".
-        self.basic_upgrade_radio = QRadioButton(_("basic upgrade"))
+        _dummy = _("basic upgrade")
 
         # TRANSLATORS: The tooltip of the checkbox "basic upgrade",
         # which tries to explain what this checkbox is about.
@@ -466,35 +470,24 @@ without installing new dependencies or removing existing packages."""))
 
         # TRANSLATORS: The label of the checkbox, where user can select
         # to use "nala" package manager instead of "apt"
-        self.use_nala_checkbox = QCheckBox(_("use nala"))
-        # TRANSLATORS: The tooltip of the checkbox "use nala",
+        _dummy = _("use nala")
+        self.use_nala_checkbox = QCheckBox("Nala")
+        # TRANSLATORS: The tooltip of the checkbox "nala",
         # which tries to explain what this checkbox is about.
         self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
 
         if self.settings["use_nala"]:
             self.use_nala_checkbox.setChecked(True)
 
-        # Does /usr/bin/nala exists and is executable
-        if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
-            # horizontal layout for full upgrade radio button and use_nala checkbox
-            upgrade_h_layout = QHBoxLayout()
-            upgrade_h_layout.addWidget(self.full_upgrade_radio)
-
-            # stretch space to push use_nala_checkbox right
-            upgrade_h_layout.addStretch()  # This will take up all available space
-
-            # use_nala_checkbox with a small fixed spacing
-            upgrade_h_layout.addWidget(self.use_nala_checkbox)
-            upgrade_h_layout.addSpacing(20)  # fixed 20 pixels
-        else:
-            self.use_nala_checkbox.setChecked(False)
-            # no nala, add radio button only
-            upgrade_h_layout = QHBoxLayout()
-            upgrade_h_layout.addWidget(self.full_upgrade_radio)
-
-         # Add horizontal layout and other widgets to upgrade layout
-        upgrade_layout.addLayout(upgrade_h_layout)
-        upgrade_layout.addWidget(self.basic_upgrade_radio)
+        # grid: full/basic on row 0, automatic/use-nala on row 1 -- col 0 width
+        # is the same for both rows so "basic" and "use nala" always align
+        upgrade_grid = QGridLayout()
+        upgrade_grid.setHorizontalSpacing(4)
+        upgrade_grid.setVerticalSpacing(2)
+        upgrade_grid.setColumnMinimumWidth(1, 16)
+        upgrade_grid.setColumnStretch(3, 1)
+        upgrade_grid.addWidget(self.full_upgrade_radio, 0, 0)
+        upgrade_grid.addWidget(self.basic_upgrade_radio, 0, 2)
 
         #---------------------------------------------------------------
         # upgrade_frame connections
@@ -513,9 +506,12 @@ without installing new dependencies or removing existing packages."""))
 
         # Allow to select only automatic upgrade
 
-        # TRANSLATORS: The label of the checkbox "upgrade automatically", where user can select
-        # to enabled "unattended-upgrade"
-        self.auto_upgrade_checkbox = QCheckBox(self.squeeze_spaces(_("upgrade automatically")))
+        # TRANSLATORS: The label of the checkbox to enable unattended upgrades.
+        self.auto_upgrade_checkbox = QCheckBox(_("automatic"))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the checkbox "upgrade automatically".
+        _dummy = _("upgrade automatically")
 
         # TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
         # which tries to explain what this checkbox is about.
@@ -533,24 +529,15 @@ when additional updates are available."""))
         # which tries to explain what this checkbox is about.
         self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
-        # Allow to select automatic upgrade and pkg cache update
-        if True:
-            # Only allow to select automatic upgrade
-            upgrade_layout.addWidget(self.auto_upgrade_checkbox)
+        upgrade_grid.addWidget(self.auto_upgrade_checkbox, 1, 0)
+
+        # Does /usr/bin/nala exists and is executable
+        if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
+            upgrade_grid.addWidget(self.use_nala_checkbox, 1, 2)
         else:
-            # Allow to select automatic upgrade and pkg cache update
-            # horizontal layout for auto-upgrade and cache-updater
-            auto_upgrade_h_layout = QHBoxLayout()
-            auto_upgrade_h_layout.addWidget(self.auto_upgrade_checkbox)
+            self.use_nala_checkbox.setChecked(False)
 
-            # stretch space to pushuse_nala_checkbox right
-            # auto_upgrade_h_layout.addStretch()  # This will take up all available space
-
-            # use_nala_checkbox with a small fixed spacing
-            auto_upgrade_h_layout.addWidget(self.auto_cache_update_checkbox)
-            auto_upgrade_h_layout.addSpacing(20)  # fixed 20 pixels
-
-            upgrade_layout.addLayout(auto_upgrade_h_layout)
+        upgrade_layout.addLayout(upgrade_grid)
 
         #---------------------------------------------------------------
         # auto_upgrade checkbox set initilal state
@@ -577,30 +564,78 @@ when additional updates are available."""))
         # left_click_frame: Left-click behaviour
         #---------------------------------------------------------------
 
-        left_click_frame = QGroupBox(_("Left-click behaviour   (when updates are available)"))
+        left_click_frame = QGroupBox(_("Left-click"))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the group box for left-click behaviour.
+        _dummy = _("Left-click behaviour   (when updates are available)")
         left_click_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+
+        # TRANSLATORS: Tooltip for the Left-click behaviour group box.
+        # Explains left-click behavior and the hidden middle-click action.
+        left_click_frame.setToolTip(_(
+            "Left-click opens the selected application.\n"
+            "Middle-click opens MX Package Installer\n"
+            "(or Synaptic if MX Package Installer is not installed).\n"
+            "Middle-click does nothing if neither is installed."
+        ))
+
         left_click_layout = QVBoxLayout()
         left_click_layout.setSpacing(1)  # smaller spacing between options
         # layout margins (left, top, right, bottom)
         #left_click_layout.setContentsMargins(0, 10, 0, 0)  # adjust margins
         left_click_layout.setContentsMargins(*frame_margins)  # adjust margins
 
-        # Check if /usr/bin/synaptic-pkexec exists and is executable
-        self.opens_synaptic_radio = QRadioButton(_("opens Synaptic"))
-        self.opens_view_and_upgrade_radio = QRadioButton(_("opens MX Updater 'View and Upgrade' window"))
+        self.opens_synaptic_radio = QRadioButton("Synaptic")
+        _dummy = _("opens Synaptic")
+        self.opens_synaptic_radio.setToolTip(_(
+            "Left-click always opens Synaptic package manager,\n"
+            "with or without updates available."
+        ))
 
+        self.opens_mxpi_radio = QRadioButton("MXPI")
+        self.opens_mxpi_radio.setToolTip(_(
+            "Left-click always opens MX Package Installer (MXPI),\n"
+            "with or without updates available."
+        ))
+
+        # TRANSLATORS: The label of the radio button to open the View and Upgrade window on left-click.
+        self.opens_view_and_upgrade_radio = QRadioButton(_("View and Upgrade"))
+
+        # TRANSLATORS: Tooltip for the "View and Upgrade" radio button.
+        self.opens_view_and_upgrade_radio.setToolTip(_(
+            "Left-click opens the \"View and Upgrade\" window\n"
+            "when updates are available.\n"
+            "When no updates are available, opens Synaptic\n"
+            "or MX Package Installer instead."
+        ))
+
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: The label of the radio button "opens MX Updater 'View and Upgrade' window".
+        _dummy = _("opens MX Updater 'View and Upgrade' window")
+
+        _synaptic_available = (os.path.isfile('/usr/bin/synaptic-pkexec') and
+                               os.access('/usr/bin/synaptic-pkexec', os.X_OK))
+        _mxpi_available = (os.path.isfile('/usr/bin/mx-packageinstaller') and
+                           os.access('/usr/bin/mx-packageinstaller', os.X_OK))
 
         # Add the radio buttons to button group
         self.left_click_button_group = QButtonGroup(self)
         self.left_click_button_group.addButton(self.opens_synaptic_radio)
+        self.left_click_button_group.addButton(self.opens_mxpi_radio)
         self.left_click_button_group.addButton(self.opens_view_and_upgrade_radio)
 
         self.left_click_button_map = {
             self.opens_synaptic_radio: "package_manager",
+            self.opens_mxpi_radio: "package_installer",
             self.opens_view_and_upgrade_radio: "view_and_upgrade",
         }
 
-        if self.settings.get("left_click") in 'package_manager':
+        # set initial state
+        _left_click = self.settings.get("left_click", "view_and_upgrade")
+        if _left_click == "package_installer" and _mxpi_available:
+            self.opens_mxpi_radio.setChecked(True)
+        elif _left_click == "package_manager" and _synaptic_available:
             self.opens_synaptic_radio.setChecked(True)
         else:
             self.opens_view_and_upgrade_radio.setChecked(True)
@@ -608,16 +643,21 @@ when additional updates are available."""))
         #---------------------------------------------------------------
         # left_click_frame connections
         #---------------------------------------------------------------
-        # set connection
 
         # Connect button group signal to slot
         self.left_click_button_group.buttonClicked.connect(self.on_left_click_button_clicked)
 
-        if (os.path.isfile('/usr/bin/synaptic-pkexec') and
-            os.access('/usr/bin/synaptic-pkexec', os.X_OK)
-            ):
-            left_click_layout.addWidget(self.opens_synaptic_radio)
-            left_click_layout.addWidget(self.opens_view_and_upgrade_radio)
+        if _synaptic_available or _mxpi_available:
+            left_click_h_layout = QHBoxLayout()
+            if _synaptic_available:
+                left_click_h_layout.addWidget(self.opens_synaptic_radio)
+                left_click_h_layout.addSpacing(8)
+            if _mxpi_available:
+                left_click_h_layout.addWidget(self.opens_mxpi_radio)
+                left_click_h_layout.addSpacing(8)
+            left_click_h_layout.addWidget(self.opens_view_and_upgrade_radio)
+            left_click_h_layout.addStretch()
+            left_click_layout.addLayout(left_click_h_layout)
             left_click_frame.setLayout(left_click_layout)
             layout.addWidget(left_click_frame)
         else:
@@ -628,22 +668,36 @@ when additional updates are available."""))
         #---------------------------------------------------------------
         icons_frame = QGroupBox(_("Icons"))
         icons_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
-        icons_layout = QVBoxLayout()
+        icons_layout = QGridLayout()
 
         # layout margins (left, top, right, bottom)
-        icons_layout.setContentsMargins(*frame_margins)  # Remove margins if needed
+        icons_layout.setContentsMargins(*frame_margins)
+        icons_layout.setHorizontalSpacing(8)
+        icons_layout.setVerticalSpacing(2)
+        icons_layout.setColumnMinimumWidth(1, 32)
+        icons_layout.setColumnMinimumWidth(3, 32)
+        icons_layout.setColumnStretch(5, 1)
 
         self.icon_radio_buttons = {}  # name -> icon radio button
 
         #self.wireframe_transparent_checkbox = QCheckBox(_("use transparent interior for no-updates wireframe"))
 
-        # TRANSLATORS: Please keep it short. Detailed explanation are with the tooltip.
-        self.wireframe_transparent_checkbox = QCheckBox(_("transparent wireframe for no updates"))
+        # TRANSLATORS: Please keep it short. Detailed explanation is in the tooltip.
+        # "dark/light" refers to the dark and light wireframe icon variants (the no-updates
+        # icons). The "some-updates" wireframe icon is always the green app icon, unaffected.
+        _dummy = _("transparent wireframe for no updates")
+        # TRANSLATORS: Short label for checkbox. "black/white" refers to the two wireframe
+        # no-updates icon variants (wireframe-dark has white wires, wireframe-light has black wires).
+        # Detailed explanation is in the tooltip.
+        self.wireframe_transparent_checkbox = QCheckBox(_("transparent black/white wireframe"))
 
-        # TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no updates", which explains
-        # what the checkbox is about.
-        self.wireframe_transparent_checkbox.setToolTip(_("""Display transparent wireframe icons without color fill
-when no updates are available."""))
+        # TRANSLATORS: Tooltip for "transparent black/white wireframe" checkbox.
+        # Explains when transparent works and when it does not, depending on panel color.
+        # "wireframe-dark" has white wires; "wireframe-light" has black/dark wires.
+        self.wireframe_transparent_checkbox.setToolTip(_("""Make the black/white wireframe no-updates icon transparent (no color fill).
+Works best when panel color contrasts with the wire color:
+  wireframe-dark (white wires): visible on dark panel, invisible on light panel.
+  wireframe-light (black wires): visible on light panel, invisible on dark panel."""))
 
         # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
         dark_string = _("dark")
@@ -657,7 +711,7 @@ when no updates are available."""))
         # TRANSLATORS: The classic icon-set
         classic_string = _("classic")
 
-        for icon_name in self.icon_order:
+        for row_idx, icon_name in enumerate(self.icon_order):
             #print(f"Icon_Look(name)={icon_name}")
             icon = self.icon_set.get(icon_name)
             icon_label_string = icon.get('label')
@@ -673,8 +727,6 @@ when no updates are available."""))
             else:
                 icon_label = _(icon_label_string)
 
-            row_layout = QHBoxLayout()
-            row_layout.setSpacing(20)  # smaller spacing between icons
             icon_radio_button = QRadioButton(icon_label)
             icon_radio_button.toggled.connect(
                 lambda checked, label=icon_label, name=icon_name:
@@ -686,14 +738,9 @@ when no updates are available."""))
             if icon_name == icon_look:
                 icon_radio_button.setChecked(True)
 
-            row_layout.addWidget(icon_radio_button)
-            row_layout.addSpacing(10)  # spacing of 10 pixels
-            row_layout.addWidget(self.create_icon_label(icon_some))
-            row_layout.addSpacing(100)  # spacing of 100 pixels between icons
-            row_layout.addWidget(self.create_icon_label(icon_none))
-            row_layout.addSpacing(60)  # spacing of 60 pixels
-
-            icons_layout.addLayout(row_layout)
+            icons_layout.addWidget(icon_radio_button, row_idx, 0)
+            icons_layout.addWidget(self.create_icon_label(icon_some), row_idx, 2)
+            icons_layout.addWidget(self.create_icon_label(icon_none), row_idx, 4)
             self.icon_radio_buttons[icon_name] = icon_radio_button  # Store the radio button
 
         # single admin icon set: show for preview but prevent deselection
@@ -719,14 +766,15 @@ when no updates are available."""))
 
         self.wireframe_transparent_checkbox.setEnabled(_wireframe_enabled)
         self.wireframe_transparent_checkbox.setVisible(not _admin_active)
-        icons_layout.addWidget(self.wireframe_transparent_checkbox)
+        icons_layout.addWidget(self.wireframe_transparent_checkbox, len(self.icon_order), 0, 1, 5)
         icons_frame.setLayout(icons_layout)
         layout.addWidget(icons_frame)
 
         #---------------------------------------------------------------
         # Frame: Other options
         #---------------------------------------------------------------
-        other_options_frame = QGroupBox(_("Other options"))
+        _dummy = _("Other options")
+        other_options_frame = QGroupBox(_("Other"))
         other_options_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
         other_options_layout = QVBoxLayout()
         other_options_layout.setSpacing(1)  # small spacing between options
@@ -740,7 +788,8 @@ when no updates are available."""))
         # TRANSLATORS: The label of the checkbox, where user can select
         # that "--assume-yes" option is added, so "apt" or "nala" won't ask
         # for confirmations to install
-        checkbox_label = _("automatically confirm all package upgrades")
+        checkbox_label = _("skip upgrade confirmation")
+        _dummy = _("automatically confirm all package upgrades")
 
         # TRANSLATORS: The tooltip of the checkbox "automatically confirm all package upgrades",
         # which tries to explain what this checkbox is about.
@@ -765,7 +814,8 @@ when no updates are available."""))
         # TRANSLATORS: The label of the checkbox where user can select
         #to start 'MX Updater' systray icon automatically at login
         #after a delay of seconds.
-        checkbox_label = _('start "MX Updater" at login after delay')
+        checkbox_label = _("autostart delay")
+        _dummy = _('start "MX Updater" at login after delay')
 
         # TRANSLATORS: Explains the start of MX Updater automatically
         # after a delay of seconds. The user can select the number of seconds.
@@ -818,7 +868,8 @@ at login after the specified delay in seconds.""")
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        checkbox_label = _("close terminal window after idle time")
+        checkbox_label = _("terminal auto-close")
+        _dummy = _("close terminal window after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window
         # after system updates with a configurable idle time
@@ -874,9 +925,98 @@ at login after the specified delay in seconds.""")
         timeout_layout.addWidget(self.auto_close_timeout)
         timeout_layout.addStretch()  # Pushes items to the left
 
-        # TRANSLATORS: The label of the checkbox "use desktop notifications",
+        #---------------------------------------------------------------
+        # terminal size and position -- single line with two comboboxes
+
+        # TRANSLATORS: Label before the terminal window size dropdown
+        terminal_label = QLabel(_("terminal size"))
+
+        self.terminal_size_combo = QComboBox()
+        # TRANSLATORS: terminal window size option: default auto-sizing (original behavior, 2/3 screen capped on large displays)
+        self.terminal_size_combo.addItem(_("default"),    "default")
+        # TRANSLATORS: terminal window size option: let terminal use its own saved size/position
+        self.terminal_size_combo.addItem(_("own"), "own")
+        # TRANSLATORS: terminal window size option: one third of the screen
+        self.terminal_size_combo.addItem(_("1/3 screen"),    "one-third")
+        # TRANSLATORS: terminal window size option: half the screen
+        self.terminal_size_combo.addItem(_("1/2 screen"),    "half")
+        # TRANSLATORS: terminal window size option: two thirds of the screen
+        self.terminal_size_combo.addItem(_("2/3 screen"),    "two-thirds")
+        # TRANSLATORS: terminal window size option: three quarters of the screen
+        self.terminal_size_combo.addItem(_("3/4 screen"),    "three-quarters")
+        # TRANSLATORS: terminal window size option: nine tenths of the screen
+        self.terminal_size_combo.addItem(_("9/10 screen"),   "nine-tenths")
+        # TRANSLATORS: terminal window size option: full screen
+        self.terminal_size_combo.addItem(_("full screen"),   "full")
+
+        # TRANSLATORS: Label before the terminal window position dropdown
+        self.terminal_position_label = QLabel(_("position"))
+
+        self.terminal_position_combo = QComboBox()
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("center"),       "center")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("top-left"),     "top-left")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("top-right"),    "top-right")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("bottom-left"),  "bottom-left")
+        # TRANSLATORS: terminal window position option
+        self.terminal_position_combo.addItem(_("bottom-right"), "bottom-right")
+
+        # TRANSLATORS: Tooltip for the terminal window size label and dropdown.
+        # "default (auto)" means the original automatic sizing is used.
+        _terminal_size_tooltip = _("""Terminal size and position for system updates:
+"default": 2/3 screen size, capped at 960x600 pixels.
+"own": use terminal's own settings for size and position.""")
+        terminal_label.setToolTip(_terminal_size_tooltip)
+        self.terminal_size_combo.setToolTip(_terminal_size_tooltip)
+
+        # TRANSLATORS: Tooltip for the terminal window position dropdown.
+        # The option is disabled when "full screen" size is selected, or on Wayland.
+        self.terminal_position_combo.setToolTip(_("""Select where the terminal window appears on the screen.
+Hidden when "own" or "full screen" size is selected, or when running on Wayland."""))
+
+        # load saved values
+        terminal_size = self.load_setting("terminal_size")
+        idx = self.terminal_size_combo.findData(terminal_size)
+        if idx >= 0:
+            self.terminal_size_combo.setCurrentIndex(idx)
+
+        terminal_position = self.load_setting("terminal_position")
+        idx = self.terminal_position_combo.findData(terminal_position)
+        if idx >= 0:
+            self.terminal_position_combo.setCurrentIndex(idx)
+
+        # position not supported on Wayland; also irrelevant when full screen
+        _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
+                       or bool(os.environ.get("WAYLAND_DISPLAY")))
+        if _on_wayland or terminal_size == "own":
+            self.terminal_position_label.setVisible(False)
+            self.terminal_position_combo.setVisible(False)
+        elif terminal_size == "full":
+            self.terminal_position_label.setEnabled(False)
+            self.terminal_position_combo.setEnabled(False)
+
+
+        self.terminal_size_combo.currentIndexChanged.connect(self.on_terminal_size_changed)
+        self.terminal_position_combo.currentIndexChanged.connect(self.on_terminal_position_changed)
+
+        terminal_layout = QHBoxLayout()
+        terminal_layout.addWidget(terminal_label)
+        terminal_layout.addSpacing(4)
+        terminal_layout.addWidget(self.terminal_size_combo)
+        terminal_layout.addSpacing(8)
+        terminal_layout.addWidget(self.terminal_position_label)
+        terminal_layout.addSpacing(4)
+        terminal_layout.addWidget(self.terminal_position_combo)
+        terminal_layout.addStretch()
+
+        # TRANSLATORS: The label of the checkbox "desktop notifications",
         # where user can select to disabled or enable notification "popup" window shown .
-        self.use_dbus_notifications_checkbox = QCheckBox(_("use desktop notifications"))
+        _dummy = _("use desktop notifications")
+        # TRANSLATORS: Short label for checkbox to enable or disable desktop notification popups.
+        self.use_dbus_notifications_checkbox = QCheckBox(_("desktop notifications"))
 
         # TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
         # which tries to exlpain what this checkbox is about.
@@ -894,18 +1034,12 @@ system updates are available."""))
 
         #---------------------------------------------------------------
         # hide_until_upgrades_available_checkbox
-        hide_until_updates_available_string = "Hide until updates available"
-
-        # TRANSLATORS: The label of the checkbox "Hide until updates available" and
-        # also of the right-click menu entry, where user can select to not show
-        # the "MX Updater" systray icon until package upgrades are available.
-        hide_until_updates_available_translated = _("Hide until updates available")
-        if hide_until_updates_available_string == hide_until_updates_available_translated:
-            hide_until_updates_available_string = hide_until_updates_available_string.lower()
-        else:
-            hide_until_updates_available_string = hide_until_updates_available_translated
-
-        self.hide_until_upgrades_available_checkbox = QCheckBox(hide_until_updates_available_string)
+        # TRANSLATORS: The label of the checkbox, where user can select to not show
+        # the "MX Updater" systray icon when no package upgrades are available.
+        _dummy = _("Hide until updates available")
+        # TRANSLATORS: Short label for checkbox. Hides the systray icon when no
+        # package upgrades are available.
+        self.hide_until_upgrades_available_checkbox = QCheckBox(_("hide when no updates"))
 
         # TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
         # which tries to exlpain what this checkbox is about.
@@ -928,9 +1062,11 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             self.hide_until_upgrades_available_checkbox.setChecked(True)
 
         #---------------------------------------------------------------
-        other_options_layout.addWidget(self.upgrade_assume_yes_checkbox)
+        other_options_layout.addLayout(terminal_layout)
         #other_options_layout.addWidget(self.auto_close_checkbox)
         other_options_layout.addLayout(timeout_layout)
+        other_options_layout.addWidget(self.upgrade_assume_yes_checkbox)
+        # comment the line below to hide the desktop notifications toggle
         other_options_layout.addWidget(self.use_dbus_notifications_checkbox)
         other_options_layout.addLayout(start_8_login_layout)
         if not any(self.disable_hide_until):
@@ -1400,6 +1536,30 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.qsettings.sync()
         self.update_view_and_upgrade("auto_close_timeout", value)
 
+    def on_terminal_size_changed(self, index):
+        value = self.terminal_size_combo.itemData(index)
+        self.settings["terminal_size"] = value
+        self.qsettings.setValue("Settings/terminal_size", value)
+        self.qsettings.sync()
+        _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
+                       or bool(os.environ.get("WAYLAND_DISPLAY")))
+        if not _on_wayland:
+            if value == "own":
+                self.terminal_position_label.setVisible(False)
+                self.terminal_position_combo.setVisible(False)
+            else:
+                self.terminal_position_label.setVisible(True)
+                self.terminal_position_combo.setVisible(True)
+                enabled = (value != "full")
+                self.terminal_position_label.setEnabled(enabled)
+                self.terminal_position_combo.setEnabled(enabled)
+
+    def on_terminal_position_changed(self, index):
+        value = self.terminal_position_combo.itemData(index)
+        self.settings["terminal_position"] = value
+        self.qsettings.setValue("Settings/terminal_position", value)
+        self.qsettings.sync()
+
     def toggle_auto_close_timeout_spinbox(self, state):
         # Enable/disable spinbox based on checkbox state
         is_checked = state == Qt.CheckState.Checked
@@ -1439,10 +1599,13 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
     def create_icon_label(self, icon_path):
         label = QLabel()
-        pixmap = QPixmap(icon_path)
+        display_path = icon_path.replace('/256x256/', '/32x32/')
+        pixmap = QPixmap(display_path)
+        if pixmap.isNull():
+            pixmap = QPixmap(icon_path)
         label.setPixmap(pixmap)
-        label.setFixedSize(32, 32)  # Set a fixed size for the icon
-        label.setScaledContents(True)  # Scale the pixmap to fit the label
+        label.setFixedSize(32, 32)
+        label.setScaledContents(True)
         return label
 
     def name(self):
@@ -1623,7 +1786,7 @@ def tooltip_stylesheet():
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)  # QApplication instance
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("mx-updater-settings")
     app.setStyleSheet(tooltip_stylesheet())
 
     bus = SessionBus()

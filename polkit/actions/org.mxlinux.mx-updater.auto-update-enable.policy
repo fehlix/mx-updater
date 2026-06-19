@@ -12,7 +12,7 @@
     <description>Run MX Linux application</description>
     <!-- TRANSLATORS: The string is displayed within the authentication window to enabale unattended-upgrade (Auto-update)!-->
     <message gettext-domain="mx-updater">Enable Auto-update</message>
-    <icon_name>mx-updater</icon_name>
+    <icon_name>updater-mx</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>

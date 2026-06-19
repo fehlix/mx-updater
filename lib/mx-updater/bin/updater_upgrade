@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # script to upgrade packages with user's preferred upgrade type
-# this script is part of apt-notifier package
+# this script is part of mx-updater package
 
 # translations are defined within apt-notifier python modules
 # define a function to make xgettext ignore translations used here
@@ -20,16 +20,6 @@ fi
 export TEXTDOMAINDIR="/usr/share/locale"
 export LESS="-Ps"$(mygettext -d util-linux "[Press space to continue, 'q' to quit.]")
 
-:<<NotUsed
-if [ ! -e /etc/apt/sources.list ]; then
-    cat <<EOF > /etc/apt/sources.list
-#This sources.list is empty by default and is only included
-#to avoid error messages from some package install scripts that expect
-#to find it.
-#Sources are under /etc/apt/sources.list.d
-EOF
-fi
-NotUsed
 
 UPDATER_SHLIB=/usr/lib/mx-updater/shlib/updater_shlib
 
@@ -71,7 +61,6 @@ if [ -f "$UPDATER_APTPREF" ]; then
 fi
 
 # use nala if desired and available
-# use nala if desired and available
 : ${UPDATER_USE_NALA:=false}
 export UPDATER_USE_NALA
 if [ "${UPDATER_USE_NALA}" = "true" ]; then
@@ -89,14 +78,12 @@ Auto_Remove_Pref="--no-autoremove"
 if [ x"$UPDATER_USE_NALA" = x"true" ]; then
     Nala_Auto_Remove_Pref="$Auto_Remove_Pref"
     if [ -z "$update_stamp" ]; then
-        Nala_Update_Pref="--update"
+        echo nala update
         nala update
-    else
-        Nala_Update_Pref="--no-update"
+        [ -d /var/lib/apt/periodic ] || mkdir -p /var/lib/apt/periodic
+        touch /var/lib/apt/periodic/update-stamp
     fi
     Nala_Update_Pref="--no-update"
-
-    #[ -z "$update_stamp" ] && Nala_Update_Pref="--update" || Nala_Update_Pref="--no-update"
     if [ "$UPGRADE_TYPE" = "upgrade" ]; then
         Nala_UPGRADE_TYPE="--no-full"
     else
@@ -119,10 +106,6 @@ if [ x"$UPDATER_USE_NALA" = x"true" ]; then
     [ y"${DEBUG_MX_UPDATER/true/es}" = "yes" ] &&  echo nala upgrade $AptPref_Opts $Nala_UPGRADE_TYPE $Nala_Pref $AssumeYes
     echo "nala upgrade $Nala_UPGRADE_TYPE $Nala_Auto_Remove_Pref $Nala_Update_Pref_Raw"
     nala upgrade $AptPref_Opts $Nala_UPGRADE_TYPE  $Nala_Auto_Remove_Pref $Nala_Update_Pref $Nala_Update_Pref_Raw $AssumeYes
-    if [ "$Nala_Update_Pref" = "--update" ]; then
-       [ -d /var/lib/apt/periodic ] || mkdir -p /var/lib/apt/periodic
-       touch /var/lib/apt/periodic/update-stamp
-    fi
 
 else
     if [ -z "$update_stamp" ]; then
@@ -163,26 +146,16 @@ if [ -n "${AUTO_CLOSE_TIMEOUT//[0-9]/}" ]; then
     AUTO_CLOSE_TIMEOUT=$default_timeout
 fi
 
-UPDATER_SHLIB=/usr/lib/apt-notifier/shlib/updater_shlib
-if [ -f "$UPDATER_SHLIB" ]; then
-      . "$UPDATER_SHLIB"
-fi
 echo
 gettext "this terminal window can now be closed"
 echo
 echo
 
-default_timeout=10
-if [ -z "${AUTO_CLOSE_TIMEOUT}" ]; then
-    AUTO_CLOSE_TIMEOUT=$default_timeout
+if [ -f "$UPDATER_SHLIB" ]; then
+    if [ "$AUTO_CLOSE" = "true" ]; then
+        press_any_key_stop_auto_close && exit
+    fi
+    press_any_key_to_close && exit
 fi
-if [ -n "${AUTO_CLOSE_TIMEOUT//[0-9]/}" ]; then
-    AUTO_CLOSE_TIMEOUT=$default_timeout
-fi
-
-if [ "$AUTO_CLOSE" = "true" ]; then
-    press_any_key_stop_auto_close && exit
-fi
-press_any_key_to_close && exit
 
 exit

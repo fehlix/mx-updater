@@ -120,7 +120,7 @@ from pathlib import Path
 import signal
 
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QIcon, QAction,  QCursor
+from PyQt6.QtGui import QIcon, QPixmap, QAction,  QCursor
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtCore import QSettings
 from xdg.DesktopEntry import DesktopEntry
@@ -819,7 +819,7 @@ class SystemTrayIcon(QSystemTrayIcon):
         #n = notify2.Notification(title, message, "mx-updater")
         #n = notify2.Notification(title, message, "apt-notifier")
         #n = notify2.Notification(title, message, "/usr/share/icons/mx-updater.png")
-        n = notify2.Notification(title, message, "/usr/share/icons/hicolor/scalable/mx-updater.svg")
+        n = notify2.Notification(title, message, "/usr/share/icons/hicolor/scalable/apps/updater-mx.svg")
         n.set_urgency(notify2.URGENCY_NORMAL)
         n.set_timeout(10000)  # 10 seconds
 
@@ -1271,7 +1271,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         if set_icon:
             logger.debug("[%s] setIcon(QIcon('%s')", me, set_icon)
-            self.setIcon(QIcon(set_icon))
+            self.setIcon(self._load_tray_icon(set_icon))
             self.is_icon_set = True
 
         value = self.qsettings.value('Settings/hide_until_upgrades_available', False)
@@ -1369,7 +1369,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         if set_icon:
             logger.debug("[%s] setIcon(QIcon('%s')", me, set_icon)
-            self.setIcon(QIcon(set_icon))
+            self.setIcon(self._load_tray_icon(set_icon))
             self.is_icon_set = True
 
         if total_updates:
@@ -1387,6 +1387,22 @@ class SystemTrayIcon(QSystemTrayIcon):
                 hide_until_upgrades_available = str(hide_until_upgrades_available).lower() in ('true')
                 self._apply_tray_visibility(not hide_until_upgrades_available)
 
+
+    def _load_tray_icon(self, path):
+        # Build a multi-size QIcon from hicolor/NxN/apps/ variants so Qt picks
+        # the exact pixel size for the panel without heavy downscaling.
+        # Falls back to QIcon(path) for non-hicolor paths (e.g. classic flat PNG).
+        m = re.match(r'(/usr/share/icons/hicolor/)\d+x\d+(/apps/[^/]+\.png)$', path)
+        if m:
+            icon = QIcon()
+            for sz in (16, 22, 24, 32, 48, 64):
+                p = f'{m.group(1)}{sz}x{sz}{m.group(2)}'
+                pm = QPixmap(p)
+                if not pm.isNull():
+                    icon.addPixmap(pm)
+            if not icon.isNull():
+                return icon
+        return QIcon(path)
 
     def initUI(self):
 
@@ -1488,9 +1504,6 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         # Check and set visibility for synaptic
         synaptic_is_available = (os.path.isfile('/usr/bin/synaptic-pkexec')
-                                and os.access('/usr/bin/synaptic-pkexec', os.X_OK))
-
-        synaptic_is_available = (os.path.isfile('/usr/bin/synaptic-pkexec')
                                 and os.access('/usr/bin/synaptic-pkexec', os.X_OK)
                                 and bool(self.actions["synaptic"]))
         self.set_action_visble("synaptic", synaptic_is_available)
@@ -1509,14 +1522,15 @@ class SystemTrayIcon(QSystemTrayIcon):
         elif synaptic_is_available:
             self.actions["middle_click"] = self.actions["synaptic"]
         else:
-            # fallback to view-and_upgrade
-            self.actions["middle_click"] = self.actions["sview_and_upgrade"]
+            self.actions["middle_click"] = None
 
         # Check and set visibility for unattended-upgrades log
 
         # build context menu entries
         hide_until_updates_available = QAction(self.menu)
-        hide_until_updates_available.setText(_("Hide until updates available"))
+        _dummy = _("Hide until updates available")
+        _hide_label = _("hide when no updates")
+        hide_until_updates_available.setText(_hide_label[:1].upper() + _hide_label[1:])
         hide_until_updates_available.triggered.connect(self._on_hide_until_upgrades_available)
         hide_until_updates_available.setVisible(False)
         self.menu.addAction(hide_until_updates_available)
@@ -1688,7 +1702,16 @@ class SystemTrayIcon(QSystemTrayIcon):
             action = None
             if self._total_updates:
                 action = self.actions.get(left_click)
+            elif left_click in ("synaptic", "packageinstaller"):
+                # user chose a package manager: respect it even with no updates
+                action = self.actions.get(left_click)
+                if not action:
+                    for x in ("synaptic", "packageinstaller", "view_and_upgrade"):
+                        if self.actions.get(x):
+                            action = self.actions.get(x)
+                            break
             else:
+                # view_and_upgrade: fall back to package manager when no updates
                 for x in ("synaptic", "packageinstaller", "view_and_upgrade"):
                     if self.actions.get(x):
                         action = self.actions.get(x)
@@ -1697,13 +1720,10 @@ class SystemTrayIcon(QSystemTrayIcon):
                 action.trigger()
 
         elif reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            # middle-click -> custom action (if defined) or popup menu
+            # middle-click -> use pre-computed middle_click action (MXPI if
+            # available, else Synaptic, else View and Upgrade)
             logger.debug("self.middle_click()")
-            action = None
-            for x in ("packageinstaller", "synaptic", "view_and_upgrade"):
-                if self.actions.get(x):
-                    action = self.actions.get(x)
-                    break
+            action = self.actions.get("middle_click")
             if action:
                 action.trigger()
 
@@ -2041,7 +2061,7 @@ def main(bus, logger):
     service = SystemTrayService(session_bus, TRAYICON_OBJECT_PATH)
 
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
 
     if args.autostart and not QSystemTrayIcon.isSystemTrayAvailable():
         _poll_interval = 2

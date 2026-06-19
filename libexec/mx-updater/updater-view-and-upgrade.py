@@ -356,7 +356,7 @@ class ViewAndUpgradeDialog(QDialog):
         window_title_updater = _("MX Updater")
         window_title_view_and_upgrade = _("View and Upgrade")
         window_title = f"[ {window_title_updater} ] -- {window_title_view_and_upgrade}"
-        window_icon = "/usr/share/icons/hicolor/scalable/mx-updater.svg"
+        window_icon = "/usr/share/icons/hicolor/scalable/apps/updater-mx.svg"
 
         self.setWindowTitle(window_title)
         self.setWindowIcon(QIcon(window_icon))
@@ -382,7 +382,8 @@ class ViewAndUpgradeDialog(QDialog):
         grid = QGridLayout()
         # row 0
 
-        checkbox_label = _("automatically confirm all package upgrades")
+        checkbox_label = _("skip upgrade confirmation")
+        _dummy = _("automatically confirm all package upgrades")
         checkbox_tooltip = _("Automatically answers 'yes' to package management prompts during upgrades.\n"
                              "Some system configuration changes may still require manual confirmation.")
         self.upgrade_assume_yes_checkbox = QCheckBox(checkbox_label)
@@ -393,7 +394,8 @@ class ViewAndUpgradeDialog(QDialog):
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
 
             # TRANSLATORS: Select this to use nala package manager instead of apt.
-            self.use_nala_checkbox = QCheckBox(_("use nala"))
+            _dummy = _("use nala")
+            self.use_nala_checkbox = QCheckBox("Nala")
             # TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
             self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
             grid.addWidget(self.use_nala_checkbox, 0, 1)
@@ -404,7 +406,8 @@ class ViewAndUpgradeDialog(QDialog):
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        auto_close_label = _("close terminal window automatically after idle time")
+        auto_close_label = _("terminal auto-close")
+        _dummy = _("close terminal window automatically after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window
         # after system updates with a configurable idle time
@@ -856,7 +859,7 @@ if __name__ == "__main__":
     service = ViewAndUpgradeService(session_bus, VIEW_AND_UPGRADE_OBJECT_PATH)
 
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
     app.setStyleSheet(tooltip_stylesheet())
 
     default_width  = 900

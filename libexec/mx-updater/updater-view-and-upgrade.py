@@ -394,7 +394,8 @@ class ViewAndUpgradeDialog(QDialog):
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
 
             # TRANSLATORS: Select this to use nala package manager instead of apt.
-            self.use_nala_checkbox = QCheckBox(_("use nala"))
+            _dummy = _("use nala")
+            self.use_nala_checkbox = QCheckBox("nala")
             # TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
             self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
             grid.addWidget(self.use_nala_checkbox, 0, 1)
@@ -405,7 +406,7 @@ class ViewAndUpgradeDialog(QDialog):
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        auto_close_label = _("close terminal when idle")
+        auto_close_label = _("terminal auto-close")
         _dummy = _("close terminal window automatically after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window

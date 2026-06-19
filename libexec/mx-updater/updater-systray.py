@@ -1528,7 +1528,9 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         # build context menu entries
         hide_until_updates_available = QAction(self.menu)
-        hide_until_updates_available.setText(_("Hide until updates available"))
+        _dummy = _("Hide until updates available")
+        _hide_label = _("hide when no updates")
+        hide_until_updates_available.setText(_hide_label[:1].upper() + _hide_label[1:])
         hide_until_updates_available.triggered.connect(self._on_hide_until_upgrades_available)
         hide_until_updates_available.setVisible(False)
         self.menu.addAction(hide_until_updates_available)

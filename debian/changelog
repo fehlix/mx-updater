@@ -1,3 +1,43 @@
+mx-updater (26.06.1mx25~dev18) UNRELEASED; urgency=medium
+
+  * updater-settings.py: rename wireframe transparent checkbox label to
+    "transparent black/white wireframe" (was "transparent wireframe for no updates").
+    black/white refers to the actual wire colors of the no-updates icons;
+    avoids confusion with the "wireframe -- dark/light" icon set labels shown
+    in the radio buttons above. The green some-updates wireframe icon is unaffected.
+    Tooltip updated to explain the panel color visibility issue: each variant
+    only remains visible when the panel color contrasts with its wire color.
+    Old strings kept as _dummy.
+  * updater-settings.py: shorten labels in "Other options" frame and rename
+    frame title, keeping old strings as _dummy for Transifex:
+    "Other" (was "Other options"),
+    "nala" (was "use nala"),
+    "terminal auto-close" (was "close terminal when idle"),
+    "autostart delay" (was "autostart after delay"),
+    "desktop notifications" (was "use desktop notifications"),
+    "hide when no updates" (was "Hide until updates available").
+    Reorder entries in "Other" frame: terminal size/position first, then
+    terminal auto-close, skip upgrade confirmation, desktop notifications,
+    autostart delay, hide when no updates.
+  * updater-systray.py: sync right-click menu entry to new string
+    "hide when no updates" (was "Hide until updates available"), capitalized
+    at point of use so menu shows "Hide when no updates". Single translation
+    key shared with settings checkbox; old string kept as _dummy.
+  * updater-view-and-upgrade.py: sync shortened labels:
+    "nala" (was "use nala"),
+    "terminal auto-close" (was "close terminal when idle").
+    Old strings kept as _dummy for Transifex.
+  * updater-settings.py, updater-view-and-upgrade.py: fix TRANSLATORS comments
+    that were left only above _dummy lines after _dummy insertions; each new _()
+    string now has its own TRANSLATORS comment immediately above it, as required
+    by xgettext. Affected: "transparent black/white wireframe", "desktop
+    notifications", "hide when no updates".
+  * updater-settings.py, updater-view-and-upgrade.py: "nala" label changed to
+    plain string (not wrapped in _()); "nala" is a tool name, not translatable,
+    consistent with how "Synaptic" and "MXPI" are handled.
+
+ -- fehlix <fehlix@mxlinux.org>  Wed, 18 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev17) UNRELEASED; urgency=medium
 
   * icons/Makefile: rename mx-updater icon to updater-mx to prevent Papirus

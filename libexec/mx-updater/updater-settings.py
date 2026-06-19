@@ -470,8 +470,9 @@ without installing new dependencies or removing existing packages."""))
 
         # TRANSLATORS: The label of the checkbox, where user can select
         # to use "nala" package manager instead of "apt"
-        self.use_nala_checkbox = QCheckBox(_("use nala"))
-        # TRANSLATORS: The tooltip of the checkbox "use nala",
+        _dummy = _("use nala")
+        self.use_nala_checkbox = QCheckBox("nala")
+        # TRANSLATORS: The tooltip of the checkbox "nala",
         # which tries to explain what this checkbox is about.
         self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
 
@@ -681,13 +682,22 @@ when additional updates are available."""))
 
         #self.wireframe_transparent_checkbox = QCheckBox(_("use transparent interior for no-updates wireframe"))
 
-        # TRANSLATORS: Please keep it short. Detailed explanation are with the tooltip.
-        self.wireframe_transparent_checkbox = QCheckBox(_("transparent wireframe for no updates"))
+        # TRANSLATORS: Please keep it short. Detailed explanation is in the tooltip.
+        # "dark/light" refers to the dark and light wireframe icon variants (the no-updates
+        # icons). The "some-updates" wireframe icon is always the green app icon, unaffected.
+        _dummy = _("transparent wireframe for no updates")
+        # TRANSLATORS: Short label for checkbox. "black/white" refers to the two wireframe
+        # no-updates icon variants (wireframe-dark has white wires, wireframe-light has black wires).
+        # Detailed explanation is in the tooltip.
+        self.wireframe_transparent_checkbox = QCheckBox(_("transparent black/white wireframe"))
 
-        # TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no updates", which explains
-        # what the checkbox is about.
-        self.wireframe_transparent_checkbox.setToolTip(_("""Display transparent wireframe icons without color fill
-when no updates are available."""))
+        # TRANSLATORS: Tooltip for "transparent black/white wireframe" checkbox.
+        # Explains when transparent works and when it does not, depending on panel color.
+        # "wireframe-dark" has white wires; "wireframe-light" has black/dark wires.
+        self.wireframe_transparent_checkbox.setToolTip(_("""Make the black/white wireframe no-updates icon transparent (no color fill).
+Works best when panel color contrasts with the wire color:
+  wireframe-dark (white wires): visible on dark panel, invisible on light panel.
+  wireframe-light (black wires): visible on light panel, invisible on dark panel."""))
 
         # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
         dark_string = _("dark")
@@ -763,7 +773,8 @@ when no updates are available."""))
         #---------------------------------------------------------------
         # Frame: Other options
         #---------------------------------------------------------------
-        other_options_frame = QGroupBox(_("Other options"))
+        _dummy = _("Other options")
+        other_options_frame = QGroupBox(_("Other"))
         other_options_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
         other_options_layout = QVBoxLayout()
         other_options_layout.setSpacing(1)  # small spacing between options
@@ -803,7 +814,7 @@ when no updates are available."""))
         # TRANSLATORS: The label of the checkbox where user can select
         #to start 'MX Updater' systray icon automatically at login
         #after a delay of seconds.
-        checkbox_label = _('autostart after delay')
+        checkbox_label = _("autostart delay")
         _dummy = _('start "MX Updater" at login after delay')
 
         # TRANSLATORS: Explains the start of MX Updater automatically
@@ -857,7 +868,7 @@ at login after the specified delay in seconds.""")
 
         # TRANSLATORS: After the idle time in seconds has elapsed,
         # the terminal window is closed once the system update is complete.
-        checkbox_label = _("close terminal when idle")
+        checkbox_label = _("terminal auto-close")
         _dummy = _("close terminal window after idle time")
 
         # TRANSLATORS: Explains the auto-close behavior of terminal window
@@ -1001,9 +1012,11 @@ Hidden when "own" or "full screen" size is selected, or when running on Wayland.
         terminal_layout.addWidget(self.terminal_position_combo)
         terminal_layout.addStretch()
 
-        # TRANSLATORS: The label of the checkbox "use desktop notifications",
+        # TRANSLATORS: The label of the checkbox "desktop notifications",
         # where user can select to disabled or enable notification "popup" window shown .
-        self.use_dbus_notifications_checkbox = QCheckBox(_("use desktop notifications"))
+        _dummy = _("use desktop notifications")
+        # TRANSLATORS: Short label for checkbox to enable or disable desktop notification popups.
+        self.use_dbus_notifications_checkbox = QCheckBox(_("desktop notifications"))
 
         # TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
         # which tries to exlpain what this checkbox is about.
@@ -1021,18 +1034,12 @@ system updates are available."""))
 
         #---------------------------------------------------------------
         # hide_until_upgrades_available_checkbox
-        hide_until_updates_available_string = "Hide until updates available"
-
-        # TRANSLATORS: The label of the checkbox "Hide until updates available" and
-        # also of the right-click menu entry, where user can select to not show
-        # the "MX Updater" systray icon until package upgrades are available.
-        hide_until_updates_available_translated = _("Hide until updates available")
-        if hide_until_updates_available_string == hide_until_updates_available_translated:
-            hide_until_updates_available_string = hide_until_updates_available_string.lower()
-        else:
-            hide_until_updates_available_string = hide_until_updates_available_translated
-
-        self.hide_until_upgrades_available_checkbox = QCheckBox(hide_until_updates_available_string)
+        # TRANSLATORS: The label of the checkbox, where user can select to not show
+        # the "MX Updater" systray icon when no package upgrades are available.
+        _dummy = _("Hide until updates available")
+        # TRANSLATORS: Short label for checkbox. Hides the systray icon when no
+        # package upgrades are available.
+        self.hide_until_upgrades_available_checkbox = QCheckBox(_("hide when no updates"))
 
         # TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
         # which tries to exlpain what this checkbox is about.
@@ -1055,10 +1062,10 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             self.hide_until_upgrades_available_checkbox.setChecked(True)
 
         #---------------------------------------------------------------
-        other_options_layout.addWidget(self.upgrade_assume_yes_checkbox)
+        other_options_layout.addLayout(terminal_layout)
         #other_options_layout.addWidget(self.auto_close_checkbox)
         other_options_layout.addLayout(timeout_layout)
-        other_options_layout.addLayout(terminal_layout)
+        other_options_layout.addWidget(self.upgrade_assume_yes_checkbox)
         # comment the line below to hide the desktop notifications toggle
         other_options_layout.addWidget(self.use_dbus_notifications_checkbox)
         other_options_layout.addLayout(start_8_login_layout)

@@ -471,7 +471,7 @@ without installing new dependencies or removing existing packages."""))
         # TRANSLATORS: The label of the checkbox, where user can select
         # to use "nala" package manager instead of "apt"
         _dummy = _("use nala")
-        self.use_nala_checkbox = QCheckBox("nala")
+        self.use_nala_checkbox = QCheckBox("Nala")
         # TRANSLATORS: The tooltip of the checkbox "nala",
         # which tries to explain what this checkbox is about.
         self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))

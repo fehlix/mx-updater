@@ -1,3 +1,32 @@
+mx-updater (26.06.1mx25~dev19) UNRELEASED; urgency=medium
+
+  * polkit/rules.d/50-mx-updater-reload.rules: add polkit rules file granting
+    passwordless reload to users in the sudo group; non-sudo users are shown
+    the polkit admin authentication dialog (AUTH_ADMIN). Rules files take
+    precedence over policy defaults, allowing group-based access control that
+    the policy file format cannot express directly.
+  * polkit/actions/org.mxlinux.mx-updater.reload.policy: change defaults from
+    allow_any/allow_inactive/allow_active=yes to no. The rules file handles
+    authorisation for sudo group members; the policy defaults are now the
+    correct secure fallback for everyone else.
+  * sudoers.d/mx-updater-reload: add /etc/sudoers.d/mx-updater-reload granting
+    the sudo group passwordless access to updater_reload_action. Mirrors the
+    polkit rules file for the sudo fallback path (used when no polkit agent is
+    running) so both paths behave consistently.
+  * debian/install: install sudoers.d/mx-updater-reload to /etc/sudoers.d/
+    and polkit/rules.d to /usr/share/polkit-1/rules.d/.
+  * debian/mx-updater.postinst: chmod 0440 /etc/sudoers.d/mx-updater-reload
+    (required permissions for sudoers.d drop-in files).
+  * shlib/updater_shlib: replace xfce4-terminal --disable-server with
+    ${SESSION_MANAGER:+--disable-server} so the flag is only passed when
+    SESSION_MANAGER is set. Removes the 2>&1 | grep -v pipe that suppressed
+    the "SESSION_MANAGER environment variable not defined" warning.
+  * updater-settings.py, updater-view-and-upgrade.py: capitalise "Nala"
+    checkbox label (bare string, no translation impact). Looks correct
+    alongside other proper names; lowercase looked odd in other languages.
+
+ -- fehlix <fehlix@mxlinux.org>  Thu, 19 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev18) UNRELEASED; urgency=medium
 
   * updater-settings.py: rename wireframe transparent checkbox label to
@@ -81,8 +110,10 @@ mx-updater (26.06.1mx25~dev17) UNRELEASED; urgency=medium
   * debian/mx-updater.postinst: run gtk-update-icon-cache after install so
     the hicolor icon cache is rebuilt immediately and the renamed icons are
     found by name without requiring a reboot.
+  * polkit/actions/*.policy: update <icon_name> from mx-updater to updater-mx
+    in all 7 policy files to match the icon rename.
 
- -- fehlix <fehlix@mxlinux.org>  Mon, 16 Jun 2026 00:00:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Thu, 19 Jun 2026 00:00:00 -0400
 
 mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
 

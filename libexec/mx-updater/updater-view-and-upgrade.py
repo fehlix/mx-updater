@@ -395,7 +395,7 @@ class ViewAndUpgradeDialog(QDialog):
 
             # TRANSLATORS: Select this to use nala package manager instead of apt.
             _dummy = _("use nala")
-            self.use_nala_checkbox = QCheckBox("nala")
+            self.use_nala_checkbox = QCheckBox("Nala")
             # TRANSLATORS: Explains upgrade can be done by using nala package manager instead of apt
             self.use_nala_checkbox.setToolTip(_("Select this to use nala package manager instead of apt."))
             grid.addWidget(self.use_nala_checkbox, 0, 1)

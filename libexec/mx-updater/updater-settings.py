@@ -531,9 +531,9 @@ The updater icon shows the total number of updates, including automatic updates,
 when additional updates are available.""")
 
         # TRANSLATORS: Tooltip of the "automatic" upgrade checkbox.
-        # The upgrade interval is set by the frequency dropdown next to this checkbox.
+        # The upgrade interval is set by the interval dropdown next to this checkbox.
         self.auto_upgrade_checkbox.setToolTip(_(
-            "Automatically install package updates at the interval set by the frequency selector.\n"
+            "Automatically install package updates at the selected interval.\n"
             "Only updates existing packages without changing your system configuration.\n"
             "The updater icon shows the total number of updates, including automatic updates,\n"
             "when additional updates are available."))

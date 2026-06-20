@@ -211,10 +211,11 @@ class SettingsEditorDialog(QDialog):
 
     def is_unattended_upgrade_enabled(self):
         try:
-            cmd = ['apt-config', 'shell', 'val', 'APT::Periodic::Unattended-Upgrade']
-            result = subprocess.run(cmd, capture_output=True, text=True)
-            match = re.search(r"val='(\d+)'", result.stdout)
-            return int(match.group(1)) > 0 if match else False
+            raw = self._read_apt_periodic_raw('Unattended-Upgrade')
+            if raw == 'always':
+                return True
+            days = self._raw_to_days(raw)
+            return days is not None and days > 0
         except Exception:
             return False
 
@@ -481,14 +482,11 @@ without installing new dependencies or removing existing packages."""))
             (_("monthly"),       30),
             (_("never"),          0),
         ]
+        self._has_custom_freq_item = False
+        self._custom_freq_raw = ''
         self.frequency_combo = QComboBox()
         for label, _val in self._frequency_map:
             self.frequency_combo.addItem(label)
-        # TRANSLATORS: Tooltip for the frequency dropdown in the Upgrade Mode section.
-        self.frequency_combo.setToolTip(_(
-            "Sets how often the package list is refreshed (apt-get update).\n"
-            "When 'automatic' is checked, the same interval also applies to the automatic upgrade.\n"
-            "'never' disables both the refresh and the automatic upgrade."))
 
         # grid: row 0 = full/basic/Nala, row 1 = automatic/frequency
         # col 0 width is shared by both rows so "basic" and frequency always align
@@ -525,12 +523,20 @@ without installing new dependencies or removing existing packages."""))
         # TRANSLATORS: The label of the checkbox "upgrade automatically".
         _dummy = _("upgrade automatically")
 
-        # TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
-        # which tries to explain what this checkbox is about.
-        self.auto_upgrade_checkbox.setToolTip(_("""Automatically check for package updates once a day and install them.
+        # keep old translated string so xgettext still extracts it
+        # TRANSLATORS: Old tooltip of the "automatic" upgrade checkbox -- kept for translators reference.
+        _dummy = _("""Automatically check for package updates once a day and install them.
 Only updates existing packages without changing your system configuration.
 The updater icon shows the total number of updates, including automatic updates,
-when additional updates are available."""))
+when additional updates are available.""")
+
+        # TRANSLATORS: Tooltip of the "automatic" upgrade checkbox.
+        # The upgrade interval is set by the frequency dropdown next to this checkbox.
+        self.auto_upgrade_checkbox.setToolTip(_(
+            "Automatically install package updates at the interval set by the frequency selector.\n"
+            "Only updates existing packages without changing your system configuration.\n"
+            "The updater icon shows the total number of updates, including automatic updates,\n"
+            "when additional updates are available."))
 
 
         # TRANSLATORS: The label of the checkbox "update automatically", where user can select
@@ -564,16 +570,28 @@ when additional updates are available."""))
             logging.error("Initial state of auto upgrade failed: %s", str(e))
 
         try:
-            current_freq = self.get_update_frequency()
-            for i, (_label, val) in enumerate(self._frequency_map):
-                if val == current_freq:
-                    self._last_freq_index = i
-                    self.frequency_combo.setCurrentIndex(i)
-                    break
-            if current_freq == 0:
+            raw_update = self._read_apt_periodic_raw('Update-Package-Lists')
+            raw_upgrade = self._read_apt_periodic_raw('Unattended-Upgrade')
+            # show the interval the user cares about: upgrade when auto on, refresh when off
+            raw_primary = raw_upgrade if initial_state else raw_update
+            days_primary = self._raw_to_days(raw_primary)
+            matched = False
+            if days_primary is not None and days_primary == int(days_primary):
+                int_days = int(days_primary)
+                for i, (_label, val) in enumerate(self._frequency_map):
+                    if val == int_days:
+                        self._last_freq_index = i
+                        self.frequency_combo.setCurrentIndex(i)
+                        matched = True
+                        break
+            if not matched:
+                # always pass raw_update so _custom_freq_val preserves the refresh interval
+                self._freq_combo_insert_custom(raw_update)
+            if days_primary is not None and days_primary == 0.0:
                 self.auto_upgrade_checkbox.setEnabled(False)
         except Exception as e:
             logging.error("Initial frequency state failed: %s", str(e))
+        self._update_periodic_tooltip()
 
         #---------------------------------------------------------------
         # auto_upgrade connections
@@ -1374,9 +1392,6 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
                 self.update_systray_icon("auto_upgrade", str(checked).lower())
             else:
                 self.auto_upgrade_checkbox.setChecked(current_state)
-                failure = _("Failure")
-                message = _("Failed to update auto-upgrade setting.")
-                self.show_message(failure, message, QMessageBox.Icon.Warning)
 
         except Exception as e:
             logging.error("Toggle error: %r", e)
@@ -1405,23 +1420,186 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
 
 
-    def get_update_frequency(self):
-        cmd = ['apt-config', 'shell', 'freq', 'APT::Periodic::Update-Package-Lists']
+    def _read_apt_periodic_raw(self, key):
+        cmd = ['apt-config', 'shell', 'val', f'APT::Periodic::{key}']
         result = subprocess.run(cmd, capture_output=True, text=True)
-        match = re.search(r"freq='(\d+)'", result.stdout)
-        return int(match.group(1)) if match else 1
+        match = re.search(r"val='([^']*)'", result.stdout)
+        return match.group(1).strip() if match else ''
 
-    def apply_periodic(self, update_freq, upgrade_freq):
-        logging.debug("apply_periodic: refresh=%s upgrade=%s", update_freq, upgrade_freq)
+    def _raw_to_days(self, raw):
+        if not raw:
+            return 0.0
+        if raw == 'always':
+            return None
+        m = re.match(r'^(\d+)([smhd]?)$', raw)
+        if not m:
+            return None
+        n, unit = int(m.group(1)), m.group(2) or 'd'
+        if unit == 'd': return float(n)
+        if unit == 'h': return n / 24.0
+        if unit == 'm': return n / 1440.0
+        if unit == 's': return n / 86400.0
+        return None
+
+    def _normalize_for_write(self, raw):
+        if not raw:
+            return '0'
+        if raw == 'always':
+            return 'always'
+        days = self._raw_to_days(raw)
+        if days is None:
+            return raw
+        if days == int(days):
+            return str(int(days))
+        return raw
+
+    def _freq_label_for(self, val):
+        for label, v in self._frequency_map:
+            if v == val:
+                return label
+        return "%dd" % val
+
+    def _raw_periodic_label(self, raw):
+        if not raw:
+            return self._freq_label_for(0)
+        if raw == 'always':
+            return 'custom (always)'
+        days = self._raw_to_days(raw)
+        if days is None:
+            return 'custom (%s)' % raw
+        if days == int(days):
+            int_days = int(days)
+            for label, v in self._frequency_map:
+                if v == int_days:
+                    return label
+            return '%dd' % int_days
+        # non-integer days: keep original unit notation
+        m = re.match(r'^(\d+)([smhd])$', raw)
+        return ('%s%s' % (m.group(1), m.group(2))) if m else 'custom (%s)' % raw
+
+    def _freq_combo_insert_custom(self, raw_update):
+        self._custom_freq_raw = self._normalize_for_write(raw_update)
+        raw_upgrade = self._read_apt_periodic_raw('Unattended-Upgrade')
+        raw_display = raw_upgrade if self.auto_upgrade_checkbox.isChecked() else raw_update
+        # TRANSLATORS: Shown in the frequency combo when the current apt-config value does not
+        # match any preset (daily/weekly/etc). %s is a compact interval like "5d", "12h", or "always".
+        item_text = _("custom (%s)") % self._raw_periodic_label(raw_display)
+        self.frequency_combo.insertItem(0, item_text)
+        self.frequency_combo.model().item(0).setEnabled(False)
+        self.frequency_combo.setCurrentIndex(0)
+        self._has_custom_freq_item = True
+
+    def _update_periodic_tooltip(self):
+        raw_update = self._read_apt_periodic_raw('Update-Package-Lists')
+        raw_upgrade = self._read_apt_periodic_raw('Unattended-Upgrade')
+        if self._has_custom_freq_item:
+            raw_display = raw_upgrade if self.auto_upgrade_checkbox.isChecked() else raw_update
+            days_display = self._raw_to_days(raw_display)
+            preset_matched = False
+            if days_display is not None and days_display == int(days_display):
+                int_days = int(days_display)
+                for i, (_label, val) in enumerate(self._frequency_map):
+                    if val == int_days:
+                        prev = self._periodic_updating
+                        self._periodic_updating = True
+                        try:
+                            self.frequency_combo.removeItem(0)
+                            self._has_custom_freq_item = False
+                            self.frequency_combo.setCurrentIndex(i)
+                            self._last_freq_index = i
+                        finally:
+                            self._periodic_updating = prev
+                        preset_matched = True
+                        break
+            if not preset_matched:
+                self.frequency_combo.setItemText(0,
+                    _("custom (%s)") % self._raw_periodic_label(raw_display))
+        # TRANSLATORS: One-line header in the frequency combo tooltip showing current effective
+        # apt-config values. First %s = refresh interval, second %s = upgrade interval,
+        # e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
+        current_section = _("Current (apt-config): refresh %s, upgrade %s") % (
+            self._raw_periodic_label(raw_update), self._raw_periodic_label(raw_upgrade))
+        # TRANSLATORS: Body text of the frequency combo tooltip explaining what the selector does.
+        # "automatic" refers to the checkbox next to the dropdown. "never" is the last combo option.
+        static_section = _(
+            "Sets how often the package list is refreshed (apt-get update).\n"
+            "When 'automatic' is checked, the same interval also applies to the automatic upgrade.\n"
+            "'never' disables both the refresh and the automatic upgrade.")
+        self.frequency_combo.setToolTip(current_section + "\n\n" + static_section)
+
+    def _revert_combo_to_effective(self, raw_update):
+        # save/restore _periodic_updating so we don't prematurely clear it
+        # if called from inside on_frequency_combo_changed
+        prev = self._periodic_updating
+        self._periodic_updating = True
+        try:
+            if self._has_custom_freq_item:
+                self.frequency_combo.removeItem(0)
+                self._has_custom_freq_item = False
+            raw_upgrade = self._read_apt_periodic_raw('Unattended-Upgrade')
+            raw_primary = raw_upgrade if self.auto_upgrade_checkbox.isChecked() else raw_update
+            days = self._raw_to_days(raw_primary)
+            matched = False
+            if days is not None and days == int(days):
+                int_days = int(days)
+                for i, (_label, val) in enumerate(self._frequency_map):
+                    if val == int_days:
+                        self.frequency_combo.setCurrentIndex(i)
+                        self._last_freq_index = i
+                        matched = True
+                        break
+            if not matched:
+                self._freq_combo_insert_custom(raw_update)
+        finally:
+            self._periodic_updating = prev
+
+    def _verify_periodic(self, update_raw, upgrade_raw):
+        read_update = self._read_apt_periodic_raw('Update-Package-Lists')
+        read_upgrade = self._read_apt_periodic_raw('Unattended-Upgrade')
+        def _days_match(written, read):
+            if written == 'always':
+                return read == 'always'
+            dw = self._raw_to_days(written)
+            dr = self._raw_to_days(read)
+            return dw is not None and dr is not None and abs(dw - dr) < 0.001
+        if _days_match(update_raw, read_update) and _days_match(upgrade_raw, read_upgrade):
+            return True
+        # TRANSLATORS: Warning shown when a higher-priority apt configuration overrides
+        # the setting written by mx-updater. %s values are labels like "daily", "never", "12h".
+        msg = _("Could not apply setting: a higher-priority apt configuration\n"
+                "is overriding the effective values.\n\n"
+                "Requested: refresh %s, upgrade %s\n"
+                "Effective: refresh %s, upgrade %s") % (
+                    self._raw_periodic_label(update_raw), self._raw_periodic_label(upgrade_raw),
+                    self._raw_periodic_label(read_update), self._raw_periodic_label(read_upgrade))
+        msg_box = QMessageBox(self)
+        msg_box.setIcon(QMessageBox.Icon.Warning)
+        # TRANSLATORS: Title of the warning dialog shown when an apt configuration file
+        # with higher priority is overriding the value written by mx-updater.
+        msg_box.setWindowTitle(_("Setting Overridden"))
+        msg_box.setText(msg)
+        msg_box.exec()
+        self._revert_combo_to_effective(read_update)
+        return False
+
+    def apply_periodic(self, update_raw, upgrade_raw):
+        logging.debug("apply_periodic: refresh=%s upgrade=%s", update_raw, upgrade_raw)
         try:
             cmd = ['/usr/bin/pkexec',
                    '/usr/lib/mx-updater/actions/auto-update-periodic',
-                   str(update_freq), str(upgrade_freq)]
+                   str(update_raw), str(upgrade_raw)]
             subprocess.run(cmd, check=True, capture_output=True, text=True)
-            return True
+            result = self._verify_periodic(update_raw, upgrade_raw)
+            self._update_periodic_tooltip()
+            return result
         except subprocess.CalledProcessError as e:
+            # TRANSLATORS: Title of the error dialog shown when the pkexec action script
+            # to set apt periodic upgrade configuration fails (non-zero exit).
             title = _("Unattended Upgrades Configuration Failed")
+            # TRANSLATORS: Body text of the error dialog for a failed apt periodic configuration write.
             message = _("Could not change automatic upgrades configuration")
+            # TRANSLATORS: Label in the error detail line, followed by exit code and stderr output,
+            # e.g. "Command failed [1]: error message".
             command_failed = _("Command failed")
             details = f"{command_failed} [{e.returncode}]: {str(e.stderr)}"
             self.show_error_popup(title=title, message=message, details=details)
@@ -1430,34 +1608,52 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
     def on_frequency_combo_changed(self, index):
         if self._periodic_updating:
             return
+        if self._has_custom_freq_item and index == 0:
+            return
         self._periodic_updating = True
         try:
-            freq = self._frequency_map[index][1]
+            # compute map index without removing the custom item yet --
+            # removal only happens on success so a cancelled auth reverts cleanly
+            map_index = index - 1 if self._has_custom_freq_item else index
+            freq = self._frequency_map[map_index][1]
             if freq == 0:
                 self.auto_upgrade_checkbox.setEnabled(False)
-                success = self.apply_periodic(0, 0)
+                success = self.apply_periodic('0', '0')
                 if success:
+                    if self._has_custom_freq_item:
+                        self.frequency_combo.removeItem(0)
+                        self._has_custom_freq_item = False
                     self.auto_upgrade_checkbox.setChecked(False)
+                    self._last_freq_index = map_index
                 else:
-                    self.frequency_combo.setCurrentIndex(self._last_freq_index)
+                    self.auto_upgrade_checkbox.setEnabled(True)
+                    revert = 0 if self._has_custom_freq_item else self._last_freq_index
+                    self.frequency_combo.setCurrentIndex(revert)
             else:
                 self.auto_upgrade_checkbox.setEnabled(True)
-                upgrade_freq = freq if self.auto_upgrade_checkbox.isChecked() else 0
-                success = self.apply_periodic(freq, upgrade_freq)
+                upgrade_raw = str(freq) if self.auto_upgrade_checkbox.isChecked() else '0'
+                success = self.apply_periodic(str(freq), upgrade_raw)
                 if success:
+                    if self._has_custom_freq_item:
+                        self.frequency_combo.removeItem(0)
+                        self._has_custom_freq_item = False
                     self.update_systray_icon("auto_upgrade",
                         str(self.auto_upgrade_checkbox.isChecked()).lower())
-                    self._last_freq_index = index
+                    self._last_freq_index = map_index
                 else:
-                    self.frequency_combo.setCurrentIndex(self._last_freq_index)
+                    revert = 0 if self._has_custom_freq_item else self._last_freq_index
+                    self.frequency_combo.setCurrentIndex(revert)
         finally:
             self._periodic_updating = False
 
     def apply_auto_upgrade_checkbox_toggled(self, checked):
-        freq_index = self.frequency_combo.currentIndex()
-        freq = self._frequency_map[freq_index][1]
-        upgrade_freq = freq if checked else 0
-        return self.apply_periodic(freq, upgrade_freq)
+        if self._has_custom_freq_item:
+            update_raw = self._custom_freq_raw
+        else:
+            freq_index = self.frequency_combo.currentIndex()
+            update_raw = str(self._frequency_map[freq_index][1])
+        upgrade_raw = update_raw if checked else '0'
+        return self.apply_periodic(update_raw, upgrade_raw)
 
     def show_error_popup(self, title, message, details=None):
         """

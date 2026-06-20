@@ -1,3 +1,63 @@
+mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium
+
+  * Settings: after writing periodic apt settings, re-read the effective
+    values via apt-config. If a higher-priority file in /etc/apt/apt.conf.d/
+    is overriding the result, show a warning ("Could not apply setting: ...")
+    with the requested vs effective values in human-readable labels, and
+    revert the frequency combo to the effective value so the UI reflects
+    what apt actually uses.
+  * Settings: frequency combo tooltip shows the current effective apt-config
+    values on a single line at the top ("Current (apt-config): refresh X,
+    upgrade Y"), followed by the description. Refreshed after every write.
+  * Settings: if the effective Update-Package-Lists value does not match
+    any preset (e.g. set to 5 by an admin), the combo shows a non-selectable
+    "custom (Nd)" placeholder instead of silently defaulting to "daily".
+    Placeholder label shows the upgrade interval when automatic is on,
+    refresh interval when off. Selecting any real option removes it.
+  * Fix: toggling automatic on/off with a custom frequency active now
+    correctly preserves the refresh interval (previously wrote "daily"
+    because the custom combo item at index 0 was mapped into _frequency_map
+    directly). Enabling automatic re-uses the refresh value for the upgrade
+    interval, consistent with normal behaviour.
+  * Fix: cancelling the pkexec authentication dialog while a custom frequency
+    was active left the combo showing "daily" instead of reverting to the
+    custom item. Custom item is now removed only after a successful write;
+    on failure the combo reverts to index 0 (the custom item still present).
+  * Override warning message generalised: no longer names /etc/apt/apt.conf.d/
+    specifically; says "a higher-priority apt configuration" to cover both
+    apt.conf.d/ and /etc/apt/apt.conf without being overly technical.
+  * Custom frequency fallback label uses compact "Nd" notation (e.g. "5d")
+    instead of "N days" -- avoids plural-form translation burden while keeping
+    the value readable in the combo placeholder, tooltip, and override warning.
+  * TRANSLATORS comment for "custom (%s)" updated to clarify context (combo
+    item for non-preset apt values) and example value ("5d", "14d").
+  * Handle apt periodic values with unit suffixes (s/m/h/d) and the special
+    "always" value. Values are converted to days and matched against presets
+    where possible (e.g. "7d" -> weekly, "168h" -> weekly); non-matching
+    values shown with their original unit notation (e.g. "custom (5h)").
+    "always" is treated as a custom setting. is_unattended_upgrade_enabled()
+    returns True for "always".
+  * Preserve admin-set non-integer apt periodic values on write: action script
+    auto-update-periodic now accepts N[smhd] and "always" in addition to plain
+    integers. _custom_freq_raw (string) replaces _custom_freq_val (rounded int);
+    _normalize_for_write() converts exact-day values to plain integers
+    ("259200s"->"3", "24h"->"1") and preserves non-exact values as-is
+    ("216000s" stays "216000s", "259201s" stays "259201s"). Toggling automatic
+    on/off with an admin-set custom interval no longer rounds it to the nearest
+    day. _verify_periodic compares both sides via _raw_to_days() instead of
+    integer equality.
+  * Settings: "automatic" checkbox tooltip updated to refer to the frequency
+    selector instead of the removed "once a day" wording. Old string kept
+    as _dummy for translators reference.
+  * Fix: is_unattended_upgrade_enabled() used the /b (boolean) apt-config
+    modifier which only recognises "1" as true, not arbitrary integers such
+    as 7 (weekly). Replaced with a raw integer read (> 0 check), consistent
+    with get_update_frequency(). This caused the automatic checkbox to appear
+    unchecked on restart and suppressed the pkexec prompt when toggling off,
+    for all frequencies other than daily.
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 21 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev20) UNRELEASED; urgency=medium
 
   * Settings: add periodic refresh/upgrade frequency selector (daily, every

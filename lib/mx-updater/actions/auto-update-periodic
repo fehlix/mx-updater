@@ -9,8 +9,8 @@
 # Must be run as root (via pkexec).
 #
 # Usage: auto-update-periodic <update_freq> <upgrade_freq>
-#   update_freq:  APT::Periodic::Update-Package-Lists (0=disabled, N=every N days)
-#   upgrade_freq: APT::Periodic::Unattended-Upgrade   (0=disabled, N=every N days)
+#   update_freq:  APT::Periodic::Update-Package-Lists (0=disabled, N[smhd]=interval, always)
+#   upgrade_freq: APT::Periodic::Unattended-Upgrade   (0=disabled, N[smhd]=interval, always)
 
 PERIODIC_CONF=/etc/apt/apt.conf.d/52mx-updater-periodic
 OLD_ENABLE=/etc/apt/apt.conf.d/51unattended-upgrades-enable
@@ -18,15 +18,13 @@ OLD_DISABLE=/etc/apt/apt.conf.d/51unattended-upgrades-disable
 
 usage() {
     echo "Usage: auto-update-periodic <update_freq> <upgrade_freq>" >&2
-    echo "  Both values are integers: 0=disabled, N=every N days" >&2
+    echo "  Values: 0=disabled, N=every N days, Ns/Nm/Nh/Nd=with unit, always" >&2
     exit 1
 }
 
-is_int() {
-    case "$1" in
-        ''|*[!0-9]*) return 1 ;;
-        *) return 0 ;;
-    esac
+is_valid_apt_periodic() {
+    [ "$1" = "always" ] && return 0
+    echo "$1" | grep -qE '^[0-9]+[smhd]?$'
 }
 
 UPDATE_FREQ="$1"
@@ -34,8 +32,8 @@ UPGRADE_FREQ="$2"
 
 [ -z "$UPDATE_FREQ" ]  && usage
 [ -z "$UPGRADE_FREQ" ] && usage
-is_int "$UPDATE_FREQ"  || usage
-is_int "$UPGRADE_FREQ" || usage
+is_valid_apt_periodic "$UPDATE_FREQ"  || usage
+is_valid_apt_periodic "$UPGRADE_FREQ" || usage
 
 if [ "$(id -u)" != "0" ]; then
     echo "auto-update-periodic: must be run as root" >&2

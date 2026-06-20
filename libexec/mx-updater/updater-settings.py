@@ -178,6 +178,8 @@ class SettingsEditorDialog(QDialog):
         self._init_done = False
 
         self._auto_upgrade_state_is_updating = False
+        self._periodic_updating = False
+        self._last_freq_index = 0
 
         self.is_detect_plasma = self.detect_plasma()
         self.disable_hide_until = (self.is_detect_plasma,)
@@ -208,22 +210,12 @@ class SettingsEditorDialog(QDialog):
             logger.error("[%s] Checking unattended upgrade state failed: %s", me, str(e))
 
     def is_unattended_upgrade_enabled(self):
-        """
-        Check if unattended upgrade is enabled
-
-        Returns:
-            bool: True if unattended upgrade is enabled
-        """
-        me = "is_unattended_upgrade_enabled@Settings"
         try:
-            cmd = ['apt-config', 'shell', 'opt', 'APT::Periodic::Unattended-Upgrade/b']
-            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-
-            # match the single-quoted apt-config shell output
-            output = result.stdout.strip()
-            return output == "opt='true'"
-
-        except subprocess.CalledProcessError:
+            cmd = ['apt-config', 'shell', 'val', 'APT::Periodic::Unattended-Upgrade']
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            match = re.search(r"val='(\d+)'", result.stdout)
+            return int(match.group(1)) > 0 if match else False
+        except Exception:
             return False
 
 
@@ -479,13 +471,33 @@ without installing new dependencies or removing existing packages."""))
         if self.settings["use_nala"]:
             self.use_nala_checkbox.setChecked(True)
 
-        # grid: full/basic on row 0, automatic/use-nala on row 1 -- col 0 width
-        # is the same for both rows so "basic" and "use nala" always align
+        # frequency combo: one interval for both package refresh and auto upgrade
+        # TRANSLATORS: items in the "frequency" dropdown for automatic refresh/upgrade interval.
+        self._frequency_map = [
+            (_("daily"),          1),
+            (_("every 3 days"),   3),
+            (_("weekly"),         7),
+            (_("every 2 weeks"), 14),
+            (_("monthly"),       30),
+            (_("never"),          0),
+        ]
+        self.frequency_combo = QComboBox()
+        for label, _val in self._frequency_map:
+            self.frequency_combo.addItem(label)
+        # TRANSLATORS: Tooltip for the frequency dropdown in the Upgrade Mode section.
+        self.frequency_combo.setToolTip(_(
+            "Sets how often the package list is refreshed (apt-get update).\n"
+            "When 'automatic' is checked, the same interval also applies to the automatic upgrade.\n"
+            "'never' disables both the refresh and the automatic upgrade."))
+
+        # grid: row 0 = full/basic/Nala, row 1 = automatic/frequency
+        # col 0 width is shared by both rows so "basic" and frequency always align
         upgrade_grid = QGridLayout()
         upgrade_grid.setHorizontalSpacing(4)
         upgrade_grid.setVerticalSpacing(2)
         upgrade_grid.setColumnMinimumWidth(1, 16)
-        upgrade_grid.setColumnStretch(3, 1)
+        upgrade_grid.setColumnMinimumWidth(3, 16)
+        upgrade_grid.setColumnStretch(5, 1)
         upgrade_grid.addWidget(self.full_upgrade_radio, 0, 0)
         upgrade_grid.addWidget(self.basic_upgrade_radio, 0, 2)
 
@@ -530,10 +542,11 @@ when additional updates are available."""))
         self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
         upgrade_grid.addWidget(self.auto_upgrade_checkbox, 1, 0)
+        upgrade_grid.addWidget(self.frequency_combo, 1, 2, 1, 3)
 
-        # Does /usr/bin/nala exists and is executable
+        # Does /usr/bin/nala exist and is executable
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
-            upgrade_grid.addWidget(self.use_nala_checkbox, 1, 2)
+            upgrade_grid.addWidget(self.use_nala_checkbox, 0, 4)
         else:
             self.use_nala_checkbox.setChecked(False)
 
@@ -543,19 +556,30 @@ when additional updates are available."""))
         # auto_upgrade checkbox set initilal state
         #---------------------------------------------------------------
 
-        # initial auto_upgrade_checkbox state
+        # initial auto_upgrade_checkbox and frequency_combo state
         try:
             initial_state = self.is_unattended_upgrade_enabled()
             self.auto_upgrade_checkbox.setChecked(initial_state)
         except Exception as e:
             logging.error("Initial state of auto upgrade failed: %s", str(e))
 
+        try:
+            current_freq = self.get_update_frequency()
+            for i, (_label, val) in enumerate(self._frequency_map):
+                if val == current_freq:
+                    self._last_freq_index = i
+                    self.frequency_combo.setCurrentIndex(i)
+                    break
+            if current_freq == 0:
+                self.auto_upgrade_checkbox.setEnabled(False)
+        except Exception as e:
+            logging.error("Initial frequency state failed: %s", str(e))
+
         #---------------------------------------------------------------
         # auto_upgrade connections
         #---------------------------------------------------------------
-        #self.auto_upgrade_checkbox.toggled.connect(
-        #    lambda checked: self.on_auto_upgrade_checkbox_toggled(checked))
         self.auto_upgrade_checkbox.toggled.connect(self.on_auto_upgrade_checkbox_toggled)
+        self.frequency_combo.currentIndexChanged.connect(self.on_frequency_combo_changed)
 
         upgrade_frame.setLayout(upgrade_layout)
         layout.addWidget(upgrade_frame)
@@ -1333,39 +1357,22 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.apply_auto_upgrade_checkbox_toggled(checked)
 
     def on_auto_upgrade_checkbox_toggled(self, checked):
-        # Prevent recursive calls
-        if self._auto_upgrade_state_is_updating:
+        if self._auto_upgrade_state_is_updating or self._periodic_updating:
             return
 
         logger.debug("toggled auto_upgrade: %s", checked)
         try:
-            # prevent recursion
             self._auto_upgrade_state_is_updating = True
 
-            # current system state
             current_state = self.is_unattended_upgrade_enabled()
-            logger.debug("current auto_upgrade state is: %s", current_state)
-            logger.debug("toggle auto_upgrade state is: %s", checked)
-            # state already set
             if current_state == checked:
-                logging.info("Auto-upgrade already set to %r.", checked)
-                message = _("Auto-upgrade setting is already in the desired state. No changes made.")
-                self.show_message("Info", message, QMessageBox.Icon.Information)
                 return
 
-            # try to apply new state
-            logger.debug("apply_auto_upgrade_checkbox_toggled: %s", checked)
             success = self.apply_auto_upgrade_checkbox_toggled(checked)
-            logger.debug("apply_auto_upgrade_checkbox success: %s", success)
 
             if success:
-                # state changed
-                success = _("Success")
-                message = _("Auto-upgrade setting updated successfully.")
-                self.show_message(success, message, QMessageBox.Icon.Information)
-                self.update_systray_icon("auto_upgrade", str(success).lower())
+                self.update_systray_icon("auto_upgrade", str(checked).lower())
             else:
-                # revert to previous state
                 self.auto_upgrade_checkbox.setChecked(current_state)
                 failure = _("Failure")
                 message = _("Failed to update auto-upgrade setting.")
@@ -1373,17 +1380,13 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
         except Exception as e:
             logging.error("Toggle error: %r", e)
-            # Revert to previous known good state
             current_state = self.is_unattended_upgrade_enabled()
             self.auto_upgrade_checkbox.setChecked(current_state)
-
-            # Show error message to user
             error = _("Error")
             message = _("An unexpected error occurred:")
             self.show_message(error, f"{message} {e}", QMessageBox.Icon.Critical)
 
         finally:
-            # reset state_is_updating flag
             self._auto_upgrade_state_is_updating = False
 
     def show_message(self, title, message, icon):
@@ -1402,47 +1405,59 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
 
 
-    def apply_auto_upgrade_checkbox_toggled(self, checked):
-        """
-        Apply the selected configuration
-        """
-        logging.debug("[apply_auto_upgrade_checkbox] clicked")
+    def get_update_frequency(self):
+        cmd = ['apt-config', 'shell', 'freq', 'APT::Periodic::Update-Package-Lists']
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        match = re.search(r"freq='(\d+)'", result.stdout)
+        return int(match.group(1)) if match else 1
+
+    def apply_periodic(self, update_freq, upgrade_freq):
+        logging.debug("apply_periodic: refresh=%s upgrade=%s", update_freq, upgrade_freq)
         try:
-            # Check if Polkit is available
-            #if not self.check_and_confirm_polkit():
-            #    return
-
-            # Select appropriate command based on desired state
-            if checked:
-                cmd = [ '/usr/bin/pkexec',
-                        '/usr/lib/mx-updater/actions/auto-update-enable']
-            else:
-                cmd = [ '/usr/bin/pkexec',
-                        '/usr/lib/mx-updater/actions/auto-update-disable']
-
-            # Run the command
-            result = subprocess.run(
-                cmd,
-                check=True,
-                capture_output=True,
-                text=True
-            )
-
-            success = checked == self.is_unattended_upgrade_enabled()
-            return success
-
+            cmd = ['/usr/bin/pkexec',
+                   '/usr/lib/mx-updater/actions/auto-update-periodic',
+                   str(update_freq), str(upgrade_freq)]
+            subprocess.run(cmd, check=True, capture_output=True, text=True)
+            return True
         except subprocess.CalledProcessError as e:
-            # Show error popup
             title = _("Unattended Upgrades Configuration Failed")
-            message=_("Could not change automatic upgrades configuration")
-            command_failed= _("Command failed")
-            details=f"{command_failed} [{e.returncode}]: {str(e.stderr)} "
+            message = _("Could not change automatic upgrades configuration")
+            command_failed = _("Command failed")
+            details = f"{command_failed} [{e.returncode}]: {str(e.stderr)}"
+            self.show_error_popup(title=title, message=message, details=details)
+            return False
 
-            self.show_error_popup(
-                title=title,
-                message=message,
-                details=details
-            )
+    def on_frequency_combo_changed(self, index):
+        if self._periodic_updating:
+            return
+        self._periodic_updating = True
+        try:
+            freq = self._frequency_map[index][1]
+            if freq == 0:
+                self.auto_upgrade_checkbox.setEnabled(False)
+                success = self.apply_periodic(0, 0)
+                if success:
+                    self.auto_upgrade_checkbox.setChecked(False)
+                else:
+                    self.frequency_combo.setCurrentIndex(self._last_freq_index)
+            else:
+                self.auto_upgrade_checkbox.setEnabled(True)
+                upgrade_freq = freq if self.auto_upgrade_checkbox.isChecked() else 0
+                success = self.apply_periodic(freq, upgrade_freq)
+                if success:
+                    self.update_systray_icon("auto_upgrade",
+                        str(self.auto_upgrade_checkbox.isChecked()).lower())
+                    self._last_freq_index = index
+                else:
+                    self.frequency_combo.setCurrentIndex(self._last_freq_index)
+        finally:
+            self._periodic_updating = False
+
+    def apply_auto_upgrade_checkbox_toggled(self, checked):
+        freq_index = self.frequency_combo.currentIndex()
+        freq = self._frequency_map[freq_index][1]
+        upgrade_freq = freq if checked else 0
+        return self.apply_periodic(freq, upgrade_freq)
 
     def show_error_popup(self, title, message, details=None):
         """

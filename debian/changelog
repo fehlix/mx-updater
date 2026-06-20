@@ -1,304 +1,48 @@
-mx-updater (26.06.1mx25~dev19) UNRELEASED; urgency=medium
+mx-updater (26.06.1mx25~dev20) UNRELEASED; urgency=medium
 
-  * polkit/rules.d/50-mx-updater-reload.rules: add polkit rules file granting
-    passwordless reload to users in the sudo group; non-sudo users are shown
-    the polkit admin authentication dialog (AUTH_ADMIN). Rules files take
-    precedence over policy defaults, allowing group-based access control that
-    the policy file format cannot express directly.
-  * polkit/actions/org.mxlinux.mx-updater.reload.policy: change defaults from
-    allow_any/allow_inactive/allow_active=yes to no. The rules file handles
-    authorisation for sudo group members; the policy defaults are now the
-    correct secure fallback for everyone else.
-  * sudoers.d/mx-updater-reload: add /etc/sudoers.d/mx-updater-reload granting
-    the sudo group passwordless access to updater_reload_action. Mirrors the
-    polkit rules file for the sudo fallback path (used when no polkit agent is
-    running) so both paths behave consistently.
-  * debian/install: install sudoers.d/mx-updater-reload to /etc/sudoers.d/
-    and polkit/rules.d to /usr/share/polkit-1/rules.d/.
-  * debian/mx-updater.postinst: chmod 0440 /etc/sudoers.d/mx-updater-reload
-    (required permissions for sudoers.d drop-in files).
-  * shlib/updater_shlib: replace xfce4-terminal --disable-server with
-    ${SESSION_MANAGER:+--disable-server} so the flag is only passed when
-    SESSION_MANAGER is set. Removes the 2>&1 | grep -v pipe that suppressed
-    the "SESSION_MANAGER environment variable not defined" warning.
-  * updater-settings.py, updater-view-and-upgrade.py: capitalise "Nala"
-    checkbox label (bare string, no translation impact). Looks correct
-    alongside other proper names; lowercase looked odd in other languages.
+  * Settings: add periodic refresh/upgrade frequency selector (daily, every
+    3 days, weekly, every 2 weeks, monthly, never) to the Upgrade Mode section.
+    Frequency controls both the package list refresh (apt-get update) and,
+    when 'automatic' is checked, the unattended upgrade interval. Setting
+    frequency to 'never' disables both and grays out the automatic checkbox.
+  * New action script auto-update-periodic: writes
+    /etc/apt/apt.conf.d/52mx-updater-periodic with the chosen
+    Update-Package-Lists and Unattended-Upgrade values; removes the old
+    static 51unattended-upgrades-enable/disable files on first use.
+  * New polkit policy org.mxlinux.mx-updater.auto-update-periodic for the
+    action (auth_admin, consistent with existing auto-update policies).
+  * Upgrade Mode grid: Nala checkbox moved to row 0 alongside full/basic;
+    frequency combo occupies row 1 alongside automatic checkbox.
 
- -- fehlix <fehlix@mxlinux.org>  Thu, 19 Jun 2026 00:00:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Fri, 20 Jun 2026 00:00:00 -0400
 
-mx-updater (26.06.1mx25~dev18) UNRELEASED; urgency=medium
+mx-updater (26.06.01mx25) mx; urgency=medium
 
-  * updater-settings.py: rename wireframe transparent checkbox label to
-    "transparent black/white wireframe" (was "transparent wireframe for no updates").
-    black/white refers to the actual wire colors of the no-updates icons;
-    avoids confusion with the "wireframe -- dark/light" icon set labels shown
-    in the radio buttons above. The green some-updates wireframe icon is unaffected.
-    Tooltip updated to explain the panel color visibility issue: each variant
-    only remains visible when the panel color contrasts with its wire color.
-    Old strings kept as _dummy.
-  * updater-settings.py: shorten labels in "Other options" frame and rename
-    frame title, keeping old strings as _dummy for Transifex:
-    "Other" (was "Other options"),
-    "nala" (was "use nala"),
-    "terminal auto-close" (was "close terminal when idle"),
-    "autostart delay" (was "autostart after delay"),
-    "desktop notifications" (was "use desktop notifications"),
-    "hide when no updates" (was "Hide until updates available").
-    Reorder entries in "Other" frame: terminal size/position first, then
-    terminal auto-close, skip upgrade confirmation, desktop notifications,
-    autostart delay, hide when no updates.
-  * updater-systray.py: sync right-click menu entry to new string
-    "hide when no updates" (was "Hide until updates available"), capitalized
-    at point of use so menu shows "Hide when no updates". Single translation
-    key shared with settings checkbox; old string kept as _dummy.
-  * updater-view-and-upgrade.py: sync shortened labels:
-    "nala" (was "use nala"),
-    "terminal auto-close" (was "close terminal when idle").
-    Old strings kept as _dummy for Transifex.
-  * updater-settings.py, updater-view-and-upgrade.py: fix TRANSLATORS comments
-    that were left only above _dummy lines after _dummy insertions; each new _()
-    string now has its own TRANSLATORS comment immediately above it, as required
-    by xgettext. Affected: "transparent black/white wireframe", "desktop
-    notifications", "hide when no updates".
-  * updater-settings.py, updater-view-and-upgrade.py: "nala" label changed to
-    plain string (not wrapped in _()); "nala" is a tool name, not translatable,
-    consistent with how "Synaptic" and "MXPI" are handled.
-
- -- fehlix <fehlix@mxlinux.org>  Wed, 18 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev17) UNRELEASED; urgency=medium
-
-  * icons/Makefile: rename mx-updater icon to updater-mx to prevent Papirus
-    icon theme from hijacking it. Move scalable symlink from hicolor/scalable/
-    to hicolor/scalable/apps/ (correct per Freedesktop spec).
-  * updater_config.py: switch tray icon paths from flat 32px PNG symlinks to
-    hicolor/256x256/apps PNGs for all icon sets except "classic" (classic
-    kept as flat PNG symlink for backward compatibility with long-time users).
-    256px PNGs are rendered from SVG by rsvg-convert; scaling down 256px to
-    panel size is clean. Avoids Papirus icon theme hijack: Papirus provides
-    icons under all mnotify-* names, so QIcon.fromTheme("mnotify-some-*")
-    would return Papirus icons when Papirus is the active theme. Direct path
-    loading bypasses the theme lookup entirely.
-  * updater-systray.py, updater_about.py, updater-history.py,
-    updater-changelog.py, mx-updater-logviewer.py: update window icon path
-    from hicolor/scalable/mx-updater.svg to hicolor/scalable/apps/updater-mx.svg.
-  * All Python apps: setApplicationName("updater-mx") so WM_CLASS matches
-    the new StartupWMClass in desktop files. updater-settings.py uses
-    "mx-updater-settings" (fixes pre-existing mismatch with its desktop file).
-  * xdg/mx-updater.desktop, xdg/mx-updater-autostart.desktop: update
-    Icon= and StartupWMClass= to updater-mx.
-  * updater-view-and-upgrade.py: fix missing window icon update (still
-    referenced old hicolor/scalable/mx-updater.svg path).
-  * updater-settings.py: fix icon preview in settings dialog showing blank
-    for white-on-transparent icons (e.g. wireframe-some). create_icon_label
-    now substitutes 32x32 for 256x256 in hicolor paths so the purpose-built
-    32px PNG is used for display; falls back to the original path if missing.
-  * updater-systray.py: load tray icons with a multi-size QIcon built at
-    runtime from all available hicolor/NxN/apps/ PNG variants (16, 22, 24,
-    32, 48, 64px). Qt picks the exact or nearest size for the panel so no
-    heavy downscaling occurs; works correctly on HiDPI too. Falls back to
-    QIcon(path) for non-hicolor paths (classic flat PNG).
-    QIcon.fromTheme was tried and reverted: Papirus hijacks all mnotify-*
-    names so fromTheme always returned Papirus icons instead of ours.
-    QIcon(256px PNG) was also tried and reverted: Qt downscaled 256->22px
-    with bilinear interpolation which looked blurry in the systray.
-  * icons/Makefile: add mx-updater.png and mx-updater.svg compat symlinks
-    pointing to updater-mx in each hicolor size dir and scalable/apps/.
-    Ensures old Icon=mx-updater references (user-copied .desktop files,
-    Fluxbox/Openbox generated menus) continue to resolve after the rename.
-  * debian/mx-updater.postinst: run gtk-update-icon-cache after install so
-    the hicolor icon cache is rebuilt immediately and the renamed icons are
-    found by name without requiring a reboot.
-  * polkit/actions/*.policy: update <icon_name> from mx-updater to updater-mx
-    in all 7 policy files to match the icon rename.
+  * Settings dialog: more compact layout for small screens; shorter and
+    clearer labels throughout; options reordered for better grouping.
+  * New terminal window size and position settings: eight size options and
+    five screen positions; Wayland-aware (position hidden where not
+    applicable); "own" option lets the terminal use its own saved geometry.
+  * Left-click options: MX Package Installer (MXPI) added as an explicit
+    left-click target alongside Synaptic and "View and Upgrade". Each option
+    only appears when its application is installed.
+  * Tray icon: fix Papirus icon theme hijacking the app icon by renaming it
+    from "mx-updater" to "updater-mx"; load multi-size PNG variants at
+    runtime so Qt picks the right size for the panel without blurry
+    downscaling. Backward-compatible symlinks keep existing references working.
+  * Authentication: fix polkit agent detection so pkexec, gksu, or sudo is
+    chosen correctly at runtime. Reload (apt-get update) restricted to sudo
+    group members; non-sudo users are shown a polkit admin authentication
+    dialog, consistent with upgrade behaviour.
+  * Nala: replace combined "nala upgrade --update" call with two explicit
+    steps (nala update, then nala upgrade --no-update); touch update-stamp
+    after the update step, not after the upgrade.
+  * Internal cleanup: remove dead code, fix missing shell library guards,
+    remove duplicate configuration reading logic.
+  * Translations: new and shortened UI strings; existing translations
+    preserved on Transifex via _dummy entries.
 
  -- fehlix <fehlix@mxlinux.org>  Thu, 19 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev16) UNRELEASED; urgency=medium
-
-  * updater-settings.py: shorten three checkbox labels, keeping old strings
-    as _dummy for xgettext/Transifex:
-    "autostart after delay" (was "start 'MX Updater' at login after delay"),
-    "close terminal when idle" (was "close terminal window after idle time"),
-    "skip upgrade confirmation" (was "automatically confirm all package upgrades").
-    Add _dummy for "opens Synaptic" (old left-click radio label, replaced by
-    bare "Synaptic" in dev13) so existing translations are not lost on Transifex.
-    Icon grid: add equal 32px gap before first icon column (was 8px) to match
-    the gap between the two icon columns.
-    Upgrade Mode: replace two HBoxLayouts with a QGridLayout so "basic" and
-    "use nala" always align with each other; insert a 16px spacer column
-    between the label and second option to prevent crowding with long translations.
-  * updater-view-and-upgrade.py: sync shortened labels from settings:
-    "skip upgrade confirmation" (was "automatically confirm all package upgrades"),
-    "close terminal when idle" (was "close terminal window automatically after idle time").
-    Old strings kept as _dummy for Transifex.
-  * updater-systray.py: fix middle-click always opening MXPI regardless of
-    availability -- handler was re-iterating the raw action dict instead of
-    using the pre-computed middle_click action. Also fix typo
-    "sview_and_upgrade" in the middle_click fallback assignment.
-    Remove dead first assignment of synaptic_is_available (was immediately
-    overwritten by the fuller check that includes bool(self.actions["synaptic"])).
-    Remove VaU fallback from middle-click -- middle-click is for package managers
-    only; if neither MXPI nor Synaptic is installed it now does nothing instead
-    of opening VaU. Update Left-click frame tooltip accordingly.
-    Add "(MXPI)" to MXPI radio tooltip so the abbreviation is explained.
-
- -- fehlix <fehlix@mxlinux.org>  Mon, 16 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev15) UNRELEASED; urgency=medium
-
-  * updater-settings.py: let Qt size the settings dialog to its natural
-    minimum content width instead of forcing a fixed 400px initial hint.
-    Replace icon row HBoxLayouts with a QGridLayout so all icon columns
-    align regardless of label width. Use a dedicated empty column between
-    the two icon columns (min-width 32px) for visual separation.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev14) UNRELEASED; urgency=medium
-
-  * updater-settings.py: "Synaptic" and "MXPI" radio labels are proper names,
-    not wrapped in _() -- no translation needed or wanted.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev13) UNRELEASED; urgency=medium
-
-  * updater-settings.py: add MX Package Installer as an explicit left-click
-    option alongside Synaptic and View and Upgrade. Frame is shown when at
-    least one of Synaptic or MXPI is installed; each radio only appears when
-    its app is available. Fixes stale initial-state check (was using `in`
-    instead of `==`).
-  * updater-systray.py: when Synaptic or MXPI is the configured left-click
-    action, respect that choice even when no updates are available instead of
-    always falling back to the hardcoded Synaptic-first order. View and
-    Upgrade still falls back to the first available package manager when no
-    updates are present.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev12) UNRELEASED; urgency=medium
-
-  * updater-settings.py: rename Left-click group box title to "Left-click"
-    (was "Left-click behaviour   (when updates are available)"). Add tooltips
-    to radio buttons explaining actual behavior including the no-updates
-    fallback for "View and Upgrade". Add tooltip to the group box frame
-    documenting the hidden middle-click action (opens MX Package Installer,
-    or Synaptic if not installed).
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev11) UNRELEASED; urgency=medium
-
-  * updater-settings.py: shorten Left-click behaviour labels to reduce
-    dialog width. "opens Synaptic" becomes "Synaptic", "opens MX Updater
-    'View and Upgrade' window" becomes "View and Upgrade". Old strings kept
-    as _dummy calls so xgettext still extracts them for existing translators.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev10) UNRELEASED; urgency=medium
-
-  * updater-settings.py: shorten Upgrade mode labels to reduce dialog width
-    (helps keep translations compact). "full upgrade (recommended)" becomes
-    "full", "basic upgrade" becomes "basic", "upgrade automatically" becomes
-    "automatic". Old strings kept as _dummy calls so xgettext still extracts
-    them for existing translators. Layout: full/basic radios on row 1,
-    automatic/use-nala on row 2.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev09) UNRELEASED; urgency=medium
-
-  * updater-settings.py: compact Upgrade mode and Left-click behaviour
-    sections into single horizontal rows to reduce settings dialog height
-    on small screens (e.g. 1366x768). Full/basic upgrade radio buttons and
-    the use nala checkbox now share one line; Synaptic and View and Upgrade
-    radio buttons share one line.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev08) UNRELEASED; urgency=medium
-
-  * updater_action: fix check_authenticator to properly detect running
-    polkit agents via pgrep, so the sudo and gksu fallback paths are
-    used when no polkit agent is running instead of always attempting
-    pkexec. Also route sudo and gksu paths through the root section of
-    updater_action (call "$ME" instead of "$RUN" directly) so that
-    XDG_RUNTIME_DIR and other root environment setup is applied
-    consistently regardless of auth method.
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Jun 2026 00:00:00 -0400
-
-mx-updater (26.06.1mx25~dev05) UNRELEASED; urgency=medium
-
-  * updater_action: pass DISPLAY and XAUTHORITY from the user environment
-    into the pkexec/polkit root environment so debconf can initialize its
-    X11 frontend (prevents "cannot initialize frontend" errors).
-
- -- fehlix <fehlix@mxlinux.org>  Sun, 14 Jun 2026 13:14:54 -0400
-
-mx-updater (26.06.1mx25~dev04) UNRELEASED; urgency=medium
-
-  * Add terminal window size and position settings: new single-line
-    control in preferences with size and position dropdowns.
-    Size options: default, terminal's own, 1/3, 1/2, 2/3, 3/4, 9/10, full screen.
-    Position options: center, top-left, top-right, bottom-left, bottom-right;
-    disabled when full screen is selected.
-    "default" preserves original sizing behavior exactly, including
-    the 960x600 cap on screens wider than 1600px -- no visible change
-    for existing users.
-  * Terminal window positioning now uses availableGeometry() so all
-    sizes and positions respect desktop panels and avoid overlap.
-  * Position dropdown hidden on Wayland (compositor controls window
-    placement); size dropdown remains enabled as size hints are honoured.
-    shlib also ignores any saved terminal_position on Wayland, so a
-    position set under X11 has no effect when the user switches to Wayland.
-  * Add "terminal's own" size option: passes no geometry hints to the
-    terminal emulator, letting it use its own remembered size and position
-    (e.g. Konsole's "remember window size/position"). Position dropdown
-    hidden when this option is selected. All terminal emulators supported.
-
- -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 12:00:00 -0400
-
-mx-updater (26.06.1mx25~dev03) UNRELEASED; urgency=medium
-
-  * updater_upgrade: fix nala update flow -- run nala update and nala
-    upgrade as two separate steps (mirroring the apt path), touch
-    update-stamp after nala update, pass --no-update to nala upgrade
-    to prevent a redundant second update run.
-  * shlib: remove read_auto_close_timeout function; press_any_key_stop_auto_close
-    now uses AUTO_CLOSE_TIMEOUT already set by the calling script, falling back
-    to get_config_item only if unset. Removes ~50 lines of duplicated config
-    reading logic.
-  * updater_action: remove dead UPDATER_AUTO_CLOSE_TIMEOUT handling --
-    the variable was exported but never read by any downstream script.
-
- -- fehlix <fehlix@mxlinux.org>  Sat, 13 Jun 2026 11:59:47 -0400
-
-mx-updater (26.06.1mx25~dev02) UNRELEASED; urgency=medium
-
-  * updater_upgrade, updater_reload: fix missing shlib guard before
-    press_any_key_stop_auto_close / press_any_key_to_close calls;
-    without the guard those calls would fail with "command not found"
-    if the shlib was absent.
-  * updater_upgrade: remove dead NotUsed heredoc block; remove
-    duplicate AUTO_CLOSE_TIMEOUT validation block.
-  * shlib: remove unused get_auto_close_timeout function
-    (PyQt6/QSettings based, never called from any script).
-  * shlib: simplify terminal size calculation in updater_show;
-    remove redundant if/else where both branches computed identical TW.
-
- -- fehlix <fehlix@mxlinux.org>  Fri, 12 Jun 2026 21:30:00 -0400
-
-mx-updater (26.06.1mx25~dev01) UNRELEASED; urgency=medium
-
-  * Cleaning up mx-updater reload/upgrade action scripts.
-  * Remove dead root-terminal code.
-  * Fix authenticator detection.
-  
- -- fehlix <fehlix@mxlinux.org>  Fri, 12 Jun 2026 13:09:30 -0400
 
 mx-updater (26.05.02mx25) mx; urgency=medium
 

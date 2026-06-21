@@ -57,6 +57,22 @@ mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium
   * Added TRANSLATORS comments to all new _() strings introduced in dev21:
     static tooltip body, "Setting Overridden" dialog title, error dialog
     title/message/detail prefix.
+  * Settings Upgrade mode row 2 layout changed to "refresh [interval v]
+    [x] automatic upgrade": "refresh" label added before the interval
+    dropdown; automatic checkbox renamed "automatic upgrade" and moved
+    after the dropdown. "refresh" and "upgrade" are used deliberately to
+    avoid the update/upgrade ambiguity present in many languages.
+    TRANSLATORS comment on "automatic upgrade" notes the distinction and
+    advises translators to use whichever word best describes installing
+    newer versions of existing packages. Old "automatic" and "upgrade
+    automatically" strings kept as _dummy for Transifex.
+  * "refresh" label tooltip added: "Sets how often the package list is
+    refreshed (apt-get update). The same interval applies to automatic
+    upgrades when 'automatic upgrade' is checked." Consistent with other
+    widgets that all carry tooltips.
+  * Total new translatable strings since dev19: 19 (6 interval presets,
+    2 labels, 4 tooltips, 1 combo placeholder, 5 error/warning strings,
+    1 polkit message). All carry TRANSLATORS comments.
   * Fix: is_unattended_upgrade_enabled() used the /b (boolean) apt-config
     modifier which only recognises "1" as true, not arbitrary integers such
     as 7 (weekly). Replaced with a raw integer read (> 0 check), consistent

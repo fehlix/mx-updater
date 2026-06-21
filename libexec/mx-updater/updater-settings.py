@@ -488,8 +488,13 @@ without installing new dependencies or removing existing packages."""))
         for label, _val in self._frequency_map:
             self.frequency_combo.addItem(label)
 
-        # grid: row 0 = full/basic/Nala, row 1 = automatic/frequency
-        # col 0 width is shared by both rows so "basic" and frequency always align
+        # grid: row 0 = full/basic/Nala, row 1 = refresh label/interval combo/automatic upgrade
+        # col 0: full / refresh label
+        # col 1: 16px spacer
+        # col 2: basic / interval combo
+        # col 3: 16px spacer
+        # col 4: Nala / automatic upgrade checkbox
+        # col 5: stretch
         upgrade_grid = QGridLayout()
         upgrade_grid.setHorizontalSpacing(4)
         upgrade_grid.setVerticalSpacing(2)
@@ -516,27 +521,44 @@ without installing new dependencies or removing existing packages."""))
 
         # Allow to select only automatic upgrade
 
-        # TRANSLATORS: The label of the checkbox to enable unattended upgrades.
-        self.auto_upgrade_checkbox = QCheckBox(_("automatic"))
+        # TRANSLATORS: Label of the checkbox to enable unattended (automatic) package upgrades.
+        # "automatic upgrade" = unattended upgrade running at the interval set in the refresh selector.
+        # Note: many languages use the same word for English "update" and "upgrade" -- use whichever
+        # word in your language best describes "installing newer versions of existing packages".
+        self.auto_upgrade_checkbox = QCheckBox(_("automatic upgrade"))
 
-        # keep old translated string so xgettext still extracts it
-        # TRANSLATORS: The label of the checkbox "upgrade automatically".
+        # keep old translated strings so xgettext still extracts them
+        # TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for translators reference.
+        _dummy = _("automatic")
+        # TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for translators reference.
         _dummy = _("upgrade automatically")
 
         # keep old translated string so xgettext still extracts it
-        # TRANSLATORS: Old tooltip of the "automatic" upgrade checkbox -- kept for translators reference.
+        # TRANSLATORS: Old tooltip of the "automatic upgrade" checkbox -- kept for translators reference.
         _dummy = _("""Automatically check for package updates once a day and install them.
 Only updates existing packages without changing your system configuration.
 The updater icon shows the total number of updates, including automatic updates,
 when additional updates are available.""")
 
-        # TRANSLATORS: Tooltip of the "automatic" upgrade checkbox.
-        # The upgrade interval is set by the interval dropdown next to this checkbox.
+        # TRANSLATORS: Tooltip of the "automatic upgrade" checkbox.
+        # "refresh selector" = the interval dropdown to the left of this checkbox.
+        # "automatic upgrade" = unattended upgrade; uses the same interval as the package list refresh.
         self.auto_upgrade_checkbox.setToolTip(_(
-            "Automatically install package updates at the selected interval.\n"
-            "Only updates existing packages without changing your system configuration.\n"
-            "The updater icon shows the total number of updates, including automatic updates,\n"
+            "Automatically install package upgrades at the interval set in the refresh selector.\n"
+            "Only upgrades existing packages without changing your system configuration.\n"
+            "The updater icon shows the total number of updates, including automatic upgrades,\n"
             "when additional updates are available."))
+
+        # TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode section.
+        # "refresh" = package list refresh (apt-get update). The selected interval also applies
+        # to automatic upgrades when the "automatic upgrade" checkbox is checked.
+        self.refresh_label = QLabel(_("refresh"))
+        # TRANSLATORS: Tooltip for the "refresh" label and interval dropdown in the Upgrade mode section.
+        # "automatic upgrade" refers to the checkbox to the right of the dropdown.
+        self.refresh_label.setToolTip(_(
+            "Sets how often the package list is refreshed (apt-get update).\n"
+            "The same interval applies to automatic upgrades when\n"
+            "\"automatic upgrade\" is checked."))
 
 
         # TRANSLATORS: The label of the checkbox "update automatically", where user can select
@@ -547,8 +569,9 @@ when additional updates are available.""")
         # which tries to explain what this checkbox is about.
         self.auto_cache_update_checkbox.setToolTip(_t("""Automatically update package cache with "apt-get update"."""))
 
-        upgrade_grid.addWidget(self.auto_upgrade_checkbox, 1, 0)
-        upgrade_grid.addWidget(self.frequency_combo, 1, 2, 1, 3)
+        upgrade_grid.addWidget(self.refresh_label, 1, 0)
+        upgrade_grid.addWidget(self.frequency_combo, 1, 2)
+        upgrade_grid.addWidget(self.auto_upgrade_checkbox, 1, 4)
 
         # Does /usr/bin/nala exist and is executable
         if os.path.isfile('/usr/bin/nala') and os.access('/usr/bin/nala', os.X_OK):
@@ -1519,11 +1542,11 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         # e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
         current_section = _("Current (apt-config): refresh %s, upgrade %s") % (
             self._raw_periodic_label(raw_update), self._raw_periodic_label(raw_upgrade))
-        # TRANSLATORS: Body text of the frequency combo tooltip explaining what the selector does.
-        # "automatic" refers to the checkbox next to the dropdown. "never" is the last combo option.
+        # TRANSLATORS: Body text of the refresh interval combo tooltip explaining what the selector does.
+        # "automatic upgrade" refers to the checkbox next to the dropdown. "never" is the last combo option.
         static_section = _(
-            "Sets how often the package list is refreshed (apt-get update).\n"
-            "When 'automatic' is checked, the same interval also applies to the automatic upgrade.\n"
+            "Sets the interval for package list refresh (apt-get update).\n"
+            "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
             "'never' disables both the refresh and the automatic upgrade.")
         self.frequency_combo.setToolTip(current_section + "\n\n" + static_section)
 

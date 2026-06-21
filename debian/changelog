@@ -1,3 +1,13 @@
+mx-updater (26.06.1mx25~dev22) UNRELEASED; urgency=medium
+
+  * Fix: the except-Exception catch blocks for unexpected D-Bus and
+    QSettings errors in updater-systray.py (update_settings_dialog,
+    unhide_systray) were left as print() after the dev21 cleanup pass.
+    Converted to logger.warning() with function-context tags, consistent
+    with the adjacent DBusException handlers that already use logger.debug().
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 21 Jun 2026 00:00:00 -0400
+
 mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium
 
   * Settings: after writing periodic apt settings, re-read the effective
@@ -79,6 +89,20 @@ mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium
     with get_update_frequency(). This caused the automatic checkbox to appear
     unchecked on restart and suppressed the pkexec prompt when toggling off,
     for all frequencies other than daily.
+  * Code hygiene: fix non-ASCII characters (curly quotes, curly apostrophes,
+    em-dash) in Python source comments across updater-settings.py and
+    updater-system-monitor.py. All source text is now plain ASCII.
+  * Fix typos in log messages: "check_for_updades" -> "check_for_updates",
+    "sceduled" -> "scheduled", "afer boot" -> "after boot" (monitor);
+    "avialable" -> "available" (systray).
+  * Replace bare print() calls in error/debug paths with logger.debug():
+    D-Bus error handlers in updater-systray.py; debug prints for help button
+    text and D-Bus value propagation in updater-settings.py. Remove unused
+    pprint import.
+  * Remove no-op "opacity: 230" from tooltip QSS (not a valid Qt stylesheet
+    property for QToolTip; was silently ignored). Simplify tooltip_stylesheet()
+    to a single return.
+  * debian/rules: remove commented-out --buildsystem=pybuild dead code.
 
  -- fehlix <fehlix@mxlinux.org>  Sat, 21 Jun 2026 00:00:00 -0400
 

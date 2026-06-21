@@ -1,7 +1,6 @@
 # languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Wed, 13 May 2026 16:48:40 -0500
+# generated with tx-complete.sh at Sun, 21 Jun 2026 17:19:22 -0500
 # 
-am
 ca
 cs
 da
@@ -16,7 +15,6 @@ fr
 fr_BE
 gl_ES
 hi
-hr
 hu
 it
 ja
@@ -28,9 +26,7 @@ pl
 pt
 pt_BR
 ru
-sk
 sl
 sq
 sv
-th
 tr

@@ -371,12 +371,12 @@ class SystemTrayIcon(QSystemTrayIcon):
             self._notify_init = True
             self._notify_caps = notify2.get_server_caps() or set()
         except Exception as e:
-            logger.info("Notification daemon not avialable: %r", e)
+            logger.info("Notification daemon not available: %r", e)
 
         if self._notify_init:
             self._notify_caps = notify2.get_server_caps() or set()
             if "actions" not in self._notify_caps:
-                logger.info("Notification with 'actions' not avialable!")
+                logger.info("Notification with 'actions' not available!")
         #---------------------------------------------------------------
 
         # Connections: PyQt signal to update_tray_icon method
@@ -536,11 +536,11 @@ class SystemTrayIcon(QSystemTrayIcon):
             return processed_upgrades
 
         except dbus.exceptions.DBusException as service_error:
-            print(f"D-Bus service not available: {service_error}")
+            logger.debug("D-Bus service not available: %r", service_error)
             return self._state["upgrades-available"]
 
         except Exception as e:
-            print(f"Unexpected D-Bus error: {e}")
+            logger.debug("Unexpected D-Bus error: %r", e)
             return self._state["upgrades-available"]
 
 
@@ -1604,7 +1604,7 @@ class SystemTrayIcon(QSystemTrayIcon):
                 pass
 
         except Exception as e:
-            print(f"Unexpected D-Bus error: {e}")
+            logger.warning("[update_settings_dialog] Unexpected D-Bus error: %s", e)
             pass
 
 
@@ -2127,7 +2127,7 @@ def unhide_systray(bus):
         qsettings.setValue(f"Settings/{key}", val)
         qsettings.sync()
     except Exception as e:
-        print(f"Unexpected QSettings error: {e}")
+        logger.warning("[unhide_systray] Unexpected QSettings error: %s", e)
         pass
 
     try:
@@ -2143,7 +2143,7 @@ def unhide_systray(bus):
         pass
 
     except Exception as e:
-        print(f"Unexpected D-Bus error: {e}")
+        logger.warning("[unhide_systray] Unexpected D-Bus error: %s", e)
         pass
 
 
@@ -2156,11 +2156,11 @@ def unhide_systray(bus):
     except dbus.exceptions.DBusException as e:
         # updater settings dialog not running
         #print(f"UpdaterSettings dialog not running.")
-        logger.debug("[update_settings_dialog] UpdaterSettings appears to be not running")
+        logger.debug("[unhide_systray] UpdaterSettings appears to be not running")
         pass
 
     except Exception as e:
-        print(f"Unexpected D-Bus error: {e}")
+        logger.warning("[unhide_systray] Unexpected D-Bus error: %s", e)
         pass
 
 

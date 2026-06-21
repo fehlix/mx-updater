@@ -4,7 +4,7 @@ import os
 import re
 import subprocess
 import sys
-from pprint import pprint
+
 import dbus
 from PyQt6.QtCore import QObject, pyqtSignal
 import logging
@@ -275,7 +275,7 @@ class SettingsEditorDialog(QDialog):
                         new_value = AUTO_CLOSE_TIMEOUT_MAX
 
             except ValueError:
-                print(f"Error: '{value}' is not a valid integer.")
+                logger.debug("Error: '%s' is not a valid integer.", value)
                 return  # ignored
 
         match key:
@@ -764,10 +764,10 @@ Works best when panel color contrasts with the wire color:
   wireframe-dark (white wires): visible on dark panel, invisible on light panel.
   wireframe-light (black wires): visible on light panel, invisible on dark panel."""))
 
-        # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+        # TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
         dark_string = _("dark")
 
-        # TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+        # TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
         light_string = _("light")
         # TRANSLATORS: The wireframe icon-set
         wireframe_string = _("wireframe")
@@ -1191,13 +1191,11 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self.help_button = self.button_box.addButton(QDialogButtonBox.StandardButton.Help)
 
         help_button_text = self.help_button.text()
-        print(f'help_button_text:  = {help_button_text}')
 
         # translate help button label
         if not '&' in help_button_text:
             # translate help button text
             help_text = _("&Help")
-            print(f'help_text: _("&Help") = {help_text}')
             self.help_button.setText(help_text)
 
         # slot
@@ -1316,7 +1314,7 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
 
         prefix = 'no-dbus-callback@'
 
-        print(f"Try update_view_and_upgrade via dbus: {key} = {value}")
+        logger.debug("Try update_view_and_upgrade via dbus: %s = %s", key, value)
 
         keys = ('auto_close',
                 'auto_close_timeout',
@@ -1896,7 +1894,7 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             current_level[parts[-1]] = settings.value(key)
 
         # Step 2: Print the existing settings using pprint
-        pprint(existing_settings)
+        logger.debug("existing_settings: %s", existing_settings)
 
     def update_settings(self, new_settings):
 
@@ -1996,27 +1994,17 @@ def is_dark_theme():
 
 def tooltip_stylesheet():
     if is_dark_theme():
-        # Dark theme: slightly more saturated yellow
-        return """
-            QToolTip {
-                color: black;
-                background-color: #FFF0A0;  /* Goldish yellow */
-                border: 1px solid #000000;
-                padding: 5px;
-                opacity: 230;  /* Slightly transparent */
-            }
-        """
+        bg = "#FFF0A0"  # dark theme: goldish yellow
     else:
-        # Light theme: softer, lighter yellow
-        return """
-            QToolTip {
-                color: black;
-                background-color: #FFFFE0;  /* Light yellow */
-                border: 1px solid #000000;
-                padding: 5px;
-                opacity: 230;  /* Slightly transparent */
-            }
-        """
+        bg = "#FFFFE0"  # light theme: light yellow
+    return """
+        QToolTip {
+            color: black;
+            background-color: %s;
+            border: 1px solid #000000;
+            padding: 5px;
+        }
+    """ % bg
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)  # QApplication instance

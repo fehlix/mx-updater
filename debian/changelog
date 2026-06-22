@@ -27,6 +27,18 @@ mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
     was incorrectly treated as disabled, hiding the "Auto-update log(s)" and
     "Auto-update dpkg log(s)" right-click menu entries. Fixed by reading the
     raw value and checking > 0 (same pattern as updater-settings.py dev21).
+  * debian/control: add ${python3:Depends} to Depends so dh_python3 has a
+    package to act on; fixes "no package to act on" error during build.
+    Drop redundant debhelper (>= 13) from Build-Depends;
+    debhelper-compat (= 13) is the correct sole entry when using compat file.
+  * postinst, prerm: add missing #DEBHELPER# token so dh_ snippet injection
+    works. Keep explicit py3compile/py3clean calls for /usr/libexec/mx-updater
+    -- dh_python3 only auto-generates these for standard Python module paths;
+    scripts in /usr/libexec are not recognised and must be handled manually.
+    Restore manual gtk-update-icon-cache -f -t /usr/share/icons/hicolor/ call;
+    suppress dh_icons via override_dh_icons in rules -- dh_icons passes a file
+    path instead of a theme directory because flat PNGs at /usr/share/icons/
+    confuse its theme-directory detection, producing a broken no-op call.
   * preinst: remove stale commented-out rm for mx-updater-autostart.desktop
     (conffile is now managed by dpkg directly).
   * postrm: add /etc/apt/apt.conf.d/52mx-updater-periodic to purge/remove

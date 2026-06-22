@@ -1,17 +1,13 @@
 #!/bin/bash
 
+#DEBHELPER#
+
 # postinst script for mx-updater
-
-if command -v py3compile >/dev/null 2>&1; then
-	py3compile -p mx-updater /usr/libexec/mx-updater  || true
-fi
-if command -v pypy3compile >/dev/null 2>&1; then
-	pypy3compile -p mx-updater /usr/libexec/mx-updater || true
-fi
-
 
 case "$1" in
   configure)
+	py3compile  -p mx-updater /usr/libexec/mx-updater 2>/dev/null || true
+	pypy3compile -p mx-updater /usr/libexec/mx-updater 2>/dev/null || true
 	if [ ! -f /etc/apt/apt.conf.d/02periodic ]; then
 		cp /usr/share/mx-updater/02periodic /etc/apt/apt.conf.d/02periodic
 	fi
@@ -42,7 +38,6 @@ case "$1" in
         fi
 
 	gtk-update-icon-cache -f -t /usr/share/icons/hicolor/ 2>/dev/null || true
-
 	chmod 0440 /etc/sudoers.d/mx-updater-reload 2>/dev/null || true
 
 	;;

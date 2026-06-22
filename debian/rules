@@ -9,6 +9,11 @@ override_dh_auto_build:
 	$(MAKE) -C version
 	dh_auto_build
 
+override_dh_icons:
+	# icon cache handled in postinst via explicit gtk-update-icon-cache call;
+	# dh_icons generates a wrong file-path argument due to flat PNGs at
+	# /usr/share/icons/ level confusing its theme-directory detection.
+
 override_dh_clean:
 	$(MAKE) -C icons clean
 	$(MAKE) -C l10n clean

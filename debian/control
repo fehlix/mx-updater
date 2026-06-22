@@ -5,7 +5,6 @@ Maintainer: fehlix <fehlix@mxlinux.org>
 XSBC-Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
 Build-Depends:
  debhelper-compat (= 13),
- debhelper (>= 13),
  librsvg2-bin (>=2.50),
 Standards-Version: 4.7.2
 Homepage: https://github.com/MX-Linux/mx-updater
@@ -14,6 +13,7 @@ Package: mx-updater
 Architecture: all
 Depends:
  ${misc:Depends},
+ ${python3:Depends},
  anacron,
  apt (>= 2.2.4),
  bash (>= 3.2-4),

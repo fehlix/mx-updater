@@ -1785,21 +1785,17 @@ class SystemTrayIcon(QSystemTrayIcon):
         return len(matching_files) > 0
 
     def is_unattended_upgrade_enabled(self) -> bool:
-        """
-        Check if unattended upgrade is enabled
-
-        Returns:
-            bool: True if unattended upgrade is enabled
-        """
-        me = "is_unattended_upgrade_enabled@Settings"
         try:
-            cmd = ['apt-config', 'shell', 'opt', 'APT::Periodic::Unattended-Upgrade/b']
+            cmd = ['apt-config', 'shell', 'val', 'APT::Periodic::Unattended-Upgrade']
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-
-            # match the single-quoted apt-config shell output
-            output = result.stdout.strip()
-            return output == "opt='true'"
-
+            match = re.search(r"val='([^']*)'", result.stdout)
+            if not match:
+                return False
+            raw = match.group(1).strip()
+            if raw == 'always':
+                return True
+            m = re.match(r'^(\d+)[smhd]?$', raw)
+            return bool(m) and int(m.group(1)) > 0
         except subprocess.CalledProcessError:
             return False
 

@@ -38,7 +38,6 @@ libexec/mx-updater/updater-view-and-upgrade.py    usr/libexec/mx-updater
 version/build/version.py                          usr/libexec/mx-updater/version
 
 # lib -- action scripts (symlink targets), bin helpers, shlib, apt systemd hook
-lib/mx-updater/actions/auto-update                usr/lib/mx-updater/actions
 lib/mx-updater/actions/auto-update-periodic       usr/lib/mx-updater/actions
 lib/mx-updater/actions/updater_action             usr/lib/mx-updater/actions
 lib/mx-updater/apt.systemd.daily                  usr/lib/mx-updater
@@ -74,8 +73,6 @@ share/mx-updater/2-origin-patterns-daily          usr/share/mx-updater
 share/mx-updater/51unattended-upgrades-blacklist       usr/share/mx-updater
 share/mx-updater/51unattended-upgrades-config          usr/share/mx-updater
 share/mx-updater/51unattended-upgrades-default-origins usr/share/mx-updater
-share/mx-updater/51unattended-upgrades-disable         usr/share/mx-updater
-share/mx-updater/51unattended-upgrades-enable          usr/share/mx-updater
 share/mx-updater/51unattended-upgrades-origins         usr/share/mx-updater
 
 # doc

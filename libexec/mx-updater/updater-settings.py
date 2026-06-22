@@ -1603,11 +1603,11 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         self._revert_combo_to_effective(read_update)
         return False
 
-    def apply_periodic(self, update_raw, upgrade_raw):
-        logging.debug("apply_periodic: refresh=%s upgrade=%s", update_raw, upgrade_raw)
+    def apply_periodic(self, update_raw, upgrade_raw, action='auto-update-periodic'):
+        logging.debug("apply_periodic: refresh=%s upgrade=%s action=%s", update_raw, upgrade_raw, action)
         try:
             cmd = ['/usr/bin/pkexec',
-                   '/usr/lib/mx-updater/actions/auto-update-periodic',
+                   f'/usr/lib/mx-updater/actions/{action}',
                    str(update_raw), str(upgrade_raw)]
             subprocess.run(cmd, check=True, capture_output=True, text=True)
             result = self._verify_periodic(update_raw, upgrade_raw)
@@ -1674,7 +1674,8 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             freq_index = self.frequency_combo.currentIndex()
             update_raw = str(self._frequency_map[freq_index][1])
         upgrade_raw = update_raw if checked else '0'
-        return self.apply_periodic(update_raw, upgrade_raw)
+        action = 'auto-update-periodic-enable' if checked else 'auto-update-periodic-disable'
+        return self.apply_periodic(update_raw, upgrade_raw, action)
 
     def show_error_popup(self, title, message, details=None):
         """

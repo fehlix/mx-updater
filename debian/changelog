@@ -1,3 +1,41 @@
+mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
+
+  * Remove retired auto-update enable/disable infrastructure. Since dev20 the
+    UI exclusively uses auto-update-periodic (interval 0 = disabled); the old
+    binary-toggle mechanism is fully superseded.
+    - Removed action script lib/mx-updater/actions/auto-update and its
+      auto-update-enable / auto-update-disable symlinks.
+    - Removed share/mx-updater/51unattended-upgrades-enable and
+      51unattended-upgrades-disable template files.
+    - preinst: remove /etc/apt/apt.conf.d/51unattended-upgrades-enable and
+      51unattended-upgrades-disable on upgrade (in case auto-update-periodic
+      has not yet run on the system).
+    - postrm: same files removed on purge/remove.
+  * Restore context-aware pkexec dialog messages for the automatic upgrade
+    toggle. The "automatic upgrade" checkbox now calls
+    auto-update-periodic-enable or auto-update-periodic-disable (symlinks to
+    auto-update-periodic), each backed by its own polkit policy showing
+    "Enable Auto-update" or "Disable Auto-update" in the auth dialog.
+    Frequency combo changes continue to use auto-update-periodic directly
+    ("Set install/upgrade interval" is accurate there).
+    - apply_periodic() gains optional action parameter (default:
+      auto-update-periodic); apply_auto_upgrade_checkbox_toggled passes the
+      enable/disable variant depending on checkbox direction.
+  * Fix: is_unattended_upgrade_enabled() in updater-systray.py used the
+    apt-config /b boolean modifier, which only returns true for the value "1"
+    (daily). Any other enabled interval (3, 7, 14, 30 days, or unit suffixes)
+    was incorrectly treated as disabled, hiding the "Auto-update log(s)" and
+    "Auto-update dpkg log(s)" right-click menu entries. Fixed by reading the
+    raw value and checking > 0 (same pattern as updater-settings.py dev21).
+  * postinst: remove three stale cleanup blocks no longer needed:
+    - rm 15periodic-update (apt-notifier era, long gone from any system).
+    - cron.daily/apt~ rename (same era).
+    - Autostart desktop cp block (dead code: source path
+      /usr/share/mx-updater/mx-updater-autostart.desktop not installed since
+      dev21; conffile at etc/xdg/autostart is managed by dpkg directly).
+
+ -- fehlix <feh.ler@t-online.de>  Mon, 23 Jun 2026 00:00:00 +0200
+
 mx-updater (26.06.1mx25~dev22) UNRELEASED; urgency=medium
 
   * Fix: the except-Exception catch blocks for unexpected D-Bus and

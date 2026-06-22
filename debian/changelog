@@ -5,8 +5,24 @@ mx-updater (26.06.1mx25~dev22) UNRELEASED; urgency=medium
     unhide_systray) were left as print() after the dev21 cleanup pass.
     Converted to logger.warning() with function-context tags, consistent
     with the adjacent DBusException handlers that already use logger.debug().
+  * Unset GTK_MODULES in bin/mx-updater, bin/mx-updater-settings and
+    bin/mx-updater-autostart before exec'ing the Python process. Suppresses
+    the spurious "Failed to load module canberra-gtk3-module" GTK message
+    that appears on every launch when GTK_MODULES is set system-wide.
+  * Suppress qt6ct palette debug noise (Q_FUNC_INFO spam from
+    Qt6CTPlatformTheme::palette() printed via qDebug() during QApplication
+    init) by prepending "*.debug=false" to QT_LOGGING_RULES in all three
+    shell launchers. Any existing QT_LOGGING_RULES value (e.g. the system's
+    qt.qpa.xcb.warning=false) is preserved by appending it after a semicolon.
+  * Fix QGroupBox title colour with non-gtk2 Qt styles: replace
+    setStyleSheet("QGroupBox { font-weight: bold; }") with setFont(bold)
+    on all four group boxes (Upgrade mode, Left-click, Icons, Other).
+    The stylesheet caused Qt to render the title text in a pale grey
+    instead of the palette WindowText colour when no platform theme
+    plugin is active; visible as a flicker-to-dark on window drag.
+    Using setFont() leaves colour rendering entirely to the style engine.
 
- -- fehlix <fehlix@mxlinux.org>  Sat, 21 Jun 2026 00:00:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sun, 22 Jun 2026 00:00:00 -0400
 
 mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium
 

@@ -94,7 +94,7 @@ msgstr "Habilitar Auto-actualización"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "Configurar intervalo de actualización automática"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -307,22 +307,22 @@ msgstr ""
 "apt."
 
 msgid "daily"
-msgstr ""
+msgstr "diario"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "cada 3 días"
 
 msgid "weekly"
-msgstr ""
+msgstr "semanal"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "cada 2 semanas"
 
 msgid "monthly"
-msgstr ""
+msgstr "mensual"
 
 msgid "never"
-msgstr ""
+msgstr "nunca"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -333,7 +333,7 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "actualización automática"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -364,6 +364,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"Instala automáticamente las actualizaciones de los paquetes con el intervalo establecido en el selector.\n"
+"Solo actualiza los paquetes existentes sin modificar la configuración del sistema.\n"
+"El icono del actualizador muestra el número total de actualizaciones, incluidas las automáticas,\n"
+"cuando hay actualizaciones adicionales disponibles."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -371,13 +375,16 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "actualizar"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
 "The same interval applies to automatic upgrades when\n"
 "\"automatic upgrade\" is checked."
 msgstr ""
+"Establece la frecuencia de actualización de la lista de paquetes (apt-get update).\n"
+"Este mismo intervalo se aplica a las actualizaciones automáticas cuando\n"
+"se tiene marcada la opción \"actualización automática\"."
 
 msgid "Left-click"
 msgstr "Clic-izquierdo"
@@ -696,7 +703,7 @@ msgstr "Se produjo un error inesperado:"
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "personalizado (%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -704,13 +711,16 @@ msgstr ""
 #. interval,
 #. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
-msgstr ""
+msgstr "Valores actuales (apt-config): actualizar %s, actualización %s"
 
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
 "'never' disables both the refresh and the automatic upgrade."
 msgstr ""
+"Establece el intervalo de actualización de la lista de paquetes (apt-get update).\n"
+"Cuando la opción \"actualización automática\" está marcada, ese intervalo se aplica también a la actualización.\n"
+"La opción \"nunca\" desactiva tanto la actualización como la actualización automática."
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration
 #. overrides
@@ -723,12 +733,17 @@ msgid ""
 "Requested: refresh %s, upgrade %s\n"
 "Effective: refresh %s, upgrade %s"
 msgstr ""
+"No se pudo aplicar la configuración: una configuración de apt\n"
+"con mayor prioridad anula los valores vigentes.\n"
+"\n"
+"Solicitado: actualizar %s, actualización %s\n"
+"Efectivo: actualizar %s, actualización %s"
 
 #. TRANSLATORS: Title of the warning dialog shown when an apt configuration
 #. file
 #. with higher priority is overriding the value written by mx-updater.
 msgid "Setting Overridden"
-msgstr ""
+msgstr "Configuración anulada"
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).

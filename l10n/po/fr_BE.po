@@ -89,7 +89,7 @@ msgstr "Activer mise à jour automatique"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "définir l’intervalle de rafraîchissement/mise à niveau automatique"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -308,22 +308,22 @@ msgstr ""
 "lieu d’apt."
 
 msgid "daily"
-msgstr ""
+msgstr "quotidien"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "tous les 3 jours"
 
 msgid "weekly"
-msgstr ""
+msgstr "hebdomadaire"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "toutes les 2 semaines"
 
 msgid "monthly"
-msgstr ""
+msgstr "mensuel"
 
 msgid "never"
-msgstr ""
+msgstr "jamais"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -334,7 +334,7 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "mise à niveau automatique"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -365,6 +365,9 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"Installe automatiquement les mises à niveau de paquets selon l’intervalle défini dans le sélecteur de rafraîchissement.\n"
+"N’installe que des versions plus récentes de paquets existants, sans modifier la configuration du système.\n"
+"L’icône du programme de mise à jour affiche le nombre total de mises à jour, y compris les mises à niveau automatiques, lorsqu’il y a des mises à jour supplémentaires disponibles."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -372,13 +375,16 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "rafraîchir"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
 "The same interval applies to automatic upgrades when\n"
 "\"automatic upgrade\" is checked."
 msgstr ""
+"Définit la fréquence de rafraîchissement de la liste des paquets (apt-get update).\n"
+"Le même intervalle s’applique aux mises à niveau automatiques lorsque\n"
+"« mise à niveau automatique » est cochée."
 
 msgid "Left-click"
 msgstr "Clic gauche"
@@ -699,7 +705,7 @@ msgstr "Une erreur inattendue s’est produite:"
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "personnalisé (%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -707,13 +713,16 @@ msgstr ""
 #. interval,
 #. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
-msgstr ""
+msgstr "Actuel (apt-config): rafraîchissement %s, mise à niveau %s"
 
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
 "'never' disables both the refresh and the automatic upgrade."
 msgstr ""
+"Définit l’intervalle de rafraîchissement de la liste des paquets (apt-get update).\n"
+"Lorsque « mise à niveau automatique » est cochée, le même intervalle s’applique également à la mise à niveau.\n"
+"« jamais » désactive à la fois le rafraîchissement et la mise à niveau automatique."
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration
 #. overrides
@@ -726,12 +735,17 @@ msgid ""
 "Requested: refresh %s, upgrade %s\n"
 "Effective: refresh %s, upgrade %s"
 msgstr ""
+"Impossible d’appliquer le paramètre: une configuration apt de priorité supérieure\n"
+"remplace les valeurs effectives.\n"
+"\n"
+"Demandé: rafraîchissement %s, mise à niveau %s\n"
+"Effectif: rafraîchissement %s, mise à niveau %s"
 
 #. TRANSLATORS: Title of the warning dialog shown when an apt configuration
 #. file
 #. with higher priority is overriding the value written by mx-updater.
 msgid "Setting Overridden"
-msgstr ""
+msgstr "Paramètre remplacé"
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).

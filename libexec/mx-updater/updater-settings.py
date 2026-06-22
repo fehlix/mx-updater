@@ -409,7 +409,7 @@ class SettingsEditorDialog(QDialog):
         # TRANSLATORS: The label group-box, where user can select
         # the "Upgrade mode" either "full upgrade" or "basic upgrade"
         upgrade_frame = QGroupBox(_("Upgrade mode"))
-        upgrade_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+        _f = upgrade_frame.font(); _f.setBold(True); upgrade_frame.setFont(_f)
 
         upgrade_layout = QVBoxLayout()
         upgrade_layout.setSpacing(1)  # smaller spacing between options
@@ -634,7 +634,7 @@ when additional updates are available.""")
         # keep old translated string so xgettext still extracts it
         # TRANSLATORS: The label of the group box for left-click behaviour.
         _dummy = _("Left-click behaviour   (when updates are available)")
-        left_click_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+        _f = left_click_frame.font(); _f.setBold(True); left_click_frame.setFont(_f)
 
         # TRANSLATORS: Tooltip for the Left-click behaviour group box.
         # Explains left-click behavior and the hidden middle-click action.
@@ -732,7 +732,7 @@ when additional updates are available.""")
         # icons_frame: Icons
         #---------------------------------------------------------------
         icons_frame = QGroupBox(_("Icons"))
-        icons_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+        _f = icons_frame.font(); _f.setBold(True); icons_frame.setFont(_f)
         icons_layout = QGridLayout()
 
         # layout margins (left, top, right, bottom)
@@ -840,7 +840,7 @@ Works best when panel color contrasts with the wire color:
         #---------------------------------------------------------------
         _dummy = _("Other options")
         other_options_frame = QGroupBox(_("Other"))
-        other_options_frame.setStyleSheet("QGroupBox { font-weight: bold; }")
+        _f = other_options_frame.font(); _f.setBold(True); other_options_frame.setFont(_f)
         other_options_layout = QVBoxLayout()
         other_options_layout.setSpacing(1)  # small spacing between options
 

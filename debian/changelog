@@ -22,6 +22,18 @@ mx-updater (26.06.1mx25~dev22) UNRELEASED; urgency=medium
     plugin is active; visible as a flicker-to-dark on window drag.
     Using setFont() leaves colour rendering entirely to the style engine.
 
+  * debian/install: replace blanket directory installs with explicit
+    per-file entries for bin, libexec, lib/mx-updater, polkit, and
+    share/mx-updater. Icons and locale remain as directory wildcards
+    (100+ and 30+ files respectively). Makes it visible exactly which
+    files ship and catches missing files at build time.
+  * debian/install.apt-notifier, debian/dirs.apt-notifier: restore
+    files removed in error. These are reference-only documents listing
+    what the old apt-notifier package installed; they serve as a
+    checklist for writing migration cleanup in preinst/postrm and are
+    not used by the build. Added a comment header to make the purpose
+    explicit so they are not mistaken for dead code again.
+
  -- fehlix <fehlix@mxlinux.org>  Sun, 22 Jun 2026 00:00:00 -0400
 
 mx-updater (26.06.1mx25~dev21) UNRELEASED; urgency=medium

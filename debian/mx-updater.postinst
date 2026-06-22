@@ -12,24 +12,8 @@ fi
 
 case "$1" in
   configure)
-	if  [ ! -f /etc/apt/apt.conf.d/02periodic ]
-	then
-	  cp /usr/share/mx-updater/02periodic /etc/apt/apt.conf.d/02periodic
-	  sed -i '/overwrite existing/d' /etc/apt/apt.conf.d/02periodic
-	else
-	  if [ "$(sed '/overwrite existing/d' /usr/share/mx-updater/02periodic | md5sum)" = "$(cat /etc/apt/apt.conf.d/02periodic | md5sum)" ]
-		then
-		  :
-		else
-		  grep -q 'overwrite existing' /usr/share/mx-updater/02periodic
-		  if [ $? -eq 0 ]
-			then
-			  cp /usr/share/mx-updater/02periodic /etc/apt/apt.conf.d/02periodic
-			  sed -i '/overwrite existing/d' /etc/apt/apt.conf.d/02periodic
-			else
-			  :
-		  fi
-	  fi       
+	if [ ! -f /etc/apt/apt.conf.d/02periodic ]; then
+		cp /usr/share/mx-updater/02periodic /etc/apt/apt.conf.d/02periodic
 	fi
 	if  [ ! -f /etc/apt/apt.conf.d/51unattended-upgrades-config ] && \
 	    [ -f /usr/share/mx-updater/51unattended-upgrades-config ]; then

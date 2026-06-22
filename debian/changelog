@@ -27,6 +27,17 @@ mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
     was incorrectly treated as disabled, hiding the "Auto-update log(s)" and
     "Auto-update dpkg log(s)" right-click menu entries. Fixed by reading the
     raw value and checking > 0 (same pattern as updater-settings.py dev21).
+  * preinst: remove stale commented-out rm for mx-updater-autostart.desktop
+    (conffile is now managed by dpkg directly).
+  * postrm: add /etc/apt/apt.conf.d/52mx-updater-periodic to purge/remove
+    cleanup -- written by auto-update-periodic action, must not outlive the
+    package. Add 51unattended-upgrades-config (installed by postinst on fresh
+    install, not tracked as a dpkg conffile, so not auto-removed on purge).
+  * postinst: simplify 02periodic install block. The "overwrite existing"
+    marker mechanism was dead code -- the template has never contained that
+    marker, so the md5sum comparison and forced-overwrite branch were
+    permanently unreachable. Reduced to a plain fresh-install copy (file
+    absent -> copy; file present -> leave as-is, user edits respected).
   * postinst: remove three stale cleanup blocks no longer needed:
     - rm 15periodic-update (apt-notifier era, long gone from any system).
     - cron.daily/apt~ rename (same era).

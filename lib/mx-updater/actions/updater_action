@@ -43,16 +43,20 @@ esac
 
 check_authenticator() {
     if command -v pkexec > /dev/null; then
-        # check if a known polkit agent or polkit-capable DE is running:
-        # - explicit agents: polkit-gnome-authentication-agent-1,
-        #   polkit-kde-authentication-agent-1, lxpolkit, lxqt-policykit-agent, mate-polkit
-        # - DEs with built-in polkit support: gnome-shell, enlightenment
+        # DEs with built-in or guaranteed polkit support: trust XDG_CURRENT_DESKTOP
+        # directly without a process scan -- faster and handles agents whose names vary
+        case "${XDG_CURRENT_DESKTOP:-}" in
+            *GNOME*|*Cinnamon*|*Enlightenment*)
+                echo "pkexec"
+                return
+                ;;
+        esac
+        # check if a known polkit agent is running for other DEs:
+        # KDE, LXDE/LXQt, MATE
         local _agent
         for _agent in \
-            polkit-gnome-authentication-agent-1 \
             polkit-kde-authentication-agent-1 \
-            lxpolkit lxqt-policykit-agent mate-polkit \
-            gnome-shell enlightenment; do
+            lxpolkit lxqt-policykit-agent mate-polkit; do
             if pgrep -u "$(id -u)" -f "$_agent" > /dev/null; then
                 echo "pkexec"
                 return

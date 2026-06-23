@@ -1,30 +1,22 @@
 mx-updater (26.06.01mx25) mx; urgency=medium
 
-  * Settings dialog: more compact layout for small screens; shorter and
-    clearer labels throughout; options reordered for better grouping.
-  * New terminal window size and position settings: eight size options and
-    five screen positions; Wayland-aware (position hidden where not
-    applicable); "own" option lets the terminal use its own saved geometry.
-  * Left-click options: MX Package Installer (MXPI) added as an explicit
-    left-click target alongside Synaptic and "View and Upgrade". Each option
-    only appears when its application is installed.
-  * Tray icon: fix Papirus icon theme hijacking the app icon by renaming it
-    from "mx-updater" to "updater-mx"; load multi-size PNG variants at
-    runtime so Qt picks the right size for the panel without blurry
-    downscaling. Backward-compatible symlinks keep existing references working.
-  * Authentication: fix polkit agent detection so pkexec, gksu, or sudo is
-    chosen correctly at runtime. Reload (apt-get update) restricted to sudo
-    group members; non-sudo users are shown a polkit admin authentication
-    dialog, consistent with upgrade behaviour.
-  * Nala: replace combined "nala upgrade --update" call with two explicit
-    steps (nala update, then nala upgrade --no-update); touch update-stamp
-    after the update step, not after the upgrade.
-  * Internal cleanup: remove dead code, fix missing shell library guards,
-    remove duplicate configuration reading logic.
-  * Translations: new and shortened UI strings; existing translations
-    preserved on Transifex via _dummy entries.
+  * Settings: condensed Upgrade mode and Left-click sections into fewer rows; labels shortened throughout.
+  * Terminal: configurable size (eight options) and screen position (five options).
+    Position option is not shown on Wayland; the "own" option lets the terminal
+    keep its own saved geometry.
+  * Tray icon: sharp at all panel sizes. Icon renamed to avoid conflict with the
+    Papirus icon theme.
+  * Left-click action: MX Package Installer added as an explicit option alongside
+    Synaptic. Each option only appears when the application is installed.
+  * Auto-update interval: a new frequency selector (daily, every 3 days, weekly,
+    every 2 weeks, monthly, never) replaces the simple on/off toggle. Controls
+    both the package list refresh and the automatic upgrade schedule.
+    Setting "never" disables both and grays out the automatic checkbox.
+  * Authentication: pkexec dialogs now show translated text on all desktop
+    environments including KDE.
+  * Translations: updated for all new UI elements; 10+ languages.
 
- -- fehlix <fehlix@mxlinux.org>  Thu, 19 Jun 2026 00:00:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Tue, 23 Jun 2026 18:13:01 -0400
 
 mx-updater (26.05.02mx25) mx; urgency=medium
 

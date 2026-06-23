@@ -1,3 +1,7 @@
+# REFERENCE ONLY: files installed by the old apt-notifier package.
+# Used as a checklist when writing migration cleanup in preinst/postrm.
+# Do NOT remove.
+
 conf/01_apt-notifier.conf                                         usr/share/mx-updater/conf/apt-notifier.conf.d
 conf/02periodic                                                   usr/share/mx-updater
 conf/03apt-notifier-update-stamp                                  usr/share/mx-updater

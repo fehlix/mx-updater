@@ -282,11 +282,11 @@ class UpdaterSystemMonitor(dbus.service.Object):
         #if not RUNTIME_SENTINEL.exists() or not STATE_FILE.exists():
         if not RUNTIME_SENTINEL.exists() or needs_check:
             if not RUNTIME_SENTINEL.exists():
-                logging.debug(f"On first activation afer boot create runtime sentinel {RUNTIME_SENTINEL}")
+                logging.debug(f"On first activation after boot create runtime sentinel {RUNTIME_SENTINEL}")
                 RUNTIME_SENTINEL.touch()
             if needs_check:
-                logging.debug(f"Initial state validation failed -> check_for_updades sceduled ")
-            logging.debug(f"Initiated: Check for Updades")
+                logging.debug(f"Initial state validation failed -> check_for_updates scheduled ")
+            logging.debug(f"Initiated: Check for Updates")
             self._spawn_scan()
 
         """
@@ -437,19 +437,19 @@ class UpdaterSystemMonitor(dbus.service.Object):
 
         
     def _spawn_scan(self):
-        """Helper: start the background thread for _run_check_for_updades."""
+        """Helper: start the background thread for _run_check_for_updates."""
         self.reset_timer()
         with self._lock:
             if self._check_in_progress:
                 # another thread is already doing - ignored
                 return
-            # mark that we’re about to launch a check
+            # mark that we're about to launch a check
             self._check_in_progress = True
-        t = threading.Thread(target=self._run_check_for_updades, daemon=True)
+        t = threading.Thread(target=self._run_check_for_updates, daemon=True)
         t.start()
 
 
-    def _run_check_for_updades(self):
+    def _run_check_for_updates(self):
         """
         Run Check for Updates. When done, clear the flag and
         possibly emit UpgradesChanged.
@@ -704,7 +704,7 @@ class UpdaterSystemMonitor(dbus.service.Object):
             return SYNPREF
     
         if not self.is_regular_text_file(APTPREF):
-            # Treat as “not there” if it's not a normal file
+            # Treat as "not there" if it's not a normal file
             return SYNPREF
     
         with open(APTPREF, "r", encoding="utf-8", errors="ignore") as f:
@@ -1018,7 +1018,7 @@ def _lock_file_alive(p: Path) -> bool:
     if is_process_alive(pid):
         return True
 
-    # stale lock—clean it up
+    # stale lock--clean it up
     try:
         p.unlink()
     except OSError:
@@ -1088,7 +1088,7 @@ if __name__ == "__main__":
     #signal.signal(signal.SIGINT, signal_handler)
     #signal.signal(signal.SIGHUP, signal_handler)
 
-    # set GLib’s mainLoop as default
+    # set GLib's mainLoop as default
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
     # connect to system bus

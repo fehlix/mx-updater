@@ -418,7 +418,7 @@ updater_show() {
             zutty -title "$T" "${zutty_flags[@]}" -e sh -c "$C"
             ;;
       *)    if [ -x /usr/bin/xfce4-terminal ]; then
-                xfce4-terminal ${SESSION_MANAGER:+--disable-server} --hide-menubar "${geo_flags[@]}"  --icon="$icon"  -T "$T" -e "$C"
+                xfce4-terminal --disable-server --hide-menubar "${geo_flags[@]}"  --icon="$icon"  -T "$T" -e "$C" 2>/dev/null
             else
                 x-terminal-emulator -T "$T" -e "$C"
             fi

@@ -371,12 +371,12 @@ class SystemTrayIcon(QSystemTrayIcon):
             self._notify_init = True
             self._notify_caps = notify2.get_server_caps() or set()
         except Exception as e:
-            logger.info("Notification daemon not avialable: %r", e)
+            logger.info("Notification daemon not available: %r", e)
 
         if self._notify_init:
             self._notify_caps = notify2.get_server_caps() or set()
             if "actions" not in self._notify_caps:
-                logger.info("Notification with 'actions' not avialable!")
+                logger.info("Notification with 'actions' not available!")
         #---------------------------------------------------------------
 
         # Connections: PyQt signal to update_tray_icon method
@@ -536,11 +536,11 @@ class SystemTrayIcon(QSystemTrayIcon):
             return processed_upgrades
 
         except dbus.exceptions.DBusException as service_error:
-            print(f"D-Bus service not available: {service_error}")
+            logger.debug("D-Bus service not available: %r", service_error)
             return self._state["upgrades-available"]
 
         except Exception as e:
-            print(f"Unexpected D-Bus error: {e}")
+            logger.debug("Unexpected D-Bus error: %r", e)
             return self._state["upgrades-available"]
 
 
@@ -1604,7 +1604,7 @@ class SystemTrayIcon(QSystemTrayIcon):
                 pass
 
         except Exception as e:
-            print(f"Unexpected D-Bus error: {e}")
+            logger.warning("[update_settings_dialog] Unexpected D-Bus error: %s", e)
             pass
 
 
@@ -1785,21 +1785,17 @@ class SystemTrayIcon(QSystemTrayIcon):
         return len(matching_files) > 0
 
     def is_unattended_upgrade_enabled(self) -> bool:
-        """
-        Check if unattended upgrade is enabled
-
-        Returns:
-            bool: True if unattended upgrade is enabled
-        """
-        me = "is_unattended_upgrade_enabled@Settings"
         try:
-            cmd = ['apt-config', 'shell', 'opt', 'APT::Periodic::Unattended-Upgrade/b']
+            cmd = ['apt-config', 'shell', 'val', 'APT::Periodic::Unattended-Upgrade']
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-
-            # match the single-quoted apt-config shell output
-            output = result.stdout.strip()
-            return output == "opt='true'"
-
+            match = re.search(r"val='([^']*)'", result.stdout)
+            if not match:
+                return False
+            raw = match.group(1).strip()
+            if raw == 'always':
+                return True
+            m = re.match(r'^(\d+)[smhd]?$', raw)
+            return bool(m) and int(m.group(1)) > 0
         except subprocess.CalledProcessError:
             return False
 
@@ -2127,7 +2123,7 @@ def unhide_systray(bus):
         qsettings.setValue(f"Settings/{key}", val)
         qsettings.sync()
     except Exception as e:
-        print(f"Unexpected QSettings error: {e}")
+        logger.warning("[unhide_systray] Unexpected QSettings error: %s", e)
         pass
 
     try:
@@ -2143,7 +2139,7 @@ def unhide_systray(bus):
         pass
 
     except Exception as e:
-        print(f"Unexpected D-Bus error: {e}")
+        logger.warning("[unhide_systray] Unexpected D-Bus error: %s", e)
         pass
 
 
@@ -2156,11 +2152,11 @@ def unhide_systray(bus):
     except dbus.exceptions.DBusException as e:
         # updater settings dialog not running
         #print(f"UpdaterSettings dialog not running.")
-        logger.debug("[update_settings_dialog] UpdaterSettings appears to be not running")
+        logger.debug("[unhide_systray] UpdaterSettings appears to be not running")
         pass
 
     except Exception as e:
-        print(f"Unexpected D-Bus error: {e}")
+        logger.warning("[unhide_systray] Unexpected D-Bus error: %s", e)
         pass
 
 

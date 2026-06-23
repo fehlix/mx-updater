@@ -1,3 +1,15 @@
+mx-updater (26.06.1mx25~dev24) UNRELEASED; urgency=medium
+
+  * updater_action: improve polkit agent detection in check_authenticator().
+    Add XDG_CURRENT_DESKTOP pattern match for DEs with built-in or guaranteed
+    polkit support (GNOME, Cinnamon, Enlightenment) before the pgrep loop --
+    faster (no process scan) and more reliable when agent process names vary.
+    Remove gnome-shell and enlightenment from the pgrep list since they are
+    now covered by the desktop check. pgrep loop retained for explicit agent
+    processes on other DEs: KDE, LXDE/LXQt, MATE.
+
+ -- fehlix <feh.ler@t-online.de>  Mon, 23 Jun 2026 00:00:00 +0200
+
 mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
 
   * Polkit policy translations: inject all PO translations at build time
@@ -10,6 +22,12 @@ mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
     files. gettext added to Build-Depends. gettext-domain="mx-updater"
     removed from all <message> tags in source policy files (polkit no
     longer needs to look up translations at runtime; they are embedded).
+    TRANSLATORS XML comments stripped from built policy files via sed
+    (source files keep them for xgettext). l10n/Makefile builds a
+    po-policy/ staging dir with a reverse-sorted LINGUAS and symlinks to
+    the original .po files; msgfmt processes languages in reverse order
+    so the embedded translations appear alphabetically by lang tag in the
+    installed policy files.
   * Remove retired auto-update enable/disable infrastructure. Since dev20 the
     UI exclusively uses auto-update-periodic (interval 0 = disabled); the old
     binary-toggle mechanism is fully superseded.

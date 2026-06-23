@@ -14,6 +14,7 @@ DESKTOP     := $(addprefix $(BUILD)/xdg/,$(notdir $(DESKTOP_IN)))
 POLICY_DIR  := ../polkit/actions
 POLICY_IN   := $(wildcard $(POLICY_DIR)/*.policy)
 POLICY_OUT  := $(addprefix $(BUILD)/policy/,$(notdir $(POLICY_IN)))
+POLICY_PO   := $(BUILD)/po-policy
 
 ifneq ($(strip $(LINGUAS)),)
   LINGUAS := $(sort $(LINGUAS))
@@ -47,10 +48,15 @@ $(BUILD)/xdg/%.desktop: $(XDGDIR)/%.desktop
 
 policy: $(POLICY_OUT)
 
-$(BUILD)/policy/%.policy: $(POLICY_DIR)/%.policy
+$(POLICY_PO)/LINGUAS: $(PO_DIR)/LINGUAS $(wildcard $(PO_DIR)/*.po)
+	@mkdir -p $(POLICY_PO)
+	@sort -r $(PO_DIR)/LINGUAS > $@
+	@for po in $(abspath $(PO_DIR))/*.po; do ln -sf "$$po" $(POLICY_PO)/; done
+
+$(BUILD)/policy/%.policy: $(POLICY_DIR)/%.policy $(POLICY_PO)/LINGUAS
 	@mkdir -p $(BUILD)/policy
 	@echo "  " $@
-	GETTEXTDATADIRS=../polkit/ msgfmt --xml --template=$< -d $(PO_DIR) -o $@
+	GETTEXTDATADIRS=../polkit/ msgfmt --xml --template=$< -d $(POLICY_PO) -o $@
 	@sed -i '/<!-- TRANSLATORS:/d' $@
 
 clean:

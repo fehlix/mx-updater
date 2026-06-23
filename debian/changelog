@@ -1,5 +1,15 @@
 mx-updater (26.06.1mx25~dev23) UNRELEASED; urgency=medium
 
+  * Polkit policy translations: inject all PO translations at build time
+    instead of relying on polkit's runtime gettext lookup (which was not
+    working). ITS rules in polkit/its/ (polkit.its + polkit.loc) tell
+    msgfmt --xml how to handle the policy XML format. l10n/Makefile gains
+    a policy target that sets GETTEXTDATADIRS=../polkit/ and runs msgfmt
+    --xml for each policy file, writing translated output to
+    l10n/build/policy/. debian/install updated to use the built policy
+    files. gettext added to Build-Depends. gettext-domain="mx-updater"
+    removed from all <message> tags in source policy files (polkit no
+    longer needs to look up translations at runtime; they are embedded).
   * Remove retired auto-update enable/disable infrastructure. Since dev20 the
     UI exclusively uses auto-update-periodic (interval 0 = disabled); the old
     binary-toggle mechanism is fully superseded.

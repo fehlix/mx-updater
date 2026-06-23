@@ -8,8 +8,12 @@ XDGDIR := ../xdg
 
 LCMSGS := LC_MESSAGES/$(PKGNAM).mo
 
-DESKTOP_IN := $(wildcard $(XDGDIR)/*.desktop)
-DESKTOP    := $(addprefix $(BUILD)/xdg/,$(notdir $(DESKTOP_IN)))
+DESKTOP_IN  := $(wildcard $(XDGDIR)/*.desktop)
+DESKTOP     := $(addprefix $(BUILD)/xdg/,$(notdir $(DESKTOP_IN)))
+
+POLICY_DIR  := ../polkit/actions
+POLICY_IN   := $(wildcard $(POLICY_DIR)/*.policy)
+POLICY_OUT  := $(addprefix $(BUILD)/policy/,$(notdir $(POLICY_IN)))
 
 ifneq ($(strip $(LINGUAS)),)
   LINGUAS := $(sort $(LINGUAS))
@@ -24,7 +28,7 @@ endif
 
 LOCALE := $(addprefix $(BUILD)/locale/,$(addsuffix /$(LCMSGS),$(LINGUAS)))
 
-all: clean locale desktop
+all: clean locale desktop policy
 
 locale: $(LOCALE)
 
@@ -41,8 +45,16 @@ $(BUILD)/xdg/%.desktop: $(XDGDIR)/%.desktop
 	msgfmt --desktop --template $< -d $(PO_DIR) -o $@ 
 	@sed -i '/^#/d' $@ 
 
+policy: $(POLICY_OUT)
+
+$(BUILD)/policy/%.policy: $(POLICY_DIR)/%.policy
+	@mkdir -p $(BUILD)/policy
+	@echo "  " $@
+	GETTEXTDATADIRS=../polkit/ msgfmt --xml --template=$< -d $(PO_DIR) -o $@
+	@sed -i '/<!-- TRANSLATORS:/d' $@
+
 clean:
 	-@rm  -f $(DESKTOP)
 	-@rm -rf $(BUILD)
 
-.PHONY: all clean locale desktop
+.PHONY: all clean locale desktop policy

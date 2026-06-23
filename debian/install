@@ -52,14 +52,14 @@ lib/mx-updater/shlib/updater_aptpref              usr/lib/mx-updater/shlib
 lib/mx-updater/shlib/updater_shlib                usr/lib/mx-updater/shlib
 
 # polkit actions and rules
-polkit/actions/org.mxlinux.mx-updater.auto-update-disable.policy              usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.auto-update-enable.policy               usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.auto-update-periodic.policy             usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.basic-upgrade.policy                    usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.full-upgrade.policy                     usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.reload.policy                           usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy  usr/share/polkit-1/actions
-polkit/actions/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy       usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-disable.policy              usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-enable.policy               usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-periodic.policy             usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.basic-upgrade.policy                    usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.full-upgrade.policy                     usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.reload.policy                           usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy  usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy       usr/share/polkit-1/actions
 polkit/rules.d/50-mx-updater-reload.rules                                      usr/share/polkit-1/rules.d
 
 # share/mx-updater -- config templates and cron/systemd scripts

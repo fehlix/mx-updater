@@ -1,0 +1,19 @@
+mx-updater (26.06.01mx25) mx; urgency=medium
+
+  * Settings: more compact layout with shorter labels; better fit on small screens.
+  * Terminal: configurable size (eight options) and screen position (five options).
+    Position option is not shown on Wayland; the "own" option lets the terminal
+    keep its own saved geometry.
+  * Tray icon: sharp at all panel sizes. Icon renamed to avoid conflict with the
+    Papirus icon theme.
+  * Left-click action: MX Package Installer added as an explicit option alongside
+    Synaptic. Each option only appears when the application is installed.
+  * Auto-update interval: a new frequency selector (daily, every 3 days, weekly,
+    every 2 weeks, monthly, never) replaces the simple on/off toggle. Controls
+    both the package list refresh and the automatic upgrade schedule.
+    Setting "never" disables both and grays out the automatic checkbox.
+  * Authentication: pkexec dialogs now show translated text on all desktop
+    environments including KDE.
+  * Translations: updated for all new UI elements; 10+ languages.
+
+ -- fehlix <feh.ler@t-online.de>  Mon, 23 Jun 2026 00:00:00 +0200

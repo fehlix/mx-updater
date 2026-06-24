@@ -52,10 +52,11 @@ check_authenticator() {
                 ;;
         esac
         # check if a known polkit agent is running for other DEs:
-        # KDE, LXDE/LXQt, MATE
+        # KDE, LXDE/LXQt, MATE, XFCE/Fluxbox (polkit-gnome runs on non-GNOME DEs too)
         local _agent
         for _agent in \
             polkit-kde-authentication-agent-1 \
+            polkit-gnome-authentication-agent-1 \
             lxpolkit lxqt-policykit-agent mate-polkit; do
             if pgrep -u "$(id -u)" -f "$_agent" > /dev/null; then
                 echo "pkexec"

@@ -1,6 +1,7 @@
-mx-updater (26.06.01mx25) mx; urgency=medium
+mx-updater (26.06.01mx25~preview) mx; urgency=medium
 
-  * Settings: condensed Upgrade mode and Left-click sections into fewer rows; labels shortened throughout.
+  * Settings: condensed Upgrade mode and Left-click sections into fewer rows;
+    labels shortened throughout.
   * Terminal: configurable size (eight options) and screen position (five options).
     Position option is not shown on Wayland; the "own" option lets the terminal
     keep its own saved geometry.

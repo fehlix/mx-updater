@@ -1,0 +1,67 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 25 Jun 2026 17:08:37 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.06.01mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.06.01mx25) mx; urgency=medium
+ .
+   * Settings: condensed Upgrade mode and Left-click sections into fewer rows;
+     labels shortened throughout.
+   * Terminal: configurable size (eight options) and screen position (five options).
+     Position option is not shown on Wayland; the "own" option lets the terminal
+     keep its own saved geometry.
+   * Tray icon: sharp at all panel sizes. Icon renamed to avoid conflict with the
+     Papirus icon theme.
+   * Left-click action: MX Package Installer added as an explicit option alongside
+     Synaptic. Each option only appears when the application is installed.
+   * Auto-update interval: a new frequency selector (daily, every 3 days, weekly,
+     every 2 weeks, monthly, never) replaces the simple on/off toggle. Controls
+     both the package list refresh and the automatic upgrade schedule.
+     Setting "never" disables both and grays out the automatic checkbox.
+   * Authentication: pkexec dialogs now show translated text on all desktop
+     environments including KDE.
+Checksums-Sha1:
+ cc6a09588427422f841148ef2e1976c2d5b8ae6e 1614 mx-updater_26.06.01mx25.dsc
+ dedfc65f4d5f97bf5b0e5918e4677fd7723abb38 176184 mx-updater_26.06.01mx25.tar.xz
+ df25f9488c6d1ca08e7de74e05608a96fbbdfde0 369568 mx-updater_26.06.01mx25_all.deb
+ e1317ec0940e872872c3d446f761175696a02cc4 7610 mx-updater_26.06.01mx25_amd64.buildinfo
+Checksums-Sha256:
+ fe0bd88d2dd18d5c3eea8d30bede6817f1f4ff5e8482b60df876139d86590761 1614 mx-updater_26.06.01mx25.dsc
+ 32de05e546d0fd902633937b5bc4ea68a8025a121db5f708204e3b6abf6590d9 176184 mx-updater_26.06.01mx25.tar.xz
+ 33a70bc7a18996c645812911cd269f74196bafba79abb84aad8aed882c27ea44 369568 mx-updater_26.06.01mx25_all.deb
+ ceeb7494fe01aa0271f1c25ac633b2b0274c32ea17febf92b7e1566e941a3611 7610 mx-updater_26.06.01mx25_amd64.buildinfo
+Files:
+ 33f871061a63d7031a98c93165d95682 1614 admin optional mx-updater_26.06.01mx25.dsc
+ d1e8ef679b81472c4f238563f768d826 176184 admin optional mx-updater_26.06.01mx25.tar.xz
+ 8613a4a565719d5993a2aa5a1aeb346a 369568 admin optional mx-updater_26.06.01mx25_all.deb
+ 4fc5d0004a39aebec7933b4ae7c09b47 7610 admin optional mx-updater_26.06.01mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmo9oz8THGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6bOgD/4yuX0tqS/5KWWUzRLmpkkW1mQY+QDk
+mTqd5Dcenhwh+M+iQZZTi5BGDm4zuCW7fB5F7C+w3g5STTN7i/Pu/rkew8F/4DQS
+GQC7XU3IvmUZrVdX9q8IWtBVf7Vqi1eXkGHUbF7VYK00eL8tQjE1xxU5jkxM+NXF
+nWDzQibTIXzed+725Djqdh7r1Mdla+VxVNQsDlamwMwvAgq/DrmMCxLTvFZDK0eA
++tbtiHorBJsqu+54x54YiE+j0wa+39LzY9xCqyhVN0vWRZEhUlnH37PbbePYUhGn
+DO6ZpAGrqbtl01Gz7NnOMgfmDQSJURD7C0B38Rao039warAhPCCJrIMWEJwz+rv+
+Rp/zHqgZbZTnQzc32F7NfsSzCKYFNQNZqx52VyMpbE88CfNM27bBkmLZEMBXaQEP
+cl7odh1qjidgyBs5Sr1rrYleSsr4iXkvh78SiCNub+afIGCs0DmhUFCU4bKcEL6R
+poT0LlBokZpru218eHitN1P8SLfu/36hlZGa4BMsWugIaofekrNlKs8MJotA0JrM
+6+ooH7CggXBw63ybVsS0EeqTxYhctg7luh3bqWKL6R6IbtlD7KZKSqIlWUjw8YUM
+cEl24s4jXbBan1tr1LhXJHpZ7PwyC4Yzy0SpYPDlwqi0XZ8OhBAkqUUogKQrseqj
+fJj5k41Mtq4buQ==
+=nsc4
+-----END PGP SIGNATURE-----

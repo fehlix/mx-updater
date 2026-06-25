@@ -91,7 +91,7 @@ msgstr "Activa l'actualització automàtica"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "Estableix l'interval de refresc/actualització"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -303,22 +303,22 @@ msgid "Select this to use nala package manager instead of apt."
 msgstr "Seleccioneu això per usar el gestor de paquets Nala en comptes d'apt."
 
 msgid "daily"
-msgstr ""
+msgstr "diari"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "cada 3 dies"
 
 msgid "weekly"
-msgstr ""
+msgstr "setmanal"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "cada 2 setmanes"
 
 msgid "monthly"
-msgstr ""
+msgstr "mensual"
 
 msgid "never"
-msgstr ""
+msgstr "mai"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -329,7 +329,7 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "actualització automàtica"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -360,6 +360,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"instal·la els paquets automàticament amb l'interval determinat al selector de refresc.\n"
+"Només actualitza els paquets instal·lats sense canviar la vostra configuració de sistema.\n"
+"La icona de l'actualitzador mostra el nombre total d'actualitzacions, incloent-hi,\n"
+"les automàtiques, quan hi ha actualitzacions addicionals disponibles."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -367,13 +371,16 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "refresc"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
 "The same interval applies to automatic upgrades when\n"
 "\"automatic upgrade\" is checked."
 msgstr ""
+"Estableix el ritme de refresc de la llista de paquets (apt-get update).\n"
+"El mateix interval s'aplica a les actualitzacions automàtiques\n"
+"quan s'ha marcat \"actualització automàtica\"."
 
 msgid "Left-click"
 msgstr "Clic esquerre"
@@ -693,7 +700,7 @@ msgstr "S'ha produït un error inesperat:"
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "a mida%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -701,13 +708,16 @@ msgstr ""
 #. interval,
 #. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
-msgstr ""
+msgstr "Refresc actual (apt-config):  %s, actualitzaciò %s"
 
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
 "'never' disables both the refresh and the automatic upgrade."
 msgstr ""
+"Estableix l'interval per refrescar la llista de paquets (apt-get update).\n"
+"Quan s'ha marcat 'actualització automàtica' s'aplica el mateix interval que a l'actualització.\n"
+"'mai' desactiva tant el refresc com l'actualització automàtica."
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration
 #. overrides
@@ -720,12 +730,16 @@ msgid ""
 "Requested: refresh %s, upgrade %s\n"
 "Effective: refresh %s, upgrade %s"
 msgstr ""
+"No he pogut aplicar l'ajust: una configuració de més prioritat invalida els valors efectius.\n"
+"\n"
+"Refresc demanat%s, actualització %s\n"
+"Refresc efectiu: %s, actualització %s"
 
 #. TRANSLATORS: Title of the warning dialog shown when an apt configuration
 #. file
 #. with higher priority is overriding the value written by mx-updater.
 msgid "Setting Overridden"
-msgstr ""
+msgstr "Ajust Invalidat"
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).

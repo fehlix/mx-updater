@@ -306,19 +306,19 @@ msgid "daily"
 msgstr ""
 
 msgid "every 3 days"
-msgstr ""
+msgstr "çdo 3 ditë"
 
 msgid "weekly"
-msgstr ""
+msgstr "çdo javë"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "çdo 2 javë"
 
 msgid "monthly"
-msgstr ""
+msgstr "çdo muaj"
 
 msgid "never"
-msgstr ""
+msgstr "kurrë"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -329,12 +329,12 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "përmirësim i automatizuar"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "automatic"
-msgstr ""
+msgstr "i automatizuar"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -360,6 +360,11 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"Instalo automatikisht në intervalin e caktuar te përzgjedhësi i rifreskimeve\n"
+"përmirësime paketash.\n"
+"Përmirëson vetëm paketa ekzistuese, pa ndryshuar formësimin tuaj të sistemit.\n"
+"Ikona e përditësuesit shfaq numrin gjithsej të përditësimeve, përfshi përmirësime\n"
+"të automatizuara, kur ka përditësime shtesë."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -367,7 +372,7 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "rifreskoje"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"

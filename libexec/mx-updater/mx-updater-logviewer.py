@@ -796,7 +796,7 @@ def get_standard_button_text(button):
 
 def main():
 
-    window_class='mx-updater'
+    window_class='updater-mx'
 
     app = QApplication(sys.argv)
 
@@ -854,7 +854,7 @@ def main():
 
     viewer = LogViewer(
         view_cmd=view_cmd,
-        icon_path='/usr/share/icons/hicolor/scalable/mx-updater.svg',
+        icon_path='/usr/share/icons/hicolor/scalable/apps/updater-mx.svg',
         window_class=window_class,
         window_title=window_title,
         default_width=default_width,

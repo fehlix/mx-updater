@@ -55,6 +55,10 @@ class UpdaterSettingsManager:
                 'auto_close' : True,
                 'auto_close_timeout' : 10,
                 'use_dbus_notifications' : True,
+                'terminal_size' : 'default',
+                'terminal_size_allowed' : ('default', 'own', 'one-third', 'half', 'two-thirds', 'three-quarters', 'nine-tenths', 'full'),
+                'terminal_position' : 'center',
+                'terminal_position_allowed' : ('center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'),
                 'use_nala' : False,
                 'hide_until_upgrades_available' : False,
                 #'''
@@ -77,16 +81,16 @@ class UpdaterSettingsManager:
 
                 'wireframe-dark' : {
                     'label' : 'wireframe dark',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-dark.png',
-                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-dark-transparent.png',
+                    'icon_some' : '/usr/share/icons/hicolor/256x256/apps/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/hicolor/256x256/apps/mnotify-none-wireframe-dark.png',
+                    'icon_none_transparent' : '/usr/share/icons/hicolor/256x256/apps/mnotify-none-wireframe-dark-transparent.png',
                     },
 
                 'wireframe-light' : {
                     'label' : 'wireframe light',
-                    'icon_some' : '/usr/share/icons/mnotify-some-wireframe.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-wireframe-light.png',
-                    'icon_none_transparent' : '/usr/share/icons/mnotify-none-wireframe-light-transparent.png',
+                    'icon_some' : '/usr/share/icons/hicolor/256x256/apps/mnotify-some-wireframe.png',
+                    'icon_none' : '/usr/share/icons/hicolor/256x256/apps/mnotify-none-wireframe-light.png',
+                    'icon_none_transparent' : '/usr/share/icons/hicolor/256x256/apps/mnotify-none-wireframe-light-transparent.png',
                     },
 
                 'classic' : {
@@ -96,13 +100,13 @@ class UpdaterSettingsManager:
                     },
                 'pulse' : {
                     'label' : 'pulse',
-                    'icon_some' : '/usr/share/icons/mnotify-some-pulse.png',
-                    'icon_none' : '/usr/share/icons/mnotify-none-pulse.png',
+                    'icon_some' : '/usr/share/icons/hicolor/256x256/apps/mnotify-some-pulse.png',
+                    'icon_none' : '/usr/share/icons/hicolor/256x256/apps/mnotify-none-pulse.png',
                     },
                 'pulse-light' : {
                     'label' : 'pulse light',
-                    'icon_some' : '/usr/share/icons/mnotify-pulse-green.png',
-                    'icon_none' : '/usr/share/icons/mnotify-pulse-white.png',
+                    'icon_some' : '/usr/share/icons/hicolor/256x256/apps/mnotify-pulse-green.png',
+                    'icon_none' : '/usr/share/icons/hicolor/256x256/apps/mnotify-pulse-white.png',
                     },
                 },
             }

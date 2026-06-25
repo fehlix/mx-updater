@@ -1,4 +1,7 @@
 #!/bin/sh
 
 export MX_UPDATER_PATH=/usr/libexec/mx-updater
+unset GTK_MODULES
+QT_LOGGING_RULES="*.debug=false${QT_LOGGING_RULES:+;$QT_LOGGING_RULES}"
+export QT_LOGGING_RULES
 exec /usr/libexec/mx-updater/updater-settings.py $@

@@ -7,9 +7,13 @@
 set -e
 
 case "$1" in
-  purge|remove)  
-        rm -f /etc/apt/apt.conf.d/02periodic                      || :      
-        rm -f /etc/apt/apt.conf.d/51unattended-upgrades-mx        || :  
+  purge|remove)
+        rm -f /etc/apt/apt.conf.d/02periodic                      || :
+        rm -f /etc/apt/apt.conf.d/51unattended-upgrades-mx        || :
+        rm -f /etc/apt/apt.conf.d/51unattended-upgrades-enable    || :
+        rm -f /etc/apt/apt.conf.d/51unattended-upgrades-disable   || :
+        rm -f /etc/apt/apt.conf.d/51unattended-upgrades-config    || :
+        rm -f /etc/apt/apt.conf.d/52mx-updater-periodic           || :
         rm -f /etc/cron.d/mx-Unattended-Origins-Pattern-update    || :
         rm -f /etc/xdg/autostart/mx-updater-autostart-xdg.desktop || :
         rm -f /etc/xdg/autostart/mx-updater-autostart.desktop     || :

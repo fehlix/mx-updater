@@ -124,7 +124,7 @@ class LogDialog(QDialog):
 
         window_title_updater = _("MX Updater")
         window_title = f"[ {window_title_updater} ] -- {window_title_history}"
-        window_icon = "/usr/share/icons/hicolor/scalable/mx-updater.svg"
+        window_icon = "/usr/share/icons/hicolor/scalable/apps/updater-mx.svg"
         self.setWindowIcon(QIcon(window_icon))
         self.setWindowTitle(window_title)
 
@@ -478,7 +478,7 @@ def get_standard_button_text(button):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
 
     # QTranslator instance
     qtranslator = QTranslator()

@@ -10,12 +10,12 @@ Name=MX Updater
 Comment=MX Updater system tray applet
 Exec=/usr/bin/mx-updater --restart
 TryExec=/usr/bin/mx-updater
-Icon=mx-updater
+Icon=updater-mx
 Terminal=false
 Type=Application
 StartupNotify=false
 Categories=System;Qt;KDE;Utility;X-KDE-Utilities-Desktop;MX-Software;
-StartupWMClass=mx-updater
+StartupWMClass=updater-mx
 # TRANSLATORS: Keywords for Menu Search
 #
 # Important Translation Guidance:

@@ -1,5 +1,5 @@
-usr/lib/mx-updater/actions/auto-update              usr/lib/mx-updater/actions/auto-update-disable
-usr/lib/mx-updater/actions/auto-update              usr/lib/mx-updater/actions/auto-update-enable
+usr/lib/mx-updater/actions/auto-update-periodic     usr/lib/mx-updater/actions/auto-update-periodic-enable
+usr/lib/mx-updater/actions/auto-update-periodic     usr/lib/mx-updater/actions/auto-update-periodic-disable
 usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_basic-upgrade_action
 usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_full-upgrade_action
 usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_reload_action

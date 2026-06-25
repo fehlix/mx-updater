@@ -17,14 +17,7 @@
 
 ME="${0}"
 MODE=""
-if [ "$1" = "run" ]; then
-    # disabled run with root terminal
-    # MODE="run"
-
-    MODE="no-run"
-    
-    shift
-elif [ "$1" = "sudo-mode" ]; then
+if [ "$1" = "sudo-mode" ]; then
     MODE="sudo-mode"
     shift
 fi
@@ -32,77 +25,51 @@ fi
 case "$ME" in
     *reload_action)
         ACTION=reload
-        if [ "$MODE" = "run" ]; then
-            RUN="/usr/lib/mx-updater/bin/updater_reload_run"
-        else
-            RUN="/usr/lib/mx-updater/bin/updater_reload"
-        fi
+        RUN="/usr/lib/mx-updater/bin/updater_reload"
         ;;
     *basic-upgrade_action)
         ACTION=basic-upgrade
-        if [ "$MODE" = "run" ]; then
-            RUN="/usr/lib/mx-updater/bin/updater_basic-upgrade_run"
-        else
-            RUN="/usr/lib/mx-updater/bin/updater_upgrade"
-        fi
+        RUN="/usr/lib/mx-updater/bin/updater_upgrade"
         ;;
     *full-upgrade_action)
         ACTION=full-upgrade
-        if [ "$MODE" = "run" ]; then
-            RUN="/usr/lib/mx-updater/bin/updater_full-upgrade_run"
-        else
-            RUN="/usr/lib/mx-updater/bin/updater_upgrade"
-        fi
+        RUN="/usr/lib/mx-updater/bin/updater_upgrade"
         ;;
-    *)      echo "Error: no ACTION specified"
+    *)
+        echo "Error: no ACTION specified"
         exit 1
         ;;
 esac
 
-# load updater_config settings
-#declare -A CONFIG_ITEMS
-#UPDATER_CONFIG="/usr/lib/mx-updater/bin/updater_config"
-#if [ -x "${UPDATER_CONFIG}" ]; then
-#    eval "CONFIG_ITEMS=$(${UPDATER_CONFIG} --shell)"
-#fi
-
-#reload_in_root_terminal="${CONFIG_ITEMS[reload_in_root_terminal]}"
-#allow_passwordless_reload_in_user_terminal="${CONFIG_ITEMS[allow_passwordless_reload_in_user_terminal]}"
-
-reload_in_root_terminal="false"
-allow_passwordless_reload_in_user_terminal="true"
-
-
 check_authenticator() {
-    local authenticator 
-    if [ "$ACTION" = "reload" ]; then
-            # check pkexec is available
-            if which pkexec > /dev/null; then
-                    # check users polkit agent is running
-                    if pgrep   -u $(id -u) -x  '(lx)?polkit.*' >/dev/null; then
-                       authenticator=pkexec
-                    # check polkit daemon is running as root
-                    elif pgrep -u 0  -x 'polkitd' >/dev/null                   && \
-                                 [ "$reload_in_root_terminal" = "false" ]              && \
-                         [ "$allow_passwordless_reload_in_user_terminal" = "true" ]; then
-                       authenticator=pkexec
-                        fi
-                fi    
-    fi
-        if [ -z "$authenticator" ]; then
-            # check users polkit agent is running
-            if pgrep   -u $(id -u) -x  '(lx)?polkit.*' >/dev/null && \
-               which pkexec > /dev/null; then
-               authenticator=pkexec
-            elif test -x /usr/bin/gksu; then
-               authenticator=/usr/bin/gksu
-            else
-               # fallback to sudo
-               authenticator=sudo
+    if command -v pkexec > /dev/null; then
+        # DEs with built-in or guaranteed polkit support: trust XDG_CURRENT_DESKTOP
+        # directly without a process scan -- faster and handles agents whose names vary
+        case "${XDG_CURRENT_DESKTOP:-}" in
+            *GNOME*|*Cinnamon*|*Enlightenment*)
+                echo "pkexec"
+                return
+                ;;
+        esac
+        # check if a known polkit agent is running for other DEs:
+        # KDE, LXDE/LXQt, MATE, XFCE/Fluxbox (polkit-gnome runs on non-GNOME DEs too)
+        local _agent
+        for _agent in \
+            polkit-kde-authentication-agent-1 \
+            polkit-gnome-authentication-agent-1 \
+            lxpolkit lxqt-policykit-agent mate-polkit; do
+            if pgrep -u "$(id -u)" -f "$_agent" > /dev/null; then
+                echo "pkexec"
+                return
             fi
+        done
     fi
-    echo "$authenticator"
-    echo "pkexec"
+    # pkexec not available or no polkit agent detected -- fall back
+    if test -x /usr/bin/gksu; then
+        echo "gksu"
+    else
+        echo "sudo"
+    fi
 }
 
 if [ "$EUID" != 0 ]; then
@@ -110,25 +77,15 @@ if [ "$EUID" != 0 ]; then
     # normal user
     case $(check_authenticator) in
         *pkexec)
-            EXEC=/usr/bin/pkexec
-            if [ "$MODE" = "run" ]; then
-                RUN="${RUN}"
-            else
-                RUN="${ME}"
-            fi
-            $EXEC "$RUN"
+            pkexec "$ME"
             ;;
         *gksu)
             sudo -k
-            if [ "$MODE" = "run" ]; then
-                /usr/bin/gksu "$RUN"
-            else
-                /usr/bin/gksu --sudo-mode  "$ME sudo-mode" && sudo "$ME"
-            fi
+            /usr/bin/gksu --sudo-mode "$ME sudo-mode" && sudo "$ME"
             ;;
         *sudo)
             sudo -k
-            sudo "$RUN"
+            sudo "$ME"
             ;;
     esac
     exit $?
@@ -151,7 +108,6 @@ else
     # from users environment into an array
     __ENVIRONEMENT_PATTERN__=(
     UPDATER_AUTO_CLOSE=
-    UPDATER_AUTO_CLOSE_TIMEOUT=
     DESKTOP_SESSION=
     KDE_FULL_SESSION=
     LANG=
@@ -182,11 +138,6 @@ else
     unset k v
     unset __ENVIRONEMENT_PATTERN__
 
-    #FEHLIX
-    if [ -z "$UPDATER_AUTO_CLOSE_TIMEOUT" ]; then
-        export UPDATER_AUTO_CLOSE_TIMEOUT=33
-    fi
-    
     exec "$RUN"
 fi
 exit 0

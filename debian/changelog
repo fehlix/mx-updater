@@ -1,4 +1,4 @@
-mx-updater (26.06.01mx25~preview) mx; urgency=medium
+mx-updater (26.06.01mx25) mx; urgency=medium
 
   * Settings: condensed Upgrade mode and Left-click sections into fewer rows;
     labels shortened throughout.
@@ -15,9 +15,8 @@ mx-updater (26.06.01mx25~preview) mx; urgency=medium
     Setting "never" disables both and grays out the automatic checkbox.
   * Authentication: pkexec dialogs now show translated text on all desktop
     environments including KDE.
-  * Translations: updated for all new UI elements; 10+ languages.
 
- -- fehlix <fehlix@mxlinux.org>  Tue, 23 Jun 2026 18:13:01 -0400
+ -- fehlix <fehlix@mxlinux.org>  Thu, 25 Jun 2026 17:08:37 -0400
 
 mx-updater (26.05.02mx25) mx; urgency=medium
 

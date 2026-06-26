@@ -627,10 +627,12 @@ class SystemTrayIcon(QSystemTrayIcon):
             left_click = left_click_default
         #print(f"Set selected  settings left_click: {left_click}")
 
-        if left_click.lower().replace('-', '_') in ( 'view_and_upgrade', 'viewandupgrade'):
+        if left_click.lower().replace('-', '_') in ('view_and_upgrade', 'viewandupgrade'):
             left_click = 'view_and_upgrade'
-        elif left_click.lower().replace('-', '_') in ('package_manager','packagemanager'):
+        elif left_click.lower().replace('-', '_') in ('package_manager', 'packagemanager'):
             left_click = 'package_manager'
+        elif left_click.lower().replace('-', '_') in ('package_installer', 'packageinstaller'):
+            left_click = 'package_installer'
         else:
             left_click = 'view_and_upgrade'
 

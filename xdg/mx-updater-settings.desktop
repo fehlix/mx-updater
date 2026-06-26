@@ -6,11 +6,11 @@ Name=MX Updater Settings
 Comment=MX Updater preferences
 Exec=/usr/bin/mx-updater-settings
 TryExec=/usr/bin/mx-updater-settings
-Icon=mx-updater-settings
+Icon=updater-mx-settings
 Terminal=false
 StartupNotify=false
 Categories=System;MX-Software;
-StartupWMClass=mx-updater-settings
+StartupWMClass=updater-mx-settings
 NoDisplay=false
 # TRANSLATORS: Keywords for Menu Search
 #

@@ -388,7 +388,7 @@ class SettingsEditorDialog(QDialog):
         self.setWindowTitle(window_title)
 
         #self.setWindowIcon(QIcon("mx-updater-settings.svg"))
-        self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/mx-updater-settings.svg"))
+        self.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/updater-mx-settings.svg"))
         self.setGeometry(100, 100, 1, 1)  # X, Y ignored (center() overrides); 1,1 lets Qt size to content
 
         # margins for main layout (left, top, right, bottom)
@@ -1012,7 +1012,7 @@ at login after the specified delay in seconds.""")
         # TRANSLATORS: terminal window size option: nine tenths of the screen
         self.terminal_size_combo.addItem(_("9/10 screen"),   "nine-tenths")
         # TRANSLATORS: terminal window size option: full screen
-        self.terminal_size_combo.addItem(_("full screen"),   "full")
+        _dummy = _("full screen")  # not shown: unreliable on Fluxbox (tint panel) and XFCE (window border)
 
         # TRANSLATORS: Label before the terminal window position dropdown
         self.terminal_position_label = QLabel(_("position"))
@@ -1042,8 +1042,11 @@ at login after the specified delay in seconds.""")
         self.terminal_position_combo.setToolTip(_("""Select where the terminal window appears on the screen.
 Hidden when "own" or "full screen" size is selected, or when running on Wayland."""))
 
-        # load saved values
+        # load saved values; revert "full" (disabled) to "default"
         terminal_size = self.load_setting("terminal_size")
+        if terminal_size == "full":
+            terminal_size = "default"
+            self.qsettings.setValue("Settings/terminal_size", terminal_size)
         idx = self.terminal_size_combo.findData(terminal_size)
         if idx >= 0:
             self.terminal_size_combo.setCurrentIndex(idx)
@@ -1053,15 +1056,12 @@ Hidden when "own" or "full screen" size is selected, or when running on Wayland.
         if idx >= 0:
             self.terminal_position_combo.setCurrentIndex(idx)
 
-        # position not supported on Wayland; also irrelevant when full screen
+        # position not supported on Wayland; also irrelevant when "own"
         _on_wayland = (os.environ.get("XDG_SESSION_TYPE") == "wayland"
                        or bool(os.environ.get("WAYLAND_DISPLAY")))
         if _on_wayland or terminal_size == "own":
             self.terminal_position_label.setVisible(False)
             self.terminal_position_combo.setVisible(False)
-        elif terminal_size == "full":
-            self.terminal_position_label.setEnabled(False)
-            self.terminal_position_combo.setEnabled(False)
 
 
         self.terminal_size_combo.currentIndexChanged.connect(self.on_terminal_size_changed)
@@ -1784,9 +1784,8 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             else:
                 self.terminal_position_label.setVisible(True)
                 self.terminal_position_combo.setVisible(True)
-                enabled = (value != "full")
-                self.terminal_position_label.setEnabled(enabled)
-                self.terminal_position_combo.setEnabled(enabled)
+                self.terminal_position_label.setEnabled(True)
+                self.terminal_position_combo.setEnabled(True)
 
     def on_terminal_position_changed(self, index):
         value = self.terminal_position_combo.itemData(index)
@@ -2010,7 +2009,7 @@ def tooltip_stylesheet():
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)  # QApplication instance
-    app.setApplicationName("mx-updater-settings")
+    app.setApplicationName("updater-mx-settings")
     app.setStyleSheet(tooltip_stylesheet())
 
     bus = SessionBus()

@@ -1,3 +1,12 @@
+mx-updater (26.06.02mx25) mx; urgency=medium
+
+  * Fix: left-click set to MX Package Installer opened Synaptic or View and Upgrade instead.
+  * Settings: "full screen" terminal size option removed from the dropdown.
+  * Settings window: icon renamed from "mx-updater-settings" to "updater-mx-settings"
+    to prevent Papirus icon theme from hijacking it on KDE/Plasma.
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 26 Jun 2026 18:51:18 -0400
+
 mx-updater (26.06.01mx25) mx; urgency=medium
 
   * Settings: condensed Upgrade mode and Left-click sections into fewer rows;

@@ -46,11 +46,13 @@ links:
 		ln -s mnotify-some-wireframe.png $(APPS_DIR)/apt-notifier.png; \
 		ln -s mnotify-some-wireframe.png $(APPS_DIR)/updater-mx.png; \
 		ln -s updater-mx.png $(APPS_DIR)/mx-updater.png; \
+		ln -s updater-mx-settings.png $(APPS_DIR)/mx-updater-settings.png; \
 		done
 	@cd $(HICOLOR)/scalable/apps && \
 		ln -s mnotify-some-wireframe.svg apt-notifier.svg && \
 		ln -s mnotify-some-wireframe.svg updater-mx.svg && \
-		ln -s updater-mx.svg mx-updater.svg
+		ln -s updater-mx.svg mx-updater.svg && \
+		ln -s updater-mx-settings.svg mx-updater-settings.svg
 	@cd $(BUILD)/icons && \
 		ln -s hicolor/32x32/apps/*.png . && \
 		ln -s hicolor/256x256/apps/mnotify-some-wireframe.png mnotify-some-wireframe-pkexec.png 

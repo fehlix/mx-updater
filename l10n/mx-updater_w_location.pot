@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-21 15:20-0400\n"
+"POT-Creation-Date: 2026-06-25 20:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. package updates and perform various actions to update and upgrade the
 #. system.  The string is used in various places. Keep the translation
 #. short and leave the string "MX Updater" untranslated if necessary.
-#: ../xdg/mx-updater.desktop:8 ../lib/mx-updater/bin/updater_reload_run:12
+#: ../xdg/mx-updater.desktop:7 ../lib/mx-updater/bin/updater_reload_run:12
 #: ../lib/mx-updater/bin/updater_upgrade_run:14
 #: ../libexec/mx-updater/mx-updater-logviewer.py:821
 #: ../libexec/mx-updater/updater_about.py:77
@@ -37,7 +37,7 @@ msgstr ""
 
 #. TRANSLATORS: The desktop entry comment will be shown within the menu.
 #. Keep it short.
-#: ../xdg/mx-updater.desktop:11
+#: ../xdg/mx-updater.desktop:10
 msgid "MX Updater system tray applet"
 msgstr ""
 
@@ -55,27 +55,27 @@ msgstr ""
 #. - Non-ASCII translations
 #. - Original English keywords preserved
 #. - Each keyword ending with a semicolon
-#: ../xdg/mx-updater.desktop:38 ../xdg/mx-updater-settings.desktop:34
+#: ../xdg/mx-updater.desktop:37 ../xdg/mx-updater-settings.desktop:33
 msgid "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name displayed in the menu.
-#: ../xdg/mx-updater-settings.desktop:5
+#: ../xdg/mx-updater-settings.desktop:4
 msgid "MX Updater Settings"
 msgstr ""
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment of the ""MX Updater Settings" menu entry.
-#: ../xdg/mx-updater-settings.desktop:7
+#: ../xdg/mx-updater-settings.desktop:6
 msgid "MX Updater preferences"
 msgstr ""
 
 #. TRANSLATORS: The autostart desktop entry name will be shown within the list of autostart entries.
-#: ../xdg/mx-updater-autostart.desktop:4
+#: ../xdg/mx-updater-autostart.desktop:3
 msgid "MX Updater Autostart"
 msgstr ""
 
 #. TRANSLATORS: The autostart desktop entry comment will be shown within 'Session and Startup' (Autostart).
-#: ../xdg/mx-updater-autostart.desktop:6
+#: ../xdg/mx-updater-autostart.desktop:5
 msgid "An applet to show updates"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Disable Auto-update"
 msgstr ""
 
-#. TRANSLATORS: The string is displayed within the authentication window to enabale unattended-upgrade (Auto-update)!
+#. TRANSLATORS: The string is displayed within the authentication window to enable unattended-upgrade (Auto-update)!
 #: ../polkit/actions/org.mxlinux.mx-updater.auto-update-enable.policy:14
 msgid "Enable Auto-update"
 msgstr ""
@@ -511,12 +511,12 @@ msgid ""
 "  wireframe-light (black wires): visible on light panel, invisible on dark panel."
 msgstr ""
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
 #: ../libexec/mx-updater/updater-settings.py:768
 msgid "dark"
 msgstr ""
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
 #: ../libexec/mx-updater/updater-settings.py:771
 msgid "light"
 msgstr ""
@@ -754,29 +754,29 @@ msgstr ""
 msgid "MX Updater Help"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1423
+#: ../libexec/mx-updater/updater-settings.py:1421
 msgid "Error"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1424
+#: ../libexec/mx-updater/updater-settings.py:1422
 msgid "An unexpected error occurred:"
 msgstr ""
 
 #. TRANSLATORS: Shown in the frequency combo when the current apt-config value does not
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d", "12h", or "always".
-#: ../libexec/mx-updater/updater-settings.py:1509
-#: ../libexec/mx-updater/updater-settings.py:1539
+#: ../libexec/mx-updater/updater-settings.py:1507
+#: ../libexec/mx-updater/updater-settings.py:1537
 msgid "custom (%s)"
 msgstr ""
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current effective
 #. apt-config values. First %s = refresh interval, second %s = upgrade interval,
-#. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
-#: ../libexec/mx-updater/updater-settings.py:1543
+#. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
+#: ../libexec/mx-updater/updater-settings.py:1541
 msgid "Current (apt-config): refresh %s, upgrade %s"
 msgstr ""
 
-#: ../libexec/mx-updater/updater-settings.py:1548
+#: ../libexec/mx-updater/updater-settings.py:1547
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
@@ -785,7 +785,7 @@ msgstr ""
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration overrides
 #. the setting written by mx-updater. %s values are labels like "daily", "never", "12h".
-#: ../libexec/mx-updater/updater-settings.py:1592
+#: ../libexec/mx-updater/updater-settings.py:1591
 msgid ""
 "Could not apply setting: a higher-priority apt configuration\n"
 "is overriding the effective values.\n"
@@ -796,24 +796,24 @@ msgstr ""
 
 #. TRANSLATORS: Title of the warning dialog shown when an apt configuration file
 #. with higher priority is overriding the value written by mx-updater.
-#: ../libexec/mx-updater/updater-settings.py:1602
+#: ../libexec/mx-updater/updater-settings.py:1601
 msgid "Setting Overridden"
 msgstr ""
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).
-#: ../libexec/mx-updater/updater-settings.py:1621
+#: ../libexec/mx-updater/updater-settings.py:1620
 msgid "Unattended Upgrades Configuration Failed"
 msgstr ""
 
 #. TRANSLATORS: Body text of the error dialog for a failed apt periodic configuration write.
-#: ../libexec/mx-updater/updater-settings.py:1623
+#: ../libexec/mx-updater/updater-settings.py:1622
 msgid "Could not change automatic upgrades configuration"
 msgstr ""
 
 #. TRANSLATORS: Label in the error detail line, followed by exit code and stderr output,
 #. e.g. "Command failed [1]: error message".
-#: ../libexec/mx-updater/updater-settings.py:1626
+#: ../libexec/mx-updater/updater-settings.py:1625
 msgid "Command failed"
 msgstr ""
 

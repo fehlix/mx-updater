@@ -1,0 +1,56 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 26 Jun 2026 18:51:18 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.06.02mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.06.02mx25) mx; urgency=medium
+ .
+   * Fix: left-click set to MX Package Installer opened Synaptic or View and Upgrade instead.
+   * Settings: "full screen" terminal size option removed from the dropdown.
+   * Settings window: icon renamed from "mx-updater-settings" to "updater-mx-settings"
+     to prevent Papirus icon theme from hijacking it on KDE/Plasma.
+Checksums-Sha1:
+ 61c7517a89d5215dcf8e8219b13fdbd10002af72 1614 mx-updater_26.06.02mx25.dsc
+ 3097d6f52838aa1770e8d578ccdf5b3fa293538a 176392 mx-updater_26.06.02mx25.tar.xz
+ ddda03002de920d5d7d68a43eb8ec64c045804d4 369868 mx-updater_26.06.02mx25_all.deb
+ c8409722a048765420bd38287e3d4a90a1acca7e 7610 mx-updater_26.06.02mx25_amd64.buildinfo
+Checksums-Sha256:
+ e0e34798e3c39179f480a47bee81708b163ec1da9291b2e77f74b8be75815868 1614 mx-updater_26.06.02mx25.dsc
+ 1e46af191835faf4f59ad0959eeafa6b8661a3b96f0f57afa2ebe32df647f164 176392 mx-updater_26.06.02mx25.tar.xz
+ 739d0b12ce308c3920efc742892d9c9b9edea9c9dcf7dfacad875084ab1b110e 369868 mx-updater_26.06.02mx25_all.deb
+ 8f5cf57aeac976a08edc2588c8971e9c64745657c26fb22ced8b403b8f4c1c38 7610 mx-updater_26.06.02mx25_amd64.buildinfo
+Files:
+ b07a4ebe4b3461ac3ebed2dfa8bbe890 1614 admin optional mx-updater_26.06.02mx25.dsc
+ 19d890a27ab45b8a5b3ae600b3f0cd43 176392 admin optional mx-updater_26.06.02mx25.tar.xz
+ a04351f14a3505f0056418409215d1ec 369868 admin optional mx-updater_26.06.02mx25_all.deb
+ 440d3c48cddd795fd9100de1e8c5302b 7610 admin optional mx-updater_26.06.02mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmo/CBMTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6V02D/9qe3O1ey2i5yUYlm2I8v96bQgFcqKc
+SeFQhrC1LV9NSxaVWr7v8Zzq3Bg/qGwe6BXGrV3OPigsjM6esRNyXm9ApNkQwjeJ
+HJEnf1AD6qA9/MHm4Jrd6dglobVlwmjJXGJu5rN2TeyqJyqEWEJUZKfiB/DcX4rM
+qCZUi0Bjh22mofBU/wdM+KKbQiB+WvWxnMri8m7uroynMbBd4vSu4NQEFjfdEOyu
+ZzAfoowChqCKJscXXGwlQrTscfu/2Va1NvoUQo39oPkWIbmtgFnVZRP2vZIlsz0q
+XPrfQ3rPz/hrjlD6LMy00M1htZRv6YYwXvQPulbAzAzOQrYrhjcUVQhwbBjEsb3I
+E509fhcfe7Rvokqh1dHzKXP0S9kLW/npbDQv21Fp0g/ZQw/SXbNbLtPClggIYbc+
+3WcnUdMFCdf+4ce0oIbVqobt71dP74HePaYRKpV0Ky+8lYTPKl4hEdS8gjLvHDRn
+VBrNqRooc78D+Bb3ctU4xANfbcfrXJEq2ZRHgBaQEqqs+meEJBHfbkOv89iJRzmY
++B1WBhyVTiKtxkWcDwD3e77G6YeP0cg9+Z2N9tTcfd/K/n31Kb8B7R83AP0xJbZP
+lj1ERo5DP42vWV+tE96ALH2GLWmMmE9HAmWnXvOTG3jmtY6rtN/92Q5LOzXdA+iE
+9EkTHjlRwuCrFQ==
+=GwUH
+-----END PGP SIGNATURE-----

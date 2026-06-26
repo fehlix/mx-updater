@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-21 15:20-0400\n"
+"POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
 "Last-Translator: Manuel <senpai99@hotmail.com>, 2026\n"
 "Language-Team: Spanish (Spain) (https://app.transifex.com/anticapitalista/teams/10162/es_ES/)\n"
@@ -83,7 +83,7 @@ msgid "Disable Auto-update"
 msgstr "Deshabilitar actualización automática"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
-#. enabale unattended-upgrade (Auto-update)!
+#. enable unattended-upgrade (Auto-update)!
 msgid "Enable Auto-update"
 msgstr "Habilitar actualización automática"
 
@@ -475,13 +475,13 @@ msgstr ""
 "  esquema-negro (estructura blanca): visible en un panel oscuro, invisible en un panel claro.\n"
 "  esquema-blanco (estructura negra): visible en un panel claro, invisible en un panel oscuro."
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
-#. “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
+#. "light" icon-set, respectively.
 msgid "dark"
 msgstr "oscuro"
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
-#. “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
+#. "light" icon-set, respectively.
 msgid "light"
 msgstr "claro"
 
@@ -707,7 +707,7 @@ msgstr "personalizado (%s)"
 #. effective
 #. apt-config values. First %s = refresh interval, second %s = upgrade
 #. interval,
-#. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
+#. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
 msgstr "Valores actuales (apt-config): actualizar %s, actualización %s"
 

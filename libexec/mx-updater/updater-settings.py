@@ -1484,7 +1484,7 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         if not raw:
             return self._freq_label_for(0)
         if raw == 'always':
-            return 'custom (always)'
+            return 'always'
         days = self._raw_to_days(raw)
         if days is None:
             return 'custom (%s)' % raw
@@ -1537,9 +1537,10 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
                     _("custom (%s)") % self._raw_periodic_label(raw_display))
         # TRANSLATORS: One-line header in the frequency combo tooltip showing current effective
         # apt-config values. First %s = refresh interval, second %s = upgrade interval,
-        # e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
+        # each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
         current_section = _("Current (apt-config): refresh %s, upgrade %s") % (
-            self._raw_periodic_label(raw_update), self._raw_periodic_label(raw_upgrade))
+            "(%s)" % self._raw_periodic_label(raw_update),
+            "(%s)" % self._raw_periodic_label(raw_upgrade))
         # TRANSLATORS: Body text of the refresh interval combo tooltip explaining what the selector does.
         # "automatic upgrade" refers to the checkbox next to the dropdown. "never" is the last combo option.
         static_section = _(

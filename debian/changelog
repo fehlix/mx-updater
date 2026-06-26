@@ -15,8 +15,9 @@ mx-updater (26.06.01mx25) mx; urgency=medium
     Setting "never" disables both and grays out the automatic checkbox.
   * Authentication: pkexec dialogs now show translated text on all desktop
     environments including KDE.
+  * Translations refresh.
 
- -- fehlix <fehlix@mxlinux.org>  Thu, 25 Jun 2026 17:08:37 -0400
+ -- fehlix <fehlix@mxlinux.org>  Thu, 25 Jun 2026 20:18:33 -0400
 
 mx-updater (26.05.02mx25) mx; urgency=medium
 

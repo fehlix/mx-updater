@@ -2,7 +2,7 @@
 Hash: SHA512
 
 Format: 1.8
-Date: Thu, 25 Jun 2026 17:08:37 -0400
+Date: Thu, 25 Jun 2026 20:18:33 -0400
 Source: mx-updater
 Binary: mx-updater
 Architecture: source all
@@ -31,37 +31,38 @@ Changes:
      Setting "never" disables both and grays out the automatic checkbox.
    * Authentication: pkexec dialogs now show translated text on all desktop
      environments including KDE.
+   * Translations refresh.
 Checksums-Sha1:
- cc6a09588427422f841148ef2e1976c2d5b8ae6e 1614 mx-updater_26.06.01mx25.dsc
- dedfc65f4d5f97bf5b0e5918e4677fd7723abb38 176184 mx-updater_26.06.01mx25.tar.xz
- df25f9488c6d1ca08e7de74e05608a96fbbdfde0 369568 mx-updater_26.06.01mx25_all.deb
- e1317ec0940e872872c3d446f761175696a02cc4 7610 mx-updater_26.06.01mx25_amd64.buildinfo
+ 0a0ed205b72ab7dd0b6e5fe7f59e022fbb68f9bb 1614 mx-updater_26.06.01mx25.dsc
+ 910f36a89e1cf1669b98dc818b1f2c8c542e10b9 176176 mx-updater_26.06.01mx25.tar.xz
+ 0fc23653d2f1b3baaf5a0c3dc03731d8d9b019ae 369684 mx-updater_26.06.01mx25_all.deb
+ a101b5311d68fdaf661e031774eba14eb71db3f7 7610 mx-updater_26.06.01mx25_amd64.buildinfo
 Checksums-Sha256:
- fe0bd88d2dd18d5c3eea8d30bede6817f1f4ff5e8482b60df876139d86590761 1614 mx-updater_26.06.01mx25.dsc
- 32de05e546d0fd902633937b5bc4ea68a8025a121db5f708204e3b6abf6590d9 176184 mx-updater_26.06.01mx25.tar.xz
- 33a70bc7a18996c645812911cd269f74196bafba79abb84aad8aed882c27ea44 369568 mx-updater_26.06.01mx25_all.deb
- ceeb7494fe01aa0271f1c25ac633b2b0274c32ea17febf92b7e1566e941a3611 7610 mx-updater_26.06.01mx25_amd64.buildinfo
+ 0c0ea88b813c4d3dc3ba16817f76db6356d458ed63a53169b3c3982ad74abc6e 1614 mx-updater_26.06.01mx25.dsc
+ 294e69063d5331182c19446248c7aa200bce0e5984d84da87782455704623e47 176176 mx-updater_26.06.01mx25.tar.xz
+ 2c5940551863b5d51eed135c844fc029ecf3a1ae98d3bff5b560a30bd366d711 369684 mx-updater_26.06.01mx25_all.deb
+ 3cb3ae0356ceef6247b9aab29ca484566ff19bfb89cacc04c5e2ef36338a9fac 7610 mx-updater_26.06.01mx25_amd64.buildinfo
 Files:
- 33f871061a63d7031a98c93165d95682 1614 admin optional mx-updater_26.06.01mx25.dsc
- d1e8ef679b81472c4f238563f768d826 176184 admin optional mx-updater_26.06.01mx25.tar.xz
- 8613a4a565719d5993a2aa5a1aeb346a 369568 admin optional mx-updater_26.06.01mx25_all.deb
- 4fc5d0004a39aebec7933b4ae7c09b47 7610 admin optional mx-updater_26.06.01mx25_amd64.buildinfo
+ 854ae558a5fb066f1147208bded1c381 1614 admin optional mx-updater_26.06.01mx25.dsc
+ 0922e41841a4ef6474fe440aba51cf5b 176176 admin optional mx-updater_26.06.01mx25.tar.xz
+ cd0e3d42399360b43f3ffdfea6caf259 369684 admin optional mx-updater_26.06.01mx25_all.deb
+ c708d476238500fba787d68faa35fffe 7610 admin optional mx-updater_26.06.01mx25_amd64.buildinfo
 Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmo9oz8THGZlaGxpeEBt
-eGxpbnV4Lm9yZwAKCRAvV48brJ2b6bOgD/4yuX0tqS/5KWWUzRLmpkkW1mQY+QDk
-mTqd5Dcenhwh+M+iQZZTi5BGDm4zuCW7fB5F7C+w3g5STTN7i/Pu/rkew8F/4DQS
-GQC7XU3IvmUZrVdX9q8IWtBVf7Vqi1eXkGHUbF7VYK00eL8tQjE1xxU5jkxM+NXF
-nWDzQibTIXzed+725Djqdh7r1Mdla+VxVNQsDlamwMwvAgq/DrmMCxLTvFZDK0eA
-+tbtiHorBJsqu+54x54YiE+j0wa+39LzY9xCqyhVN0vWRZEhUlnH37PbbePYUhGn
-DO6ZpAGrqbtl01Gz7NnOMgfmDQSJURD7C0B38Rao039warAhPCCJrIMWEJwz+rv+
-Rp/zHqgZbZTnQzc32F7NfsSzCKYFNQNZqx52VyMpbE88CfNM27bBkmLZEMBXaQEP
-cl7odh1qjidgyBs5Sr1rrYleSsr4iXkvh78SiCNub+afIGCs0DmhUFCU4bKcEL6R
-poT0LlBokZpru218eHitN1P8SLfu/36hlZGa4BMsWugIaofekrNlKs8MJotA0JrM
-6+ooH7CggXBw63ybVsS0EeqTxYhctg7luh3bqWKL6R6IbtlD7KZKSqIlWUjw8YUM
-cEl24s4jXbBan1tr1LhXJHpZ7PwyC4Yzy0SpYPDlwqi0XZ8OhBAkqUUogKQrseqj
-fJj5k41Mtq4buQ==
-=nsc4
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmo9yEkTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6bjwEACqz/tRcXgDEXMtKKtt4Y8KJEQPyTmG
+HY13ePFSGxmEpPt92uDuAEvWnTrkgoyRDg//gjuTl7ZM3ONq2O64TXOSPRtFKaZd
+Z0U826xZVSnhKLr8z9MTM/NxOaiRV6SjCzv2zI/ZPzqZt1ppPirIeX9BcihnhIcF
+k0osvCnkTFd9mSxP1NUtb7PbcGlJm0IRYpVpSXRlevKkCKzZoAgxyvrqPpFOBK/2
+8NTS2nSseht8cRAvyflYb3lgzUhgkSuZjRuQXRdy8wraHS3NBz4457uN0bVohscF
+cvS5B4ZwP22HeEWZgtCS/rf5fh4e1u5bE5Slhiqx3qHn1tS95GqmR6grAOVhMAKj
+CQveSKbRRAy4GQvBevuZmiF0kfS0M7F0iUYcHavO93v6SXObhjqx5DPubjLTtkKT
+dCysZoNvfULXhvOTquCvzPPzfWlmtwxNf8yUcO/8a5BQc8S/NqrWCyvkn2SkrF7+
+HKSjenPXowuUtuHjyK66wAvPu+2GnP4YGkAAHrSoRfG6kM+ec1j35bKZYnT5vfcN
+VDT7N29kWRzjEAJ265hAy0OSjHkz6O+Kk9SgmNKGw6XF7m8DcQ+Tm8DrGuUWPsWj
+7TKdWAZJhPCMw9+HiImFgfTvr+P6nYpB0Fmsf+Jba7B4ZWl6fJUIRgU4a5Xd4xZP
+NINtKsi7/QzDlg==
+=UYFt
 -----END PGP SIGNATURE-----

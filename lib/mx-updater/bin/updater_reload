@@ -51,7 +51,6 @@ UPDATER_COUNTS=$(/usr/lib/mx-updater/bin/updater_count)
 
 printf $'\r'"$(printf '%*s' ${#working})"
 echo
-#echo 'UPDATER_COUNTS=$(/usr/lib/apt-notifier/bin/updater_count)'
 echo "$UPDATER_COUNTS"
 echo
 

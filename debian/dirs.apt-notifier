@@ -1,3 +1,7 @@
+# REFERENCE ONLY: directories created by the old apt-notifier package.
+# Used as a checklist when writing migration cleanup in preinst/postrm.
+# Do NOT remove.
+
 etc/xdg/autostart
 usr/bin
 usr/lib/apt-notifier

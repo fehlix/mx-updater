@@ -129,75 +129,13 @@ get_config_item() {
 }
 
 
-read_auto_close_timeout() {
-    # Usage
-    # read -r AUTO_CLOSE_TIMEOUT < <(read_auto_close_timeout)
-    local home_dir=$(eval echo ~$(logname))
-    local config_file="${home_dir}/.config/MX-Linux/mx-updater.conf"
-    local sed_pattern="auto_close_timeout"
-    local LC_CTYPE="C.UTF-8"
-    local LC_COLLATE="C.UTF-8"
-
-    local default_value=10
-
-    # If config file doesn't exist, return default settings
-    if [ ! -f "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' not found or is not a regular file. Using defaults." >&2
-        return 0
-    fi
-
-    if [ ! -r "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' not readable. Using defaults." >&2
-        return 0
-    fi
-
-    if [ ! -s "$config_file" ]; then
-        #echo "[Info] Config file '$config_file' is empty. Using defaults." >&2
-        return 0
-    fi
-
-    IFS=$'\t' read -r key value < <(
-                    sed -nr "/^[[]Settings[]]/,/^[[]/{
-                        s/\s*//g;
-                        s/^(${sed_pattern})=([0-9]+)/\1\t\2/p
-                        }" "$config_file" 2>/dev/null
-                        )
-
-    # trim both left and right whitespace
-    # value=$(echo "$value" | xargs)
-    value="${value#"${value%%[![:space:]]*}"}"
-    value="${value%"${value##*[![:space:]]}"}"
-
-    # check whether value is empty
-    if [ -z "${value}" ]; then
-        echo "$default_value"
-        return 0
-    fi
-    # check value contains digits only
-    if [ -n "${value//[0-9]/}" ]; then
-        echo "$default_value"
-        return 0
-    fi
-
-    echo "$value"
-    return 0
-}
-
-get_auto_close_timeout() {
-# Usage
-# read -r AUTO_CLOSE_TIMEOUT < <(get_auto_close_timeout)
-/usr/bin/python3 -c "
-from PyQt6.QtCore import QSettings;
-settings = QSettings('MX-Linux', 'mx-updater');
-print(settings.value('Settings/auto_close_timeout', 17))
-"
-}
 
 press_any_key_stop_auto_close() {
     local default_timeout=10
 
-    read -r AUTO_CLOSE_TIMEOUT < <(read_auto_close_timeout)
-
+    if [ -z "${AUTO_CLOSE_TIMEOUT}" ]; then
+        read -r AUTO_CLOSE_TIMEOUT < <(get_config_item "auto_close_timeout" "$default_timeout")
+    fi
     if [ -z "${AUTO_CLOSE_TIMEOUT}" ]; then
         AUTO_CLOSE_TIMEOUT=$default_timeout
     fi
@@ -292,7 +230,7 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QGuiApplication
 app = QApplication([])
 primary_screen = QGuiApplication.primaryScreen()
-geo = primary_screen.geometry()
+geo = primary_screen.availableGeometry()
 print(f'{geo.width()} {geo.height()} {geo.x()} {geo.y()}'
 )"
 }
@@ -317,24 +255,51 @@ updater_show() {
     #    read DW DH < <(xdotool getdisplaygeometry)
     #fi
 
-    TH=$((DH*2/3))  # desired terminal hight
-    if ((DW <= 1440)); then
-        TW=$((DW*2/3))  # desired terminal width
-    else
-        TW=$((DW*2/3))  # desired terminal width
+    local terminal_size=$(get_config_item "terminal_size" "two-thirds")
+    local terminal_position=$(get_config_item "terminal_position" "center")
+    local use_own_geometry=false
+
+    # On Wayland the compositor ignores position hints; ignore any saved position
+    if [ -n "$WAYLAND_DISPLAY" ] || [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
+        terminal_position="center"
     fi
 
-    if ((DW >= 1600)); then
-        TW=$(( 1600 * 3 / 5 ))
-        TH=$((  900 * 2 / 3 ))
-    fi
+    case "$terminal_size" in
+        one-third)      TW=$((DW/3));    TH=$((DH/3))    ;;
+        half)           TW=$((DW/2));    TH=$((DH/2))    ;;
+        two-thirds)     TW=$((DW*2/3));  TH=$((DH*2/3))  ;;
+        three-quarters) TW=$((DW*3/4));  TH=$((DH*3/4))  ;;
+        nine-tenths)    TW=$((DW*9/10)); TH=$((DH*9/10)) ;;
+        full)           TW=$DW;          TH=$DH           ;;
+        own)            use_own_geometry=true              ;;
+        *)              # default: original sizing, capped on large screens
+                        TW=$((DW*2/3)); TH=$((DH*2/3))
+                        if ((DW >= 1600)); then
+                            TW=$(( 1600 * 3 / 5 ))
+                            TH=$((  900 * 2 / 3 ))
+                        fi
+                        ;;
+    esac
+
     # read -r XOFF YOFF < <(xrandr | sed -n -r '/connected primary/{/.*[0-9]+x[0-9]+\+([0-9]+)\+([0-9]+).*/{s::\1 \2:p;q}}')
 
     : ${XOFF:=0}
     : ${YOFF:=0}
 
-    TX=$(((DW-TW)/2 + XOFF))
-    TY=$(((DH-TH)/2 + YOFF))
+    if ! $use_own_geometry; then
+        if [ "$terminal_size" = "full" ]; then
+            TX=$XOFF
+            TY=$YOFF
+        else
+            case "$terminal_position" in
+                top-left)     TX=$XOFF;              TY=$YOFF              ;;
+                top-right)    TX=$((DW-TW+XOFF));    TY=$YOFF              ;;
+                bottom-left)  TX=$XOFF;              TY=$((DH-TH+YOFF))   ;;
+                bottom-right) TX=$((DW-TW+XOFF));    TY=$((DH-TH+YOFF))   ;;
+                *)            TX=$(((DW-TW)/2+XOFF)); TY=$(((DH-TH)/2+YOFF)) ;;
+            esac
+        fi
+    fi
 
     CLASS_NAME='mx-updater'
 
@@ -359,6 +324,9 @@ updater_show() {
 
     fi
 
+    # Also skip xdotool when letting the terminal manage its own geometry
+    $use_own_geometry && XDO=": "
+
     if [ -z "$XDO" ]; then
 
         XSEARCH="xdotool sleep 0.2 search --onlyvisible --name '$T'"
@@ -372,7 +340,17 @@ updater_show() {
     CW=10 # char width - rough default
     CH=20 # char hight - rough default
 
-    G="$(($TW/$CW))x$(($TH/$CH))+$TX+$TY"
+    G=""
+    $use_own_geometry || G="$(($TW/$CW))x$(($TH/$CH))+$TX+$TY"
+
+    local kgeo_flags=() geo_flags=() rox_flags=() urxvt_flags=() zutty_flags=()
+    if ! $use_own_geometry; then
+        kgeo_flags=(-qwindowgeometry "${TW}x${TH}+$TX+$TY")
+        geo_flags=(--geometry "$G")
+        rox_flags=("--geometry=$G")
+        urxvt_flags=(-geometry "$G")
+        zutty_flags=(-geometry "$(($TW/$CW))x$(($TH/$CH))")
+    fi
 
     SLEEP=0.3 # sleep
 
@@ -404,11 +382,11 @@ updater_show() {
 
       *gnome-terminal.wrapper|*gnome-terminal)
             CMD="test -n '${msg}' && echo '$msg'; sleep 0.5; $XDO; $cmd"
-            gnome-terminal --wait --hide-menubar --geometry "$G" --title "$T" -- bash -c "$CMD"
+            gnome-terminal --wait --hide-menubar "${geo_flags[@]}" --title "$T" -- bash -c "$CMD"
             ;;
       *konsole)
             if pgrep -x plasmashell >/dev/null; then
-               konsole --nofork --hide-menubar -qwindowgeometry "${TW}x${TH}+$TX+$TY" -qwindowicon "$icon_kde" -qwindowtitle "$T" -e "$K"
+               konsole --nofork --hide-menubar "${kgeo_flags[@]}" -qwindowicon "$icon_kde" -qwindowtitle "$T" -e "$K"
             else
                konsole -e "$C"
                sleep 5
@@ -418,29 +396,29 @@ updater_show() {
             lxterminal --no-remote -T "$T" -e "$C"
             ;;
       *mate-terminal|*mate-terminal.wrapper)
-            mate-terminal --hide-menubar --geometry="$G" --class="${CLASS_NAME}" --role="${CLASS_NAME}" --title="$T" --sm-client-disable --disable-factory  -- sh -c "$C" 2>&1
+            mate-terminal --hide-menubar "${geo_flags[@]}" --class="${CLASS_NAME}" --role="${CLASS_NAME}" --title="$T" --sm-client-disable --disable-factory  -- sh -c "$C" 2>&1
             ;;
       *qterminal)
-               qterminal -qwindowgeometry "${TW}x${TH}+$TX+$TY" -qwindowicon "$icon" -qwindowtitle "$T" -e "$C"
+               qterminal "${kgeo_flags[@]}" -qwindowicon "$icon" -qwindowtitle "$T" -e "$C"
             ;;
       *roxterm)
-            roxterm --hide-menubar --separate "--geometry=$G" -T "$T" -e "$C" 2>/dev/null
+            roxterm --hide-menubar --separate "${rox_flags[@]}" -T "$T" -e "$C" 2>/dev/null
             ;;
       *terminator)
             terminator --no-dbus --icon=""$icon -T "$T" -e "$C" 2>/dev/null
             ;;
       *urxvt)
-            urxvt  -geometry "$G" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"
+            urxvt  "${urxvt_flags[@]}" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"
             ;;
       *xterm)
             xterm  -fa monaco -fs 12 -bg black -fg white  -xrm 'XTerm.vt100.allowTitleOps: false' -T "$T"  -e "$C"
             ;;
       *zutty)
             export EGL_LOG_LEVEL=fatal
-            zutty -title "$T" -geometry "$(($TW/$CW))x$(($TH/$CH))" -e sh -c "$C"
+            zutty -title "$T" "${zutty_flags[@]}" -e sh -c "$C"
             ;;
       *)    if [ -x /usr/bin/xfce4-terminal ]; then
-                xfce4-terminal --disable-server --hide-menubar --geometry="$G"  --icon="$icon"  -T "$T" -e "$C" 2>&1 | grep -v 'SESSION_MANAGER environment variable not defined'
+                xfce4-terminal --disable-server --hide-menubar "${geo_flags[@]}"  --icon="$icon"  -T "$T" -e "$C" 2>/dev/null
             else
                 x-terminal-emulator -T "$T" -e "$C"
             fi

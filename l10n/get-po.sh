@@ -28,7 +28,7 @@ PO_BAK="${PO_DIR}_$(date '+%Y-%m-%d_%H%M%S').bak"
 
 cat <<EOF > .tx/config
 [main]
-host = https://app.transifex.com
+host = https://www.transifex.com
 
 [o:${ORGANIZATION_SLUG}:p:${PROJECT_SLUG}:r:${RESOURCE_SLUG}]
 

@@ -1,19 +1,90 @@
-bin                  usr
+# icons -- kept as wildcard (100+ files across 9 sizes + scalable)
 icons/build/icons    usr/share
-l10n/build/locale    usr/share
-lib/mx-updater       usr/lib
-libexec/mx-updater   usr/libexec
-polkit/actions       usr/share/polkit-1
-share/mx-updater     usr/share
-share/doc            usr/share
 
+# locale -- kept as wildcard (30+ languages)
+l10n/build/locale    usr/share
+
+# desktop files (built by l10n)
 l10n/build/xdg/mx-updater.desktop            usr/share/applications
 l10n/build/xdg/mx-updater-settings.desktop   usr/share/applications
 l10n/build/xdg/mx-updater-autostart.desktop  etc/xdg/autostart
 l10n/build/xdg/mx-updater-autostart.desktop  usr/share/mx-updater
-version/build/version.py                     usr/libexec/mx-updater/version
 
+# bin scripts
+bin/apt-history                                   usr/bin
+bin/mx-updater                                    usr/bin
+bin/mx-updater-autostart                          usr/bin
+bin/mx-updater-settings                           usr/bin
+bin/mx-updater_unattended_upgrades_dpkg_log_view  usr/bin
+bin/mx-updater_unattended_upgrades_log_view       usr/bin
+bin/update-Origins-Pattern                        usr/bin
+
+# libexec -- Python scripts and shell helpers
+libexec/mx-updater/mx-updater-logviewer.py        usr/libexec/mx-updater
+libexec/mx-updater/updater_about.py               usr/libexec/mx-updater
+libexec/mx-updater/updater_action_run             usr/libexec/mx-updater
+libexec/mx-updater/updater_auto_upgrades_dpkg_log_view  usr/libexec/mx-updater
+libexec/mx-updater/updater_auto_upgrades_log_view       usr/libexec/mx-updater
+libexec/mx-updater/updater-changelog.py           usr/libexec/mx-updater
+libexec/mx-updater/updater_config.py              usr/libexec/mx-updater
+libexec/mx-updater/updater-history.py             usr/libexec/mx-updater
+libexec/mx-updater/updater-launch.py              usr/libexec/mx-updater
+libexec/mx-updater/updater-restart                usr/libexec/mx-updater
+libexec/mx-updater/updater-settings.py            usr/libexec/mx-updater
+libexec/mx-updater/updater-system-monitor.py      usr/libexec/mx-updater
+libexec/mx-updater/updater-systray.py             usr/libexec/mx-updater
+libexec/mx-updater/updater_translator.py          usr/libexec/mx-updater
+libexec/mx-updater/updater-view-and-upgrade.py    usr/libexec/mx-updater
+version/build/version.py                          usr/libexec/mx-updater/version
+
+# lib -- action scripts (symlink targets), bin helpers, shlib, apt systemd hook
+lib/mx-updater/actions/auto-update-periodic       usr/lib/mx-updater/actions
+lib/mx-updater/actions/updater_action             usr/lib/mx-updater/actions
+lib/mx-updater/apt.systemd.daily                  usr/lib/mx-updater
+lib/mx-updater/bin/updater_aptpref                usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_count                  usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_list                   usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_reload                 usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_reload_run             usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_upgrade                usr/lib/mx-updater/bin
+lib/mx-updater/bin/updater_upgrade_run            usr/lib/mx-updater/bin
+lib/mx-updater/shlib/updater_aptpref              usr/lib/mx-updater/shlib
+lib/mx-updater/shlib/updater_shlib                usr/lib/mx-updater/shlib
+
+# polkit actions and rules
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-disable.policy              usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-enable.policy               usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.auto-update-periodic.policy             usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.basic-upgrade.policy                    usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.full-upgrade.policy                     usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.reload.policy                           usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.unattended_upgrades_dpkg_log_view.policy  usr/share/polkit-1/actions
+l10n/build/policy/org.mxlinux.mx-updater.unattended_upgrades_log_view.policy       usr/share/polkit-1/actions
+polkit/rules.d/50-mx-updater-reload.rules                                      usr/share/polkit-1/rules.d
+
+# share/mx-updater -- config templates and cron/systemd scripts
+share/mx-updater/01-wait-online.conf              usr/share/mx-updater
+share/mx-updater/02-origin-patterns-daily.conf    usr/share/mx-updater
+share/mx-updater/02periodic                       usr/share/mx-updater
+share/mx-updater/03mx-updater-update-stamp        usr/share/mx-updater
+share/mx-updater/1-quick-live-update              usr/share/mx-updater
+share/mx-updater/2-apt-compat                     usr/share/mx-updater
+share/mx-updater/2-origin-patterns-daily          usr/share/mx-updater
+share/mx-updater/51unattended-upgrades-blacklist       usr/share/mx-updater
+share/mx-updater/51unattended-upgrades-config          usr/share/mx-updater
+share/mx-updater/51unattended-upgrades-default-origins usr/share/mx-updater
+share/mx-updater/51unattended-upgrades-origins         usr/share/mx-updater
+
+# doc
+share/doc/mx-updater/LICENSE                           usr/share/doc/mx-updater
+share/doc/mx-updater/license.html                      usr/share/doc/mx-updater
+share/doc/mx-updater/examples/admin-mx-updater.conf    usr/share/doc/mx-updater/examples
+
+# dbus system monitor config and service
 dbus/59updater-system-monitor                 etc/apt/apt.conf.d
 dbus/org.mxlinux.UpdaterSystemMonitor.conf    usr/share/dbus-1/system.d
 dbus/org.mxlinux.UpdaterSystemMonitor.service usr/share/dbus-1/system-services
+
+# etc
 logrotate/mx-updater-monitor                  etc/logrotate.d
+sudoers.d/mx-updater-reload                   etc/sudoers.d

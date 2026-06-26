@@ -4,19 +4,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# James Bowlin <BitJam@gmail.com>, 2025
 # Geoff Gigg <geoffgigg@hotmail.com>, 2025
 # Dolphin Oracle <dolphinoracle@gmail.com>, 2025
-# Eadwine Rose, 2025
+# anticapitalista <anticapitalista@riseup.net>, 2026
+# James Bowlin <BitJam@gmail.com>, 2026
+# Eadwine Rose, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 19:19-0400\n"
+"POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: Eadwine Rose, 2025\n"
+"Last-Translator: Eadwine Rose, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/anticapitalista/teams/10162/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,9 +84,14 @@ msgid "Disable Auto-update"
 msgstr "Auto-opwaarderen Uitschakelen"
 
 #. TRANSLATORS: The string is displayed within the authentication window to
-#. enabale unattended-upgrade (Auto-update)!
+#. enable unattended-upgrade (Auto-update)!
 msgid "Enable Auto-update"
 msgstr "Auto-opwaarderen Inschakelen"
+
+#. TRANSLATORS: Shown in the polkit authentication dialog when the user
+#. changes the automatic refresh/upgrade interval.
+msgid "Set automatic refresh/upgrade interval"
+msgstr "Automatisch vernieuwings-/upgrade-interval instellen"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -247,13 +253,12 @@ msgstr "Voorkeuren"
 msgid "Upgrade mode"
 msgstr "Opwaardeer modus"
 
-#. TRANSLATORS: The label of the checkbox, where user can select
-#. the "Upgrade mode": "full upgrade"
-msgid "full upgrade   (recommended)"
-msgstr "volle opwaardering   (aanbevolen)"
+#. TRANSLATORS: The label of the radio button for "full" upgrade mode.
+msgid "full"
+msgstr "volledig"
 
-#. TRANSLATORS: The tooltip of the checkbox "full upgrade (recommended)",
-#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: The tooltip of the radio button "full" (full upgrade,
+#. recommended).
 msgid ""
 "Upgrades all packages to their latest versions,\n"
 "which may include adding or removing packages\n"
@@ -262,6 +267,14 @@ msgstr ""
 "Upgradet alle pakketten naar hun nieuwste versies,\n"
 "wat het toevoegen of verwijderen van pakketten kan omvatten\n"
 "om het systeem up-to-date en consistent te houden."
+
+#. TRANSLATORS: The upgrade mode "full upgrade (recommended)".
+msgid "full upgrade   (recommended)"
+msgstr "volle opwaardering   (aanbevolen)"
+
+#. TRANSLATORS: The label of the radio button for "basic" upgrade mode.
+msgid "basic"
+msgstr "basis"
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -278,21 +291,54 @@ msgstr ""
 msgid "use nala"
 msgstr "gebruik nala"
 
-#. TRANSLATORS: The tooltip of the checkbox "use nala",
+#. TRANSLATORS: The tooltip of the checkbox "nala",
 #. which tries to explain what this checkbox is about.
 #. TRANSLATORS: Explains upgrade can be done by using nala package manager
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
 msgstr "Selecteer dit om nala pakketbeheerder te gebruiken in plaats van apt."
 
-#. TRANSLATORS: The label of the checkbox "upgrade automatically", where user
-#. can select
-#. to enabled "unattended-upgrade"
+msgid "daily"
+msgstr "dagelijks"
+
+msgid "every 3 days"
+msgstr "om de 3 dagen"
+
+msgid "weekly"
+msgstr "wekelijks"
+
+msgid "every 2 weeks"
+msgstr "om de 2 weken"
+
+msgid "monthly"
+msgstr "maandelijks"
+
+msgid "never"
+msgstr "nooit"
+
+#. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
+#. upgrades.
+#. "automatic upgrade" = unattended upgrade running at the interval set in the
+#. refresh selector.
+#. Note: many languages use the same word for English "update" and "upgrade"
+#. -- use whichever
+#. word in your language best describes "installing newer versions of existing
+#. packages".
+msgid "automatic upgrade"
+msgstr "automatische upgrade"
+
+#. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
+#. translators reference.
+msgid "automatic"
+msgstr "automatisch"
+
+#. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
+#. translators reference.
 msgid "upgrade automatically"
 msgstr "automatisch upgraden"
 
-#. TRANSLATORS: The tooltip of the checkbox "upgrade automatically",
-#. which tries to explain what this checkbox is about.
+#. TRANSLATORS: Old tooltip of the "automatic upgrade" checkbox -- kept for
+#. translators reference.
 msgid ""
 "Automatically check for package updates once a day and install them.\n"
 "Only updates existing packages without changing your system configuration.\n"
@@ -304,40 +350,131 @@ msgstr ""
 "Het pictogram van het updateprogramma geeft het totale aantal updates weer, inclusief automatische updates, \n"
 "wanneer er aanvullende updates beschikbaar zijn."
 
+msgid ""
+"Automatically install package upgrades at the interval set in the refresh selector.\n"
+"Only upgrades existing packages without changing your system configuration.\n"
+"The updater icon shows the total number of updates, including automatic upgrades,\n"
+"when additional updates are available."
+msgstr ""
+"Pakketupdates worden automatisch geïnstalleerd met de frequentie die is ingesteld in de vernieuwingskeuzeschakelaar.\n"
+"Er worden alleen bestaande pakketten bijgewerkt, zonder dat uw systeemconfiguratie wordt gewijzigd.\n"
+"Het pictogram van het updateprogramma geeft het totale aantal updates weer, inclusief automatische updates,\n"
+"wanneer er extra updates beschikbaar zijn."
+
+#. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
+#. section.
+#. "refresh" = package list refresh (apt-get update). The selected interval
+#. also applies
+#. to automatic upgrades when the "automatic upgrade" checkbox is checked.
+msgid "refresh"
+msgstr "vernieuwen"
+
+msgid ""
+"Sets how often the package list is refreshed (apt-get update).\n"
+"The same interval applies to automatic upgrades when\n"
+"\"automatic upgrade\" is checked."
+msgstr ""
+"Hiermee wordt ingesteld hoe vaak de pakketlijst wordt vernieuwd (apt-get update).\n"
+"Hetzelfde interval geldt voor automatische upgrades wanneer\n"
+"\"automatische upgrade\" is aangevinkt."
+
+msgid "Left-click"
+msgstr "Links klik"
+
+#. TRANSLATORS: The label of the group box for left-click behaviour.
 msgid "Left-click behaviour   (when updates are available)"
 msgstr "Links-klik gedrag (wanneer updates beschikbaar zijn)"
+
+msgid ""
+"Left-click opens the selected application.\n"
+"Middle-click opens MX Package Installer\n"
+"(or Synaptic if MX Package Installer is not installed).\n"
+"Middle-click does nothing if neither is installed."
+msgstr ""
+"Met een linkermuisklik wordt de geselecteerde toepassing geopend.\n"
+"Met een middelste muisklik wordt MX Package Installer geopend\n"
+"(of Synaptic als MX Package Installer niet is geïnstalleerd).\n"
+"Met een middelste muisklik gebeurt er niets als geen van beide is geïnstalleerd."
 
 msgid "opens Synaptic"
 msgstr "opent Synaptic"
 
+msgid ""
+"Left-click always opens Synaptic package manager,\n"
+"with or without updates available."
+msgstr ""
+"Met een linkermuisklik wordt altijd de Synaptic-pakketbeheerder geopend,\n"
+"ongeacht of er updates beschikbaar zijn of niet."
+
+msgid ""
+"Left-click always opens MX Package Installer (MXPI),\n"
+"with or without updates available."
+msgstr ""
+"Met een linkermuisklik wordt altijd MX Package Installer (MXPI) geopend,\n"
+" ongeacht of er updates beschikbaar zijn of niet."
+
+#. TRANSLATORS: The label of the radio button to open the View and Upgrade
+#. window on left-click.
+msgid "View and Upgrade"
+msgstr "Bekijken en Opwaarderen"
+
+msgid ""
+"Left-click opens the \"View and Upgrade\" window\n"
+"when updates are available.\n"
+"When no updates are available, opens Synaptic\n"
+"or MX Package Installer instead."
+msgstr ""
+"Als er updates beschikbaar zijn, wordt met een linkermuisklik het venster \"Bekijken en bijwerken\"\n"
+" geopend.\n"
+"Als er geen updates beschikbaar zijn, wordt in plaats daarvan Synaptic\n"
+" of MX Package Installer geopend."
+
+#. TRANSLATORS: The label of the radio button "opens MX Updater 'View and
+#. Upgrade' window".
 msgid "opens MX Updater 'View and Upgrade' window"
 msgstr "opent MX Updater 'Bekijk en Opwaardeer' scherm"
 
 msgid "Icons"
 msgstr "Iconen"
 
-#. TRANSLATORS: Please keep it short. Detailed explanation are with the
-#. tooltip.
+#. TRANSLATORS: Please keep it short. Detailed explanation is in the tooltip.
+#. "dark/light" refers to the dark and light wireframe icon variants (the no-
+#. updates
+#. icons). The "some-updates" wireframe icon is always the green app icon,
+#. unaffected.
 msgid "transparent wireframe for no updates"
 msgstr "transparant draadmodel voor geen updates"
 
-#. TRANSLATORS: The tooltip for the checkbox "transparent wireframe for no
-#. updates", which explains
-#. what the checkbox is about.
-msgid ""
-"Display transparent wireframe icons without color fill\n"
-"when no updates are available."
-msgstr ""
-"Geef transparante wireframe-pictogrammen zonder kleurvulling weer\n"
-"wanneer er geen updates beschikbaar zijn."
+#. TRANSLATORS: Short label for checkbox. "black/white" refers to the two
+#. wireframe
+#. no-updates icon variants (wireframe-dark has white wires, wireframe-light
+#. has black wires).
+#. Detailed explanation is in the tooltip.
+msgid "transparent black/white wireframe"
+msgstr "doorzichtig zwart/wit draadmodel"
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
-#. “light” icon-set, respectively.
+#. TRANSLATORS: Tooltip for "transparent black/white wireframe" checkbox.
+#. Explains when transparent works and when it does not, depending on panel
+#. color.
+#. "wireframe-dark" has white wires; "wireframe-light" has black/dark wires.
+msgid ""
+"Make the black/white wireframe no-updates icon transparent (no color fill).\n"
+"Works best when panel color contrasts with the wire color:\n"
+"  wireframe-dark (white wires): visible on dark panel, invisible on light panel.\n"
+"  wireframe-light (black wires): visible on light panel, invisible on dark panel."
+msgstr ""
+"Maak het zwart-witte wireframe-pictogram voor ‘geen updates’ transparant (zonder kleurvulling). \n"
+"Werkt het beste wanneer de kleur van het paneel contrasteert met de kleur van de lijnen:\n"
+"  wireframe-dark (witte lijnen): zichtbaar op een donker paneel, onzichtbaar op een licht paneel.\n"
+"  wireframe-light (zwarte lijnen): zichtbaar op een licht paneel, onzichtbaar op een donker paneel."
+
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
+#. "light" icon-set, respectively.
 msgid "dark"
 msgstr "donker"
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or
-#. “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
+#. "light" icon-set, respectively.
 msgid "light"
 msgstr "licht"
 
@@ -356,9 +493,15 @@ msgstr "klassiek"
 msgid "Other options"
 msgstr "Andere opties"
 
+msgid "Other"
+msgstr "Overige"
+
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
+msgid "skip upgrade confirmation"
+msgstr "Bevestiging van de upgrade overslaan"
+
 msgid "automatically confirm all package upgrades"
 msgstr "automatisch alle pakketupgrades bevestigen"
 
@@ -375,6 +518,9 @@ msgstr ""
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
+msgid "autostart delay"
+msgstr "vertraging bij automatisch opstarten"
+
 msgid "start \"MX Updater\" at login after delay"
 msgstr "start \"MX Updater\" bij het inloggen na vertraging"
 
@@ -396,6 +542,9 @@ msgstr "sec"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
+msgid "terminal auto-close"
+msgstr "automatisch sluiten van de terminal"
+
 msgid "close terminal window after idle time"
 msgstr "sluit terminalvenster na inactiviteit"
 
@@ -408,11 +557,98 @@ msgstr ""
 "Sluit automatisch het terminalvenster na het opgegeven\n"
 "aantal seconden van inactiviteit na systeemupdates."
 
-#. TRANSLATORS: The label of the checkbox "use desktop notifications",
+#. TRANSLATORS: Label before the terminal window size dropdown
+msgid "terminal size"
+msgstr "terminalgrootte"
+
+#. TRANSLATORS: terminal window size option: default auto-sizing (original
+#. behavior, 2/3 screen capped on large displays)
+msgid "default"
+msgstr "standaard"
+
+#. TRANSLATORS: terminal window size option: let terminal use its own saved
+#. size/position
+msgid "own"
+msgstr "eigen"
+
+#. TRANSLATORS: terminal window size option: one third of the screen
+msgid "1/3 screen"
+msgstr "1/3 scherm"
+
+#. TRANSLATORS: terminal window size option: half the screen
+msgid "1/2 screen"
+msgstr "1/2 scherm"
+
+#. TRANSLATORS: terminal window size option: two thirds of the screen
+msgid "2/3 screen"
+msgstr "2/3 scherm"
+
+#. TRANSLATORS: terminal window size option: three quarters of the screen
+msgid "3/4 screen"
+msgstr "3/4 scherm"
+
+#. TRANSLATORS: terminal window size option: nine tenths of the screen
+msgid "9/10 screen"
+msgstr "9/10 scherm"
+
+#. TRANSLATORS: terminal window size option: full screen
+msgid "full screen"
+msgstr "volledig scherm"
+
+#. TRANSLATORS: Label before the terminal window position dropdown
+msgid "position"
+msgstr "positie"
+
+#. TRANSLATORS: terminal window position option
+msgid "center"
+msgstr "centreren"
+
+#. TRANSLATORS: terminal window position option
+msgid "top-left"
+msgstr "Linksboven"
+
+#. TRANSLATORS: terminal window position option
+msgid "top-right"
+msgstr "Rechtsboven"
+
+#. TRANSLATORS: terminal window position option
+msgid "bottom-left"
+msgstr "Linksonder"
+
+#. TRANSLATORS: terminal window position option
+msgid "bottom-right"
+msgstr "Rechtsonder"
+
+#. TRANSLATORS: Tooltip for the terminal window size label and dropdown.
+#. "default (auto)" means the original automatic sizing is used.
+msgid ""
+"Terminal size and position for system updates:\n"
+"\"default\": 2/3 screen size, capped at 960x600 pixels.\n"
+"\"own\": use terminal's own settings for size and position."
+msgstr ""
+"Grootte en positie van de terminal voor systeemupdates:\n"
+"\"standaard\": 2/3 van de schermgrootte, met een maximum van 960x600 pixels.\n"
+"\"eigen\": gebruik de eigen instellingen van de terminal voor grootte en positie."
+
+#. TRANSLATORS: Tooltip for the terminal window position dropdown.
+#. The option is disabled when "full screen" size is selected, or on Wayland.
+msgid ""
+"Select where the terminal window appears on the screen.\n"
+"Hidden when \"own\" or \"full screen\" size is selected, or when running on Wayland."
+msgstr ""
+"Kies waar het terminalvenster op het scherm verschijnt.\n"
+"Wordt verborgen wanneer de weergavemodus \"eigen\" of \"volledig scherm\" is geselecteerd, of wanneer het programma op Wayland draait."
+
+#. TRANSLATORS: The label of the checkbox "desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
 #. shown .
 msgid "use desktop notifications"
 msgstr "gebruik bureaubladnotificaties"
+
+#. TRANSLATORS: Short label for checkbox to enable or disable desktop
+#. notification popups.
+msgid "desktop notifications"
+msgstr "bureaubladmeldingen"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -425,11 +661,15 @@ msgstr ""
 "worden er pop-upberichten weergegeven wanneer\n"
 "er systeemupdates beschikbaar zijn."
 
-#. TRANSLATORS: The label of the checkbox "Hide until updates available" and
-#. also of the right-click menu entry, where user can select to not show
-#. the "MX Updater" systray icon until package upgrades are available.
+#. TRANSLATORS: The label of the checkbox, where user can select to not show
+#. the "MX Updater" systray icon when no package upgrades are available.
 msgid "Hide until updates available"
 msgstr "Verberg tot updates beschikbaar"
+
+#. TRANSLATORS: Short label for checkbox. Hides the systray icon when no
+#. package upgrades are available.
+msgid "hide when no updates"
+msgstr "verbergen als er geen updates zijn"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -443,40 +683,74 @@ msgstr ""
 msgid "MX Updater Help"
 msgstr "MX Updater Hulp"
 
-msgid "Auto-upgrade setting is already in the desired state. No changes made."
-msgstr ""
-"De instelling voor automatische upgrades is al in de gewenste staat. Er zijn"
-" geen wijzigingen aangebracht."
-
-msgid "Success"
-msgstr "Gelukt"
-
-msgid "Auto-upgrade setting updated successfully."
-msgstr "Instelling voor automatische upgrades succesvol bijgewerkt."
-
-msgid "Failure"
-msgstr "Fout"
-
-msgid "Failed to update auto-upgrade setting."
-msgstr "Kan de instelling voor automatische upgrades niet bijwerken."
-
 msgid "Error"
 msgstr "Fout"
 
 msgid "An unexpected error occurred:"
 msgstr "Er is een onverwachte fout opgetreden:"
 
+#. TRANSLATORS: Shown in the frequency combo when the current apt-config value
+#. does not
+#. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
+#. "12h", or "always".
+msgid "custom (%s)"
+msgstr "aangepast (%s)"
+
+#. TRANSLATORS: One-line header in the frequency combo tooltip showing current
+#. effective
+#. apt-config values. First %s = refresh interval, second %s = upgrade
+#. interval,
+#. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
+msgid "Current (apt-config): refresh %s, upgrade %s"
+msgstr "Huidig (apt-config): %s vernieuwen, %s upgraden"
+
+msgid ""
+"Sets the interval for package list refresh (apt-get update).\n"
+"When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
+"'never' disables both the refresh and the automatic upgrade."
+msgstr ""
+"Hiermee stelt u de interval in voor het vernieuwen van de pakketlijst (apt-get update).\n"
+"Als 'automatische upgrade' is aangevinkt, geldt dezelfde interval ook voor de upgrade.\n"
+"Met 'nooit' worden zowel het vernieuwen als de automatische upgrade uitgeschakeld."
+
+#. TRANSLATORS: Warning shown when a higher-priority apt configuration
+#. overrides
+#. the setting written by mx-updater. %s values are labels like "daily",
+#. "never", "12h".
+msgid ""
+"Could not apply setting: a higher-priority apt configuration\n"
+"is overriding the effective values.\n"
+"\n"
+"Requested: refresh %s, upgrade %s\n"
+"Effective: refresh %s, upgrade %s"
+msgstr ""
+"Instelling kon niet worden toegepast: een apt-configuratie met hogere prioriteit\n"
+"overschrijft de geldende waarden.\n"
+"\n"
+"Gevraagd: %s vernieuwen, %s upgraden\n"
+"Geldend: %s vernieuwen, %s upgraden"
+
+#. TRANSLATORS: Title of the warning dialog shown when an apt configuration
+#. file
+#. with higher priority is overriding the value written by mx-updater.
+msgid "Setting Overridden"
+msgstr "Instelling Overschreven"
+
+#. TRANSLATORS: Title of the error dialog shown when the pkexec action script
+#. to set apt periodic upgrade configuration fails (non-zero exit).
 msgid "Unattended Upgrades Configuration Failed"
 msgstr "Onbeheerde Upgrades Configuratie Mislukt"
 
+#. TRANSLATORS: Body text of the error dialog for a failed apt periodic
+#. configuration write.
 msgid "Could not change automatic upgrades configuration"
 msgstr "De configuratie voor automatische upgrades kon niet worden gewijzigd"
 
+#. TRANSLATORS: Label in the error detail line, followed by exit code and
+#. stderr output,
+#. e.g. "Command failed [1]: error message".
 msgid "Command failed"
 msgstr "Commando mislukt"
-
-msgid "View and Upgrade"
-msgstr "Bekijken en Opwaarderen"
 
 msgid "Unattended-upgrades"
 msgstr "Onbeheerde-upgrades"
@@ -499,8 +773,6 @@ msgstr "Synaptic Help"
 msgid "Quit"
 msgstr "Stop"
 
-#. TRANSLATORS: After the idle time in seconds has elapsed,
-#. the terminal window is closed once the system update is complete.
 msgid "close terminal window automatically after idle time"
 msgstr ""
 "sluit het terminalvenster automatisch na een bepaalde tijd van inactiviteit"

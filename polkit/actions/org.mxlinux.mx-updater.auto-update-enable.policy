@@ -2,7 +2,7 @@
 <!DOCTYPE policyconfig PUBLIC
   "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
   "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
-<!-- 
+<!--
    /usr/share/polkit-1/actions/org.mxlinux.mx-updater.auto-update-enable.policy
 !-->
  <policyconfig>
@@ -10,14 +10,14 @@
   <vendor_url>https://mxlinux.org</vendor_url>
   <action id="org.mxlinux.mx-updater.auto-update-enable">
     <description>Run MX Linux application</description>
-    <!-- TRANSLATORS: The string is displayed within the authentication window to enabale unattended-upgrade (Auto-update)!-->
-    <message gettext-domain="mx-updater">Enable Auto-update</message>
-    <icon_name>mx-updater</icon_name>
+    <!-- TRANSLATORS: The string is displayed within the authentication window to enable unattended-upgrade (Auto-update)!-->
+    <message>Enable Auto-update</message>
+    <icon_name>updater-mx</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>
       <allow_active>auth_admin</allow_active>
     </defaults>
-    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/mx-updater/actions/auto-update-enable</annotate>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/mx-updater/actions/auto-update-periodic-enable</annotate>
   </action>
 </policyconfig>

@@ -1,0 +1,12 @@
+// Allow users in the sudo group to run the mx-updater reload action without
+// a password prompt. Non-sudo users are denied.
+// Matches the sudoers drop-in /etc/sudoers.d/mx-updater-reload which applies
+// the same restriction for the sudo fallback path.
+polkit.addRule(function(action, subject) {
+    if (action.id === "org.mxlinux.mx-updater.reload") {
+        if (subject.isInGroup("sudo")) {
+            return polkit.Result.YES;
+        }
+        return polkit.Result.AUTH_ADMIN;
+    }
+});

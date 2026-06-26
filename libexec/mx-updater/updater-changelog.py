@@ -189,7 +189,7 @@ class LogViewer(QDialog):
 
 def main():
     app = QApplication(sys.argv)
-    app.setApplicationName("mx-updater")
+    app.setApplicationName("updater-mx")
 
     # QTranslator instance
     qtranslator = QTranslator()
@@ -217,8 +217,8 @@ def main():
         file_path='/usr/share/doc/mx-updater/changelog.gz',
         view_cmd='/usr/bin/zcat',
         #icon_path_png='/usr/share/icons/updater.png',
-        icon_path='/usr/share/icons/hicolor/scalable/mx-updater.svg',
-        window_class='mx-updater',
+        icon_path='/usr/share/icons/hicolor/scalable/apps/updater-mx.svg',
+        window_class='updater-mx',
         window_title=window_title,
         default_width=default_width,
         default_height=default_height

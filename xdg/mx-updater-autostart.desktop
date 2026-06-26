@@ -5,9 +5,9 @@ Name=MX Updater Autostart
 Comment=An applet to show updates
 Exec=/usr/bin/mx-updater-autostart
 TryExec=/usr/bin/mx-updater-autostart
-Icon=mx-updater
+Icon=updater-mx
 StartupNotify=false
 Terminal=false
 Type=Application
-StartupWMClass=mx-updater
+StartupWMClass=updater-mx
 

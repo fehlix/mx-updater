@@ -329,7 +329,7 @@ updater_show() {
 
     if [ -z "$XDO" ]; then
 
-        XSEARCH="xdotool sleep 0.2 search --onlyvisible --name '$T'"
+        XSEARCH="xdotool sleep 0.2 search --onlyvisible --name $(printf '%q' "$T")"
         XSIZE="windowsize $TW $TH"
         XMOVE="windowmove $TX $TY"
         XCLASS="set_window --classname ${CLASS_NAME} --class ${CLASS_NAME}"

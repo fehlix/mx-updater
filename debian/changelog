@@ -1,3 +1,10 @@
+mx-updater (26.07.01mx25) mx; urgency=medium
+
+  * Fix: shell quoting of translated window titles in updater_shlib.
+  * Translations refresh.
+
+ -- fehlix <fehlix@mxlinux.org>  Tue, 30 Jun 2026 13:04:51 -0400
+
 mx-updater (26.06.02mx25) mx; urgency=medium
 
   * Fix: left-click set to MX Package Installer opened Synaptic or View and Upgrade instead.

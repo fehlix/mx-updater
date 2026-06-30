@@ -3,17 +3,17 @@
 
 import os
 import sys
-import subprocess
-from subprocess import Popen, check_call, run
-from subprocess import DEVNULL, PIPE, CalledProcessError
+from subprocess import Popen, run
 
 from PyQt6 import QtWidgets, QtGui, QtCore
-from PyQt6.QtWidgets import QApplication, QPushButton, QMessageBox
-from PyQt6 import QtGui
-from PyQt6.QtGui import (
-    QFont, QIcon, QPixmap, QKeyEvent, QGuiApplication,
-    QPalette, QColor
-    )
+from PyQt6.QtWidgets import (
+    QApplication, QDialog, QHBoxLayout, QMessageBox, QPushButton,
+    QTextBrowser, QTextEdit, QVBoxLayout,
+)
+from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QColor, QDesktopServices, QFontDatabase, QPalette, QIcon, QPixmap
+
+_APP_ICON = QIcon('/usr/share/icons/hicolor/scalable/apps/updater-mx.svg')
 
 BUILD_VERSION='@VERSION@'
 
@@ -24,6 +24,8 @@ except KeyError:
     sys.exit(1)
 
 sys.path.insert(0, MX_UPDATER_PATH)
+
+from updater_translator import Translator
 
 try:
     from version.version import Version
@@ -38,7 +40,9 @@ LOCALE_DOMAIN = 'mx-updater'
 LOCALE_DIR = '/usr/share/locale'
 gettext.bindtextdomain(LOCALE_DOMAIN, LOCALE_DIR)
 gettext.textdomain(LOCALE_DOMAIN)
-_ = gettext.gettext 
+_ = gettext.gettext
+
+translator = Translator(textdomain=LOCALE_DOMAIN)
 
 
 class UpdaterAbout():
@@ -47,26 +51,6 @@ class UpdaterAbout():
         os.environ["QT_LOGGING_RULES"] = "qt.qpa.xcb.warning=false"
         self.version = Version.version
         print(f"[About] Version: {self.version}")
-
-        self.__about_viewer = self.about_viewer
-
-    @property
-    def about_viewer(self):
-
-        # list of viewers to check
-        viewer_list = ['mx-viewer', 'antix-viewer']
-
-        # xfce-handling
-        if os.getenv('XDG_CURRENT_DESKTOP') == 'XFCE':
-            viewer_list += ['exo-open']
-
-        # set use xdg-open last to avoid html opens with tools like html-editor
-        viewer_list += ['x-www-browser', 'gnome-www-browser', 'xdg-open']
-
-        # take first found
-        from shutil import which
-        self.__about_viewer = list(filter( lambda x: which(x), viewer_list))[0]
-        return self.__about_viewer
 
 
 
@@ -95,9 +79,14 @@ class UpdaterAbout():
         changelog_title = updater_name + ' - ' + Changelog
         license_title        = updater_name + ' - ' + License
 
+        Help             = _("Help")
+        help_file        = '/usr/share/doc/mx-updater/help.html'
+        help_title       = updater_name + ' - ' + Help
+
         Changelog_Button = Changelog
         Close_Button     = Close
         License_Button   = License
+        Help_Button      = Help
 
         cmd = "dpkg-query -f ${Version} -W mx-updater".split()
         pkg_version = run(cmd, capture_output=True, text=True).stdout.strip()
@@ -173,10 +162,10 @@ class UpdaterAbout():
         """
         changelogButton = aboutBox.addButton( (Changelog_Button), QMessageBox.ButtonRole.ActionRole)
         licenseButton   = aboutBox.addButton( (License_Button)  , QMessageBox.ButtonRole.ActionRole)
+        helpButton      = aboutBox.addButton( (Help_Button)     , QMessageBox.ButtonRole.HelpRole)
         closeButton     = aboutBox.addButton( (Close_Button)    , QMessageBox.ButtonRole.RejectRole)
         aboutBox.setDefaultButton(closeButton)
         aboutBox.setEscapeButton(closeButton)
-        class_name = "mx-updater"
 
         while True:
             reply = aboutBox.exec()
@@ -184,35 +173,11 @@ class UpdaterAbout():
                 sys.exit(reply)
 
             if aboutBox.clickedButton() == licenseButton:
-                about_viewer = self.about_viewer
-                if about_viewer in ['mx-viewer', 'antix-viewer' ]:
-                    cmd = [about_viewer, license_file, license_title]
-                    clx_filler = {
-                        'about_viewer': about_viewer,
-                        'license_title': license_title,
-                        'class_name': class_name,
-                    }
-                    clx = """
-                        xdotool sleep 0.3 
-                        search --onlyvisible --class {about_viewer} 
-                        search --classname {about_viewer}
-                        search --name {license_title} 
-                        set_window --classname {class_name} --class {class_name}
-                        """
+                _show_html_doc(license_title, license_file)
 
-                    y = [ x.strip() for x in clx.strip().split('\n') ]
-                    clx = [ x.format(**clx_filler) for x in ' '.join(y).split() ]
-                    debug_p(clx)               
-                    r = Popen(clx)
-                    
-                elif about_viewer == 'exo-open':
-                    cmd = ['exo-open', '--launch', 'WebBrowser', license_file ]
-                else:
-                    cmd = [about_viewer, license_file ]
-                #r = run(cmd, capture_output=True, text=True)
-                Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                sys.exit(0)
-            
+            if aboutBox.clickedButton() == helpButton:
+                Popen(['/usr/libexec/mx-updater/updater_action_run', 'updater_help'])
+
             if aboutBox.clickedButton() == changelogButton:
                 cmd = ['/usr/bin/python3', '/usr/libexec/mx-updater/updater-changelog.py']
                 r = run(cmd, capture_output=True, text=True)
@@ -267,6 +232,116 @@ def debug_p(text=''):
     """
     if debugging():
         print("Debug: " + text, file = sys.stderr)
+
+def _get_close_text():
+    return translator.translate("&Close")
+
+
+def _show_plain_text_doc(title, path):
+    dialog = QDialog()
+    dialog.setWindowTitle(title)
+    dialog.setWindowFlags(QtCore.Qt.WindowType.Window)
+    dialog.setWindowIcon(_APP_ICON)
+    screen = QApplication.primaryScreen().availableGeometry()
+    dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+
+    text_edit = QTextEdit(dialog)
+    text_edit.setReadOnly(True)
+    text_edit.setFont(QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont))
+    try:
+        with open(path, 'r', encoding='utf-8', errors='replace') as f:
+            text_edit.setPlainText(f.read())
+    except OSError:
+        text_edit.setPlainText(_("Could not load %s") % path)
+
+    btn_close = QPushButton(_get_close_text())
+    btn_close.clicked.connect(dialog.close)
+
+    btn_row = QHBoxLayout()
+    btn_row.addStretch()
+    btn_row.addWidget(btn_close)
+
+    layout = QVBoxLayout(dialog)
+    layout.addWidget(text_edit)
+    layout.addLayout(btn_row)
+    dialog.exec()
+
+
+def _on_doc_link_clicked(url):
+    if url.isLocalFile():
+        _show_plain_text_doc(url.toLocalFile(), url.toLocalFile())
+    else:
+        QDesktopServices.openUrl(url)
+
+
+def _apply_html_theme(browser, dark, html_path=None):
+    if dark:
+        bg, fg, link = '#1e1e1e', '#f0f0f0', '#58a6ff'
+    else:
+        bg, fg, link = '#ffffff', '#000000', '#0d47a1'
+    p = browser.palette()
+    p.setColor(QPalette.ColorRole.Base, QColor(bg))
+    p.setColor(QPalette.ColorRole.Text, QColor(fg))
+    browser.setPalette(p)
+    browser.document().setDefaultStyleSheet(
+        f"body {{ color: {fg}; background-color: {bg}; }}"
+        f" a {{ color: {link}; }}"
+    )
+    if html_path:
+        try:
+            with open(html_path, 'r', encoding='utf-8', errors='replace') as f:
+                html = f.read()
+            if dark:
+                html = html.replace('-light.png"', '-dark.png"')
+            browser.document().setBaseUrl(QUrl.fromLocalFile(html_path))
+            browser.setHtml(html)
+        except OSError:
+            pass
+    elif browser.source().isValid():
+        browser.reload()
+
+
+def _show_html_doc(title, html_path):
+    dialog = QDialog()
+    dialog.setWindowTitle(title)
+    dialog.setWindowFlags(QtCore.Qt.WindowType.Window)
+    dialog.setWindowIcon(_APP_ICON)
+    screen = QApplication.primaryScreen().availableGeometry()
+    dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+
+    browser = QTextBrowser(dialog)
+    browser.setOpenLinks(False)
+    browser.anchorClicked.connect(_on_doc_link_clicked)
+
+    viewer_dark = [is_dark_theme()]
+    _apply_html_theme(browser, viewer_dark[0])
+
+    if os.path.exists(html_path):
+        browser.setSource(QUrl.fromLocalFile(html_path))
+    else:
+        browser.setText(_("Could not load %s") % html_path)
+
+    btn_toggle = QPushButton("\u2600" if viewer_dark[0] else "\u263e")
+    btn_close  = QPushButton(_get_close_text())
+    btn_close.clicked.connect(dialog.close)
+
+    def toggle_theme():
+        viewer_dark[0] = not viewer_dark[0]
+        _apply_html_theme(browser, viewer_dark[0])
+        btn_toggle.setText("\u2600" if viewer_dark[0] else "\u263e")
+
+    btn_toggle.clicked.connect(toggle_theme)
+
+    btn_row = QHBoxLayout()
+    btn_row.addWidget(btn_toggle)
+    btn_row.addStretch()
+    btn_row.addWidget(btn_close)
+
+    layout = QVBoxLayout(dialog)
+    layout.addWidget(browser)
+    layout.addLayout(btn_row)
+    dialog.exec()
+
 
 def main():
 

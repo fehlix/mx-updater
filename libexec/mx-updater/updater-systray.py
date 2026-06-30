@@ -1450,6 +1450,7 @@ class SystemTrayIcon(QSystemTrayIcon):
             ("apt_history",          _("History"),                 True,  "/usr/libexec/mx-updater/updater-history.py"),
             ("auto_update_log",      _("Auto-update log(s)"),      True,  "/usr/libexec/mx-updater/mx-updater-auto-update_log.py"),
             ("auto_update_dpkg_log", _("Auto-update dpkg log(s)"), True,  "/usr/libexec/mx-updater/mx-updater-auto-update_dpkg_log.py"),
+            ("updater_help",         _("Help"),                    True,  "/usr/libexec/mx-updater/updater-help.py"),
             ("settings_editor",      _("Preferences"),             True,  "/usr/bin/mx-updater-settings"),
             ("updater_about",        _("About"),                   True,  "/usr/libexec/mx-updater/updater_about.py"),
             #("updater_restart",      _("Restart"),                True,  "/usr/libexec/mx-updater/updater-restart"),
@@ -1457,8 +1458,7 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         ]
 
-        # not yet available , but let's get translations for the strings
-        _updater_help = _("MX Updater Help")
+        # kept for Transifex -- "MX Updater Help" used in updater-help.py
         _synaptic_help = _("Synaptic Help")
 
         # build a dict to quick lookup by tag:

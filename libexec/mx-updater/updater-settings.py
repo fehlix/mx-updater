@@ -1181,11 +1181,6 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
         # slots
         self.close_button.clicked.connect(self.on_close)
 
-        # set here so we get translations
-        updater_help = _("MX Updater Help")
-
-        """
-        # TODO:  when we have an actual help content
         #---------------------------------------------------------------
         # Help button
         self.help_button = self.button_box.addButton(QDialogButtonBox.StandardButton.Help)
@@ -1199,9 +1194,8 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
             self.help_button.setText(help_text)
 
         # slot
-        self.help_button.clicked.connect(self.on_close)
+        self.help_button.clicked.connect(self.on_help)
         #---------------------------------------------------------------
-        """
 
         # button box to layout
         layout.addWidget(self.button_box)
@@ -1808,6 +1802,9 @@ Untick this box or run "MX Updater" from the menu to make the icon visible again
     def on_close(self):
         #print("Close button clicked - on_close")
         self.close()
+
+    def on_help(self):
+        subprocess.Popen(['/usr/libexec/mx-updater/updater_action_run', 'updater_help'])
 
     #---------------------------------------------------------------
 

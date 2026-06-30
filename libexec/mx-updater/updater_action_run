@@ -110,6 +110,12 @@ case "$1" in
         LOCK_NAME="$PROG_NAME"
         ;;
 
+    updater_help)
+        PROG_NAME="updater_help"
+        PROG_EXEC="/usr/libexec/mx-updater/updater-help.py"
+        LOCK_NAME="$PROG_NAME"
+        ;;
+
     updater_restart)
         PROG_NAME="updater-restart"
         PROG_EXEC="/usr/libexec/mx-updater/updater-restart"

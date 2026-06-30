@@ -27,6 +27,7 @@ libexec/mx-updater/updater_auto_upgrades_dpkg_log_view  usr/libexec/mx-updater
 libexec/mx-updater/updater_auto_upgrades_log_view       usr/libexec/mx-updater
 libexec/mx-updater/updater-changelog.py           usr/libexec/mx-updater
 libexec/mx-updater/updater_config.py              usr/libexec/mx-updater
+libexec/mx-updater/updater-help.py                usr/libexec/mx-updater
 libexec/mx-updater/updater-history.py             usr/libexec/mx-updater
 libexec/mx-updater/updater-launch.py              usr/libexec/mx-updater
 libexec/mx-updater/updater-restart                usr/libexec/mx-updater
@@ -76,6 +77,7 @@ share/mx-updater/51unattended-upgrades-default-origins usr/share/mx-updater
 share/mx-updater/51unattended-upgrades-origins         usr/share/mx-updater
 
 # doc
+share/doc/mx-updater/help.html                         usr/share/doc/mx-updater
 share/doc/mx-updater/LICENSE                           usr/share/doc/mx-updater
 share/doc/mx-updater/license.html                      usr/share/doc/mx-updater
 share/doc/mx-updater/examples/admin-mx-updater.conf    usr/share/doc/mx-updater/examples

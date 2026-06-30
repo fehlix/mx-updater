@@ -3,11 +3,33 @@
 %:
 	dh $@ --with python3
 
+PKG_VERSION := $(shell dpkg-parsechangelog --show-field Version)
+
 override_dh_auto_build:
 	$(MAKE) -C icons
 	$(MAKE) -C l10n
 	$(MAKE) -C version
+	sed -i "s|@VERSION@|$(PKG_VERSION)|g" share/doc/mx-updater/help.html
+	for help_file in share/doc/mx-updater/help_*.html; do \
+		[ -f "$$help_file" ] || continue; \
+		sed -i "s|@VERSION@|$(PKG_VERSION)|g" "$$help_file"; \
+		lang=$$(basename "$$help_file" .html | sed 's/help_//'); \
+		lang_img_dir="share/doc/mx-updater/img/$$lang"; \
+		[ -d "$$lang_img_dir" ] || continue; \
+		for img in share/doc/mx-updater/img/*.jpg; do \
+			base=$$(basename "$$img"); \
+			[ -f "$$lang_img_dir/$$base" ] || continue; \
+			sed -i "s|src=\"img/$$base\"|src=\"img/$$lang/$$base\"|g" "$$help_file"; \
+		done; \
+	done
 	dh_auto_build
+
+override_dh_install:
+	dh_install
+	if [ -d share/doc/mx-updater/img ]; then \
+		mkdir -p debian/mx-updater/usr/share/doc/mx-updater/img; \
+		cp -a share/doc/mx-updater/img/. debian/mx-updater/usr/share/doc/mx-updater/img/; \
+	fi
 
 override_dh_icons:
 	# icon cache handled in postinst via explicit gtk-update-icon-cache call;

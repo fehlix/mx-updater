@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mx-updater\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-21 15:20-0400\n"
+"POT-Creation-Date: 2026-06-25 20:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Disable Auto-update"
 msgstr ""
 
-#. TRANSLATORS: The string is displayed within the authentication window to enabale unattended-upgrade (Auto-update)!
+#. TRANSLATORS: The string is displayed within the authentication window to enable unattended-upgrade (Auto-update)!
 msgid "Enable Auto-update"
 msgstr ""
 
@@ -393,11 +393,11 @@ msgid ""
 "  wireframe-light (black wires): visible on light panel, invisible on dark panel."
 msgstr ""
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
 msgid "dark"
 msgstr ""
 
-#. TRANSLATORS: The strings "dark" or "light" are used for the “dark” or “light” icon-set, respectively.
+#. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or "light" icon-set, respectively.
 msgid "light"
 msgstr ""
 
@@ -598,7 +598,7 @@ msgstr ""
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current effective
 #. apt-config values. First %s = refresh interval, second %s = upgrade interval,
-#. e.g. "daily", "weekly", "5d", "12h", "never", "custom (always)".
+#. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
 msgstr ""
 

@@ -1,6 +1,16 @@
+mx-updater (26.06.02mx25) mx; urgency=medium
+
+  * Fix: left-click set to MX Package Installer opened Synaptic or View and Upgrade instead.
+  * Settings: "full screen" terminal size option removed from the dropdown.
+  * Settings window: icon renamed from "mx-updater-settings" to "updater-mx-settings"
+    to prevent Papirus icon theme from hijacking it on KDE/Plasma.
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 26 Jun 2026 18:51:18 -0400
+
 mx-updater (26.06.01mx25) mx; urgency=medium
 
-  * Settings: condensed Upgrade mode and Left-click sections into fewer rows; labels shortened throughout.
+  * Settings: condensed Upgrade mode and Left-click sections into fewer rows;
+    labels shortened throughout.
   * Terminal: configurable size (eight options) and screen position (five options).
     Position option is not shown on Wayland; the "own" option lets the terminal
     keep its own saved geometry.
@@ -14,9 +24,9 @@ mx-updater (26.06.01mx25) mx; urgency=medium
     Setting "never" disables both and grays out the automatic checkbox.
   * Authentication: pkexec dialogs now show translated text on all desktop
     environments including KDE.
-  * Translations: updated for all new UI elements; 10+ languages.
+  * Translations refresh.
 
- -- fehlix <fehlix@mxlinux.org>  Tue, 23 Jun 2026 18:13:01 -0400
+ -- fehlix <fehlix@mxlinux.org>  Thu, 25 Jun 2026 20:18:33 -0400
 
 mx-updater (26.05.02mx25) mx; urgency=medium
 

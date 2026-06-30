@@ -9,11 +9,11 @@
 # James Bowlin <BitJam@gmail.com>, 2025
 # cyril cottet <cyrilusber2001@yahoo.fr>, 2025
 # David D, 2025
-# fehlix, 2025
 # oops oops <oops66@wanadoo.fr>, 2025
 # Laurene Albrand, 2026
 # Geoff Gigg <geoffgigg@hotmail.com>, 2026
 # Wallon Wallon, 2026
+# fehlix, 2026
 # 
 #, fuzzy
 msgid ""
@@ -22,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: Wallon Wallon, 2026\n"
+"Last-Translator: fehlix, 2026\n"
 "Language-Team: French (https://app.transifex.com/anticapitalista/teams/10162/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -375,7 +375,8 @@ msgid ""
 msgstr ""
 "Installe automatiquement les mises à niveau de paquets selon l’intervalle défini dans le sélecteur de rafraîchissement.\n"
 "N’installe que des versions plus récentes de paquets existants, sans modifier la configuration du système.\n"
-"L’icône du programme de mise à jour affiche le nombre total de mises à jour, y compris les mises à niveau automatiques, lorsqu’il y a des mises à jour supplémentaires disponibles."
+"L’icône du programme de mise à jour affiche le nombre total de mises à jour, y compris les mises à niveau automatiques,\n"
+"lorsqu’il y a des mises à jour supplémentaires disponibles."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.

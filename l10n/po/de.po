@@ -469,8 +469,8 @@ msgid ""
 msgstr ""
 "Das Schwarz/Weiß-Drahtgitter transparent machen (keine Füllung).\n"
 "Funktioniert am besten, wenn der Panel-Hintergrund mit der Drahtfarbe kontrastiert:\n"
-"  wireframe-dark (weiße Drähte): sichtbar auf dunklem, unsichtbar auf hellem Panel.\n"
-"  wireframe-light (schwarze Drähte): sichtbar auf hellem, unsichtbar auf dunklem Panel."
+"  Drahtgitter-dunkel (weiße Drähte): sichtbar auf dunklem, unsichtbar auf hellem Panel.\n"
+"  Drahtgitter-hell (schwarze Drähte): sichtbar auf hellem, unsichtbar auf dunklem Panel."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
 #. "light" icon-set, respectively.

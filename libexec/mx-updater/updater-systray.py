@@ -1454,7 +1454,7 @@ class SystemTrayIcon(QSystemTrayIcon):
             ("auto_update_log",      _("Auto-update log(s)"),      True,  "/usr/libexec/mx-updater/mx-updater-auto-update_log.py"),
             ("auto_update_dpkg_log", _("Auto-update dpkg log(s)"), True,  "/usr/libexec/mx-updater/mx-updater-auto-update_dpkg_log.py"),
             ("settings_editor",      _("Preferences"),             True,  "/usr/bin/mx-updater-settings"),
-            ("updater_help",         _stock_translator.translate("_Help").replace('_', ''),  True,  "/usr/libexec/mx-updater/updater-help.py"),
+            ("updater_help",         re.sub(r'\s*\([&_]?[A-Za-z]\)', '', _stock_translator.translate("_Help")).replace('_', '').strip(),  True,  "/usr/libexec/mx-updater/updater-help.py"),
             ("updater_about",        _("About"),                   True,  "/usr/libexec/mx-updater/updater_about.py"),
             #("updater_restart",      _("Restart"),                True,  "/usr/libexec/mx-updater/updater-restart"),
             ("updater_restart",      _("Restart MX Updater"),      True,  "/usr/libexec/mx-updater/updater-restart"),

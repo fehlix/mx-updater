@@ -17,6 +17,11 @@ mx-updater (26.07.02mx25~dev02) UNRELEASED; urgency=medium
     instead of Qt-encoded @Point/@Size objects, making mx-updater.conf
     human-readable. Legacy position/size keys are removed on first save
     after upgrade.
+  * Systray: strip GTK bracket accelerator notation from right-click Help
+    label for CJK and other locales where the accelerator key cannot be
+    embedded in the translated word (e.g. "幫助 (_H)" or "幫助 (H)" ->
+    "幫助"). Regex uses [&_]? (optional marker) to cover all three GTK
+    bracket styles: (&H), (_H), and bare (H).
 
  -- fehlix <fehlix@mxlinux.org>  Tue, 01 Jul 2026 08:00:00 -0400
 

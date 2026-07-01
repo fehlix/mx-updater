@@ -1,3 +1,25 @@
+mx-updater (26.07.02mx25~dev02) UNRELEASED; urgency=medium
+
+  * About: accelerator keys added to all four dialog buttons (Changelog,
+    License, Help, Close); Help button now shows correctly translated label
+    via GTK stock lookup (e.g. "Hilfe" in German) instead of untranslated
+    "Help". Window title of help sub-dialog also uses translated word.
+  * Systray: fixed right-click Help entry showing "_Hilfe" (raw GTK
+    underscore accelerator) in non-English locales; corrected .replace('&','')
+    to .replace('_','') to strip the GTK underscore marker.
+  * Translator: translate("_Msg") returns GTK-style underscore-prefixed string;
+    callers must apply .replace('_','&') for Qt. Documented by consistent use
+    across all call sites.
+  * Help viewer: window position and size are now saved and restored across
+    sessions via mx-updater.conf, matching history and view-and-upgrade viewers.
+  * Geometry: all four viewers (help, history, view-and-upgrade, dpkg-log)
+    now store window geometry as plain integer keys (x, y, width, height)
+    instead of Qt-encoded @Point/@Size objects, making mx-updater.conf
+    human-readable. Legacy position/size keys are removed on first save
+    after upgrade.
+
+ -- fehlix <fehlix@mxlinux.org>  Tue, 01 Jul 2026 08:00:00 -0400
+
 mx-updater (26.07.02mx25~dev01) UNRELEASED; urgency=medium
 
   * About: license and help are now shown in an inline Qt viewer instead of
@@ -19,8 +41,24 @@ mx-updater (26.07.02mx25~dev01) UNRELEASED; urgency=medium
     help.html at build time.
   * Help screenshots: default (light) images carry no suffix; only dark variants
     are named with -dark, consistent with MX theme naming convention.
+  * Help viewer: dark screenshot swap simplified to .jpg only, matching build rule.
+  * Buttons: Close and Help buttons across all interactive viewers (help, about,
+    history, view-and-upgrade) now use a consistent pattern: Qt standard button
+    text (QTranslator), SP_DialogCloseButton/SP_DialogHelpButton icon, with GTK
+    stock label fallback when Qt translation is not available. History viewer was
+    incorrectly using the OK button text for its Close button; fixed.
+  * Systray: right-click Help menu entry repositioned above About (below
+    Preferences), following standard tray menu convention; now uses GTK stock
+    label translation via Translator, fixing untranslated "Help" in non-English
+    locales.
+  * Translator: removed dead _setup_gtk_translationXXX method; fixed GTK stock
+    label search order to prefer context-aware lookups (gtk20/30/40 with
+    "Stock label" msgctxt) before context-free fallbacks; removed translation.install()
+    side effect that silently overwrote builtins._.
+  * Code: removed duplicate QSettings import in history viewer; corrected module
+    initialisation order in view-and-upgrade (logging before Translator init).
 
- -- fehlix <fehlix@mxlinux.org>  Tue, 30 Jun 2026 19:02:37 -0400
+ -- fehlix <fehlix@mxlinux.org>  Wed, 01 Jul 2026 08:00:00 -0400
 
 mx-updater (26.07.01mx25) mx; urgency=medium
 

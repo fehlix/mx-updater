@@ -19,25 +19,11 @@ class Translator:
         if self.textdomain:
             try:
                 translation = gettext.translation(self.textdomain, self.textdomaindir, fallback=True)
-                translation.install()
-                return translation.gettext  # Use the translation function
+                return translation.gettext
             except FileNotFoundError:
-                #print(f"Warning: Translation files for domain '{self.textdomain}' not found in '{self.textdomaindir}'. Falling back to untranslated messages.")
-                return lambda msg: msg  # Identity function if translation files are not found
+                return lambda msg: msg
         else:
-            return lambda msg: msg  # Identity function if TEXTDOMAIN is not set
-
-    def _setup_gtk_translationXXX(self, textdomain):
-        """Set up the GTK translation for a specific text domain."""
-        #textdomaindir = self.textdomaindir
-        textdomaindir = '/usr/share/locale'
-        try:
-            translation = gettext.translation(textdomain, textdomaindir, fallback=True)
-            translation.install()
-            return translation.gettext  # Use the translation function
-        except FileNotFoundError:
-            #print(f"Warning: Translation files for domain '{textdomain}' not found in '{textdomaindir}'.")
-            return lambda msg: msg  # Identity function if translation files are not found
+            return lambda msg: msg
 
 
     def _setup_gtk_translation(self, textdomain, msgctxt=None):
@@ -94,23 +80,15 @@ class Translator:
         #print(f"(self._gtk40({msg}): {self._gtk40(msg)}") # debug
         #print(f"(self._gtk40_ctxt({msg}): {self._gtk40_ctxt(msg)}") # debug
 
-        # First try to translate using gtk30 with msgctxt
+        # Try context-aware lookups first (authoritative for stock labels),
+        # then fall back to context-free lookups.
         translated_msg = self._gtk20_ctxt(msg)
-        
-        # If the translation is the same as the original message, try gtk30 with ctxt
         if translated_msg == msg:
             translated_msg = self._gtk30_ctxt(msg)
-
-        
-        # If the translation is the same as the original message, try gtk30 without ctxt
-        if translated_msg == msg:
-            translated_msg = self._gtk30(msg)
-        
-        # If the translation is still same as the original message, try gtk40
         if translated_msg == msg:
             translated_msg = self._gtk40_ctxt(msg)
-        
-        # If the translation is still same as the original message, try gtk40
+        if translated_msg == msg:
+            translated_msg = self._gtk30(msg)
         if translated_msg == msg:
             translated_msg = self._gtk40(msg)
         

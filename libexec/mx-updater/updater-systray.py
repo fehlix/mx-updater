@@ -101,6 +101,9 @@ sys.path.insert(0, MX_UPDATER_PATH)
 
 from version.version import VersionMonitor
 from updater_config import UpdaterSettingsManager
+from updater_translator import Translator
+
+_stock_translator = Translator(textdomain='mx-updater')
 
 
 #----------
@@ -1450,8 +1453,8 @@ class SystemTrayIcon(QSystemTrayIcon):
             ("apt_history",          _("History"),                 True,  "/usr/libexec/mx-updater/updater-history.py"),
             ("auto_update_log",      _("Auto-update log(s)"),      True,  "/usr/libexec/mx-updater/mx-updater-auto-update_log.py"),
             ("auto_update_dpkg_log", _("Auto-update dpkg log(s)"), True,  "/usr/libexec/mx-updater/mx-updater-auto-update_dpkg_log.py"),
-            ("updater_help",         _("Help"),                    True,  "/usr/libexec/mx-updater/updater-help.py"),
             ("settings_editor",      _("Preferences"),             True,  "/usr/bin/mx-updater-settings"),
+            ("updater_help",         _stock_translator.translate("_Help").replace('_', ''),  True,  "/usr/libexec/mx-updater/updater-help.py"),
             ("updater_about",        _("About"),                   True,  "/usr/libexec/mx-updater/updater_about.py"),
             #("updater_restart",      _("Restart"),                True,  "/usr/libexec/mx-updater/updater-restart"),
             ("updater_restart",      _("Restart MX Updater"),      True,  "/usr/libexec/mx-updater/updater-restart"),

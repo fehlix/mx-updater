@@ -52,7 +52,6 @@ from PyQt6.QtGui import QFont, QFontDatabase, QIcon, QPixmap, QKeyEvent, QGuiApp
 from PyQt6.QtCore import QTranslator, QLocale, QLibraryInfo, QSettings
 
 from PyQt6.QtCore import Qt, QPoint, QSize
-from PyQt6.QtCore import QSettings
 
 
 
@@ -198,11 +197,15 @@ class LogDialog(QDialog):
         self.copy_button = QPushButton(copy_text.replace('_','&'), self)
         self.copy_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileIcon))
 
-        # close button - using OK instead of Close
-        OK_TEXT = get_standard_button_text(QMessageBox.StandardButton.Ok)
-
-        self.close_button = QPushButton(OK_TEXT, self)
+        close_text = get_standard_button_text(QMessageBox.StandardButton.Close)
+        self.close_button = QPushButton(close_text, self)
         self.close_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
+
+        locale = QLocale.system().name()
+        if not locale.startswith('en'):
+            if close_text == "&Close":
+                close_text = _t("_Close")
+                self.close_button.setText(close_text.replace('_', '&'))
 
         # connect buttons to functions
         self.close_button.clicked.connect(self.close_and_exit)
@@ -350,42 +353,28 @@ class LogDialog(QDialog):
         super().done(result)
 
     def save_dialog_geometry(self):
-        """
-        Save dialog position and size to QSettings
-        """
         section = self.qsettings_section
-        self.qsettings.setValue(f'{section}/position', self.pos())
-        self.qsettings.setValue(f'{section}/size', self.size())
+        self.qsettings.remove(f'{section}/position')
+        self.qsettings.remove(f'{section}/size')
+        self.qsettings.setValue(f'{section}/x',      self.pos().x())
+        self.qsettings.setValue(f'{section}/y',      self.pos().y())
+        self.qsettings.setValue(f'{section}/width',  self.size().width())
+        self.qsettings.setValue(f'{section}/height', self.size().height())
 
     def restore_dialog_geometry(self):
-        """
-        Restore dialog position and size, with fallback to 'resize_and_center' method
-        """
-        # get primary screen's available geometry
         screen = QGuiApplication.primaryScreen()
         available_geometry = screen.availableGeometry()
-
-        # check if valid geometry exists in settings
         section = self.qsettings_section
-        saved_pos = self.qsettings.value(f'{section}/position', None)
-        saved_size = self.qsettings.value(f'{section}/size', None)
-
-        # validate saved geometry
-        if (saved_pos is not None and saved_size is not None and
-            isinstance(saved_pos, QPoint) and isinstance(saved_size, QSize)):
-
-            # Adjust size to fit within available geometry
-            adjusted_size = self.adjust_size_to_screen(saved_size, available_geometry)
-
-            # Adjust position to ensure dialog is within screen bounds
-            adjusted_pos = self.adjust_position_to_screen(saved_pos, adjusted_size, available_geometry)
-
-            # Set the dialog geometry
+        try:
+            x = int(self.qsettings.value(f'{section}/x'))
+            y = int(self.qsettings.value(f'{section}/y'))
+            w = int(self.qsettings.value(f'{section}/width'))
+            h = int(self.qsettings.value(f'{section}/height'))
+            adjusted_size = self.adjust_size_to_screen(QSize(w, h), available_geometry)
+            adjusted_pos  = self.adjust_position_to_screen(QPoint(x, y), adjusted_size, available_geometry)
             self.resize(adjusted_size)
             self.move(adjusted_pos)
-
-        else:
-            # No valid saved geometry - use resize_and_center method
+        except (TypeError, ValueError):
             self.resize_and_center()
 
     def adjust_size_to_screen(self, size, available_geometry):

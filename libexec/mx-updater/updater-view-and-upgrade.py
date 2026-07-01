@@ -3,7 +3,7 @@
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton,
     QHBoxLayout, QVBoxLayout, QGridLayout,
-    QTextEdit, QGroupBox, QSpinBox, QDialog,
+    QMessageBox, QTextEdit, QGroupBox, QSpinBox, QDialog,
     QCheckBox, QDialogButtonBox, QStyle, QProgressDialog
 )
 from PyQt6.QtGui import (
@@ -12,7 +12,7 @@ from PyQt6.QtGui import (
     )
 
 from PyQt6.QtCore import QObject, QThread, pyqtSignal
-from PyQt6.QtCore import Qt, QPoint, QSize
+from PyQt6.QtCore import Qt, QLibraryInfo, QLocale, QPoint, QSize, QTranslator
 from PyQt6.QtCore import QSettings
 
 import os, sys, time
@@ -37,6 +37,13 @@ _a = apt_translations.gettext
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
+
+MX_UPDATER_PATH = "/usr/libexec/mx-updater"
+if MX_UPDATER_PATH not in sys.path:
+    sys.path.insert(0, MX_UPDATER_PATH)
+
+from updater_translator import Translator
+_vau_translator = Translator(textdomain='mx-updater')
 
 #----------
 # Constants
@@ -445,12 +452,10 @@ class ViewAndUpgradeDialog(QDialog):
 
         reload_label_string = "_Reload"
         upgrade_label_string = "_Upgrade"
-        close_label_string = "_Close"
 
         # TRANSLATORS: To "reload"/"refresh" the package cache with "apt-get update"
         reload_label = _("Reload").strip()
         upgrade_label = _("upgrade").strip()
-        close_label = _("Close").strip()
 
         cjk = any(os.environ.get("LANG").startswith(y) for y in ('zh', 'ja', 'ko'))
         if cjk:
@@ -465,11 +470,6 @@ class ViewAndUpgradeDialog(QDialog):
             else:
                 upgrade_label = upgrade_label[0].upper() + upgrade_label[1:]
                 upgrade_label = "&" + upgrade_label
-
-            if close_label != "Close":
-                close_label += " (&C)"
-            else:
-                close_label = "&" + close_label
         else:
             # fix lower/upper spelling
             reload_label = reload_label[0].upper() + reload_label[1:]
@@ -481,7 +481,11 @@ class ViewAndUpgradeDialog(QDialog):
             else:
                 reload_label = "&" + reload_label
             upgrade_label = "&" + upgrade_label
-            close_label = "&" + close_label
+
+        close_label = get_standard_button_text(QMessageBox.StandardButton.Close)
+        locale = QLocale.system().name()
+        if not locale.startswith('en') and close_label == "&Close":
+            close_label = _vau_translator.translate("_Close").replace('_', '&')
 
 
         button_layout = QHBoxLayout()
@@ -706,42 +710,28 @@ class ViewAndUpgradeDialog(QDialog):
         super().done(result)
 
     def save_dialog_geometry(self):
-        """
-        Save dialog position and size to QSettings
-        """
         section = self.qsettings_section
-        self.qsettings.setValue(f'{section}/position', self.pos())
-        self.qsettings.setValue(f'{section}/size', self.size())
+        self.qsettings.remove(f'{section}/position')
+        self.qsettings.remove(f'{section}/size')
+        self.qsettings.setValue(f'{section}/x',      self.pos().x())
+        self.qsettings.setValue(f'{section}/y',      self.pos().y())
+        self.qsettings.setValue(f'{section}/width',  self.size().width())
+        self.qsettings.setValue(f'{section}/height', self.size().height())
 
     def restore_dialog_geometry(self):
-        """
-        Restore dialog position and size, with fallback to resize_and_center
-        """
-        # Get the primary screen's available geometry
         screen = QGuiApplication.primaryScreen()
         available_geometry = screen.availableGeometry()
-
-        # Check if valid geometry exists in settings
         section = self.qsettings_section
-        saved_pos = self.qsettings.value(f'{section}/position', None)
-        saved_size = self.qsettings.value(f'{section}/size', None)
-
-        # Validate saved geometry
-        if (saved_pos is not None and saved_size is not None and
-            isinstance(saved_pos, QPoint) and isinstance(saved_size, QSize)):
-
-            # Adjust size to fit within available geometry
-            adjusted_size = self.adjust_size_to_screen(saved_size, available_geometry)
-
-            # Adjust position to ensure dialog is within screen bounds
-            adjusted_pos = self.adjust_position_to_screen(saved_pos, adjusted_size, available_geometry)
-
-            # Set the dialog geometry
+        try:
+            x = int(self.qsettings.value(f'{section}/x'))
+            y = int(self.qsettings.value(f'{section}/y'))
+            w = int(self.qsettings.value(f'{section}/width'))
+            h = int(self.qsettings.value(f'{section}/height'))
+            adjusted_size = self.adjust_size_to_screen(QSize(w, h), available_geometry)
+            adjusted_pos  = self.adjust_position_to_screen(QPoint(x, y), adjusted_size, available_geometry)
             self.resize(adjusted_size)
             self.move(adjusted_pos)
-
-        else:
-            # No valid saved geometry - use resize_and_center method
+        except (TypeError, ValueError):
             self.resize_and_center()
 
     def adjust_size_to_screen(self, size, available_geometry):
@@ -775,6 +765,12 @@ class ViewAndUpgradeDialog(QDialog):
         return QPoint(x, y)
 
 
+
+
+def get_standard_button_text(button):
+    msg_box = QMessageBox()
+    msg_box.setStandardButtons(button)
+    return msg_box.button(button).text()
 
 
 def is_dark_theme():
@@ -861,6 +857,12 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setApplicationName("updater-mx")
     app.setStyleSheet(tooltip_stylesheet())
+
+    qtranslator = QTranslator()
+    locale = QLocale.system().name()
+    translations_path = QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)
+    if qtranslator.load(f"{translations_path}/qt_{locale}.qm"):
+        app.installTranslator(qtranslator)
 
     default_width  = 900
     default_height = 600

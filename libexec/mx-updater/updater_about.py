@@ -8,9 +8,9 @@ from subprocess import Popen, run
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtWidgets import (
     QApplication, QDialog, QHBoxLayout, QMessageBox, QPushButton,
-    QTextBrowser, QTextEdit, QVBoxLayout,
+    QStyle, QTextBrowser, QTextEdit, QVBoxLayout,
 )
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import QLibraryInfo, QLocale, QTranslator, QUrl
 from PyQt6.QtGui import QColor, QDesktopServices, QFontDatabase, QPalette, QIcon, QPixmap
 
 _APP_ICON = QIcon('/usr/share/icons/hicolor/scalable/apps/updater-mx.svg')
@@ -74,19 +74,18 @@ class UpdaterAbout():
         Close                = _("Close")
         License              = _("License")
         Changelog            = _("Changelog")
-    
-        license_title =  updater_name + ' - ' + License
-        changelog_title = updater_name + ' - ' + Changelog
+
         license_title        = updater_name + ' - ' + License
+        changelog_title      = updater_name + ' - ' + Changelog
 
-        Help             = _("Help")
-        help_file        = '/usr/share/doc/mx-updater/help.html'
-        help_title       = updater_name + ' - ' + Help
+        Help_Button          = translator.translate("_Help").replace('_', '&')
+        Help                 = Help_Button.replace('&', '')
+        help_file            = '/usr/share/doc/mx-updater/help.html'
+        help_title           = updater_name + ' - ' + Help
 
-        Changelog_Button = Changelog
-        Close_Button     = Close
-        License_Button   = License
-        Help_Button      = Help
+        Changelog_Button     = "&" + Changelog
+        Close_Button         = _get_close_text()
+        License_Button       = "&" + License
 
         cmd = "dpkg-query -f ${Version} -W mx-updater".split()
         pkg_version = run(cmd, capture_output=True, text=True).stdout.strip()
@@ -233,8 +232,20 @@ def debug_p(text=''):
     if debugging():
         print("Debug: " + text, file = sys.stderr)
 
+def get_standard_button_text(button):
+    msg_box = QMessageBox()
+    msg_box.setStandardButtons(button)
+    return msg_box.button(button).text()
+
+
 def _get_close_text():
-    return translator.translate("&Close")
+    close_text = get_standard_button_text(QMessageBox.StandardButton.Close)
+    locale = QLocale.system().name()
+    if not locale.startswith('en'):
+        if close_text == "&Close":
+            close_text = translator.translate("_Close")
+            close_text = close_text.replace('_', '&')
+    return close_text
 
 
 def _show_plain_text_doc(title, path):
@@ -255,6 +266,7 @@ def _show_plain_text_doc(title, path):
         text_edit.setPlainText(_("Could not load %s") % path)
 
     btn_close = QPushButton(_get_close_text())
+    btn_close.setIcon(btn_close.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
     btn_close.clicked.connect(dialog.close)
 
     btn_row = QHBoxLayout()
@@ -291,8 +303,6 @@ def _apply_html_theme(browser, dark, html_path=None):
         try:
             with open(html_path, 'r', encoding='utf-8', errors='replace') as f:
                 html = f.read()
-            if dark:
-                html = html.replace('-light.png"', '-dark.png"')
             browser.document().setBaseUrl(QUrl.fromLocalFile(html_path))
             browser.setHtml(html)
         except OSError:
@@ -323,6 +333,7 @@ def _show_html_doc(title, html_path):
 
     btn_toggle = QPushButton("\u2600" if viewer_dark[0] else "\u263e")
     btn_close  = QPushButton(_get_close_text())
+    btn_close.setIcon(btn_close.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
     btn_close.clicked.connect(dialog.close)
 
     def toggle_theme():
@@ -347,6 +358,13 @@ def main():
 
     app = QApplication(sys.argv)
     app.setApplicationName("updater-mx")
+
+    qtranslator = QTranslator()
+    locale = QLocale.system().name()
+    translations_path = QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)
+    if qtranslator.load(f"{translations_path}/qt_{locale}.qm"):
+        app.installTranslator(qtranslator)
+
     about = UpdaterAbout()
 
     

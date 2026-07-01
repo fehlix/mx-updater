@@ -7,10 +7,10 @@ import sys
 
 from PyQt6 import QtCore
 from PyQt6.QtWidgets import (
-    QApplication, QDialog, QHBoxLayout, QPushButton,
-    QTextBrowser, QTextEdit, QVBoxLayout,
+    QApplication, QDialog, QHBoxLayout, QMessageBox, QPushButton,
+    QStyle, QTextBrowser, QTextEdit, QVBoxLayout,
 )
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import QLibraryInfo, QLocale, QSettings, QTranslator, QUrl
 from PyQt6.QtGui import QColor, QDesktopServices, QFontDatabase, QIcon, QPalette
 
 _APP_ICON = QIcon('/usr/share/icons/hicolor/scalable/apps/updater-mx.svg')
@@ -31,12 +31,24 @@ _ = gettext.gettext
 translator = Translator(textdomain=LOCALE_DOMAIN)
 
 
-def is_dark_theme():
-    return QApplication.palette().color(QPalette.ColorRole.Window).lightness() < 128
+def get_standard_button_text(button):
+    msg_box = QMessageBox()
+    msg_box.setStandardButtons(button)
+    return msg_box.button(button).text()
 
 
 def _get_close_text():
-    return translator.translate("&Close")
+    close_text = get_standard_button_text(QMessageBox.StandardButton.Close)
+    locale = QLocale.system().name()
+    if not locale.startswith('en'):
+        if close_text == "&Close":
+            close_text = translator.translate("_Close")
+            close_text = close_text.replace('_', '&')
+    return close_text
+
+
+def is_dark_theme():
+    return QApplication.palette().color(QPalette.ColorRole.Window).lightness() < 128
 
 
 def _show_plain_text_doc(title, path):
@@ -57,6 +69,7 @@ def _show_plain_text_doc(title, path):
         text_edit.setPlainText(_("Could not load %s") % path)
 
     btn_close = QPushButton(_get_close_text())
+    btn_close.setIcon(btn_close.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
     btn_close.clicked.connect(dialog.close)
 
     btn_row = QHBoxLayout()
@@ -98,12 +111,12 @@ def _apply_html_theme(browser, dark, html_path=None, img_prefix='img/'):
             if dark:
                 base_dir = os.path.dirname(os.path.abspath(html_path))
                 def _swap_dark(m):
-                    src, ext = m.group(1), m.group(2)
-                    if os.path.exists(os.path.join(base_dir, f'{src}-dark.{ext}')):
-                        return m.group(0).replace(f'{src}.{ext}"', f'{src}-dark.{ext}"')
+                    src = m.group(1)
+                    if os.path.exists(os.path.join(base_dir, f'{src}-dark.jpg')):
+                        return m.group(0).replace(f'{src}.jpg"', f'{src}-dark.jpg"')
                     return m.group(0)
                 html = re.sub(
-                    r'class="screenshot"[^>]*?src="([^"]+?)\.(png|jpg)"',
+                    r'class="screenshot"[^>]*?src="([^"]+?)\.jpg"',
                     _swap_dark, html
                 )
             browser.document().setBaseUrl(QUrl.fromLocalFile(html_path))
@@ -127,12 +140,34 @@ def show_help():
 
     title = _("MX Updater Help")
 
+    settings = QSettings("MX-Linux", "mx-updater")
+    geo_section = "Geometry_Updater_Help"
+
     dialog = QDialog()
     dialog.setWindowTitle(title)
     dialog.setWindowFlags(QtCore.Qt.WindowType.Window)
     dialog.setWindowIcon(_APP_ICON)
+    dialog.setMinimumSize(400, 300)
+
     screen = QApplication.primaryScreen().availableGeometry()
-    dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+    try:
+        x = int(settings.value(f'{geo_section}/x'))
+        y = int(settings.value(f'{geo_section}/y'))
+        w = int(settings.value(f'{geo_section}/width'))
+        h = int(settings.value(f'{geo_section}/height'))
+        w = min(max(w, dialog.minimumWidth()),  screen.width())
+        h = min(max(h, dialog.minimumHeight()), screen.height())
+        dialog.resize(w, h)
+        dialog.move(
+            max(screen.left(), min(x, screen.right()  - w)),
+            max(screen.top(),  min(y, screen.bottom() - h)),
+        )
+    except (TypeError, ValueError):
+        dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+        dialog.move(
+            screen.x() + (screen.width()  - dialog.width())  // 2,
+            screen.y() + (screen.height() - dialog.height()) // 2,
+        )
 
     browser = QTextBrowser(dialog)
     browser.setOpenLinks(False)
@@ -147,6 +182,7 @@ def show_help():
 
     btn_toggle = QPushButton("\u2600" if viewer_dark[0] else "\u263e")
     btn_close  = QPushButton(_get_close_text())
+    btn_close.setIcon(btn_close.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
     btn_close.clicked.connect(dialog.close)
 
     def toggle_theme():
@@ -164,6 +200,16 @@ def show_help():
     layout = QVBoxLayout(dialog)
     layout.addWidget(browser)
     layout.addLayout(btn_row)
+
+    def _save_geometry():
+        settings.remove(f'{geo_section}/position')
+        settings.remove(f'{geo_section}/size')
+        settings.setValue(f'{geo_section}/x',      dialog.pos().x())
+        settings.setValue(f'{geo_section}/y',      dialog.pos().y())
+        settings.setValue(f'{geo_section}/width',  dialog.size().width())
+        settings.setValue(f'{geo_section}/height', dialog.size().height())
+
+    dialog.finished.connect(lambda _: _save_geometry())
     dialog.exec()
 
 
@@ -171,6 +217,13 @@ def main():
     app = QApplication(sys.argv)
     app.setApplicationName("updater-mx")
     os.environ["QT_LOGGING_RULES"] = "*.debug=false;qt.qpa.xcb.warning=false"
+
+    qtranslator = QTranslator()
+    locale = QLocale.system().name()
+    translations_path = QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)
+    if qtranslator.load(f"{translations_path}/qt_{locale}.qm"):
+        app.installTranslator(qtranslator)
+
     show_help()
     sys.exit(0)
 

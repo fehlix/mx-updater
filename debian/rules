@@ -9,6 +9,9 @@ override_dh_auto_build:
 	$(MAKE) -C icons
 	$(MAKE) -C l10n
 	$(MAKE) -C version
+	for f in l10n/build/doc/help_*.html; do \
+		[ -f "$$f" ] && cp "$$f" share/doc/mx-updater/ || true; \
+	done
 	sed -i "s|@VERSION@|$(PKG_VERSION)|g" share/doc/mx-updater/help.html
 	for help_file in share/doc/mx-updater/help_*.html; do \
 		[ -f "$$help_file" ] || continue; \
@@ -40,4 +43,5 @@ override_dh_clean:
 	$(MAKE) -C icons clean
 	$(MAKE) -C l10n clean
 	$(MAKE) -C version clean
+	rm -f share/doc/mx-updater/help_*.html
 	dh_clean

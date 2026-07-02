@@ -1,3 +1,37 @@
+mx-updater (26.07.02mx25~dev03) UNRELEASED; urgency=medium
+
+  * help.html: annotate UI-term <b> elements with data-token="TOKEN"
+    attributes; add TOKEN REFERENCE comment block for editors. Proper
+    names (Nala, Synaptic, MX Package Installer, MX Repo Manager,
+    MX Tools, System Menu) are not tokenized.
+  * l10n/generate-help-in: new script; converts master help.html to XHTML
+    for po4a -- strips <style>, adds <link> to help.css, replaces
+    data-token <b> elements with %%TOKEN%%, self-closes void elements,
+    adds TRANSLATORS note.
+  * l10n/po4a-help.cfg: new po4a config for help document translation;
+    languages injected at build time via sed.
+  * l10n/help-po/LINGUAS: new LINGUAS file for help translations (de, fr).
+  * l10n/help-po/de.po, l10n/help-po/fr.po: initial German and French
+    translations of help document prose.
+  * l10n/build-help-html: new script; post-processes po4a XHTML output --
+    normalises to HTML5 (strips XML declaration, DOCTYPE, xmlns attribute),
+    substitutes %%TOKEN%% placeholders with translated UI labels from the
+    main .po file, strips HTML comments and collapses duplicate blank
+    lines, inlines help.css as a <style> block.
+  * help.css: source-only; inlined into translated help files at build
+    time by build-help-html; not installed in the package.
+  * l10n/Makefile: add help target (HELP_IN stamp for generate-help-in,
+    HELP_STAMP for po4a, per-language build-help-html loop); integrate
+    into all target.
+  * debian/install: add help_*.html; remove help.css (inlined at build).
+  * debian/rules: copy and version-stamp translated help files; rewrite
+    img src paths for languages with localised screenshots.
+  * updater-help.py: use setSearchPaths() for image loading via setHtml();
+    set img_prefix to 'img/' for localised help files to avoid double
+    substitution (debian/rules already rewrites img paths in those files).
+
+ -- fehlix <fehlix@mxlinux.org>  Wed, 02 Jul 2026 10:00:00 -0400
+
 mx-updater (26.07.02mx25~dev02) UNRELEASED; urgency=medium
 
   * About: accelerator keys added to all four dialog buttons (Changelog,

@@ -78,6 +78,7 @@ share/mx-updater/51unattended-upgrades-origins         usr/share/mx-updater
 
 # doc
 share/doc/mx-updater/help.html                         usr/share/doc/mx-updater
+share/doc/mx-updater/help_*.html                       usr/share/doc/mx-updater
 share/doc/mx-updater/LICENSE                           usr/share/doc/mx-updater
 share/doc/mx-updater/license.html                      usr/share/doc/mx-updater
 share/doc/mx-updater/examples/admin-mx-updater.conf    usr/share/doc/mx-updater/examples

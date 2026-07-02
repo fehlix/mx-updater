@@ -13,6 +13,35 @@
 </head>
 <body>
 
+<!-- TOKEN REFERENCE (for generate-help-in and build-help-html):
+     UI terms marked with data-token become %%TOKEN%% in help.html.in and
+     are replaced with the translated UI label by build-help-html.
+     Proper names (Nala, Synaptic, MX Package Installer, MX Repo Manager,
+     MX Tools, System Menu) are NOT tokenized.
+  FULL                  -> "full"
+  BASIC                 -> "basic"
+  REFRESH               -> "refresh"
+  AUTOMATIC             -> "automatic"
+  VIEW_AND_UPGRADE      -> "View and Upgrade"
+  CHECK_FOR_UPDATES     -> "Check for Updates"
+  HISTORY               -> "History"
+  AUTO_UPDATE_LOGS      -> "Auto-update log(s)"
+  AUTO_UPDATE_DPKG_LOGS -> "Auto-update dpkg log(s)"
+  HELP                  -> "Help"
+  PREFERENCES           -> "Preferences"
+  ABOUT                 -> "About"
+  RESTART_MX_UPDATER    -> "Restart MX Updater"
+  HIDE_WHEN_NO_UPDATES  -> "hide when no updates"
+  QUIT                  -> "Quit"
+  BASIC_UPGRADE         -> "basic upgrade"
+  TRANSPARENT_WIREFRAME -> "transparent black/white wireframe"
+  TERMINAL_SIZE         -> "terminal size"
+  POSITION              -> "position"
+  SKIP_UPGRADE_CONFIRMATION -> "skip upgrade confirmation"
+  DESKTOP_NOTIFICATIONS -> "desktop notifications"
+  AUTOSTART_DELAY       -> "autostart delay"
+-->
+
 <h1>MX Updater Help</h1>
 
 <p>MX Updater monitors your MX Linux system for available package updates and
@@ -27,23 +56,23 @@ from MX Tools, the System Menu, or the right-click menu of the tray icon.</p>
 
 <p>Controls the upgrade method and schedule:</p>
 <ul>
-  <li><b>full</b> (recommended) -- upgrades packages and allows installing or
+  <li><b data-token="FULL">full</b> (recommended) -- upgrades packages and allows installing or
       removing packages where needed to satisfy dependencies.</li>
-  <li><b>basic</b> -- upgrades packages but will not install new ones or remove
+  <li><b data-token="BASIC">basic</b> -- upgrades packages but will not install new ones or remove
       existing ones. Safer, but some packages may be kept back.</li>
   <li><b>Nala</b> -- when checked, uses Nala instead of apt as the package manager
       (only shown if Nala is installed).</li>
 </ul>
-<p>The <b>refresh</b> dropdown sets how often the package list is fetched from the
+<p>The <b data-token="REFRESH">refresh</b> dropdown sets how often the package list is fetched from the
 servers (daily, every 3 days, weekly, every 2 weeks, monthly, or never).
-The <b>automatic</b> checkbox enables unattended upgrades on the same schedule.</p>
+The <b data-token="AUTOMATIC">automatic</b> checkbox enables unattended upgrades on the same schedule.</p>
 
 <h2>Left-Click</h2>
 
 <p>Choose what happens when you left-click the tray icon. Available choices depend
 on which applications are installed:</p>
 <ul>
-  <li><b>View and Upgrade</b> (default) -- opens the MX Updater upgrade window when
+  <li><b data-token="VIEW_AND_UPGRADE">View and Upgrade</b> (default) -- opens the MX Updater upgrade window when
       updates are available; falls back to the first installed package manager otherwise.</li>
   <li><b>Synaptic</b> -- opens Synaptic Package Manager (always, with or without updates).</li>
   <li><b>MX Package Installer</b> -- opens MX Package Installer (always, with or without updates).</li>
@@ -56,22 +85,22 @@ of the left-click setting.</p>
 <p>Right-clicking the tray icon opens the context menu. Entries are only shown when the
 corresponding application is installed or condition applies:</p>
 <ul>
-  <li><b>View and Upgrade</b> -- open the upgrade window (shown when updates are available).</li>
+  <li><b data-token="VIEW_AND_UPGRADE">View and Upgrade</b> -- open the upgrade window (shown when updates are available).</li>
   <li><b>Synaptic</b> -- open Synaptic Package Manager.</li>
   <li><b>MX Package Installer</b> -- open MX Package Installer.</li>
   <li><b>MX Repo Manager</b> -- open MX Repo Manager.</li>
-  <li><b>Check for Updates</b> -- open a terminal and fetch the latest package lists from the servers.</li>
-  <li><b>History</b> -- open MX Updater History to view recently installed or removed packages.</li>
-  <li><b>Auto-update log(s)</b> -- view the log of automatic upgrades.</li>
-  <li><b>Auto-update dpkg log(s)</b> -- view the dpkg log of automatic upgrades.</li>
-  <li><b>Help</b> -- this document.</li>
-  <li><b>Preferences</b> -- open the MX Updater Preferences window.</li>
-  <li><b>About</b> -- version information, license and changelog.</li>
-  <li><b>Restart MX Updater</b> -- restart the tray icon process. Useful after manual
+  <li><b data-token="CHECK_FOR_UPDATES">Check for Updates</b> -- open a terminal and fetch the latest package lists from the servers.</li>
+  <li><b data-token="HISTORY">History</b> -- open MX Updater History to view recently installed or removed packages.</li>
+  <li><b data-token="AUTO_UPDATE_LOGS">Auto-update log(s)</b> -- view the log of automatic upgrades.</li>
+  <li><b data-token="AUTO_UPDATE_DPKG_LOGS">Auto-update dpkg log(s)</b> -- view the dpkg log of automatic upgrades.</li>
+  <li><b data-token="HELP">Help</b> -- this document.</li>
+  <li><b data-token="PREFERENCES">Preferences</b> -- open the MX Updater Preferences window.</li>
+  <li><b data-token="ABOUT">About</b> -- version information, license and changelog.</li>
+  <li><b data-token="RESTART_MX_UPDATER">Restart MX Updater</b> -- restart the tray icon process. Useful after manual
       configuration changes; will show a notification if updates are available.</li>
-  <li><b>Hide when no updates</b> -- only shown when the system is up to date; toggles
+  <li><b data-token="HIDE_WHEN_NO_UPDATES">Hide when no updates</b> -- only shown when the system is up to date; toggles
       whether the tray icon is hidden when there are no updates (not available on KDE).</li>
-  <li><b>Quit</b> -- close MX Updater.</li>
+  <li><b data-token="QUIT">Quit</b> -- close MX Updater.</li>
 </ul>
 
 <h2>Icons</h2>
@@ -79,10 +108,10 @@ corresponding application is installed or condition applies:</p>
 <p>Choose the icon set used in the system tray. Each set shows two icons: the
 left icon is used when updates are available, the right icon when the system
 is up to date.</p>
-<p>Note: with <b>basic upgrade</b> selected, packages that would require installing
+<p>Note: with <b data-token="BASIC_UPGRADE">basic upgrade</b> selected, packages that would require installing
 or removing other packages are kept back. When all remaining updates are such
 kept-back packages the up-to-date (right) icon is shown.</p>
-<p>The <b>transparent black/white wireframe</b> toggle makes the no-updates icon
+<p>The <b data-token="TRANSPARENT_WIREFRAME">transparent black/white wireframe</b> toggle makes the no-updates icon
 transparent with either black or white wire lines. Use black wires on a light
 panel, white wires on a dark panel, so the icon does not disappear into the
 panel background.</p>
@@ -96,25 +125,25 @@ documentation is provided in
 <p>Most entries in this section have a tooltip with further details -- hover over
 the label to read it.</p>
 <ul>
-  <li><b>terminal size</b> -- size of the terminal window that opens during upgrades.
+  <li><b data-token="TERMINAL_SIZE">terminal size</b> -- size of the terminal window that opens during upgrades.
       Options: <i>default</i> (2/3 of screen, capped at 960x600 on wide displays),
       <i>one-third</i>, <i>half</i>, <i>two-thirds</i>, <i>three-quarters</i>,
       <i>nine-tenths</i>, or <i>own</i> (no size hint -- the terminal uses its own
       saved size and position).</li>
-  <li><b>position</b> -- screen position of the terminal window: center, top-left,
+  <li><b data-token="POSITION">position</b> -- screen position of the terminal window: center, top-left,
       top-right, bottom-left, or bottom-right. Not available on Wayland or when
       size is set to <i>own</i>.</li>
-  <li><b>skip upgrade confirmation</b> -- passes <code>--assume-yes</code> to apt or
+  <li><b data-token="SKIP_UPGRADE_CONFIRMATION">skip upgrade confirmation</b> -- passes <code>--assume-yes</code> to apt or
       Nala, automatically answering yes to the "Do you want to continue?" prompt.
       Note: configuration questions from individual package scripts (debconf) may
       still appear -- this is normal and not controlled by this setting.
       Use with care: on a yes answer apt will proceed even if the upgrade would
       remove packages to resolve a dependency conflict.</li>
-  <li><b>desktop notifications</b> -- show a desktop notification when updates
+  <li><b data-token="DESKTOP_NOTIFICATIONS">desktop notifications</b> -- show a desktop notification when updates
       become available.</li>
-  <li><b>autostart delay</b> -- wait a short time after login before starting,
+  <li><b data-token="AUTOSTART_DELAY">autostart delay</b> -- wait a short time after login before starting,
       so the desktop is fully set up before MX Updater appears in the tray.</li>
-  <li><b>hide when no updates</b> -- hide the tray icon when the system is
+  <li><b data-token="HIDE_WHEN_NO_UPDATES">hide when no updates</b> -- hide the tray icon when the system is
       up to date. Not available on KDE/Plasma.</li>
 </ul>
 
@@ -134,16 +163,16 @@ area must be added to the panel manually.</p>
 <p>This is expected -- authentication is always required for upgrades.</p>
 
 <h3>Updates are not detected</h3>
-<p>Use <b>Check for Updates</b> from the right-click menu to force an immediate
+<p>Use <b data-token="CHECK_FOR_UPDATES">Check for Updates</b> from the right-click menu to force an immediate
 check. The terminal window will show any errors, including a locked apt database
 from another running package manager.</p>
 
 <h3>The upgrade window shows no packages</h3>
 <p>Your system is up to date, or the last check has not completed yet.
-Use <b>Check for Updates</b> to refresh.</p>
+Use <b data-token="CHECK_FOR_UPDATES">Check for Updates</b> to refresh.</p>
 
 <div style="margin-top: 2em; font-size: 0.85em; text-align: center;">
-  MX Updater -- Version @VERSION@ -- Copyright (c) MX Linux --
+  MX Updater -- Version 26.07.02mx25~dev03 -- Copyright (c) MX Linux --
   <a href="https://mxlinux.org">https://mxlinux.org</a>
 </div>
 

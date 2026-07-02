@@ -99,7 +99,11 @@ def _apply_html_theme(browser, dark, html_path=None, img_prefix='img/'):
     p.setColor(QPalette.ColorRole.Text, QColor(fg))
     browser.setPalette(p)
     browser.document().setDefaultStyleSheet(
-        f"body {{ color: {fg}; background-color: {bg}; }}"
+        f"body {{ color: {fg}; background-color: {bg}; margin: 1.2em 2em; line-height: 1.5; }}"
+        f" h1 {{ text-align: center; }}"
+        f" h2 {{ margin-top: 1.4em; border-bottom: 1px solid {fg}; padding-bottom: 0.2em; }}"
+        f" h3 {{ margin-top: 1.0em; }}"
+        f" .screenshot {{ max-width: 100%; height: auto; display: block; margin: 0.5em 0 0 0; }}"
         f" a {{ color: {link}; }}"
     )
     if html_path:
@@ -119,7 +123,10 @@ def _apply_html_theme(browser, dark, html_path=None, img_prefix='img/'):
                     r'class="screenshot"[^>]*?src="([^"]+?)\.jpg"',
                     _swap_dark, html
                 )
-            browser.document().setBaseUrl(QUrl.fromLocalFile(html_path))
+            if html.startswith('<?xml'):
+                html = html[html.index('?>') + 2:].lstrip()
+            doc_dir = os.path.dirname(os.path.abspath(html_path))
+            browser.setSearchPaths([doc_dir])
             browser.setHtml(html)
         except OSError:
             pass
@@ -130,12 +137,12 @@ def _apply_html_theme(browser, dark, html_path=None, img_prefix='img/'):
 def show_help():
     lang = QtCore.QLocale.system().name().split('_')[0]
     lang_help = f'/usr/share/doc/mx-updater/help_{lang}.html'
+    lang_img_dir = f'/usr/share/doc/mx-updater/img/{lang}'
     if os.path.exists(lang_help):
         help_path = lang_help
         img_prefix = 'img/'
     else:
         help_path = '/usr/share/doc/mx-updater/help.html'
-        lang_img_dir = f'/usr/share/doc/mx-updater/img/{lang}'
         img_prefix = f'img/{lang}/' if os.path.isdir(lang_img_dir) else 'img/'
 
     title = _("MX Updater Help")

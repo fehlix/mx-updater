@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+import re, sys
+
+def main():
+    if len(sys.argv) != 3:
+        sys.exit('Usage: generate-help-in <master_html> <output_xhtml>')
+    src, dst = sys.argv[1], sys.argv[2]
+    with open(src, encoding='utf-8') as f:
+        html = f.read()
+    html = re.sub(r'<b\s+data-token="([^"]+)">[^<]*</b>',
+                  lambda m: f'%%{m.group(1)}%%', html)
+    html = re.sub(r'\s*<style>.*?</style>', '', html, flags=re.DOTALL)
+    html = html.replace('<!doctype html>', '<?xml version="1.0" encoding="UTF-8"?>', 1)
+    html = html.replace('<html>', '<html xmlns="http://www.w3.org/1999/xhtml">', 1)
+    html = html.replace(
+        '<meta charset="UTF-8">',
+        '<meta charset="UTF-8" />\n  <link rel="stylesheet" href="help.css" />',
+        1
+    )
+    html = re.sub(
+        r'<(img|br|hr|input)(\s[^>]*)?(?<!/)>',
+        lambda m: f'<{m.group(1)}{m.group(2) or ""} />',
+        html
+    )
+    note = ('<!-- TRANSLATORS: %%TOKEN%% placeholders are MX Updater UI labels.'
+            ' Keep them exactly as written. -->')
+    html = html.replace('<body>\n', f'<body>\n\n{note}\n', 1)
+    with open(dst, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+if __name__ == '__main__':
+    main()

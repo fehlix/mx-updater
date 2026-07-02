@@ -1,0 +1,107 @@
+#!/usr/bin/python3
+import os, re, sys
+
+TOKENS = {
+    'FULL':                     'full',
+    'BASIC':                    'basic',
+    'REFRESH':                  'refresh',
+    'AUTOMATIC':                'automatic',
+    'VIEW_AND_UPGRADE':         'View and Upgrade',
+    'CHECK_FOR_UPDATES':        'Check for Updates',
+    'HISTORY':                  'History',
+    'AUTO_UPDATE_LOGS':         'Auto-update log(s)',
+    'AUTO_UPDATE_DPKG_LOGS':    'Auto-update dpkg log(s)',
+    'HELP':                     'Help',
+    'PREFERENCES':              'Preferences',
+    'ABOUT':                    'About',
+    'RESTART_MX_UPDATER':       'Restart MX Updater',
+    'HIDE_WHEN_NO_UPDATES':     'hide when no updates',
+    'QUIT':                     'Quit',
+    'BASIC_UPGRADE':            'basic upgrade',
+    'TRANSPARENT_WIREFRAME':    'transparent black/white wireframe',
+    'TERMINAL_SIZE':            'terminal size',
+    'POSITION':                 'position',
+    'SKIP_UPGRADE_CONFIRMATION': 'skip upgrade confirmation',
+    'DESKTOP_NOTIFICATIONS':    'desktop notifications',
+    'AUTOSTART_DELAY':          'autostart delay',
+}
+
+_CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         '../share/doc/mx-updater/help.css')
+
+
+def load_translations(po_path):
+    translations = {}
+    try:
+        with open(po_path, encoding='utf-8') as f:
+            content = f.read()
+    except OSError:
+        return translations
+    pattern = re.compile(
+        r'^msgid\s+"((?:[^"\\]|\\.)*)"\s*\nmsgstr\s+"((?:[^"\\]|\\.)*)"',
+        re.MULTILINE
+    )
+    for m in pattern.finditer(content):
+        msgid = m.group(1).replace('\\"', '"')
+        msgstr = m.group(2).replace('\\"', '"')
+        if msgid and msgstr:
+            translations[msgid] = msgstr
+    return translations
+
+
+def substitute(html, po_path):
+    translations = load_translations(po_path)
+
+    def replacer(m):
+        token = m.group(1)
+        english = TOKENS.get(token, token)
+        translated = translations.get(english, english)
+        return f'<b>{translated}</b>'
+
+    def process(segment):
+        return re.sub(r'%%([A-Z0-9_]+)%%', replacer, segment)
+
+    parts = re.split(r'(<!--.*?-->)', html, flags=re.DOTALL)
+    return ''.join(process(p) if not p.startswith('<!--') else p for p in parts)
+
+
+def to_html5(html):
+    html = re.sub(r'<\?xml[^?]*\?>\s*', '', html)
+    html = re.sub(r'<!DOCTYPE\b[^>]*>\s*', '', html, flags=re.IGNORECASE)
+    html = re.sub(r'<html\b[^>]*>', '<html>', html, count=1)
+    return '<!doctype html>\n' + html.lstrip()
+
+
+def inline_css(html):
+    try:
+        with open(_CSS_PATH, encoding='utf-8') as f:
+            css = f.read().strip()
+    except OSError:
+        return html
+    lines = '\n'.join('    ' + ln for ln in css.splitlines())
+    style_block = f'  <style>\n{lines}\n  </style>'
+    return re.sub(r'[ \t]*<link\b[^>]*\bhref="help\.css"[^>]*/>', style_block, html)
+
+
+def cleanup(html):
+    html = re.sub(r'<!--.*?-->\n?', '', html, flags=re.DOTALL)
+    html = re.sub(r'\n{3,}', '\n\n', html)
+    return html
+
+
+def main():
+    if len(sys.argv) != 3:
+        sys.exit('Usage: build-help-html <html_file> <main_po_file>')
+    html_path, po_path = sys.argv[1], sys.argv[2]
+    with open(html_path, encoding='utf-8') as f:
+        html = f.read()
+    html = to_html5(html)
+    html = substitute(html, po_path)
+    html = cleanup(html)
+    html = inline_css(html)
+    with open(html_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+
+if __name__ == '__main__':
+    main()

@@ -2,7 +2,9 @@
 
 PKGNAM := mx-updater
 
-GITROOT  := $(abspath $(CURDIR)/..)
+PKG_VERSION ?=
+
+BLDROOT  := $(abspath $(CURDIR)/..)
 BUILD    := ././build
 PO_DIR   := ./po
 XDGDIR   := ../xdg
@@ -80,7 +82,8 @@ $(HELP_STAMP): po4a-help.cfg $(HELP_IN) $(wildcard $(HELP_PO_DIR)/*.po)
 	@mkdir -p $(BUILD)/doc
 	@sed 's/^\[po4a_langs\]$$/[po4a_langs] $(HELP_LINGUAS)/' po4a-help.cfg \
 	  > $(BUILD)/po4a-help-run.cfg
-	cd $(GITROOT) && po4a l10n/$(BUILD)/po4a-help-run.cfg
+	cd $(BLDROOT) && po4a l10n/$(BUILD)/po4a-help-run.cfg
+	python3 annotate-help-pot mx-updater-help.pot
 	@touch $@
 
 help: $(HELP_IN) $(HELP_STAMP)
@@ -91,13 +94,26 @@ help: $(HELP_IN) $(HELP_STAMP)
 	    continue; \
 	  fi; \
 	  echo "  $$html"; \
-	  if [ -f $(PO_DIR)/$${lang}.po ]; then \
-	    python3 build-help-html "$$html" $(PO_DIR)/$${lang}.po; \
+	  if [ -d $(BUILD)/locale/$${lang} ]; then \
+	    python3 build-help-html "$$html" $(abspath $(BUILD)/locale) $${lang}; \
 	  fi; \
+	  dest=$(BLDROOT)/share/doc/mx-updater/help_$${lang}.html; \
+	  cp "$$html" "$$dest"; \
+	  if [ -n "$(PKG_VERSION)" ]; then \
+	    sed -i "s|@VERSION@|$(PKG_VERSION)|g" "$$dest"; \
+	  fi; \
+	  lang_img_dir=$(BLDROOT)/share/doc/mx-updater/img/$${lang}; \
+	  [ -d "$$lang_img_dir" ] || continue; \
+	  for img in $(BLDROOT)/share/doc/mx-updater/img/*.jpg; do \
+	    base=$$(basename "$$img"); \
+	    [ -f "$$lang_img_dir/$$base" ] || continue; \
+	    sed -i "s|src=\"img/$$base\"|src=\"img/$${lang}/$$base\"|g" "$$dest"; \
+	  done; \
 	done
 
 clean:
 	-@rm  -f $(DESKTOP)
 	-@rm -rf $(BUILD)
+	-@rm  -f $(BLDROOT)/share/doc/mx-updater/help_*.html
 
 .PHONY: all clean locale desktop policy help

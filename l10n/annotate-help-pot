@@ -1,0 +1,98 @@
+#!/usr/bin/python3
+"""Inject translator comments into mx-updater-help.pot for msgids containing %%TOKEN%% placeholders."""
+import re, sys
+
+TOKEN_DESC = {
+    'PREFS_WINDOW':           'bold: MX Updater preferences window title -- translate as the window is known in your language',
+    'FULL':                   'bold UI label: full upgrade mode',
+    'BASIC':                  'bold UI label: basic upgrade mode',
+    'REFRESH':                'bold UI label: package list refresh interval',
+    'AUTOMATIC':              'bold UI label: automatic/unattended upgrades checkbox',
+    'VIEW_AND_UPGRADE':       'bold UI label: tray left-click / menu entry',
+    'CHECK_FOR_UPDATES':      'bold UI label: tray menu entry',
+    'HISTORY':                'bold UI label: tray menu entry',
+    'AUTO_UPDATE_LOGS':       'bold UI label: tray menu entry',
+    'AUTO_UPDATE_DPKG_LOGS':  'bold UI label: tray menu entry',
+    'HELP':                   'bold UI label: tray menu entry',
+    'PREFERENCES':            'bold UI label: tray menu entry (settings window)',
+    'ABOUT':                  'bold UI label: tray menu entry',
+    'RESTART_MX_UPDATER':     'bold UI label: tray menu entry',
+    'HIDE_WHEN_NO_UPDATES':   'bold UI label: tray icon toggle',
+    'QUIT':                   'bold UI label: tray menu entry',
+    'BASIC_UPGRADE':          'bold UI label: basic upgrade mode',
+    'TRANSPARENT_WIREFRAME':  'bold UI label: icon style toggle',
+    'TERMINAL_SIZE':          'bold UI label: settings option name',
+    'POSITION':               'bold UI label: settings option name',
+    'SKIP_UPGRADE_CONFIRMATION': 'bold UI label: settings option name',
+    'DESKTOP_NOTIFICATIONS':  'bold UI label: settings option name',
+    'AUTOSTART_DELAY':        'bold UI label: settings option name',
+    'MX_TOOLS':               'bold label: MX Tools launcher -- translate as it is known in your language',
+    'SYSTEM_MENU':            'bold label: desktop system/applications menu -- translate naturally',
+    'SIZE_DEFAULT':           'italic combo-box label: default terminal size -- use your UI translation for "default"',
+    'SIZE_ONE_THIRD':         'italic combo-box label: 1/3 screen -- use your UI translation for "1/3 screen"',
+    'SIZE_HALF':              'italic combo-box label: 1/2 screen -- use your UI translation for "1/2 screen"',
+    'SIZE_TWO_THIRDS':        'italic combo-box label: 2/3 screen -- use your UI translation for "2/3 screen"',
+    'SIZE_THREE_QUARTERS':    'italic combo-box label: 3/4 screen -- use your UI translation for "3/4 screen"',
+    'SIZE_NINE_TENTHS':       'italic combo-box label: 9/10 screen -- use your UI translation for "9/10 screen"',
+    'SIZE_OWN':               'italic combo-box label: own terminal size -- use your UI translation for "own"',
+    'NALA':                   'bold proper name: Nala package manager -- do not translate',
+    'SYNAPTIC':               'bold proper name: Synaptic Package Manager -- do not translate',
+    'MX_PKG_INSTALLER':       'bold proper name: MX Package Installer -- do not translate',
+    'MX_REPO_MANAGER':        'bold proper name: MX Repo Manager -- do not translate',
+    'CONF_FILE':              'code: config file path -- do not translate',
+    'OPT_ASSUME_YES':         'code: apt/Nala command-line option -- do not translate',
+    'ADMIN_CONF_LINK':        'hyperlink: admin config example -- do not translate',
+}
+
+UI_HEADING_NOTE = {
+    'Upgrade Mode':   'Matches the "Upgrade Mode" section label in the settings window -- use the same translation as in mx-updater.po.',
+    'Icons':          'Matches the "Icons" section label in the settings window -- use the same translation as in mx-updater.po.',
+    'Other':          'Matches the "Other" section label in the settings window -- use the same translation as in mx-updater.po.',
+    'Left-Click':     'Left-click action section heading.',
+    'Right-Click Menu': 'Right-click tray context menu section heading.',
+}
+
+_AUTO_PREFIX = '#. Token '
+
+
+def annotate_block(block):
+    msgid_m = re.search(r'^msgid "(.*)"', block, re.MULTILINE)
+    if not msgid_m:
+        return block
+    msgid = msgid_m.group(1)
+
+    notes = []
+    for token in re.findall(r'%%([A-Z0-9_]+)%%', msgid):
+        if token in TOKEN_DESC:
+            notes.append(f'{_AUTO_PREFIX}%%{token}%%: {TOKEN_DESC[token]}.')
+    for heading, note in UI_HEADING_NOTE.items():
+        if msgid == heading:
+            notes.append(f'#. {note}')
+
+    if not notes:
+        return block
+
+    # Remove previously injected auto-notes to stay idempotent on re-runs
+    block = re.sub(rf'^{re.escape(_AUTO_PREFIX)}.*\n', '', block, flags=re.MULTILINE)
+
+    comment_block = '\n'.join(notes)
+    block = re.sub(r'^(msgid ")', f'{comment_block}\n\\1', block, count=1, flags=re.MULTILINE)
+    return block
+
+
+def main():
+    if len(sys.argv) != 2:
+        sys.exit('Usage: annotate-help-pot <pot_file>')
+    path = sys.argv[1]
+    with open(path, encoding='utf-8') as f:
+        content = f.read()
+
+    blocks = re.split(r'(?=\n(?:#[^\n]*\n)*msgid ")', content)
+    result = ''.join(annotate_block(b) for b in blocks)
+
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(result)
+
+
+if __name__ == '__main__':
+    main()

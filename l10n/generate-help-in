@@ -7,8 +7,23 @@ def main():
     src, dst = sys.argv[1], sys.argv[2]
     with open(src, encoding='utf-8') as f:
         html = f.read()
-    html = re.sub(r'<b\s+data-token="([^"]+)">[^<]*</b>',
-                  lambda m: f'%%{m.group(1)}%%', html)
+
+    # Heading elements with data-token become comment markers (po4a preserves
+    # comments verbatim and does not extract them as msgids).
+    # All other data-token elements become %%TOKEN%% inline placeholders.
+    _HEADING_TAGS = {'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
+
+    def _convert_token(m):
+        tag, token = m.group(1), m.group(2)
+        if tag in _HEADING_TAGS:
+            return f'<!-- HEADING:{tag}:{token} -->'
+        return f'%%{token}%%'
+
+    html = re.sub(
+        r'<([a-z]+)\b[^>]*\bdata-token="([^"]+)"[^>]*>[^<]*</\1>',
+        _convert_token, html
+    )
+
     html = re.sub(r'\s*<style>.*?</style>', '', html, flags=re.DOTALL)
     html = html.replace('<!doctype html>', '<?xml version="1.0" encoding="UTF-8"?>', 1)
     html = html.replace('<html>', '<html xmlns="http://www.w3.org/1999/xhtml">', 1)
@@ -22,8 +37,8 @@ def main():
         lambda m: f'<{m.group(1)}{m.group(2) or ""} />',
         html
     )
-    note = ('<!-- TRANSLATORS: %%TOKEN%% placeholders are MX Updater UI labels.'
-            ' Keep them exactly as written. -->')
+    note = ('<!-- TRANSLATORS: %%TOKEN%% placeholders are MX Updater UI labels or'
+            ' fixed strings. Keep them exactly as written. -->')
     html = html.replace('<body>\n', f'<body>\n\n{note}\n', 1)
     with open(dst, 'w', encoding='utf-8') as f:
         f.write(html)

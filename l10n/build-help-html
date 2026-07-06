@@ -1,62 +1,109 @@
 #!/usr/bin/python3
-import os, re, sys
+import gettext, os, re, sys
 
+# Each entry: (msgid_for_gettext_lookup, kind)
+#   kind 'b'     -- look up via gettext, wrap in <b>
+#   kind 'i'     -- look up via gettext, wrap in <i>
+#   kind 'b_lit' -- literal proper name in <b>, no lookup
+#   kind 'code'  -- literal in <code>, no lookup
+#   kind 'raw'   -- raw HTML string, no lookup
 TOKENS = {
-    'FULL':                     'full',
-    'BASIC':                    'basic',
-    'REFRESH':                  'refresh',
-    'AUTOMATIC':                'automatic',
-    'VIEW_AND_UPGRADE':         'View and Upgrade',
-    'CHECK_FOR_UPDATES':        'Check for Updates',
-    'HISTORY':                  'History',
-    'AUTO_UPDATE_LOGS':         'Auto-update log(s)',
-    'AUTO_UPDATE_DPKG_LOGS':    'Auto-update dpkg log(s)',
-    'HELP':                     'Help',
-    'PREFERENCES':              'Preferences',
-    'ABOUT':                    'About',
-    'RESTART_MX_UPDATER':       'Restart MX Updater',
-    'HIDE_WHEN_NO_UPDATES':     'hide when no updates',
-    'QUIT':                     'Quit',
-    'BASIC_UPGRADE':            'basic upgrade',
-    'TRANSPARENT_WIREFRAME':    'transparent black/white wireframe',
-    'TERMINAL_SIZE':            'terminal size',
-    'POSITION':                 'position',
-    'SKIP_UPGRADE_CONFIRMATION': 'skip upgrade confirmation',
-    'DESKTOP_NOTIFICATIONS':    'desktop notifications',
-    'AUTOSTART_DELAY':          'autostart delay',
+    # UI labels resolved via gettext -> <b>
+    'PREFS_WINDOW':           ('MX Updater Preferences',                 'b'),
+    'FULL':                   ('full',                                    'b'),
+    'BASIC':                  ('basic',                                   'b'),
+    'REFRESH':                ('refresh',                                 'b'),
+    'AUTOMATIC':              ('automatic upgrade',                        'b'),
+    'VIEW_AND_UPGRADE':       ('View and Upgrade',                        'b'),
+    'CHECK_FOR_UPDATES':      ('Check for Updates',                       'b'),
+    'HISTORY':                ('History',                                 'b'),
+    'AUTO_UPDATE_LOGS':       ('Auto-update log(s)',                      'b'),
+    'AUTO_UPDATE_DPKG_LOGS':  ('Auto-update dpkg log(s)',                 'b'),
+    'HELP':                   ('Help',                                    'b'),
+    'PREFERENCES':            ('Preferences',                             'b'),
+    'ABOUT':                  ('About',                                   'b'),
+    'RESTART_MX_UPDATER':     ('Restart MX Updater',                     'b'),
+    'HIDE_WHEN_NO_UPDATES':   ('hide when no updates',                   'b'),
+    'QUIT':                   ('Quit',                                    'b'),
+    'BASIC_UPGRADE':          ('basic upgrade',                           'b'),
+    'TRANSPARENT_WIREFRAME':  ('transparent black/white wireframe',       'b'),
+    'TERMINAL_SIZE':          ('terminal size',                           'b'),
+    'POSITION':               ('position',                                'b'),
+    'SKIP_UPGRADE_CONFIRMATION': ('skip upgrade confirmation',            'b'),
+    'DESKTOP_NOTIFICATIONS':  ('desktop notifications',                   'b'),
+    'AUTOSTART_DELAY':        ('autostart delay',                         'b'),
+    'MX_TOOLS':               ('MX Tools',                               'b'),
+    'SYSTEM_MENU':            ('System Menu',                             'b'),
+    # Heading tokens -- resolved via gettext, wrapped in heading tag by substitute()
+    'UPGRADE_MODE':           ('Upgrade Mode',                            'b'),
+    'LEFT_CLICK':             ('Left-Click',                              'b'),
+    'RIGHT_CLICK_MENU':       ('Right-Click Menu',                        'b'),
+    'ICONS':                  ('Icons',                                   'b'),
+    'OTHER':                  ('Other',                                   'b'),
+    # Terminal size combo-box labels resolved via gettext -> <i>
+    'SIZE_DEFAULT':           ('default',                                 'i'),
+    'SIZE_ONE_THIRD':         ('1/3 screen',                              'i'),
+    'SIZE_HALF':              ('1/2 screen',                              'i'),
+    'SIZE_TWO_THIRDS':        ('2/3 screen',                              'i'),
+    'SIZE_THREE_QUARTERS':    ('3/4 screen',                              'i'),
+    'SIZE_NINE_TENTHS':       ('9/10 screen',                             'i'),
+    'SIZE_OWN':               ('own',                                     'i'),
+    # Proper names in <b> -- not translated
+    'NALA':                   ('Nala',                                    'b_lit'),
+    'SYNAPTIC':               ('Synaptic',                                'b_lit'),
+    'MX_PKG_INSTALLER':       ('MX Package Installer',                    'b_lit'),
+    'MX_REPO_MANAGER':        ('MX Repo Manager',                         'b_lit'),
+    # Code spans -- not translated
+    'CONF_FILE':              ('/usr/local/etc/mx-updater.conf',          'code'),
+    'OPT_ASSUME_YES':         ('--assume-yes',                            'code'),
+    # Raw HTML link -- not translated
+    'ADMIN_CONF_LINK':        ('<a href="file:///usr/share/doc/mx-updater/examples/admin-mx-updater.conf">'
+                               '/usr/share/doc/mx-updater/examples/admin-mx-updater.conf</a>', 'raw'),
 }
 
 _CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          '../share/doc/mx-updater/help.css')
 
 
-def load_translations(po_path):
-    translations = {}
+def get_translator(localedir, lang):
     try:
-        with open(po_path, encoding='utf-8') as f:
-            content = f.read()
-    except OSError:
-        return translations
-    pattern = re.compile(
-        r'^msgid\s+"((?:[^"\\]|\\.)*)"\s*\nmsgstr\s+"((?:[^"\\]|\\.)*)"',
-        re.MULTILINE
-    )
-    for m in pattern.finditer(content):
-        msgid = m.group(1).replace('\\"', '"')
-        msgstr = m.group(2).replace('\\"', '"')
-        if msgid and msgstr:
-            translations[msgid] = msgstr
-    return translations
+        t = gettext.translation('mx-updater', localedir=localedir, languages=[lang])
+        return t.gettext
+    except FileNotFoundError:
+        return lambda s: s
 
 
-def substitute(html, po_path):
-    translations = load_translations(po_path)
+def substitute(html, translate):
+    # Resolve heading markers placed by generate-help-in before the comment split.
+    # Po4a preserves these comments verbatim; we convert them back to proper headings.
+    def _heading_replacer(m):
+        tag, token = m.group(1), m.group(2)
+        entry = TOKENS.get(token)
+        if entry is None:
+            return f'<{tag}>{token}</{tag}>'
+        text, kind = entry
+        translated = translate(text) if kind in ('b', 'i') else text
+        return f'<{tag}>{translated}</{tag}>'
+
+    html = re.sub(r'<!-- HEADING:(h[1-6]):([A-Z0-9_]+) -->', _heading_replacer, html)
 
     def replacer(m):
         token = m.group(1)
-        english = TOKENS.get(token, token)
-        translated = translations.get(english, english)
-        return f'<b>{translated}</b>'
+        entry = TOKENS.get(token)
+        if entry is None:
+            return m.group(0)
+        text, kind = entry
+        if kind == 'b':
+            return f'<b>{translate(text)}</b>'
+        if kind == 'i':
+            return f'<i>{translate(text)}</i>'
+        if kind == 'b_lit':
+            return f'<b>{text}</b>'
+        if kind == 'code':
+            return f'<code>{text}</code>'
+        if kind == 'raw':
+            return text
+        return m.group(0)
 
     def process(segment):
         return re.sub(r'%%([A-Z0-9_]+)%%', replacer, segment)
@@ -90,13 +137,14 @@ def cleanup(html):
 
 
 def main():
-    if len(sys.argv) != 3:
-        sys.exit('Usage: build-help-html <html_file> <main_po_file>')
-    html_path, po_path = sys.argv[1], sys.argv[2]
+    if len(sys.argv) != 4:
+        sys.exit('Usage: build-help-html <html_file> <localedir> <lang>')
+    html_path, localedir, lang = sys.argv[1], sys.argv[2], sys.argv[3]
+    translate = get_translator(localedir, lang)
     with open(html_path, encoding='utf-8') as f:
         html = f.read()
     html = to_html5(html)
-    html = substitute(html, po_path)
+    html = substitute(html, translate)
     html = cleanup(html)
     html = inline_css(html)
     with open(html_path, 'w', encoding='utf-8') as f:

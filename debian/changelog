@@ -1,3 +1,47 @@
+mx-updater (26.07.02mx25~dev04) UNRELEASED; urgency=medium
+
+  * help.html: tokenize section headings (h2/h3 with data-token) so
+    they are never extracted as help-pot msgids; correct TOKEN REFERENCE
+    comment for AUTOMATIC ("automatic" -> "automatic upgrade"); add
+    Authentication and Troubleshooting sections.
+  * l10n/generate-help-in: convert heading data-token elements to
+    <!-- HEADING:tag:TOKEN --> comment markers (po4a preserves them
+    verbatim, not extracted as msgids); remove footer strip -- footer
+    is kept in help.html.in and included in translated files using
+    English text (msgstr is empty; copyright need not be localised).
+  * l10n/build-help-html: replace home-grown po-file parser with
+    gettext.translation() reading compiled .mo files; add heading_replacer
+    to resolve <!-- HEADING:... --> markers back to <h2>/<h3> with
+    translated text from the main po; expand TOKENS dict with heading
+    tokens (UPGRADE_MODE, LEFT_CLICK, RIGHT_CLICK_MENU, ICONS, OTHER)
+    and UI strings (MX_TOOLS, SYSTEM_MENU, PREFS_WINDOW).
+  * l10n/Makefile: rename GITROOT to BLDROOT; add PKG_VERSION ?=
+    variable; help target now copies each translated HTML to
+    share/doc/mx-updater/, substitutes @VERSION@ when PKG_VERSION is
+    set, and rewrites localised img src paths; clean target removes
+    the copied help_*.html files.
+  * l10n/annotate-help-pot: new script; post-processes mx-updater-help.pot
+    after po4a to inject "#. Token %%X%%: ..." translator comments above
+    relevant msgids; idempotent.
+  * l10n/po4a-help.cfg: lower translation threshold to 70% to handle
+    restructuring phases with partially translated po files.
+  * libexec/mx-updater/help_i18n_strings.py: new stub listing UI strings
+    that appear in help but are not called via _() anywhere else
+    (MX Tools, System Menu, MX Updater Preferences), so xgettext
+    includes them in the main pot.
+  * debian/rules: override_dh_auto_build simplified -- pass PKG_VERSION
+    to l10n make; translated HTML copy, @VERSION@ substitution, and img
+    path rewriting all moved into l10n/Makefile; only the English
+    help.html @VERSION@ sed remains; override_dh_clean simplified
+    (l10n clean now removes help_*.html).
+  * debian/install: remove help_*.html glob (fails when no translated
+    files meet the threshold); install handled by optional loop in
+    override_dh_install.
+  * l10n/help-po/de.po, l10n/help-po/fr.po: add/correct translations
+    for restructured headings and new sections.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 06 Jul 2026 10:00:00 -0400
+
 mx-updater (26.07.02mx25~dev03) UNRELEASED; urgency=medium
 
   * help.html: annotate UI-term <b> elements with data-token="TOKEN"

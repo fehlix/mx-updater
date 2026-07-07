@@ -8,9 +8,9 @@
 # Guilherme Peev dos Santos <guilherme.peev@gmail.com>, 2025
 # José Vieira <jvieira33@sapo.pt>, 2025
 # fehlix, 2025
-# Nicolas Plim, 2026
 # cmenemrs <cmenemrs@gmail.com>, 2026
 # marcelo cripe <marcelocripe@gmail.com>, 2026
+# Nicolas Plim, 2026
 # 
 #, fuzzy
 msgid ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: marcelo cripe <marcelocripe@gmail.com>, 2026\n"
+"Last-Translator: Nicolas Plim, 2026\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/anticapitalista/teams/10162/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Ativar a Atualização Automática"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "Programar um intervalo para as atualizações automáticas"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -267,7 +267,7 @@ msgstr "Tipo de Atualização"
 
 #. TRANSLATORS: The label of the radio button for "full" upgrade mode.
 msgid "full"
-msgstr ""
+msgstr "completa"
 
 #. TRANSLATORS: The tooltip of the radio button "full" (full upgrade,
 #. recommended).
@@ -287,7 +287,7 @@ msgstr ""
 
 #. TRANSLATORS: The label of the radio button for "basic" upgrade mode.
 msgid "basic"
-msgstr ""
+msgstr "básica"
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -312,22 +312,22 @@ msgid "Select this to use nala package manager instead of apt."
 msgstr "Selecione para usar o gerenciador de pacotes Nala em vez do APT."
 
 msgid "daily"
-msgstr ""
+msgstr "diariamente"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "a cada 3 dias"
 
 msgid "weekly"
-msgstr ""
+msgstr "semanalmente"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "a cada 2 semanas"
 
 msgid "monthly"
-msgstr ""
+msgstr "mensalmente"
 
 msgid "never"
-msgstr ""
+msgstr "nunca"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.

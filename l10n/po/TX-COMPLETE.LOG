@@ -1,5 +1,5 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Tue, 30 Jun 2026 13:03:18 -0400
+# generated with tx-complete.sh at Mon, 06 Jul 2026 14:55:47 -0400
 # Number of translations: 140
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
@@ -13,22 +13,22 @@
      8		 140	   100%    	nl      	nl	Dutch; Flemish
      9		 140	   100%    	pl      	pl	Polish
     10		 140	   100%    	sv      	sv	Swedish
-    11		 102	    72%    	sq      	sq	Albanian
-    12		  94	    67%    	fi      	fi	Finnish
-    13		  94	    67%    	pt      	pt	Portuguese
-    14		  94	    67%    	pt_BR   	pt	Portuguese @ Brazil
+    11		 103	    73%    	pt_BR   	pt	Portuguese @ Brazil
+    12		 102	    72%    	sq      	sq	Albanian
+    13		  94	    67%    	fi      	fi	Finnish
+    14		  94	    67%    	pt      	pt	Portuguese
     15		  84	    60%    	hu      	hu	Hungarian
-    16		  62	    44%    	ja      	ja	Japanese
-    17		  58	    41%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
-    18		  54	    38%    	gl_ES   	gl	Galician @ Spain
-    19		  54	    38%    	it      	it	Italian
-    20		  54	    38%    	ru      	ru	Russian
-    21		  54	    38%    	sl      	sl	Slovenian
-    22		  54	    38%    	tr      	tr	Turkish
-    23		  53	    37%    	cs      	cs	Czech
-    24		  53	    37%    	hi      	hi	Hindi
-    25		  52	    37%    	nl_BE   	nl	Dutch; Flemish @ Belgium
-    26		  47	    33%    	da      	da	Danish
-    27		  45	    32%    	fil_PH  		Filipino @ Philippines
-    28		  35	    25%    	fa      	fa	Persian
-    29		  35	    25%    	lt      	lt	Lithuanian
+    16		  64	    45%    	lt      	lt	Lithuanian
+    17		  62	    44%    	ja      	ja	Japanese
+    18		  58	    41%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
+    19		  54	    38%    	gl_ES   	gl	Galician @ Spain
+    20		  54	    38%    	it      	it	Italian
+    21		  54	    38%    	ru      	ru	Russian
+    22		  54	    38%    	sl      	sl	Slovenian
+    23		  54	    38%    	tr      	tr	Turkish
+    24		  53	    37%    	cs      	cs	Czech
+    25		  53	    37%    	hi      	hi	Hindi
+    26		  52	    37%    	nl_BE   	nl	Dutch; Flemish @ Belgium
+    27		  47	    33%    	da      	da	Danish
+    28		  45	    32%    	fil_PH  		Filipino @ Philippines
+    29		  35	    25%    	fa      	fa	Persian

@@ -1,5 +1,10 @@
-mx-updater (26.07.02mx25~dev04) UNRELEASED; urgency=medium
+mx-updater (26.07.03mx25~dev04) UNRELEASED; urgency=medium
 
+  * Fix: replace updater_reload_action, updater_basic-upgrade_action and
+    updater_full-upgrade_action symlinks with real copies of updater_action.
+    pkexec resolves symlinks before exec, causing $0 (ME) to resolve to
+    "updater_action" instead of the symlink name, breaking the case branch.
+    (Sync with 26.07.02mx25 fix.)
   * help.html: tokenize section headings (h2/h3 with data-token) so
     they are never extracted as help-pot msgids; correct TOKEN REFERENCE
     comment for AUTOMATIC ("automatic" -> "automatic upgrade"); add

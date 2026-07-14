@@ -14,7 +14,7 @@ Icon=updater-mx
 Terminal=false
 Type=Application
 StartupNotify=false
-Categories=System;Qt;KDE;Utility;X-KDE-Utilities-Desktop;MX-Software;
+Categories=System;Qt;KDE;Utility;X-KDE-Utilities-Desktop;X-MX-Software;
 StartupWMClass=updater-mx
 # TRANSLATORS: Keywords for Menu Search
 #

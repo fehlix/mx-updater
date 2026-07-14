@@ -9,7 +9,7 @@ TryExec=/usr/bin/mx-updater-settings
 Icon=updater-mx-settings
 Terminal=false
 StartupNotify=false
-Categories=System;MX-Software;
+Categories=System;X-MX-Software;
 StartupWMClass=updater-mx-settings
 NoDisplay=false
 # TRANSLATORS: Keywords for Menu Search

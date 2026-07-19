@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import gzip
 import os
 import sys
 from subprocess import Popen, run
@@ -178,11 +179,7 @@ class UpdaterAbout():
                 Popen(['/usr/libexec/mx-updater/updater_action_run', 'updater_help'])
 
             if aboutBox.clickedButton() == changelogButton:
-                cmd = ['/usr/bin/python3', '/usr/libexec/mx-updater/updater-changelog.py']
-                r = run(cmd, capture_output=True, text=True)
-                #Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                #aboutBox.done()
-                #sys.exit(0)
+                _show_plain_text_doc(changelog_title, changelog_file)
 
     def displayAbout(self):
         app = QApplication(sys.argv)
@@ -248,28 +245,52 @@ def _get_close_text():
     return close_text
 
 
-def _show_plain_text_doc(title, path):
+def _apply_text_theme(text_edit, dark):
+    if dark:
+        bg, fg = '#1e1e1e', '#f0f0f0'
+    else:
+        bg, fg = '#ffffff', '#000000'
+    p = text_edit.palette()
+    p.setColor(QPalette.ColorRole.Base, QColor(bg))
+    p.setColor(QPalette.ColorRole.Text, QColor(fg))
+    text_edit.setPalette(p)
+
+
+def _show_plain_text_doc(title, path, dark=None):
     dialog = QDialog()
     dialog.setWindowTitle(title)
     dialog.setWindowFlags(QtCore.Qt.WindowType.Window)
     dialog.setWindowIcon(_APP_ICON)
     screen = QApplication.primaryScreen().availableGeometry()
-    dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+    dialog.resize(min(860, screen.width()), int(screen.height() * 0.65))
 
     text_edit = QTextEdit(dialog)
     text_edit.setReadOnly(True)
     text_edit.setFont(QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont))
     try:
-        with open(path, 'r', encoding='utf-8', errors='replace') as f:
+        opener = gzip.open if path.endswith('.gz') else open
+        with opener(path, 'rt', encoding='utf-8', errors='replace') as f:
             text_edit.setPlainText(f.read())
     except OSError:
         text_edit.setPlainText(_("Could not load %s") % path)
 
-    btn_close = QPushButton(_get_close_text())
+    current_dark = [dark if dark is not None else is_dark_theme()]
+    _apply_text_theme(text_edit, current_dark[0])
+
+    btn_toggle = QPushButton("\u2600" if current_dark[0] else "\u263e")
+    btn_close  = QPushButton(_get_close_text())
     btn_close.setIcon(btn_close.style().standardIcon(QStyle.StandardPixmap.SP_DialogCloseButton))
     btn_close.clicked.connect(dialog.close)
 
+    def toggle_theme():
+        current_dark[0] = not current_dark[0]
+        _apply_text_theme(text_edit, current_dark[0])
+        btn_toggle.setText("\u2600" if current_dark[0] else "\u263e")
+
+    btn_toggle.clicked.connect(toggle_theme)
+
     btn_row = QHBoxLayout()
+    btn_row.addWidget(btn_toggle)
     btn_row.addStretch()
     btn_row.addWidget(btn_close)
 
@@ -277,13 +298,6 @@ def _show_plain_text_doc(title, path):
     layout.addWidget(text_edit)
     layout.addLayout(btn_row)
     dialog.exec()
-
-
-def _on_doc_link_clicked(url):
-    if url.isLocalFile():
-        _show_plain_text_doc(url.toLocalFile(), url.toLocalFile())
-    else:
-        QDesktopServices.openUrl(url)
 
 
 def _apply_html_theme(browser, dark, html_path=None):
@@ -317,14 +331,20 @@ def _show_html_doc(title, html_path):
     dialog.setWindowFlags(QtCore.Qt.WindowType.Window)
     dialog.setWindowIcon(_APP_ICON)
     screen = QApplication.primaryScreen().availableGeometry()
-    dialog.resize(int(screen.width() * 0.6), int(screen.height() * 0.65))
+    dialog.resize(min(860, screen.width()), int(screen.height() * 0.65))
 
     browser = QTextBrowser(dialog)
     browser.setOpenLinks(False)
-    browser.anchorClicked.connect(_on_doc_link_clicked)
 
     viewer_dark = [is_dark_theme()]
     _apply_html_theme(browser, viewer_dark[0])
+
+    def on_link_clicked(url):
+        if url.isLocalFile():
+            _show_plain_text_doc(url.toLocalFile(), url.toLocalFile(), dark=viewer_dark[0])
+        else:
+            QDesktopServices.openUrl(url)
+    browser.anchorClicked.connect(on_link_clicked)
 
     if os.path.exists(html_path):
         browser.setSource(QUrl.fromLocalFile(html_path))

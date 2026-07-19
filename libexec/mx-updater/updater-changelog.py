@@ -207,7 +207,7 @@ def main():
         # ignore if not found
         pass
 
-    default_width  = 600
+    default_width  = 860
     default_height = 500
     window_title_updater = _("MX Updater")
     window_title_changelog = _('Changelog')

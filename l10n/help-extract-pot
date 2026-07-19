@@ -1,0 +1,236 @@
+#!/usr/bin/python3
+"""
+help-extract-pot -- extract translatable strings from help.md into a .pot file.
+
+Usage: help-extract-pot <help.md> <output.pot>
+
+Directive comments recognised in help.md:
+  <!-- %%TOKEN%%:md-text -->   In the next content block, replace 'md-text' with %%TOKEN%%.
+  <!-- TRANSLATOR: text -->    Add '#. TRANSLATOR: text' above the next msgid.
+  <!-- translate-no:text -->   Annotation only; no extraction action taken.
+  <!-- FIXME -->               Skip the next content block entirely.
+  Raw HTML lines (<tag ...>)   Not extracted; reset pending state.
+  <!-- translate:use domain -->       Before a heading: skip extraction; build-help-html
+                                     resolves the heading from that domain at build time,
+                                     using the heading text as the lookup key.
+  <!-- translate:use domain:key -->   Same, but use 'key' as the lookup key instead of the
+                                     heading text (e.g. heading "Upgrade Mode", domain key
+                                     "Upgrade mode").
+                                     Before a para/li block: no extraction change; only
+                                     affects token label resolution at build time.
+  Headings with token dir.     Extracted as the token replacement text (heading is unique
+                               to the help document, not in the main po).
+  Headings without token dir.  Extracted as plain text msgid.
+"""
+
+import re, sys, datetime
+
+_TOKEN_DIR     = re.compile(r'^<!--\s*%%([A-Z0-9_]+)%%:(.+?)\s*-->$')
+_TRANSLATE_USE = re.compile(r'^<!--\s*translate:use\s+([a-z0-9_-]+)(?::(.+?))?\s*-->$')
+_TRANSLATOR    = re.compile(r'^<!--\s*TRANSLATOR:\s*(.+?)\s*-->$')
+_HEADING    = re.compile(r'^(#{1,6})\s+(.+)$')
+_LIST_ITEM  = re.compile(r'^-\s+(.+)$')
+
+
+def _apply_tokens(text, directives):
+    for token, replacement in directives:
+        text = text.replace(replacement, f'%%{token}%%')
+    return text
+
+
+def _escape_po(s):
+    return s.replace('\\', '\\\\').replace('"', '\\"')
+
+
+def _write_pot(entries, source_name, output_path):
+    now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M+0000')
+    year = datetime.datetime.now().year
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(
+            f'# MX Updater help document -- translation template.\n'
+            f'# Copyright (C) {year} MX Linux\n'
+            f'# This file is distributed under the same license as the mx-updater package.\n'
+            f'#\n'
+            f'#, fuzzy\n'
+            f'msgid ""\n'
+            f'msgstr ""\n'
+            f'"Project-Id-Version: mx-updater-help\\n"\n'
+            f'"Report-Msgid-Bugs-To: \\n"\n'
+            f'"POT-Creation-Date: {now}\\n"\n'
+            f'"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"\n'
+            f'"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"\n'
+            f'"Language-Team: LANGUAGE <LL@li.org>\\n"\n'
+            f'"Language: \\n"\n'
+            f'"MIME-Version: 1.0\\n"\n'
+            f'"Content-Type: text/plain; charset=UTF-8\\n"\n'
+            f'"Content-Transfer-Encoding: 8bit\\n"\n'
+            f'\n'
+        )
+        for msgid, comments, lineno in entries:
+            for c in comments:
+                f.write(f'#. TRANSLATOR: {c}\n')
+            f.write(f'#: {source_name}:{lineno}\n')
+            escaped = _escape_po(msgid)
+            # Short strings on one line; long strings as msgid "" + continuations.
+            # Wrap at word boundaries; the space belongs to the end of the preceding
+            # chunk so concatenation reconstructs the original string exactly.
+            if len(escaped) + len('msgid ""') <= 78:
+                f.write(f'msgid "{escaped}"\n')
+            else:
+                f.write('msgid ""\n')
+                remaining = escaped
+                while remaining:
+                    if len(remaining) <= 76:
+                        f.write(f'"{remaining}"\n')
+                        break
+                    cut = remaining.rfind(' ', 0, 76)
+                    if cut > 0:
+                        f.write(f'"{remaining[:cut + 1]}"\n')
+                        remaining = remaining[cut + 1:]
+                    else:
+                        f.write(f'"{remaining[:76]}"\n')
+                        remaining = remaining[76:]
+            f.write('msgstr ""\n\n')
+
+
+def extract(md_path):
+    """Return list of (msgid, [translator_comments], lineno)."""
+    with open(md_path, encoding='utf-8') as f:
+        lines = f.readlines()
+
+    entries = []
+    tok_dirs = []       # pending [(token, replacement), ...]
+    xlat_coms = []      # pending translator comment strings
+    skip_next = False
+    use_main_next = False   # heading resolved from main mo; skip extraction
+    block = []          # lines of the current content block being accumulated
+    block_lineno = None
+    html_depth = 0      # depth inside a multi-line HTML block
+
+    def flush():
+        if block and not skip_next:
+            text = _apply_tokens(
+                ' '.join(ln.strip() for ln in block).strip(),
+                tok_dirs
+            )
+            if text:
+                entries.append((text, list(xlat_coms), block_lineno))
+
+    def reset():
+        tok_dirs.clear()
+        xlat_coms.clear()
+
+    for lineno, raw in enumerate(lines, 1):
+        line = raw.strip()
+
+        # ── inside a multi-line HTML block: skip until matching close tag ──
+        if html_depth > 0:
+            if re.match(r'^</(div|table|section|article|form)', line, re.I):
+                html_depth -= 1
+            continue
+
+        # ── blank line: flush block, reset all pending state ─────────────
+        if not line:
+            flush()
+            block.clear()
+            block_lineno = None
+            reset()
+            skip_next = False
+            use_main_next = False
+            continue
+
+        # ── raw HTML (not a comment): flush, skip, reset ──────────────────
+        if line.startswith('<') and not line.startswith('<!--'):
+            flush()
+            block.clear()
+            block_lineno = None
+            reset()
+            skip_next = False
+            # Detect block-level tags that span multiple lines (no close tag on
+            # this line, and not self-closing).
+            tag_m = re.match(r'^<([a-zA-Z][a-zA-Z0-9]*)', line)
+            if tag_m:
+                tag = tag_m.group(1).lower()
+                if f'</{tag}' not in line.lower() and not line.rstrip().endswith('/>'):
+                    html_depth += 1
+            continue
+
+        # ── token directive: <!-- %%TOKEN%%:replacement --> ───────────────
+        m = _TOKEN_DIR.match(line)
+        if m:
+            tok_dirs.append((m.group(1), m.group(2)))
+            continue
+
+        # ── translator comment: <!-- TRANSLATOR: ... --> ──────────────────
+        m = _TRANSLATOR.match(line)
+        if m:
+            xlat_coms.append(m.group(1))
+            continue
+
+        # ── translate:use / FIXME / other HTML comments ──────────────────
+        if line.startswith('<!--'):
+            if 'FIXME' in line:
+                skip_next = True
+            elif line.startswith('<!-- translate:use'):
+                if _TRANSLATE_USE.match(line):
+                    use_main_next = True  # heading: skip extraction; domain irrelevant here
+            # TRANSLATOR, translate-no, and other annotations: no action needed
+            continue
+
+        # ── heading ───────────────────────────────────────────────────────
+        m = _HEADING.match(line)
+        if m:
+            flush()
+            block.clear()
+            block_lineno = None
+            heading_text = m.group(2).strip()
+            saved_tok      = list(tok_dirs)
+            saved_xlat     = list(xlat_coms)
+            saved_use_main = use_main_next
+            reset()
+            skip_next     = False
+            use_main_next = False
+            if saved_use_main:
+                pass  # resolved from main mo at build time; not in help pot
+            elif saved_tok:
+                # Heading is unique to the help document (not in the main po).
+                # Extract the token replacement text as the msgid.
+                repl = saved_tok[0][1]
+                if repl:
+                    entries.append((repl, saved_xlat, lineno))
+            elif heading_text:
+                entries.append((heading_text, [], lineno))
+            continue
+
+        # ── list item ─────────────────────────────────────────────────────
+        m = _LIST_ITEM.match(line)
+        if m:
+            # Each list item is its own block; flush any preceding paragraph
+            flush()
+            block.clear()
+            block_lineno = lineno
+            block.append(m.group(1))
+            continue
+
+        # ── regular paragraph text ────────────────────────────────────────
+        if not block:
+            block_lineno = lineno
+        block.append(line)
+
+    # end of file
+    flush()
+    return entries
+
+
+def main():
+    if len(sys.argv) != 3:
+        sys.exit('Usage: help-extract-pot <help.md> <output.pot>')
+    md_path, pot_path = sys.argv[1], sys.argv[2]
+    entries = extract(md_path)
+    source_name = md_path.rsplit('/', 1)[-1]
+    _write_pot(entries, source_name, pot_path)
+    print(f'  {len(entries)} msgids -> {pot_path}')
+
+
+if __name__ == '__main__':
+    main()

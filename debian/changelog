@@ -1,3 +1,55 @@
+mx-updater (26.07.03mx25~dev05) UNRELEASED; urgency=medium
+
+  * l10n: replace po4a help pipeline with direct markdown-to-HTML rendering.
+    help.md is now the single source; build-help-html renders it with gettext
+    lookups from two domains (mx-updater for token labels, mx-updater-help for
+    document text); help-extract-pot extracts translatable strings into a pot
+    file for Transifex; heading-token strings are now also extracted so
+    section headings not covered by the main po can be translated in the help
+    po; build-help-html falls back to the help mo when the main mo has no
+    translation for a heading label.
+  * l10n/Makefile: restructured for new pipeline; added help and help-pot
+    targets; removed po4a, generate-help-in and annotate-help-pot calls.
+  * debian/rules: remove redundant @VERSION@ sed (now handled by Makefile).
+  * l10n/help-po/de.po: rewritten with proper UTF-8 (no HTML entities) and
+    msgids matching the new pot format (plain text + markdown tokens).
+  * updater-help.py, updater_about.py: remove hardcoded link colour from
+    embedded help CSS so _apply_html_theme() dark-mode colour (#58a6ff)
+    takes effect via defaultStyleSheet.
+  * l10n: replace implicit use-main comment with explicit
+    <!-- translate:use domain[:key] --> directive in help.md; domain
+    routing is now self-documenting and reusable for future help files;
+    build-help-html and help-extract-pot updated accordingly.
+  * l10n: add mx-launcher-l10n as third gettext domain; mo files compiled
+    at build time for HTML token resolution, deleted afterwards
+    (provided at runtime by the mx-launcher-l10n package).
+  * l10n/Makefile: add LAUNCHER_PO_DIR, LAUNCHER_LOCALE rules; help target
+    depends on launcher mo files and removes them after HTML generation.
+  * help.md: introduce %%SETTINGS%%, %%PREFERENCES%%, %%NALA%%,
+    %%SYNAPTIC%%, %%MX_PKG_INSTALLER%%, %%MX_REPO_MANAGER%% tokens;
+    remove (default)/(recommended) qualifiers from upgrade mode list;
+    reorder right-click menu (Preferences before About); remove circular
+    Help entry and "The upgrade window shows no packages" section.
+  * help-po/de.po: sync with all help.md token and content changes;
+    remove obsolete entries.
+  * updater-systray.py: replace get_app_name_from_path()/xdg.DesktopEntry
+    approach with mx-launcher-l10n gettext at runtime for MX Package
+    Installer and MX Repo Manager labels; Synaptic left as plain string.
+  * debian/control: remove python3-xdg from Depends (no longer used);
+    add mx-launcher-l10n to Depends (runtime right-click menu translation).
+  * updater-help.py, updater_about.py, updater-changelog.py: reduce default
+    window width from 60% of screen to 860px (approx. 2x the screenshot
+    image width) across help viewer, plain-text viewer, HTML viewer, and
+    changelog viewer.
+  * updater_about.py: show changelog in the plain-text viewer (with gzip
+    support) instead of spawning updater-changelog.py subprocess; removes
+    dependency on the separate LogViewer class for this use case.
+  * updater-help.py, updater_about.py: add light/dark toggle button to
+    plain-text viewer (_show_plain_text_doc); viewer inherits the current
+    toggle state of the parent help/license viewer when opened via a link.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 19 Jul 2026 10:00:00 -0400
+
 mx-updater (26.07.03mx25~dev04) UNRELEASED; urgency=medium
 
   * Fix: replace updater_reload_action, updater_basic-upgrade_action and

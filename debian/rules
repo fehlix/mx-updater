@@ -9,7 +9,6 @@ override_dh_auto_build:
 	$(MAKE) -C icons
 	$(MAKE) -C l10n PKG_VERSION=$(PKG_VERSION)
 	$(MAKE) -C version
-	sed -i "s|@VERSION@|$(PKG_VERSION)|g" share/doc/mx-updater/help.html
 	dh_auto_build
 
 override_dh_install:

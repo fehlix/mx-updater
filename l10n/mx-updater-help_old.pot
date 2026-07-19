@@ -1,0 +1,390 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-07-02 18:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: Content of: <html><body><h1>
+#: l10n/build/help.html.in:6 l10n/build/help.html.in:41
+msgid "MX Updater Help"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:43
+msgid ""
+"MX Updater monitors your MX Linux system for available package updates and "
+"shows a tray icon reflecting the current status. Desktop notifications can "
+"also be shown when updates become available."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:47
+msgid ""
+"Personal preferences can be adjusted by opening <b>MX Updater "
+"Preferences</b> from MX Tools, the System Menu, or the right-click menu of "
+"the tray icon."
+msgstr ""
+
+#. type: Attribute 'alt' of: <html><body><div><img>
+#: l10n/build/help.html.in:50
+msgid "Settings window"
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:51
+msgid "Upgrade Mode"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:53
+msgid "Controls the upgrade method and schedule:"
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:55
+msgid ""
+"%%FULL%% (recommended) -- upgrades packages and allows installing or "
+"removing packages where needed to satisfy dependencies."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:57
+msgid ""
+"%%BASIC%% -- upgrades packages but will not install new ones or remove "
+"existing ones. Safer, but some packages may be kept back."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:59
+msgid ""
+"<b>Nala</b> -- when checked, uses Nala instead of apt as the package manager "
+"(only shown if Nala is installed)."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:62
+msgid ""
+"The %%REFRESH%% dropdown sets how often the package list is fetched from the "
+"servers (daily, every 3 days, weekly, every 2 weeks, monthly, or never).  "
+"The %%AUTOMATIC%% checkbox enables unattended upgrades on the same schedule."
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:66
+msgid "Left-Click"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:68
+msgid ""
+"Choose what happens when you left-click the tray icon. Available choices "
+"depend on which applications are installed:"
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:71
+msgid ""
+"%%VIEW_AND_UPGRADE%% (default) -- opens the MX Updater upgrade window when "
+"updates are available; falls back to the first installed package manager "
+"otherwise."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:73
+msgid ""
+"<b>Synaptic</b> -- opens Synaptic Package Manager (always, with or without "
+"updates)."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:74
+msgid ""
+"<b>MX Package Installer</b> -- opens MX Package Installer (always, with or "
+"without updates)."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:76
+msgid ""
+"Middle-clicking the tray icon always opens MX Package Installer, regardless "
+"of the left-click setting."
+msgstr ""
+
+#. type: Content of: <html><body><h3>
+#: l10n/build/help.html.in:79
+msgid "Right-Click Menu"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:81
+msgid ""
+"Right-clicking the tray icon opens the context menu. Entries are only shown "
+"when the corresponding application is installed or condition applies:"
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:84
+msgid ""
+"%%VIEW_AND_UPGRADE%% -- open the upgrade window (shown when updates are "
+"available)."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:85
+msgid "<b>Synaptic</b> -- open Synaptic Package Manager."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:86
+msgid "<b>MX Package Installer</b> -- open MX Package Installer."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:87
+msgid "<b>MX Repo Manager</b> -- open MX Repo Manager."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:88
+msgid ""
+"%%CHECK_FOR_UPDATES%% -- open a terminal and fetch the latest package lists "
+"from the servers."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:89
+msgid ""
+"%%HISTORY%% -- open MX Updater History to view recently installed or removed "
+"packages."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:90
+msgid "%%AUTO_UPDATE_LOGS%% -- view the log of automatic upgrades."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:91
+msgid "%%AUTO_UPDATE_DPKG_LOGS%% -- view the dpkg log of automatic upgrades."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:92
+msgid "%%HELP%% -- this document."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:93
+msgid "%%PREFERENCES%% -- open the MX Updater Preferences window."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:94
+msgid "%%ABOUT%% -- version information, license and changelog."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:95
+msgid ""
+"%%RESTART_MX_UPDATER%% -- restart the tray icon process. Useful after manual "
+"configuration changes; will show a notification if updates are available."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:97
+msgid ""
+"%%HIDE_WHEN_NO_UPDATES%% -- only shown when the system is up to date; "
+"toggles whether the tray icon is hidden when there are no updates (not "
+"available on KDE)."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:99
+msgid "%%QUIT%% -- close MX Updater."
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:102
+msgid "Icons"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:104
+msgid ""
+"Choose the icon set used in the system tray. Each set shows two icons: the "
+"left icon is used when updates are available, the right icon when the system "
+"is up to date."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:107
+msgid ""
+"Note: with %%BASIC_UPGRADE%% selected, packages that would require "
+"installing or removing other packages are kept back. When all remaining "
+"updates are such kept-back packages the up-to-date (right) icon is shown."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:110
+msgid ""
+"The %%TRANSPARENT_WIREFRAME%% toggle makes the no-updates icon transparent "
+"with either black or white wire lines. Use black wires on a light panel, "
+"white wires on a dark panel, so the icon does not disappear into the panel "
+"background."
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:114
+msgid ""
+"A local administrator can define a custom icon set by placing a "
+"configuration file at <code>/usr/local/etc/mx-updater.conf</code>. An "
+"example with full documentation is provided in <a "
+"href=\"file:///usr/share/doc/mx-updater/examples/admin-mx-updater.conf\">/usr/share/doc/mx-updater/examples/admin-mx-updater.conf</a>."
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:119
+msgid "Other"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:121
+msgid ""
+"Most entries in this section have a tooltip with further details -- hover "
+"over the label to read it."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:124
+msgid ""
+"%%TERMINAL_SIZE%% -- size of the terminal window that opens during "
+"upgrades.  Options: <i>default</i> (2/3 of screen, capped at 960x600 on wide "
+"displays), <i>one-third</i>, <i>half</i>, <i>two-thirds</i>, "
+"<i>three-quarters</i>, <i>nine-tenths</i>, or <i>own</i> (no size hint -- "
+"the terminal uses its own saved size and position)."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:129
+msgid ""
+"%%POSITION%% -- screen position of the terminal window: center, top-left, "
+"top-right, bottom-left, or bottom-right. Not available on Wayland or when "
+"size is set to <i>own</i>."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:132
+msgid ""
+"%%SKIP_UPGRADE_CONFIRMATION%% -- passes <code>--assume-yes</code> to apt or "
+"Nala, automatically answering yes to the \"Do you want to continue?\" "
+"prompt.  Note: configuration questions from individual package scripts "
+"(debconf) may still appear -- this is normal and not controlled by this "
+"setting.  Use with care: on a yes answer apt will proceed even if the "
+"upgrade would remove packages to resolve a dependency conflict."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:138
+msgid ""
+"%%DESKTOP_NOTIFICATIONS%% -- show a desktop notification when updates become "
+"available."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:140
+msgid ""
+"%%AUTOSTART_DELAY%% -- wait a short time after login before starting, so the "
+"desktop is fully set up before MX Updater appears in the tray."
+msgstr ""
+
+#. type: Content of: <html><body><ul><li>
+#: l10n/build/help.html.in:142
+msgid ""
+"%%HIDE_WHEN_NO_UPDATES%% -- hide the tray icon when the system is up to "
+"date. Not available on KDE/Plasma."
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:146
+msgid "Authentication"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:148
+msgid ""
+"Authentication is required to upgrade packages. A password prompt will "
+"appear."
+msgstr ""
+
+#. type: Content of: <html><body><h2>
+#: l10n/build/help.html.in:150
+msgid "Troubleshooting"
+msgstr ""
+
+#. type: Content of: <html><body><h3>
+#: l10n/build/help.html.in:152
+msgid "The tray icon does not appear"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:153
+msgid ""
+"MX Updater starts automatically at login via an XDG autostart entry "
+"installed with the package. If the icon is missing it can be started "
+"manually from <b>MX Tools</b> or the <b>System Menu</b>. On some desktops "
+"the system tray area must be added to the panel manually."
+msgstr ""
+
+#. type: Content of: <html><body><h3>
+#: l10n/build/help.html.in:158
+msgid "A password is asked every time I click Upgrade"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:159
+msgid "This is expected -- authentication is always required for upgrades."
+msgstr ""
+
+#. type: Content of: <html><body><h3>
+#: l10n/build/help.html.in:161
+msgid "Updates are not detected"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:162
+msgid ""
+"Use %%CHECK_FOR_UPDATES%% from the right-click menu to force an immediate "
+"check. The terminal window will show any errors, including a locked apt "
+"database from another running package manager."
+msgstr ""
+
+#. type: Content of: <html><body><h3>
+#: l10n/build/help.html.in:166
+msgid "The upgrade window shows no packages"
+msgstr ""
+
+#. type: Content of: <html><body><p>
+#: l10n/build/help.html.in:167
+msgid ""
+"Your system is up to date, or the last check has not completed yet.  Use "
+"%%CHECK_FOR_UPDATES%% to refresh."
+msgstr ""
+
+#. type: Content of: <html><body><div>
+#: l10n/build/help.html.in:171
+msgid ""
+"MX Updater -- Version @VERSION@ -- Copyright (c) MX Linux -- <a "
+"href=\"https://mxlinux.org\">https://mxlinux.org</a>"
+msgstr ""

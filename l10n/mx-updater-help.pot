@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# MX Updater help document -- translation template.
+# Copyright (C) 2026 MX Linux
+# This file is distributed under the same license as the mx-updater package.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-02 18:24+0200\n"
+"Project-Id-Version: mx-updater-help\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-19 00:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,228 +16,173 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Content of: <html><body><h1>
-#: l10n/build/help.html.in:6 l10n/build/help.html.in:41
-msgid "MX Updater Help"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:43
+#. TRANSLATOR: %%SETTINGS%% is the MX Updater Settings label in MX Tools and the System Menu; %%PREFERENCES%% is the Preferences entry in the right-click menu; keep both exactly as written
+#: help.md:7
 msgid ""
 "MX Updater monitors your MX Linux system for available package updates and "
 "shows a tray icon reflecting the current status. Desktop notifications can "
-"also be shown when updates become available."
+"also be shown when updates become available. Personal preferences can be "
+"adjusted by opening %%SETTINGS%% from MX Tools, the System Menu, or "
+"%%PREFERENCES%% from the right-click menu of the tray icon."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:47
-msgid ""
-"Personal preferences can be adjusted by opening <b>MX Updater "
-"Preferences</b> from MX Tools, the System Menu, or the right-click menu of "
-"the tray icon."
-msgstr ""
-
-#. type: Attribute 'alt' of: <html><body><div><img>
-#: l10n/build/help.html.in:50
-msgid "Settings window"
-msgstr ""
-
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:51
-msgid "Upgrade Mode"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:53
+#: help.md:17
 msgid "Controls the upgrade method and schedule:"
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:55
+#. TRANSLATOR: %%FULL%% is the "full" upgrade mode label in the settings
+#: help.md:21
 msgid ""
-"%%FULL%% (recommended) -- upgrades packages and allows installing or "
-"removing packages where needed to satisfy dependencies."
+"%%FULL%% -- upgrades packages and allows installing or removing packages "
+"where needed to satisfy dependencies."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:57
+#. TRANSLATOR: %%BASIC%% is the "basic" upgrade mode label in the settings
+#: help.md:25
 msgid ""
 "%%BASIC%% -- upgrades packages but will not install new ones or remove "
 "existing ones. Safer, but some packages may be kept back."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:59
+#. TRANSLATOR: %%NALA%% is the name of the package manager "Nala"; do not translate it. The word "Nala" in the description is also a proper name and should not be translated.
+#: help.md:29
 msgid ""
-"<b>Nala</b> -- when checked, uses Nala instead of apt as the package manager "
+"%%NALA%% -- when checked, uses Nala instead of apt as the package manager "
 "(only shown if Nala is installed)."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:62
+#. TRANSLATOR: %%REFRESH%% is the refresh interval dropdown label; %%AUTOMATIC_UPGRADE%% is the automatic upgrade checkbox label
+#: help.md:34
 msgid ""
-"The %%REFRESH%% dropdown sets how often the package list is fetched from the "
-"servers (daily, every 3 days, weekly, every 2 weeks, monthly, or never).  "
-"The %%AUTOMATIC%% checkbox enables unattended upgrades on the same schedule."
+"The %%REFRESH%% dropdown sets how often the package list is fetched from "
+"the servers (daily, every 3 days, weekly, every 2 weeks, monthly, or "
+"never). The %%AUTOMATIC_UPGRADE%% checkbox enables unattended upgrades on "
+"the same schedule."
 msgstr ""
 
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:66
-msgid "Left-Click"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:68
+#: help.md:41
 msgid ""
 "Choose what happens when you left-click the tray icon. Available choices "
 "depend on which applications are installed:"
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:71
+#. TRANSLATOR: %%VIEW_AND_UPGRADE%% is the "View and Upgrade" left-click mode label
+#: help.md:46
 msgid ""
-"%%VIEW_AND_UPGRADE%% (default) -- opens the MX Updater upgrade window when "
-"updates are available; falls back to the first installed package manager "
-"otherwise."
+"%%VIEW_AND_UPGRADE%% -- opens the MX Updater upgrade window when updates "
+"are available; falls back to the first installed package manager otherwise."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:73
+#. TRANSLATOR: %%SYNAPTIC%% is the name of the package manager "Synaptic"; do not translate it
+#: help.md:50
 msgid ""
-"<b>Synaptic</b> -- opens Synaptic Package Manager (always, with or without "
+"%%SYNAPTIC%% -- opens Synaptic Package Manager (always, with or without "
 "updates)."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:74
+#. TRANSLATOR: %%MX_PKG_INSTALLER%% is the application name; keep it exactly as written
+#: help.md:55
 msgid ""
-"<b>MX Package Installer</b> -- opens MX Package Installer (always, with or "
-"without updates)."
+"%%MX_PKG_INSTALLER%% -- opens MX Package Installer (always, with or without "
+"updates)."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:76
+#: help.md:57
 msgid ""
 "Middle-clicking the tray icon always opens MX Package Installer, regardless "
 "of the left-click setting."
 msgstr ""
 
-#. type: Content of: <html><body><h3>
-#: l10n/build/help.html.in:79
+#: help.md:59
 msgid "Right-Click Menu"
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:81
+#: help.md:61
 msgid ""
 "Right-clicking the tray icon opens the context menu. Entries are only shown "
 "when the corresponding application is installed or condition applies:"
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:84
+#: help.md:65
 msgid ""
 "%%VIEW_AND_UPGRADE%% -- open the upgrade window (shown when updates are "
 "available)."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:85
-msgid "<b>Synaptic</b> -- open Synaptic Package Manager."
+#: help.md:68
+msgid "%%SYNAPTIC%% -- open Synaptic Package Manager."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:86
-msgid "<b>MX Package Installer</b> -- open MX Package Installer."
+#: help.md:72
+msgid "%%MX_PKG_INSTALLER%% -- open MX Package Installer."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:87
-msgid "<b>MX Repo Manager</b> -- open MX Repo Manager."
+#. TRANSLATOR: %%MX_REPO_MANAGER%% is the application name "MX Repo Manager"; keep it exactly as written
+#: help.md:77
+msgid "%%MX_REPO_MANAGER%% -- open MX Repo Manager."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:88
+#: help.md:80
 msgid ""
 "%%CHECK_FOR_UPDATES%% -- open a terminal and fetch the latest package lists "
 "from the servers."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:89
+#: help.md:83
 msgid ""
-"%%HISTORY%% -- open MX Updater History to view recently installed or removed "
-"packages."
+"%%HISTORY%% -- open MX Updater History to view recently installed or "
+"removed packages."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:90
+#: help.md:86
 msgid "%%AUTO_UPDATE_LOGS%% -- view the log of automatic upgrades."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:91
+#: help.md:89
 msgid "%%AUTO_UPDATE_DPKG_LOGS%% -- view the dpkg log of automatic upgrades."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:92
-msgid "%%HELP%% -- this document."
-msgstr ""
-
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:93
+#: help.md:92
 msgid "%%PREFERENCES%% -- open the MX Updater Preferences window."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:94
+#: help.md:95
 msgid "%%ABOUT%% -- version information, license and changelog."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:95
+#: help.md:98
 msgid ""
-"%%RESTART_MX_UPDATER%% -- restart the tray icon process. Useful after manual "
-"configuration changes; will show a notification if updates are available."
+"%%RESTART_MX_UPDATER%% -- restart the tray icon process. Useful after "
+"manual configuration changes; will show a notification if updates are "
+"available."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:97
+#: help.md:101
 msgid ""
 "%%HIDE_WHEN_NO_UPDATES%% -- only shown when the system is up to date; "
 "toggles whether the tray icon is hidden when there are no updates (not "
 "available on KDE)."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:99
+#: help.md:104
 msgid "%%QUIT%% -- close MX Updater."
 msgstr ""
 
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:102
-msgid "Icons"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:104
+#: help.md:109
 msgid ""
 "Choose the icon set used in the system tray. Each set shows two icons: the "
-"left icon is used when updates are available, the right icon when the system "
-"is up to date."
+"left icon is used when updates are available, the right icon when the "
+"system is up to date."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:107
+#: help.md:113
 msgid ""
 "Note: with %%BASIC_UPGRADE%% selected, packages that would require "
 "installing or removing other packages are kept back. When all remaining "
 "updates are such kept-back packages the up-to-date (right) icon is shown."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:110
+#: help.md:118
 msgid ""
 "The %%TRANSPARENT_WIREFRAME%% toggle makes the no-updates icon transparent "
 "with either black or white wire lines. Use black wires on a light panel, "
@@ -245,146 +190,115 @@ msgid ""
 "background."
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:114
+#. TRANSLATOR: %%CONF_FILE%% is a file path; %%ADMIN_CONF_LINK%% is a documentation link; keep both exactly as written
+#: help.md:125
 msgid ""
 "A local administrator can define a custom icon set by placing a "
-"configuration file at <code>/usr/local/etc/mx-updater.conf</code>. An "
-"example with full documentation is provided in <a "
-"href=\"file:///usr/share/doc/mx-updater/examples/admin-mx-updater.conf\">/usr/share/doc/mx-updater/examples/admin-mx-updater.conf</a>."
+"configuration file at %%CONF_FILE%%. An example with full documentation is "
+"provided in %%ADMIN_CONF_LINK%%."
 msgstr ""
 
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:119
-msgid "Other"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:121
+#: help.md:132
 msgid ""
 "Most entries in this section have a tooltip with further details -- hover "
 "over the label to read it."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:124
+#. TRANSLATOR: %%TERMINAL_SIZE%% and %%SIZE_*%% are combo box labels in the settings; keep them exactly as written
+#: help.md:143
 msgid ""
 "%%TERMINAL_SIZE%% -- size of the terminal window that opens during "
-"upgrades.  Options: <i>default</i> (2/3 of screen, capped at 960x600 on wide "
-"displays), <i>one-third</i>, <i>half</i>, <i>two-thirds</i>, "
-"<i>three-quarters</i>, <i>nine-tenths</i>, or <i>own</i> (no size hint -- "
-"the terminal uses its own saved size and position)."
+"upgrades. Options: %%SIZE_DEFAULT%% (2/3 of screen, capped at 960x600 on "
+"wide displays), %%SIZE_ONE_THIRD%%, %%SIZE_HALF%%, %%SIZE_TWO_THIRDS%%, "
+"%%SIZE_THREE_QUARTERS%%, %%SIZE_NINE_TENTHS%%, or %%SIZE_OWN%% (no size "
+"hint -- the terminal uses its own saved size and position)."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:129
+#. TRANSLATOR: %%POSITION%% is the terminal position label; %%SIZE_OWN%% is a size combo box entry; keep them exactly as written
+#: help.md:148
 msgid ""
 "%%POSITION%% -- screen position of the terminal window: center, top-left, "
 "top-right, bottom-left, or bottom-right. Not available on Wayland or when "
-"size is set to <i>own</i>."
+"size is set to %%SIZE_OWN%%."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:132
+#: help.md:151
 msgid ""
-"%%SKIP_UPGRADE_CONFIRMATION%% -- passes <code>--assume-yes</code> to apt or "
-"Nala, automatically answering yes to the \"Do you want to continue?\" "
-"prompt.  Note: configuration questions from individual package scripts "
-"(debconf) may still appear -- this is normal and not controlled by this "
-"setting.  Use with care: on a yes answer apt will proceed even if the "
-"upgrade would remove packages to resolve a dependency conflict."
+"%%TERMINAL_AUTO_CLOSE%% -- close the terminal automatically after the "
+"specified idle time once an upgrade completes."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:138
+#. TRANSLATOR: %%SKIP_UPGRADE_CONFIRMATION%% is a UI label; %%OPT_ASSUME_YES%% is a command-line option, do not translate it
+#: help.md:156
 msgid ""
-"%%DESKTOP_NOTIFICATIONS%% -- show a desktop notification when updates become "
-"available."
+"%%SKIP_UPGRADE_CONFIRMATION%% -- passes %%OPT_ASSUME_YES%% to apt or Nala, "
+"automatically answering yes to the \"Do you want to continue?\" prompt. "
+"Note: configuration questions from individual package scripts (debconf) may "
+"still appear -- this is normal and not controlled by this setting. Use with "
+"care: on a yes answer apt will proceed even if the upgrade would remove "
+"packages to resolve a dependency conflict."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:140
+#: help.md:159
 msgid ""
-"%%AUTOSTART_DELAY%% -- wait a short time after login before starting, so the "
-"desktop is fully set up before MX Updater appears in the tray."
+"%%DESKTOP_NOTIFICATIONS%% -- show a desktop notification when updates "
+"become available."
 msgstr ""
 
-#. type: Content of: <html><body><ul><li>
-#: l10n/build/help.html.in:142
+#: help.md:162
+msgid ""
+"%%AUTOSTART_DELAY%% -- wait a short time after login before starting, so "
+"the desktop is fully set up before MX Updater appears in the tray."
+msgstr ""
+
+#: help.md:165
 msgid ""
 "%%HIDE_WHEN_NO_UPDATES%% -- hide the tray icon when the system is up to "
 "date. Not available on KDE/Plasma."
 msgstr ""
 
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:146
+#: help.md:167
 msgid "Authentication"
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:148
+#: help.md:169
 msgid ""
 "Authentication is required to upgrade packages. A password prompt will "
 "appear."
 msgstr ""
 
-#. type: Content of: <html><body><h2>
-#: l10n/build/help.html.in:150
+#: help.md:171
 msgid "Troubleshooting"
 msgstr ""
 
-#. type: Content of: <html><body><h3>
-#: l10n/build/help.html.in:152
+#: help.md:173
 msgid "The tray icon does not appear"
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:153
+#: help.md:177
 msgid ""
 "MX Updater starts automatically at login via an XDG autostart entry "
 "installed with the package. If the icon is missing it can be started "
-"manually from <b>MX Tools</b> or the <b>System Menu</b>. On some desktops "
-"the system tray area must be added to the panel manually."
+"manually from %%MX_TOOLS%% or the %%SYSTEM_MENU%%. On some desktops the "
+"system tray area must be added to the panel manually."
 msgstr ""
 
-#. type: Content of: <html><body><h3>
-#: l10n/build/help.html.in:158
+#: help.md:181
 msgid "A password is asked every time I click Upgrade"
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:159
+#: help.md:183
 msgid "This is expected -- authentication is always required for upgrades."
 msgstr ""
 
-#. type: Content of: <html><body><h3>
-#: l10n/build/help.html.in:161
+#: help.md:185
 msgid "Updates are not detected"
 msgstr ""
 
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:162
+#: help.md:188
 msgid ""
 "Use %%CHECK_FOR_UPDATES%% from the right-click menu to force an immediate "
 "check. The terminal window will show any errors, including a locked apt "
 "database from another running package manager."
 msgstr ""
 
-#. type: Content of: <html><body><h3>
-#: l10n/build/help.html.in:166
-msgid "The upgrade window shows no packages"
-msgstr ""
-
-#. type: Content of: <html><body><p>
-#: l10n/build/help.html.in:167
-msgid ""
-"Your system is up to date, or the last check has not completed yet.  Use "
-"%%CHECK_FOR_UPDATES%% to refresh."
-msgstr ""
-
-#. type: Content of: <html><body><div>
-#: l10n/build/help.html.in:171
-msgid ""
-"MX Updater -- Version @VERSION@ -- Copyright (c) MX Linux -- <a "
-"href=\"https://mxlinux.org\">https://mxlinux.org</a>"
-msgstr ""

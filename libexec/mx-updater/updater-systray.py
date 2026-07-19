@@ -126,7 +126,6 @@ from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QIcon, QPixmap, QAction,  QCursor
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtCore import QSettings
-from xdg.DesktopEntry import DesktopEntry
 
 from pprint import pprint
 from typing import Any, Dict, List, Set, Tuple, Optional
@@ -181,6 +180,10 @@ class L10N():
     )
 
     ta = gettext.translation(domain=LOCALE_DOMAIN_APT,
+                             localedir=LOCALE_DIR, fallback=True
+    )
+
+    tl = gettext.translation(domain='mx-launcher-l10n',
                              localedir=LOCALE_DIR, fallback=True
     )
 
@@ -1427,20 +1430,13 @@ class SystemTrayIcon(QSystemTrayIcon):
         self.menu = QMenu()
         self.tray_menu = self.menu
 
-        synapic_label = self.get_app_name_from_path(
-            "/usr/share/applications/synaptic.desktop"
-            ) or _t("Synaptic Package Manager")
+        synapic_label = "Synaptic"
         logger.debug(f"Synaptic:'{synapic_label}'")
 
-        packageinstaller_label = self.get_app_name_from_path(
-            "/usr/share/applications/mx-packageinstaller.desktop"
-            ) or _t("MX Package Installer")
+        packageinstaller_label = _launcher("MX Package Installer")
         logger.debug(f"MXPI:'{packageinstaller_label}'")
 
-        repo_manager_label = self.get_app_name_from_path(
-            "/usr/share/applications/mx-repo-manager.desktop"
-            ) or _t("MX Repo Manager")
-
+        repo_manager_label = _launcher("MX Repo Manager")
         logger.debug(f"REPO:'{repo_manager_label}'")
 
         self.menu_items = [
@@ -1649,14 +1645,6 @@ class SystemTrayIcon(QSystemTrayIcon):
 
         release_runtime_lock(self.run_time_path)
         logger.debug("SystemTrayIcon is cleaning up...")
-
-    def get_app_name_from_path(self, fullpath: str) -> str:
-        """
-        fullpath: absolute path to a .desktop file,
-                  e.g. '/usr/share/applications/mx-package-installer.desktop'
-        """
-        entry = DesktopEntry(fullpath)
-        return entry.getName()
 
     def make_launcher(self, tag_name: str):
         """
@@ -2241,6 +2229,7 @@ if __name__ == "__main__":
     _t = _
     _a = L10N().ta.gettext
     ngettext = L10N().tn.ngettext
+    _launcher = L10N().tl.gettext
 
     # start main on session bus
     logger.debug("Starting Apt Systray Icon")

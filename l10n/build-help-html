@@ -1,154 +1,367 @@
 #!/usr/bin/python3
-import gettext, os, re, sys
+"""
+build-help-html -- render help.md to a translated HTML help file.
 
-# Each entry: (msgid_for_gettext_lookup, kind)
-#   kind 'b'     -- look up via gettext, wrap in <b>
-#   kind 'i'     -- look up via gettext, wrap in <i>
-#   kind 'b_lit' -- literal proper name in <b>, no lookup
-#   kind 'code'  -- literal in <code>, no lookup
-#   kind 'raw'   -- raw HTML string, no lookup
-TOKENS = {
-    # UI labels resolved via gettext -> <b>
-    'PREFS_WINDOW':           ('MX Updater Preferences',                 'b'),
-    'FULL':                   ('full',                                    'b'),
-    'BASIC':                  ('basic',                                   'b'),
-    'REFRESH':                ('refresh',                                 'b'),
-    'AUTOMATIC':              ('automatic upgrade',                        'b'),
-    'VIEW_AND_UPGRADE':       ('View and Upgrade',                        'b'),
-    'CHECK_FOR_UPDATES':      ('Check for Updates',                       'b'),
-    'HISTORY':                ('History',                                 'b'),
-    'AUTO_UPDATE_LOGS':       ('Auto-update log(s)',                      'b'),
-    'AUTO_UPDATE_DPKG_LOGS':  ('Auto-update dpkg log(s)',                 'b'),
-    'HELP':                   ('Help',                                    'b'),
-    'PREFERENCES':            ('Preferences',                             'b'),
-    'ABOUT':                  ('About',                                   'b'),
-    'RESTART_MX_UPDATER':     ('Restart MX Updater',                     'b'),
-    'HIDE_WHEN_NO_UPDATES':   ('hide when no updates',                   'b'),
-    'QUIT':                   ('Quit',                                    'b'),
-    'BASIC_UPGRADE':          ('basic upgrade',                           'b'),
-    'TRANSPARENT_WIREFRAME':  ('transparent black/white wireframe',       'b'),
-    'TERMINAL_SIZE':          ('terminal size',                           'b'),
-    'POSITION':               ('position',                                'b'),
-    'SKIP_UPGRADE_CONFIRMATION': ('skip upgrade confirmation',            'b'),
-    'DESKTOP_NOTIFICATIONS':  ('desktop notifications',                   'b'),
-    'AUTOSTART_DELAY':        ('autostart delay',                         'b'),
-    'MX_TOOLS':               ('MX Tools',                               'b'),
-    'SYSTEM_MENU':            ('System Menu',                             'b'),
-    # Heading tokens -- resolved via gettext, wrapped in heading tag by substitute()
-    'UPGRADE_MODE':           ('Upgrade Mode',                            'b'),
-    'LEFT_CLICK':             ('Left-Click',                              'b'),
-    'RIGHT_CLICK_MENU':       ('Right-Click Menu',                        'b'),
-    'ICONS':                  ('Icons',                                   'b'),
-    'OTHER':                  ('Other',                                   'b'),
-    # Terminal size combo-box labels resolved via gettext -> <i>
-    'SIZE_DEFAULT':           ('default',                                 'i'),
-    'SIZE_ONE_THIRD':         ('1/3 screen',                              'i'),
-    'SIZE_HALF':              ('1/2 screen',                              'i'),
-    'SIZE_TWO_THIRDS':        ('2/3 screen',                              'i'),
-    'SIZE_THREE_QUARTERS':    ('3/4 screen',                              'i'),
-    'SIZE_NINE_TENTHS':       ('9/10 screen',                             'i'),
-    'SIZE_OWN':               ('own',                                     'i'),
-    # Proper names in <b> -- not translated
-    'NALA':                   ('Nala',                                    'b_lit'),
-    'SYNAPTIC':               ('Synaptic',                                'b_lit'),
-    'MX_PKG_INSTALLER':       ('MX Package Installer',                    'b_lit'),
-    'MX_REPO_MANAGER':        ('MX Repo Manager',                         'b_lit'),
-    # Code spans -- not translated
-    'CONF_FILE':              ('/usr/local/etc/mx-updater.conf',          'code'),
-    'OPT_ASSUME_YES':         ('--assume-yes',                            'code'),
-    # Raw HTML link -- not translated
-    'ADMIN_CONF_LINK':        ('<a href="file:///usr/share/doc/mx-updater/examples/admin-mx-updater.conf">'
-                               '/usr/share/doc/mx-updater/examples/admin-mx-updater.conf</a>', 'raw'),
-}
+Usage: build-help-html <help.md> <output.html> <locale_dir> <lang>
 
-_CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         '../share/doc/mx-updater/help.css')
+  locale_dir  root of the locale tree (LANG/LC_MESSAGES/*.mo lives here)
+  lang        language code, e.g. 'de', 'pt_BR'; pass '' or 'en' for English
+
+Translations come from gettext domains loaded from locale_dir:
+  mx-updater-help   help document strings (paragraphs, plain headings)
+  mx-updater        main app strings (UI labels, menu entries)
+  mx-launcher-l10n  MX launcher application names
+
+Directive comments recognised in help.md control which domain each string
+comes from.  Everything is declared in the .md file; no domain routing is
+hard-coded in this script.
+
+  <!-- %%TOKEN%%:md-text -->
+      Define a token.  At extraction time 'md-text' is replaced by %%TOKEN%%
+      in the msgid.  At render time %%TOKEN%% is resolved back to a translated
+      label via the block's active domain (default: mx-updater).
+
+  <!-- translate:use <domain> -->
+  <!-- translate:use <domain>:<key> -->
+      For the NEXT heading: resolve from <domain> instead of mx-updater-help.
+      The optional :<key> overrides the lookup key (useful when the domain has
+      a different capitalisation from the heading text, e.g. "Upgrade mode"
+      vs heading text "Upgrade Mode").
+      For the NEXT para/li block: resolve %%TOKEN%% labels from <domain>
+      instead of the default mx-updater domain.
+
+  <!-- TRANSLATOR: text -->
+      Add a '#. TRANSLATOR: text' comment above the next extracted msgid.
+
+  <!-- FIXME -->
+      Skip the next content block entirely (not extracted, not rendered).
+"""
+
+import re, sys, html as _html, gettext as _gettext
+
+_TOKEN_DIR     = re.compile(r'^<!--\s*%%([A-Z0-9_]+)%%:(.+?)\s*-->$')
+_TRANSLATE_USE = re.compile(r'^<!--\s*translate:use\s+([a-z0-9_-]+)(?::(.+?))?\s*-->$')
+_HEADING       = re.compile(r'^(#{1,6})\s+(.+)$')
+_LIST_ITEM     = re.compile(r'^-\s+(.+)$')
+_HTAG          = {1: 'h1', 2: 'h2', 3: 'h3', 4: 'h4', 5: 'h5', 6: 'h6'}
 
 
-def get_translator(localedir, lang):
+# ─── gettext ──────────────────────────────────────────────────────────────────
+
+def _make_mo(locale_dir, lang, domain):
+    if not lang or lang == 'en':
+        return lambda s: s
     try:
-        t = gettext.translation('mx-updater', localedir=localedir, languages=[lang])
+        t = _gettext.translation(domain, localedir=locale_dir, languages=[lang])
         return t.gettext
     except FileNotFoundError:
         return lambda s: s
 
 
-def substitute(html, translate):
-    # Resolve heading markers placed by generate-help-in before the comment split.
-    # Po4a preserves these comments verbatim; we convert them back to proper headings.
-    def _heading_replacer(m):
-        tag, token = m.group(1), m.group(2)
-        entry = TOKENS.get(token)
-        if entry is None:
-            return f'<{tag}>{token}</{tag}>'
-        text, kind = entry
-        translated = translate(text) if kind in ('b', 'i') else text
-        return f'<{tag}>{translated}</{tag}>'
+# ─── token resolution ────────────────────────────────────────────────────────
 
-    html = re.sub(r'<!-- HEADING:(h[1-6]):([A-Z0-9_]+) -->', _heading_replacer, html)
-
-    def replacer(m):
-        token = m.group(1)
-        entry = TOKENS.get(token)
-        if entry is None:
-            return m.group(0)
-        text, kind = entry
-        if kind == 'b':
-            return f'<b>{translate(text)}</b>'
-        if kind == 'i':
-            return f'<i>{translate(text)}</i>'
-        if kind == 'b_lit':
-            return f'<b>{text}</b>'
-        if kind == 'code':
-            return f'<code>{text}</code>'
-        if kind == 'raw':
-            return text
-        return m.group(0)
-
-    def process(segment):
-        return re.sub(r'%%([A-Z0-9_]+)%%', replacer, segment)
-
-    parts = re.split(r'(<!--.*?-->)', html, flags=re.DOTALL)
-    return ''.join(process(p) if not p.startswith('<!--') else p for p in parts)
+def _collect_tokens(lines):
+    """First pass: map every token name to its (first) replacement text."""
+    table = {}
+    for raw in lines:
+        m = _TOKEN_DIR.match(raw.strip())
+        if m:
+            table.setdefault(m.group(1), m.group(2))
+    return table
 
 
-def to_html5(html):
-    html = re.sub(r'<\?xml[^?]*\?>\s*', '', html)
-    html = re.sub(r'<!DOCTYPE\b[^>]*>\s*', '', html, flags=re.IGNORECASE)
-    html = re.sub(r'<html\b[^>]*>', '<html>', html, count=1)
-    return '<!doctype html>\n' + html.lstrip()
+def _inner(replacement):
+    """Return (fmt_marker, inner_text) from a markdown-formatted replacement."""
+    if replacement.startswith('**') and replacement.endswith('**') and len(replacement) > 4:
+        return '**', replacement[2:-2]
+    if replacement.startswith('*') and replacement.endswith('*') and len(replacement) > 2:
+        return '*', replacement[1:-1]
+    if replacement.startswith('`') and replacement.endswith('`') and len(replacement) > 2:
+        return '`', replacement[1:-1]
+    if replacement.startswith('[') and '](' in replacement:
+        return 'link', replacement
+    return '', replacement
 
 
-def inline_css(html):
-    try:
-        with open(_CSS_PATH, encoding='utf-8') as f:
-            css = f.read().strip()
-    except OSError:
-        return html
-    lines = '\n'.join('    ' + ln for ln in css.splitlines())
-    style_block = f'  <style>\n{lines}\n  </style>'
-    return re.sub(r'[ \t]*<link\b[^>]*\bhref="help\.css"[^>]*/>', style_block, html)
+def _resolve(replacement, token_get):
+    """Resolve one token replacement to its markdown-formatted translated text."""
+    fmt, inner = _inner(replacement)
+    if fmt in ('`', 'link'):
+        return replacement          # code/links: literal, no translation
+    translated = token_get(inner)
+    return f'{fmt}{translated}{fmt}' if fmt else translated
 
 
-def cleanup(html):
-    html = re.sub(r'<!--.*?-->\n?', '', html, flags=re.DOTALL)
-    html = re.sub(r'\n{3,}', '\n\n', html)
-    return html
+def _apply_tokens(text, tok_dirs):
+    """Tokenise: replace each replacement text with %%TOKEN%%."""
+    for token, replacement in tok_dirs:
+        text = text.replace(replacement, f'%%{token}%%')
+    return text
 
+
+def _detokenize(text, token_table, token_get):
+    """Replace every %%TOKEN%% with its resolved markdown string."""
+    def sub(m):
+        tok  = m.group(1)
+        repl = token_table.get(tok, f'%%{tok}%%')
+        return _resolve(repl, token_get)
+    return re.sub(r'%%([A-Z0-9_]+)%%', sub, text)
+
+
+# ─── inline markdown -> HTML ──────────────────────────────────────────────────
+
+def _md_inline(text):
+    """Convert inline markdown to HTML.  Escapes & < > before processing."""
+    text = _html.escape(text, quote=False)
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'\*(.+?)\*',     r'<em>\1</em>',         text)
+    text = re.sub(r'`(.+?)`',       r'<code>\1</code>',     text)
+    text = re.sub(r'\[(.+?)\]\((.+?)\)',
+                  lambda m: f'<a href="{_html.escape(m.group(2))}">'
+                            f'{m.group(1)}</a>', text)
+    return text
+
+
+# ─── block parser ─────────────────────────────────────────────────────────────
+
+# Block dict fields:
+#   type              'h1'..'h6' | 'para' | 'li' | 'html'
+#   text              source text (text types) or raw HTML ('html')
+#   tok_dirs          [(token, replacement), ...] for text types
+#   translate_domain  domain from <!-- translate:use --> directive, or None
+#   translate_key     explicit lookup key for headings, or None
+
+def _parse(lines):
+    blocks           = []
+    tok_dirs         = []
+    skip_next        = False
+    translate_domain = None   # domain for next heading/block
+    translate_key    = None   # explicit key override for heading lookups
+    blk              = []
+    blk_type         = 'para'
+    html_buf         = []
+    html_depth       = 0
+
+    def flush():
+        if blk and not skip_next:
+            text = ' '.join(ln.strip() for ln in blk).strip()
+            if text:
+                blocks.append({'type': blk_type, 'text': text,
+                               'tok_dirs': list(tok_dirs),
+                               'translate_domain': translate_domain,
+                               'translate_key': None})
+        blk.clear()
+
+    def reset():
+        nonlocal translate_domain, translate_key
+        tok_dirs.clear()
+        translate_domain = None
+        translate_key    = None
+
+    for raw in lines:
+        line = raw.strip()
+
+        # ── inside a multi-line HTML block ─────────────────────────────────
+        if html_depth > 0:
+            html_buf.append(raw.rstrip('\n'))
+            if re.match(r'^</(div|table|section|article|form)', line, re.I):
+                html_depth -= 1
+                if html_depth == 0:
+                    blocks.append({'type': 'html',
+                                   'text': '\n'.join(html_buf),
+                                   'tok_dirs': [], 'translate_domain': None,
+                                   'translate_key': None})
+                    html_buf.clear()
+            continue
+
+        # ── blank line: flush block, reset pending state ──────────────────
+        if not line:
+            flush()
+            blk_type = 'para'
+            reset()
+            skip_next = False
+            continue
+
+        # ── raw HTML (not a comment) ───────────────────────────────────────
+        if line.startswith('<') and not line.startswith('<!--'):
+            flush()
+            blk_type = 'para'
+            reset()
+            skip_next = False
+            tag_m = re.match(r'^<([a-zA-Z][a-zA-Z0-9]*)', line)
+            if tag_m:
+                tag = tag_m.group(1).lower()
+                if (f'</{tag}' not in line.lower()
+                        and not line.rstrip().endswith('/>')):
+                    html_depth += 1
+                    html_buf.append(raw.rstrip('\n'))
+                else:
+                    blocks.append({'type': 'html', 'text': line,
+                                   'tok_dirs': [], 'translate_domain': None,
+                                   'translate_key': None})
+            continue
+
+        # ── token directive ────────────────────────────────────────────────
+        m = _TOKEN_DIR.match(line)
+        if m:
+            tok_dirs.append((m.group(1), m.group(2)))
+            continue
+
+        # ── translate:use / FIXME / other HTML comments ───────────────────
+        if line.startswith('<!--'):
+            m = _TRANSLATE_USE.match(line)
+            if m:
+                translate_domain = m.group(1)
+                translate_key    = m.group(2) or None
+            elif 'FIXME' in line:
+                skip_next = True
+            # TRANSLATOR, translate-no, and other annotations: no action needed
+            continue
+
+        # ── heading ────────────────────────────────────────────────────────
+        m = _HEADING.match(line)
+        if m:
+            flush()
+            blk_type = 'para'
+            level    = len(m.group(1))
+            htag     = _HTAG.get(level, 'h6')
+            text     = m.group(2).strip()
+            blocks.append({'type': htag, 'text': text,
+                           'tok_dirs': list(tok_dirs),
+                           'translate_domain': translate_domain,
+                           'translate_key': translate_key})
+            reset()
+            skip_next = False
+            continue
+
+        # ── list item ──────────────────────────────────────────────────────
+        m = _LIST_ITEM.match(line)
+        if m:
+            flush()
+            blk_type = 'li'
+            blk.append(m.group(1))
+            continue
+
+        # ── regular paragraph text ─────────────────────────────────────────
+        blk_type = 'para'
+        blk.append(line)
+
+    flush()
+    return blocks
+
+
+# ─── HTML rendering ───────────────────────────────────────────────────────────
+
+_CSS = (
+    'body { font-family: sans-serif; margin: 10px; }\n'
+    'h1 { font-size: 14pt; }\n'
+    'h2 { font-size: 12pt; margin-top: 14px; }\n'
+    'h3 { font-size: 11pt; margin-top: 12px; font-style: italic; }\n'
+    'ul { margin-left: 20px; margin-top: 4px; margin-bottom: 4px; }\n'
+    'li { margin-bottom: 3px; }\n'
+    'p  { margin-top: 5px; margin-bottom: 5px; }\n'
+    'code { font-family: monospace; }\n'
+    'img.screenshot { max-width: 100%; }\n'
+    '#version-footer { margin-top: 20px; font-size: 9pt; text-align: center; }\n'
+)
+
+
+def _render(blocks, token_table, domain_map, help_get, out):
+
+    default_token_get = domain_map.get('mx-updater', lambda s: s)
+
+    in_list = False
+
+    def close_list():
+        nonlocal in_list
+        if in_list:
+            out.write('</ul>\n')
+            in_list = False
+
+    def open_list():
+        nonlocal in_list
+        if not in_list:
+            out.write('<ul>\n')
+            in_list = True
+
+    for block in blocks:
+        btype = block['type']
+        d     = block['translate_domain']
+
+        # Getter used to resolve %%TOKEN%% labels in this block.
+        # translate:use overrides the default (mx-updater).
+        token_get = domain_map.get(d, default_token_get) if d else default_token_get
+
+        def xlate_block(b=block, tg=token_get):
+            tokenised  = _apply_tokens(b['text'], b['tok_dirs'])
+            translated = help_get(tokenised)
+            resolved   = _detokenize(translated, token_table, tg)
+            return _md_inline(resolved)
+
+        if btype == 'html':
+            close_list()
+            out.write(block['text'] + '\n')
+            continue
+
+        if btype in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+            close_list()
+            if d:
+                # Heading resolved from a specific domain declared in the .md.
+                # translate_key overrides the lookup key when the domain uses
+                # different capitalisation from the heading text.
+                getter    = domain_map.get(d, help_get)
+                key       = block['translate_key'] or block['text']
+                text_html = _md_inline(getter(key))
+            else:
+                text_html = _md_inline(help_get(block['text']))
+            out.write(f'<{btype}>{text_html}</{btype}>\n')
+            continue
+
+        if btype == 'li':
+            open_list()
+            out.write(f'<li>{xlate_block()}</li>\n')
+            continue
+
+        # para
+        close_list()
+        out.write(f'<p>{xlate_block()}</p>\n')
+
+    close_list()
+
+
+def _write_html(blocks, token_table, domain_map, help_get, lang, output_path):
+    lang_attr = f' lang="{_html.escape(lang)}"' if lang and lang != 'en' else ''
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(f'<!DOCTYPE html>\n<html{lang_attr}>\n<head>\n')
+        f.write('<meta charset="UTF-8">\n')
+        f.write('<title>MX Updater Help</title>\n')
+        f.write(f'<style>\n{_CSS}</style>\n')
+        f.write('</head>\n<body>\n')
+        _render(blocks, token_table, domain_map, help_get, f)
+        f.write('</body>\n</html>\n')
+
+
+# ─── main ────────────────────────────────────────────────────────────────────
 
 def main():
-    if len(sys.argv) != 4:
-        sys.exit('Usage: build-help-html <html_file> <localedir> <lang>')
-    html_path, localedir, lang = sys.argv[1], sys.argv[2], sys.argv[3]
-    translate = get_translator(localedir, lang)
-    with open(html_path, encoding='utf-8') as f:
-        html = f.read()
-    html = to_html5(html)
-    html = substitute(html, translate)
-    html = cleanup(html)
-    html = inline_css(html)
-    with open(html_path, 'w', encoding='utf-8') as f:
-        f.write(html)
+    if len(sys.argv) != 5:
+        sys.exit('Usage: build-help-html <help.md> <output.html> <locale_dir> <lang>')
+    md_path, output_path, locale_dir, lang = sys.argv[1:]
+
+    with open(md_path, encoding='utf-8') as f:
+        lines = f.readlines()
+
+    token_table = _collect_tokens(lines)
+    blocks      = _parse(lines)
+    help_get    = _make_mo(locale_dir, lang, 'mx-updater-help')
+    domain_map  = {
+        'mx-updater':       _make_mo(locale_dir, lang, 'mx-updater'),
+        'mx-launcher-l10n': _make_mo(locale_dir, lang, 'mx-launcher-l10n'),
+    }
+
+    _write_html(blocks, token_table, domain_map, help_get, lang, output_path)
+    label = lang if lang and lang != 'en' else 'en'
+    print(f'  {label}: {output_path}')
 
 
 if __name__ == '__main__':

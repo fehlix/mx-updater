@@ -1,10 +1,15 @@
-mx-updater (26.09.01mx25~dev01) UNRELEASED; urgency=medium
+mx-updater (26.09.01mx25~dev02) UNRELEASED; urgency=medium
 
   * Actions: recognize polkit-mate-authentication-agent-1 in the known
     polkit agent list so MATE users get the pkexec/polkit GUI prompt
     instead of falling back to sudo.
+  * Systray: guard notification close() against DBusException when the
+    notification daemon has already disappeared (seen with MATE's
+    notification daemon closing too fast). Covers all three places the
+    tray closes a notification (replacing an action notification,
+    periodic cleanup, and on quit).
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 19:54:07 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 19:58:00 -0400
 
 mx-updater (26.07.02mx25) mx; urgency=medium
 

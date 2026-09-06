@@ -811,7 +811,12 @@ class SystemTrayIcon(QSystemTrayIcon):
             return
 
         if self.notification:
-            self.notification.close()
+            try:
+                self.notification.close()
+            except dbus.exceptions.DBusException as e:
+                logger.debug("Could not close notification: %s", e)
+            finally:
+                self.notification = None
 
         # label from registry
         #label, enabled, exe = self.registry[action_tag]
@@ -1633,8 +1638,17 @@ class SystemTrayIcon(QSystemTrayIcon):
         QApplication.quit()
 
     def _clean_notifications(self):
-        if self.notification:
-            self.notification.close()
+        notification = self.notification
+
+        if notification is None:
+            return
+
+        try:
+            notification.close()
+        except dbus.exceptions.DBusException as e:
+            logger.debug("Could not close notification: %s", e)
+        finally:
+            self.notification = None
 
     def handleQuit(self):
         """
@@ -1642,7 +1656,12 @@ class SystemTrayIcon(QSystemTrayIcon):
         (e.g. save settings, log messages, notify others...)
         """
         if self.notification:
-            self.notification.close()
+            try:
+                self.notification.close()
+            except dbus.exceptions.DBusException as e:
+                logger.debug("Could not close notification: %s", e)
+            finally:
+                self.notification = None
 
         release_runtime_lock(self.run_time_path)
         logger.debug("SystemTrayIcon is cleaning up...")

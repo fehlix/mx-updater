@@ -1,4 +1,4 @@
-mx-updater (26.09.01mx25~dev02) UNRELEASED; urgency=medium
+mx-updater (26.09.01mx25~dev03) UNRELEASED; urgency=medium
 
   * Actions: recognize polkit-mate-authentication-agent-1 in the known
     polkit agent list so MATE users get the pkexec/polkit GUI prompt
@@ -8,8 +8,14 @@ mx-updater (26.09.01mx25~dev02) UNRELEASED; urgency=medium
     notification daemon closing too fast). Covers all three places the
     tray closes a notification (replacing an action notification,
     periodic cleanup, and on quit).
+  * Fix: qt6ct Qt debug/XCB warning noise (palette diagnostics etc.)
+    leaking into the terminal from the changelog, history and
+    view-and-upgrade viewers. QT_LOGGING_RULES is now set directly in
+    each of these scripts, since they are launched as standalone
+    python3 subprocesses and previously only inherited the suppression
+    set by the bin/mx-updater* shell launchers.
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 19:58:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 20:02:00 -0400
 
 mx-updater (26.07.02mx25) mx; urgency=medium
 

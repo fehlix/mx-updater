@@ -1,5 +1,29 @@
 #!/usr/bin/python3
 
+import os
+
+# Hide XCB warning messages and all Qt debug messages,
+# including the qt6ct palette diagnostics
+
+default_logging_rules = [
+    "*.debug=false",
+    "qt.qpa.xcb.warning=false",
+]
+
+existing_logging_rules = [
+    rule
+    for rule in os.environ.get("QT_LOGGING_RULES", "").split(";")
+    if rule
+]
+
+combined_logging_rules = default_logging_rules + [
+    rule
+    for rule in existing_logging_rules
+    if rule not in default_logging_rules
+]
+
+os.environ["QT_LOGGING_RULES"] = ";".join(combined_logging_rules)
+
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton,
     QHBoxLayout, QVBoxLayout, QGridLayout,

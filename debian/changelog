@@ -1,3 +1,11 @@
+mx-updater (26.09.01mx25~dev01) UNRELEASED; urgency=medium
+
+  * Actions: recognize polkit-mate-authentication-agent-1 in the known
+    polkit agent list so MATE users get the pkexec/polkit GUI prompt
+    instead of falling back to sudo.
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 19:54:07 -0400
+
 mx-updater (26.07.02mx25) mx; urgency=medium
 
   * Actions: use stable file paths for pkexec-invoked scripts; replace

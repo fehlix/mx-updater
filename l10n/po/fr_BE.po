@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Wallon Wallon, 2026
+# Wallon <wallon@ik.me>, 2026
 # fehlix, 2026
 # 
 #, fuzzy

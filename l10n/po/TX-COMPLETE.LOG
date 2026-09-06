@@ -1,5 +1,5 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Mon, 06 Jul 2026 14:55:47 -0400
+# generated with tx-complete.sh at Sun, 06 Sep 2026 19:11:40 -0400
 # Number of translations: 140
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
@@ -8,18 +8,18 @@
      3		 140	   100%    	el      	el	Greek, Modern (1453-)
      4		 140	   100%    	es      	es	Spanish; Castilian
      5		 140	   100%    	es_ES   	es	Spanish; Castilian @ Spain
-     6		 140	   100%    	fr      	fr	French
-     7		 140	   100%    	fr_BE   	fr	French @ Belgium
-     8		 140	   100%    	nl      	nl	Dutch; Flemish
-     9		 140	   100%    	pl      	pl	Polish
-    10		 140	   100%    	sv      	sv	Swedish
-    11		 103	    73%    	pt_BR   	pt	Portuguese @ Brazil
-    12		 102	    72%    	sq      	sq	Albanian
-    13		  94	    67%    	fi      	fi	Finnish
-    14		  94	    67%    	pt      	pt	Portuguese
-    15		  84	    60%    	hu      	hu	Hungarian
-    16		  64	    45%    	lt      	lt	Lithuanian
-    17		  62	    44%    	ja      	ja	Japanese
+     6		 140	   100%    	fi      	fi	Finnish
+     7		 140	   100%    	fr      	fr	French
+     8		 140	   100%    	fr_BE   	fr	French @ Belgium
+     9		 140	   100%    	nl      	nl	Dutch; Flemish
+    10		 140	   100%    	pl      	pl	Polish
+    11		 140	   100%    	sv      	sv	Swedish
+    12		 134	    95%    	pt_BR   	pt	Portuguese @ Brazil
+    13		 125	    89%    	ja      	ja	Japanese
+    14		 102	    72%    	sq      	sq	Albanian
+    15		  94	    67%    	pt      	pt	Portuguese
+    16		  84	    60%    	hu      	hu	Hungarian
+    17		  64	    45%    	lt      	lt	Lithuanian
     18		  58	    41%    	nb      	nb	Bokmål, Norwegian; Norwegian Bokmål
     19		  54	    38%    	gl_ES   	gl	Galician @ Spain
     20		  54	    38%    	it      	it	Italian

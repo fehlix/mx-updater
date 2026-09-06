@@ -338,12 +338,12 @@ msgstr "nunca"
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "Atualização automática"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "automatic"
-msgstr ""
+msgstr "automática"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -370,6 +370,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"O atualizador instalará atualizações de pacote automaticamente, no intervalo programado no agendador.\n"
+"Somente os pacotes atualmente instalados podem ser automaticamente atualizados.\n"
+"O ícone do Atualizador do MX mostra o total de atualizações disponíveis,\n"
+"incluindo as automáticas."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -377,22 +381,25 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "Agendar"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
 "The same interval applies to automatic upgrades when\n"
 "\"automatic upgrade\" is checked."
 msgstr ""
+"Programa a frequência na qual o atualizador buscará\n"
+"por novas atualizações. O mesmo intervalo será usado\n"
+"para as atualizações automáticas, quando habilitadas."
 
 msgid "Left-click"
-msgstr ""
+msgstr "Clique do botão do esquerdo"
 
 #. TRANSLATORS: The label of the group box for left-click behaviour.
 msgid "Left-click behaviour   (when updates are available)"
 msgstr ""
-"Comportamento do clique com o botão esquerdo (quando as atualizações estão "
-"disponíveis)"
+"Comportamento do clique com o botão esquerdo do mouse (quando as "
+"atualizações estiverem disponíveis)"
 
 msgid ""
 "Left-click opens the selected application.\n"
@@ -400,6 +407,10 @@ msgid ""
 "(or Synaptic if MX Package Installer is not installed).\n"
 "Middle-click does nothing if neither is installed."
 msgstr ""
+"O clique do botão esquerdo abrirá o programa selecionado.\n"
+"O clique do meio abrirá o Instalador e Desinstalador do MX\n"
+"(ou o Synaptic, se o primeiro estiver ausente do sistema).\n"
+"Nenhum dos dois estando presente, o botão do meio fará nada."
 
 msgid "opens Synaptic"
 msgstr "Abrir o Synaptic"
@@ -408,11 +419,15 @@ msgid ""
 "Left-click always opens Synaptic package manager,\n"
 "with or without updates available."
 msgstr ""
+"O clique do botão esquerdo sempre abrirá o gerenciador\n"
+"de pacotes Synaptic, com ou sem atualizações disponíveis."
 
 msgid ""
 "Left-click always opens MX Package Installer (MXPI),\n"
 "with or without updates available."
 msgstr ""
+"O clique do botão esquerdo sempré abrirá o Instalador e\n"
+"Desinstalador do MX, com ou sem atualizações disponíveis."
 
 #. TRANSLATORS: The label of the radio button to open the View and Upgrade
 #. window on left-click.
@@ -425,6 +440,10 @@ msgid ""
 "When no updates are available, opens Synaptic\n"
 "or MX Package Installer instead."
 msgstr ""
+"O clique do botão esquerdo abre a janela de\n"
+"exibir e atualizar quando há atualizações disponíveis.\n"
+"Quando não houver atualizações pendentes, abrirá o\n"
+"Synaptic ou o Instalador e Desinstalador do MX."
 
 #. TRANSLATORS: The label of the radio button "opens MX Updater 'View and
 #. Upgrade' window".
@@ -493,7 +512,7 @@ msgstr "Outros"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "skip upgrade confirmation"
-msgstr ""
+msgstr "Pular a confirmação das atualizações"
 
 msgid "automatically confirm all package upgrades"
 msgstr "Confirmar automaticamente todas as atualizações de pacotes"
@@ -513,7 +532,7 @@ msgstr ""
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "autostart delay"
-msgstr ""
+msgstr "Atraso da inicialização automática"
 
 msgid "start \"MX Updater\" at login after delay"
 msgstr "Delay para iniciar o Atualizador do MX após o login"
@@ -537,7 +556,7 @@ msgstr "s"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "terminal auto-close"
-msgstr ""
+msgstr "Fechar o terminal sozinho"
 
 msgid "close terminal window after idle time"
 msgstr "Fechar o terminal após tempo de inatividade"
@@ -553,7 +572,7 @@ msgstr ""
 
 #. TRANSLATORS: Label before the terminal window size dropdown
 msgid "terminal size"
-msgstr ""
+msgstr "Tamanho do terminal"
 
 #. TRANSLATORS: terminal window size option: default auto-sizing (original
 #. behavior, 2/3 screen capped on large displays)
@@ -563,55 +582,55 @@ msgstr "padrão"
 #. TRANSLATORS: terminal window size option: let terminal use its own saved
 #. size/position
 msgid "own"
-msgstr ""
+msgstr "personalizado"
 
 #. TRANSLATORS: terminal window size option: one third of the screen
 msgid "1/3 screen"
-msgstr ""
+msgstr "1/3 da tela"
 
 #. TRANSLATORS: terminal window size option: half the screen
 msgid "1/2 screen"
-msgstr ""
+msgstr "1/2 tela"
 
 #. TRANSLATORS: terminal window size option: two thirds of the screen
 msgid "2/3 screen"
-msgstr ""
+msgstr "2/3 da tela"
 
 #. TRANSLATORS: terminal window size option: three quarters of the screen
 msgid "3/4 screen"
-msgstr ""
+msgstr "3/4 da tela"
 
 #. TRANSLATORS: terminal window size option: nine tenths of the screen
 msgid "9/10 screen"
-msgstr ""
+msgstr "9/10 da tela"
 
 #. TRANSLATORS: terminal window size option: full screen
 msgid "full screen"
-msgstr ""
+msgstr "tela cheia"
 
 #. TRANSLATORS: Label before the terminal window position dropdown
 msgid "position"
-msgstr ""
+msgstr "Posição do terminal"
 
 #. TRANSLATORS: terminal window position option
 msgid "center"
-msgstr "No centro"
+msgstr "no centro"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-left"
-msgstr ""
+msgstr "no canto superior esquerdo"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-right"
-msgstr ""
+msgstr "no canto superior direito"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-left"
-msgstr ""
+msgstr "no canto inferior esquerdo"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-right"
-msgstr ""
+msgstr "no canto inferior direito"
 
 #. TRANSLATORS: Tooltip for the terminal window size label and dropdown.
 #. "default (auto)" means the original automatic sizing is used.
@@ -620,6 +639,9 @@ msgid ""
 "\"default\": 2/3 screen size, capped at 960x600 pixels.\n"
 "\"own\": use terminal's own settings for size and position."
 msgstr ""
+"Tamanho do terminal para atualizações automáticas:\n"
+"Padrão: 2/3 da tela, a no máximo 960x600p.\n"
+"Personalizado: usa as configurações do próprio terminal."
 
 #. TRANSLATORS: Tooltip for the terminal window position dropdown.
 #. The option is disabled when "full screen" size is selected, or on Wayland.
@@ -627,6 +649,8 @@ msgid ""
 "Select where the terminal window appears on the screen.\n"
 "Hidden when \"own\" or \"full screen\" size is selected, or when running on Wayland."
 msgstr ""
+"Escolha onde a janela do terminal aparecerá na tela.\n"
+"Este recurso está indisponível com o protocolo Wayland."
 
 #. TRANSLATORS: The label of the checkbox "desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -637,7 +661,7 @@ msgstr "Utilizar as notificações na área de trabalho"
 #. TRANSLATORS: Short label for checkbox to enable or disable desktop
 #. notification popups.
 msgid "desktop notifications"
-msgstr ""
+msgstr "Notificações da área de trabalho"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -658,7 +682,7 @@ msgstr "Ocultar até que as atualizações estejam disponíveis"
 #. TRANSLATORS: Short label for checkbox. Hides the systray icon when no
 #. package upgrades are available.
 msgid "hide when no updates"
-msgstr ""
+msgstr "Ocultar quando não houver atualizações"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -699,6 +723,9 @@ msgid ""
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
 "'never' disables both the refresh and the automatic upgrade."
 msgstr ""
+"Programa a frequência na qual o atualizador buscará\n"
+"por novas atualizações. O mesmo intervalo será usado\n"
+"para as atualizações automáticas, quando habilitadas."
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration
 #. overrides

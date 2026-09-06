@@ -1,4 +1,4 @@
-mx-updater (26.09.01mx25~dev03) UNRELEASED; urgency=medium
+mx-updater (26.09.01mx25~dev04) UNRELEASED; urgency=medium
 
   * Actions: recognize polkit-mate-authentication-agent-1 in the known
     polkit agent list so MATE users get the pkexec/polkit GUI prompt
@@ -14,8 +14,9 @@ mx-updater (26.09.01mx25~dev03) UNRELEASED; urgency=medium
     each of these scripts, since they are launched as standalone
     python3 subprocesses and previously only inherited the suppression
     set by the bin/mx-updater* shell launchers.
+  * Translations refresh.
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 20:02:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 20:06:00 -0400
 
 mx-updater (26.07.02mx25) mx; urgency=medium
 

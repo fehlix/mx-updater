@@ -9,6 +9,7 @@
 # Kimmo Kujansuu <mrkujansuu@gmail.com>, 2026
 # fehlix, 2026
 # En Kerro <inactive+ekeimaja@transifex.com>, 2026
+# Kari Aliranta, 2026
 # 
 #, fuzzy
 msgid ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: En Kerro <inactive+ekeimaja@transifex.com>, 2026\n"
+"Last-Translator: Kari Aliranta, 2026\n"
 "Language-Team: Finnish (https://app.transifex.com/anticapitalista/teams/10162/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +62,7 @@ msgstr ""
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
 msgid "MX Updater Settings"
-msgstr "MX päivityksen asetukset"
+msgstr "MX Päivitykset asetukset"
 
 #. TRANSLATORS: The string "MX Updater preferences" is desktop entry comment
 #. of the ""MX Updater Settings" menu entry.
@@ -91,7 +92,7 @@ msgstr "Käytä automaattisia päivityksiä"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "Aseta automaattinen virkistys-/päivitysväli"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -156,7 +157,7 @@ msgstr "paina mitä tahansa näppäintä sulkeaksesi"
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw down symbol to jump to the next found "search string"
 msgid "Find Next"
-msgstr "Hae suraava"
+msgstr "Hae seuraava"
 
 #. TRANSLATORS: This is the first line of the tooltip of the
 #. button with an arrorw up symbol to jump to the previous found "search
@@ -213,13 +214,13 @@ msgid "Auto-update dpkg log(s)"
 msgstr "Päivitä dpkg loki(t) automaattisesti"
 
 msgid "MX Auto-update  --  unattended-upgrades log viewer"
-msgstr "MX Automaattinen päivitys -- päivitusten katseluohjelma"
+msgstr "MX Automaattinen päivitys -- päivitysten katseluohjelma"
 
 msgid "Auto-update log(s)"
 msgstr "Automaattisen päivityksen loki(t)"
 
 msgid "Tray applet to notify of system and application updates"
-msgstr "Sovelma telakassa, joka ilmoittaa päivityksistä"
+msgstr "Telakkasovelma, joka ilmoittaa päivityksistä"
 
 msgid "About MX Updater"
 msgstr "Tietoja MX Päivitykset"
@@ -255,7 +256,7 @@ msgstr "Päivitystapa"
 
 #. TRANSLATORS: The label of the radio button for "full" upgrade mode.
 msgid "full"
-msgstr ""
+msgstr "täysi"
 
 #. TRANSLATORS: The tooltip of the radio button "full" (full upgrade,
 #. recommended).
@@ -274,7 +275,7 @@ msgstr "täysi päivitys   (suositus)"
 
 #. TRANSLATORS: The label of the radio button for "basic" upgrade mode.
 msgid "basic"
-msgstr ""
+msgstr "perus"
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -299,22 +300,22 @@ msgid "Select this to use nala package manager instead of apt."
 msgstr "Valitse käyttääksesi nala-paketinhallintaa apt:n sijaan."
 
 msgid "daily"
-msgstr ""
+msgstr "päivittäin"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "joka 3. päivä"
 
 msgid "weekly"
-msgstr ""
+msgstr "viikottain"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "joka 2. viikko"
 
 msgid "monthly"
-msgstr ""
+msgstr "kuukausittain"
 
 msgid "never"
-msgstr ""
+msgstr "ei koskaan"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -325,12 +326,12 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "päivitä automaattisesti"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "automatic"
-msgstr ""
+msgstr "automaattinen"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
@@ -356,6 +357,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"Asentaa päivitykset automaattisesti, päivitysvälinä \"virkistysväli\"-kohdassa valittu väli.\n"
+"Päivittää vain olemassaolevat paketit, ei tee muutoksia järjestelmän asetuksiin.\n"
+"Kun päivityksiä on saatavilla, päivitysilmoittimen kuvake näyttää päivitysten \n"
+"kokonaismäärän automaattiset päivitykset mukaanluettuna."
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -363,16 +368,19 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "virkistysväli"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
 "The same interval applies to automatic upgrades when\n"
 "\"automatic upgrade\" is checked."
 msgstr ""
+"Asettaa pakettilistojen (apt-get update) virkistysvälin.\n"
+"Sama väli pätee automaattisiin päivityksiin,\n"
+"jos \"päivitä automaattisesti\" on valittu."
 
 msgid "Left-click"
-msgstr ""
+msgstr "Vasen painallus"
 
 #. TRANSLATORS: The label of the group box for left-click behaviour.
 msgid "Left-click behaviour   (when updates are available)"
@@ -384,6 +392,11 @@ msgid ""
 "(or Synaptic if MX Package Installer is not installed).\n"
 "Middle-click does nothing if neither is installed."
 msgstr ""
+"Vasemman napin painallus avaa valitun sovelluksen.\n"
+"Keskinapin painallus avaa \"MX Pakettien asennus\"-sovelluksen\n"
+"(tai Synaptic-sovelluksen, jos \"MX Pakettien asennus\"-sovellus\n"
+"ei ole asennettu). Jos kumpikaan näistä ei ole asennettu,\n"
+"keskinapin painalluksesta ei tapahdu mitään."
 
 msgid "opens Synaptic"
 msgstr "avaa \"Synaptic\""
@@ -392,11 +405,15 @@ msgid ""
 "Left-click always opens Synaptic package manager,\n"
 "with or without updates available."
 msgstr ""
+"Vasemman napin painallus avaa aina Synaptic-\n"
+"pakettienhallintasovelluksen, oli päivityksiä saatavilla tai ei."
 
 msgid ""
 "Left-click always opens MX Package Installer (MXPI),\n"
 "with or without updates available."
 msgstr ""
+"Vasemman napin painallus avaa aina \"MX Pakettien asennus\"-\n"
+"sovelluksen (MXPI), oli päivityksiä saatavilla tai ei."
 
 #. TRANSLATORS: The label of the radio button to open the View and Upgrade
 #. window on left-click.
@@ -409,6 +426,9 @@ msgid ""
 "When no updates are available, opens Synaptic\n"
 "or MX Package Installer instead."
 msgstr ""
+"Vasemman napin painallus avaa \"Katso ja päivitä\"-ikkunan,\n"
+"jos päivityksiä on saatavilla. Jos päivityksiä ei ole saatavilla,\n"
+"avaa Synaptic-sovelluksen tai \"MX Pakettien asennus\"-sovelluksen."
 
 #. TRANSLATORS: The label of the radio button "opens MX Updater 'View and
 #. Upgrade' window".
@@ -424,7 +444,7 @@ msgstr "Kuvakkeet"
 #. icons). The "some-updates" wireframe icon is always the green app icon,
 #. unaffected.
 msgid "transparent wireframe for no updates"
-msgstr "läpinäkyvä, päivityksiä ei ole saatavilla"
+msgstr "läpinäkyvä lankamalli, päivityksiä ei ole saatavilla"
 
 #. TRANSLATORS: Short label for checkbox. "black/white" refers to the two
 #. wireframe
@@ -432,7 +452,7 @@ msgstr "läpinäkyvä, päivityksiä ei ole saatavilla"
 #. has black wires).
 #. Detailed explanation is in the tooltip.
 msgid "transparent black/white wireframe"
-msgstr ""
+msgstr "läpinäkyvä tumma/vaalea lankamalli"
 
 #. TRANSLATORS: Tooltip for "transparent black/white wireframe" checkbox.
 #. Explains when transparent works and when it does not, depending on panel
@@ -444,6 +464,14 @@ msgid ""
 "  wireframe-dark (white wires): visible on dark panel, invisible on light panel.\n"
 "  wireframe-light (black wires): visible on light panel, invisible on dark panel."
 msgstr ""
+"Muuttaa tumman/vaalean lankamallisen päivityskuvakkeen\n"
+"läpinäkyväksi (ei täyttöä). Toimii parhaiten, kun paneelin lankamallin \n"
+"ja paneelin värien välillä on kontrastia:\n"
+"  - tumma lankamalli (valkoiset langat) näkyy hyvin tummassa paneelissa,\n"
+"huonosti vaaleassa.\n"
+"  - vaalea lankamalli (mustat langat) näkyy hyvin vaaleassa paneelissa,\n"
+"  huonosti tummassa.\n"
+"  "
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
 #. "light" icon-set, respectively.
@@ -477,7 +505,7 @@ msgstr "Muut"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "skip upgrade confirmation"
-msgstr ""
+msgstr "hyväksy päivitys automaattisesti"
 
 msgid "automatically confirm all package upgrades"
 msgstr "hyväksy kaikki pakettipäivitykset automaattisesti"
@@ -496,7 +524,7 @@ msgstr ""
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "autostart delay"
-msgstr ""
+msgstr "automaattisen käynnistyksen viive"
 
 msgid "start \"MX Updater\" at login after delay"
 msgstr "suorita kirjautuessa \"MX Päivitykset\" viiveellä"
@@ -520,7 +548,7 @@ msgstr "s"
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "terminal auto-close"
-msgstr ""
+msgstr "pääteikkunan sulkeutumisviive"
 
 msgid "close terminal window after idle time"
 msgstr "sulje päätteen ikkuna, jos käyttämättä"
@@ -536,7 +564,7 @@ msgstr ""
 
 #. TRANSLATORS: Label before the terminal window size dropdown
 msgid "terminal size"
-msgstr ""
+msgstr "pääteikkunan koko"
 
 #. TRANSLATORS: terminal window size option: default auto-sizing (original
 #. behavior, 2/3 screen capped on large displays)
@@ -546,35 +574,35 @@ msgstr "oletus"
 #. TRANSLATORS: terminal window size option: let terminal use its own saved
 #. size/position
 msgid "own"
-msgstr ""
+msgstr "oma"
 
 #. TRANSLATORS: terminal window size option: one third of the screen
 msgid "1/3 screen"
-msgstr ""
+msgstr "1/3 ruudusta"
 
 #. TRANSLATORS: terminal window size option: half the screen
 msgid "1/2 screen"
-msgstr ""
+msgstr "1/2 ruudusta"
 
 #. TRANSLATORS: terminal window size option: two thirds of the screen
 msgid "2/3 screen"
-msgstr ""
+msgstr "2/3 ruudusta"
 
 #. TRANSLATORS: terminal window size option: three quarters of the screen
 msgid "3/4 screen"
-msgstr ""
+msgstr "3/4 ruudusta"
 
 #. TRANSLATORS: terminal window size option: nine tenths of the screen
 msgid "9/10 screen"
-msgstr ""
+msgstr "9/10 ruudusta"
 
 #. TRANSLATORS: terminal window size option: full screen
 msgid "full screen"
-msgstr ""
+msgstr "koko ruutu"
 
 #. TRANSLATORS: Label before the terminal window position dropdown
 msgid "position"
-msgstr ""
+msgstr "sijainti"
 
 #. TRANSLATORS: terminal window position option
 msgid "center"
@@ -582,19 +610,19 @@ msgstr "keskellä"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-left"
-msgstr ""
+msgstr "ylävasemmalla"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-right"
-msgstr ""
+msgstr "yläoikealla"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-left"
-msgstr ""
+msgstr "alavasemmalla"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-right"
-msgstr ""
+msgstr "alaoikealla"
 
 #. TRANSLATORS: Tooltip for the terminal window size label and dropdown.
 #. "default (auto)" means the original automatic sizing is used.
@@ -603,6 +631,9 @@ msgid ""
 "\"default\": 2/3 screen size, capped at 960x600 pixels.\n"
 "\"own\": use terminal's own settings for size and position."
 msgstr ""
+"Päivitysprosessin näyttävän pääteikkunan koko ja sijainti:\n"
+"- \"oletus\": 2/3 ruudusta, enintään 960x600 pikseliä.\n"
+"- \"oma\": käytä päätteen omia asetuksia."
 
 #. TRANSLATORS: Tooltip for the terminal window position dropdown.
 #. The option is disabled when "full screen" size is selected, or on Wayland.
@@ -610,6 +641,9 @@ msgid ""
 "Select where the terminal window appears on the screen.\n"
 "Hidden when \"own\" or \"full screen\" size is selected, or when running on Wayland."
 msgstr ""
+"Valitse päivitysprosessin näyttävän pääteikkunan sijainti ruudulla.\n"
+"Asetus on piilotettu, kun \"oma\" tai \"koko ruutu\" on valittu, tai\n"
+"Wayland on käytössä."
 
 #. TRANSLATORS: The label of the checkbox "desktop notifications",
 #. where user can select to disabled or enable notification "popup" window
@@ -620,7 +654,7 @@ msgstr "näytä ilmoitus työpöydällä"
 #. TRANSLATORS: Short label for checkbox to enable or disable desktop
 #. notification popups.
 msgid "desktop notifications"
-msgstr ""
+msgstr "työpöytäilmoitukset"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -630,7 +664,7 @@ msgid ""
 "system updates are available."
 msgstr ""
 "Kuvakkeessa näkyvän muutoksen lisäksi näytetään\n"
-"ponnahdusikkua, kun päivityksiä on saatavilla."
+"ponnahdusikkuna, kun päivityksiä on saatavilla."
 
 #. TRANSLATORS: The label of the checkbox, where user can select to not show
 #. the "MX Updater" systray icon when no package upgrades are available.
@@ -640,7 +674,7 @@ msgstr "piilota kuvake kunnes päivityksiä on jälleen saatavilla"
 #. TRANSLATORS: Short label for checkbox. Hides the systray icon when no
 #. package upgrades are available.
 msgid "hide when no updates"
-msgstr ""
+msgstr "piilota kun päivityksiä ei saatavilla"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -665,7 +699,7 @@ msgstr "Odottamaton virhe:"
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "mukautettu (%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -673,13 +707,18 @@ msgstr ""
 #. interval,
 #. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
-msgstr ""
+msgstr "Nykyinen (apt-config): virkistysväli %s, päivitysväli %s"
 
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
 "When 'automatic upgrade' is checked, the same interval also applies to the upgrade.\n"
 "'never' disables both the refresh and the automatic upgrade."
 msgstr ""
+"Asettaa välin pakettilistojen virkistykselle (apt-get update).\n"
+"Jos \"päivitä automaattisesti\" on valittu, sama väli pätee myös\n"
+"automaattisiin päivityksiin.\n"
+"\"Ei koskaan\"-valinta poistaa käytöstä sekä virkistyksen että\n"
+"automaattisen päivityksen."
 
 #. TRANSLATORS: Warning shown when a higher-priority apt configuration
 #. overrides
@@ -692,12 +731,15 @@ msgid ""
 "Requested: refresh %s, upgrade %s\n"
 "Effective: refresh %s, upgrade %s"
 msgstr ""
+"Omia asetuksia ei voitu asettaa: korkeamman prioriteetin apt-asetukset ylikirjoittavat pyydetyt arvot.\n"
+"Pyydetyt arvot: virkistysväli %s, päivitysväli %s\n"
+"Voimassa olevat arvot: virkistysväli %s, päivitysväli %s"
 
 #. TRANSLATORS: Title of the warning dialog shown when an apt configuration
 #. file
 #. with higher priority is overriding the value written by mx-updater.
 msgid "Setting Overridden"
-msgstr ""
+msgstr "Omia asetuksia ei voitu asettaa"
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).
@@ -737,7 +779,7 @@ msgid "Quit"
 msgstr "Lopeta"
 
 msgid "close terminal window automatically after idle time"
-msgstr "sulje pääteikkuna, jos on käyttämättä"
+msgstr "sulje pääteikkuna automaattisesti säädetyn joutoajan jälkeen"
 
 msgid "upgrade"
 msgstr "päivitä"

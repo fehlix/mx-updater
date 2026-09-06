@@ -12,7 +12,7 @@
 # oops oops <oops66@wanadoo.fr>, 2025
 # Laurene Albrand, 2026
 # Geoff Gigg <geoffgigg@hotmail.com>, 2026
-# Wallon Wallon, 2026
+# Wallon <wallon@ik.me>, 2026
 # fehlix, 2026
 # 
 #, fuzzy

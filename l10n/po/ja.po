@@ -58,6 +58,7 @@ msgstr "MX アップデータ・システムトレイアプレット"
 msgid ""
 "apt;install;mxpi;nala;notifier;software;package;repo;synaptic;unattended;update;"
 msgstr ""
+"apt;install;インストール;mxpi;nala;notifier;通知;software;package;パッケージ;repo;synaptic;unattended;自動更新;update;アップデート;更新;"
 
 #. TRANSLATORS: The string "MX Updater Settings" is the desktop entry name
 #. displayed in the menu.
@@ -92,7 +93,7 @@ msgstr "自動更新を有効"
 #. TRANSLATORS: Shown in the polkit authentication dialog when the user
 #. changes the automatic refresh/upgrade interval.
 msgid "Set automatic refresh/upgrade interval"
-msgstr ""
+msgstr "自動リフレッシュ/アップグレードの更新頻度を設定する"
 
 #. TRANSLATORS: The upgrade mode "basic upgrade".
 msgid "basic upgrade"
@@ -175,33 +176,33 @@ msgstr ""
 #. button with an "star" symbol "[*]" to toggle highlight of all searches
 #. found.
 msgid "Mark All"
-msgstr ""
+msgstr "すべて選択"
 
 #. TRANSLATORS: This is the string used to label the "Ctrl" key on the
 #. keyboard.
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. TRANSLATORS: This is the string used to label the "Shift" key on the
 #. keyboard.
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #. TRANSLATORS: This is the placeholder string shown within in the search
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "検索..."
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
 msgid "Not Found"
-msgstr ""
+msgstr "見つかりません"
 
 #. TRANSLATORS: This is the text shown within the Not-found  popup window.
 #. The token '%(s)s' will be replaced with the search text at runtime.
 msgid "\"%(s)s\" was not found."
-msgstr ""
+msgstr "\"%(s)s\" は見つかりませんでした。"
 
 msgid "MX Auto-update  --  unattended-upgrades dpkg log viewer"
 msgstr "MX 自動更新 -- 自動更新の dpkg ログビューア"
@@ -248,11 +249,11 @@ msgstr "設定"
 #. TRANSLATORS: The label group-box, where user can select
 #. the "Upgrade mode" either "full upgrade" or "basic upgrade"
 msgid "Upgrade mode"
-msgstr "アップグレード方法"
+msgstr "アップグレードのモード"
 
 #. TRANSLATORS: The label of the radio button for "full" upgrade mode.
 msgid "full"
-msgstr ""
+msgstr "完全"
 
 #. TRANSLATORS: The tooltip of the radio button "full" (full upgrade,
 #. recommended).
@@ -261,6 +262,9 @@ msgid ""
 "which may include adding or removing packages\n"
 "to keep the system up-to-date and consistent."
 msgstr ""
+"すべてのパッケージを最新版へと更新しますが、\n"
+"これにはシステムを最新の状態に保ち一貫性維持のために、\n"
+"パッケージの追加や削除が含まれる場合があります。"
 
 #. TRANSLATORS: The upgrade mode "full upgrade (recommended)".
 msgid "full upgrade   (recommended)"
@@ -268,7 +272,7 @@ msgstr "フルアップグレード (推奨)"
 
 #. TRANSLATORS: The label of the radio button for "basic" upgrade mode.
 msgid "basic"
-msgstr ""
+msgstr "基本"
 
 #. TRANSLATORS: The tooltip of the checkbox "basic upgrade",
 #. which tries to explain what this checkbox is about.
@@ -276,37 +280,39 @@ msgid ""
 "Upgrades existing packages to their latest versions\n"
 "without installing new dependencies or removing existing packages."
 msgstr ""
+"新しい依存関係をインストールしたり、既存のパッケージを削除せず、\n"
+"既存のパッケージを最新バージョンへアップグレードします。"
 
 #. TRANSLATORS: The label of the checkbox, where user can select
 #. to use "nala" package manager instead of "apt"
 #. TRANSLATORS: Select this to use nala package manager instead of apt.
 msgid "use nala"
-msgstr ""
+msgstr "nala を使う"
 
 #. TRANSLATORS: The tooltip of the checkbox "nala",
 #. which tries to explain what this checkbox is about.
 #. TRANSLATORS: Explains upgrade can be done by using nala package manager
 #. instead of apt
 msgid "Select this to use nala package manager instead of apt."
-msgstr ""
+msgstr "これを選択すると、apt の代わりに nala パッケージマネージャを使用します。"
 
 msgid "daily"
-msgstr ""
+msgstr "毎日"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "3日毎"
 
 msgid "weekly"
-msgstr ""
+msgstr "毎週"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "2週間毎"
 
 msgid "monthly"
-msgstr ""
+msgstr "毎月"
 
 msgid "never"
-msgstr ""
+msgstr "行わない"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -317,17 +323,17 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "自動アップグレード"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "automatic"
-msgstr ""
+msgstr "自動"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "upgrade automatically"
-msgstr "自動アップグレード"
+msgstr "自動的に更新する"
 
 #. TRANSLATORS: Old tooltip of the "automatic upgrade" checkbox -- kept for
 #. translators reference.
@@ -337,6 +343,9 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic updates,\n"
 "when additional updates are available."
 msgstr ""
+"1日1回、パッケージの更新を自動的にチェックしインストールします。\n"
+"システム設定を変更しないで、既存のパッケージのみを更新します。\n"
+"追加の更新プログラムが利用可能になると、更新アイコンは自動更新を含む総個数を表示します。"
 
 msgid ""
 "Automatically install package upgrades at the interval set in the refresh selector.\n"
@@ -344,6 +353,10 @@ msgid ""
 "The updater icon shows the total number of updates, including automatic upgrades,\n"
 "when additional updates are available."
 msgstr ""
+"リフレッシュセレクタで設定された間隔で、パッケージのアップグレードを自動的にインストールします。\n"
+"システムの設定を変更することなく、既存のパッケージのみをアップグレードします。\n"
+"追加のアップデートが利用可能になったときには、\n"
+"更新アイコンには、自動アップグレードを含めた総数が表示されます。"
 
 #. TRANSLATORS: Label shown before the interval dropdown in the Upgrade mode
 #. section.
@@ -351,7 +364,7 @@ msgstr ""
 #. also applies
 #. to automatic upgrades when the "automatic upgrade" checkbox is checked.
 msgid "refresh"
-msgstr ""
+msgstr "リフレッシュ"
 
 msgid ""
 "Sets how often the package list is refreshed (apt-get update).\n"
@@ -360,7 +373,7 @@ msgid ""
 msgstr ""
 
 msgid "Left-click"
-msgstr ""
+msgstr "左クリック"
 
 #. TRANSLATORS: The label of the group box for left-click behaviour.
 msgid "Left-click behaviour   (when updates are available)"
@@ -379,12 +392,12 @@ msgstr "Synaptic を開く"
 msgid ""
 "Left-click always opens Synaptic package manager,\n"
 "with or without updates available."
-msgstr ""
+msgstr "左クリックすると、更新プログラムの有無にかかわらず、常に Synaptic パッケージマネージャを開きます。"
 
 msgid ""
 "Left-click always opens MX Package Installer (MXPI),\n"
 "with or without updates available."
-msgstr ""
+msgstr "左クリックすると、更新プログラムの有無にかかわらず、常に MX パッケージインストーラ（MXPI）を起動します。"
 
 #. TRANSLATORS: The label of the radio button to open the View and Upgrade
 #. window on left-click.
@@ -397,6 +410,10 @@ msgid ""
 "When no updates are available, opens Synaptic\n"
 "or MX Package Installer instead."
 msgstr ""
+"左クリックすると、更新プログラムが利用可能な場合、\n"
+"「表示とアップグレード」ウィンドウが開きます。\n"
+"更新プログラムがない場合は、代わりに Synaptic \n"
+"または MX パッケージインストーラを開きます。"
 
 #. TRANSLATORS: The label of the radio button "opens MX Updater 'View and
 #. Upgrade' window".
@@ -412,7 +429,7 @@ msgstr "アイコン"
 #. icons). The "some-updates" wireframe icon is always the green app icon,
 #. unaffected.
 msgid "transparent wireframe for no updates"
-msgstr ""
+msgstr "更新なしの時の透明なワイヤーフレーム"
 
 #. TRANSLATORS: Short label for checkbox. "black/white" refers to the two
 #. wireframe
@@ -420,7 +437,7 @@ msgstr ""
 #. has black wires).
 #. Detailed explanation is in the tooltip.
 msgid "transparent black/white wireframe"
-msgstr ""
+msgstr "透明な黒白のワイヤーフレーム"
 
 #. TRANSLATORS: Tooltip for "transparent black/white wireframe" checkbox.
 #. Explains when transparent works and when it does not, depending on panel
@@ -436,12 +453,12 @@ msgstr ""
 #. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
 #. "light" icon-set, respectively.
 msgid "dark"
-msgstr "ダーク"
+msgstr "暗色"
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
 #. "light" icon-set, respectively.
 msgid "light"
-msgstr "ライト"
+msgstr "明色"
 
 #. TRANSLATORS: The wireframe icon-set
 msgid "wireframe"
@@ -465,10 +482,10 @@ msgstr "その他"
 #. that "--assume-yes" option is added, so "apt" or "nala" won't ask
 #. for confirmations to install
 msgid "skip upgrade confirmation"
-msgstr ""
+msgstr "アップグレードの確認をスキップ"
 
 msgid "automatically confirm all package upgrades"
-msgstr ""
+msgstr "すべてのパッケージのアップグレードを自動的に確認する"
 
 #. TRANSLATORS: The tooltip of the checkbox "automatically confirm all package
 #. upgrades",
@@ -477,15 +494,17 @@ msgid ""
 "Automatically answers 'yes' to package management prompts during upgrades.\n"
 "Some system configuration changes may still require manual confirmation."
 msgstr ""
+"アップグレード中に現れるパッケージ管理プロンプトに対して、自動的に「はい」と答えます。\n"
+"一部のシステム設定変更については、なお手動での確認が必要になる場合があります。"
 
 #. TRANSLATORS: The label of the checkbox where user can select
 #. to start 'MX Updater' systray icon automatically at login
 #. after a delay of seconds.
 msgid "autostart delay"
-msgstr ""
+msgstr "自動起動するまでの遅延時間"
 
 msgid "start \"MX Updater\" at login after delay"
-msgstr ""
+msgstr "ログイン後、一定時間経過すると MX アップデータを起動します"
 
 #. TRANSLATORS: Explains the start of MX Updater automatically
 #. after a delay of seconds. The user can select the number of seconds.
@@ -493,21 +512,23 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
+"これを選択した場合、ログイン後、指定した秒数が経過すると、\n"
+"MX アップデータを自動的に起動します。"
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears
 #. in the timeout/time delay selection field. Please use the most appropriate
 #. translated string for the singular or plural form. Only one form will
 #. be displayed.
 msgid "sec"
-msgstr ""
+msgstr "秒"
 
 #. TRANSLATORS: After the idle time in seconds has elapsed,
 #. the terminal window is closed once the system update is complete.
 msgid "terminal auto-close"
-msgstr ""
+msgstr "端末を自動的に閉じる"
 
 msgid "close terminal window after idle time"
-msgstr ""
+msgstr "一定時間操作がないときは端末を閉じる"
 
 #. TRANSLATORS: Explains the auto-close behavior of terminal window
 #. after system updates with a configurable idle time
@@ -515,10 +536,12 @@ msgid ""
 "Automatically closes the terminal window after the specified\n"
 "number of seconds of inactivity following system updates."
 msgstr ""
+"システムの更新後、指定した秒数間操作がない場合、\n"
+"端末のウィンドウを自動的に閉じます。"
 
 #. TRANSLATORS: Label before the terminal window size dropdown
 msgid "terminal size"
-msgstr ""
+msgstr "端末の大きさ"
 
 #. TRANSLATORS: terminal window size option: default auto-sizing (original
 #. behavior, 2/3 screen capped on large displays)
@@ -528,35 +551,35 @@ msgstr "既定"
 #. TRANSLATORS: terminal window size option: let terminal use its own saved
 #. size/position
 msgid "own"
-msgstr ""
+msgstr "任意"
 
 #. TRANSLATORS: terminal window size option: one third of the screen
 msgid "1/3 screen"
-msgstr ""
+msgstr "1/3 サイズ"
 
 #. TRANSLATORS: terminal window size option: half the screen
 msgid "1/2 screen"
-msgstr ""
+msgstr "1/2 サイズ"
 
 #. TRANSLATORS: terminal window size option: two thirds of the screen
 msgid "2/3 screen"
-msgstr ""
+msgstr "2/3 サイズ"
 
 #. TRANSLATORS: terminal window size option: three quarters of the screen
 msgid "3/4 screen"
-msgstr ""
+msgstr "3/4 サイズ"
 
 #. TRANSLATORS: terminal window size option: nine tenths of the screen
 msgid "9/10 screen"
-msgstr ""
+msgstr "9/10 サイズ"
 
 #. TRANSLATORS: terminal window size option: full screen
 msgid "full screen"
-msgstr ""
+msgstr "全画面"
 
 #. TRANSLATORS: Label before the terminal window position dropdown
 msgid "position"
-msgstr ""
+msgstr "位置"
 
 #. TRANSLATORS: terminal window position option
 msgid "center"
@@ -564,19 +587,19 @@ msgstr "中央"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-left"
-msgstr ""
+msgstr "左上"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-right"
-msgstr ""
+msgstr "右上"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-left"
-msgstr ""
+msgstr "左下"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-right"
-msgstr ""
+msgstr "右下"
 
 #. TRANSLATORS: Tooltip for the terminal window size label and dropdown.
 #. "default (auto)" means the original automatic sizing is used.
@@ -602,7 +625,7 @@ msgstr "デスクトップ通知を利用"
 #. TRANSLATORS: Short label for checkbox to enable or disable desktop
 #. notification popups.
 msgid "desktop notifications"
-msgstr ""
+msgstr "デスクトップ通知"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -620,7 +643,7 @@ msgstr "入手可能な更新がないときは非表示"
 #. TRANSLATORS: Short label for checkbox. Hides the systray icon when no
 #. package upgrades are available.
 msgid "hide when no updates"
-msgstr ""
+msgstr "更新がない時は非表示にする"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -636,14 +659,14 @@ msgid "Error"
 msgstr "エラー"
 
 msgid "An unexpected error occurred:"
-msgstr ""
+msgstr "予期せぬエラーが発生しました:"
 
 #. TRANSLATORS: Shown in the frequency combo when the current apt-config value
 #. does not
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "カスタム (%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -680,24 +703,24 @@ msgstr ""
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).
 msgid "Unattended Upgrades Configuration Failed"
-msgstr ""
+msgstr "自動アップグレードの設定に失敗しました"
 
 #. TRANSLATORS: Body text of the error dialog for a failed apt periodic
 #. configuration write.
 msgid "Could not change automatic upgrades configuration"
-msgstr ""
+msgstr "自動アップグレードの設定を変更できません"
 
 #. TRANSLATORS: Label in the error detail line, followed by exit code and
 #. stderr output,
 #. e.g. "Command failed [1]: error message".
 msgid "Command failed"
-msgstr ""
+msgstr "コマンドの実行に失敗しました"
 
 msgid "Unattended-upgrades"
 msgstr "自動アップデート"
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "利用可能なアップグレードがあります"
 
 msgid "Check for Updates"
 msgstr "更新をチェック"
@@ -715,7 +738,7 @@ msgid "Quit"
 msgstr "中止"
 
 msgid "close terminal window automatically after idle time"
-msgstr ""
+msgstr "一定時間操作がないと端末ウィンドウを自動的に閉じる"
 
 msgid "upgrade"
 msgstr "アップグレード"

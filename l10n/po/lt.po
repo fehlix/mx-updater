@@ -190,7 +190,7 @@ msgstr ""
 #. field.
 #. The string is also shown as the first line within the tooltip.
 msgid "Search..."
-msgstr ""
+msgstr "Ieškoti..."
 
 #. TRANSLATORS: This is the title of the popup window indicating that the
 #. search string was not found.
@@ -291,22 +291,22 @@ msgid "Select this to use nala package manager instead of apt."
 msgstr ""
 
 msgid "daily"
-msgstr ""
+msgstr "kas dieną"
 
 msgid "every 3 days"
-msgstr ""
+msgstr "kas 3 dienas"
 
 msgid "weekly"
-msgstr ""
+msgstr "kas savaitę"
 
 msgid "every 2 weeks"
-msgstr ""
+msgstr "kas 2 savaites"
 
 msgid "monthly"
-msgstr ""
+msgstr "kas mėnesį"
 
 msgid "never"
-msgstr ""
+msgstr "niekada"
 
 #. TRANSLATORS: Label of the checkbox to enable unattended (automatic) package
 #. upgrades.
@@ -317,17 +317,17 @@ msgstr ""
 #. word in your language best describes "installing newer versions of existing
 #. packages".
 msgid "automatic upgrade"
-msgstr ""
+msgstr "automatiniai naujinimai"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "automatic"
-msgstr ""
+msgstr "automatiškai"
 
 #. TRANSLATORS: Old label of the automatic upgrade checkbox -- kept for
 #. translators reference.
 msgid "upgrade automatically"
-msgstr ""
+msgstr "naujinti automatiškai"
 
 #. TRANSLATORS: Old tooltip of the "automatic upgrade" checkbox -- kept for
 #. translators reference.
@@ -519,65 +519,65 @@ msgstr ""
 
 #. TRANSLATORS: Label before the terminal window size dropdown
 msgid "terminal size"
-msgstr ""
+msgstr "terminalo dydis"
 
 #. TRANSLATORS: terminal window size option: default auto-sizing (original
 #. behavior, 2/3 screen capped on large displays)
 msgid "default"
-msgstr ""
+msgstr "numatytasis"
 
 #. TRANSLATORS: terminal window size option: let terminal use its own saved
 #. size/position
 msgid "own"
-msgstr ""
+msgstr "savas"
 
 #. TRANSLATORS: terminal window size option: one third of the screen
 msgid "1/3 screen"
-msgstr ""
+msgstr "1/3 ekrano"
 
 #. TRANSLATORS: terminal window size option: half the screen
 msgid "1/2 screen"
-msgstr ""
+msgstr "1/2 ekrano"
 
 #. TRANSLATORS: terminal window size option: two thirds of the screen
 msgid "2/3 screen"
-msgstr ""
+msgstr "2/3 ekrano"
 
 #. TRANSLATORS: terminal window size option: three quarters of the screen
 msgid "3/4 screen"
-msgstr ""
+msgstr "3/4 ekrano"
 
 #. TRANSLATORS: terminal window size option: nine tenths of the screen
 msgid "9/10 screen"
-msgstr ""
+msgstr "9/10 ekrano"
 
 #. TRANSLATORS: terminal window size option: full screen
 msgid "full screen"
-msgstr ""
+msgstr "visas ekranas"
 
 #. TRANSLATORS: Label before the terminal window position dropdown
 msgid "position"
-msgstr ""
+msgstr "pozicija"
 
 #. TRANSLATORS: terminal window position option
 msgid "center"
-msgstr ""
+msgstr "centre"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-left"
-msgstr ""
+msgstr "viršuje kairėje"
 
 #. TRANSLATORS: terminal window position option
 msgid "top-right"
-msgstr ""
+msgstr "viršuje dešinėje"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-left"
-msgstr ""
+msgstr "apačioje kairėje"
 
 #. TRANSLATORS: terminal window position option
 msgid "bottom-right"
-msgstr ""
+msgstr "apačioje dešinėje"
 
 #. TRANSLATORS: Tooltip for the terminal window size label and dropdown.
 #. "default (auto)" means the original automatic sizing is used.
@@ -598,12 +598,12 @@ msgstr ""
 #. where user can select to disabled or enable notification "popup" window
 #. shown .
 msgid "use desktop notifications"
-msgstr ""
+msgstr "naudoti darbalaukio pranešimus"
 
 #. TRANSLATORS: Short label for checkbox to enable or disable desktop
 #. notification popups.
 msgid "desktop notifications"
-msgstr ""
+msgstr "darbalaukio pranešimai"
 
 #. TRANSLATORS: The tooltip of of the checkbox "use desktop notifications",
 #. which tries to exlpain what this checkbox is about.
@@ -621,7 +621,7 @@ msgstr "Slėpti, kol bus prieinami atnaujinimai"
 #. TRANSLATORS: Short label for checkbox. Hides the systray icon when no
 #. package upgrades are available.
 msgid "hide when no updates"
-msgstr ""
+msgstr "slėpti, kai nėra atnaujinimų"
 
 #. TRANSLATORS: The tooltip of of the checkbox "hide until updates available",
 #. which tries to exlpain what this checkbox is about.
@@ -698,7 +698,7 @@ msgid "Unattended-upgrades"
 msgstr ""
 
 msgid "Upgrades available"
-msgstr ""
+msgstr "Yra prieinami naujinimai"
 
 msgid "Check for Updates"
 msgstr "Tikrinti ar yra atnaujinimų"

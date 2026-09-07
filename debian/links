@@ -1,8 +1,5 @@
 usr/lib/mx-updater/actions/auto-update-periodic     usr/lib/mx-updater/actions/auto-update-periodic-enable
 usr/lib/mx-updater/actions/auto-update-periodic     usr/lib/mx-updater/actions/auto-update-periodic-disable
-usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_basic-upgrade_action
-usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_full-upgrade_action
-usr/lib/mx-updater/actions/updater_action           usr/lib/mx-updater/actions/updater_reload_action
 usr/lib/mx-updater/bin/updater_upgrade_run          usr/lib/mx-updater/bin/updater_basic-upgrade_run
 usr/lib/mx-updater/bin/updater_upgrade_run          usr/lib/mx-updater/bin/updater_full-upgrade_run
 usr/libexec/mx-updater/mx-updater-logviewer.py      usr/libexec/mx-updater/mx-updater-auto-update_log.py

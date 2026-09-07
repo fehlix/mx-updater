@@ -5,18 +5,13 @@ mx-updater (26.09.01mx25) mx; urgency=medium
     instead of falling back to sudo.
   * Systray: silence DBusException when closing a notification whose
     daemon has already disappeared (seen with MATE's notification
-    daemon closing too fast). Fixed in all three places the tray
-    closes a notification (replacing an action notification, periodic
-    cleanup, and on quit).
+    daemon closing too fast).
   * Fix: qt6ct Qt debug/XCB warning noise (palette diagnostics etc.)
     leaking into the terminal from the changelog, history and
-    view-and-upgrade viewers. QT_LOGGING_RULES is now set directly in
-    each of these scripts, since they are launched as standalone
-    python3 subprocesses and previously only inherited the suppression
-    set by the bin/mx-updater* shell launchers.
+    view-and-upgrade viewers.
   * Translations refresh.
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 06 Sep 2026 20:06:00 -0400
+ -- fehlix <fehlix@mxlinux.org>  Mon, 07 Sep 2026 16:25:13 -0400
 
 mx-updater (26.07.02mx25) mx; urgency=medium
 

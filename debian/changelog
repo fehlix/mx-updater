@@ -1,4 +1,4 @@
-mx-updater (26.09.01mx25~dev04) UNRELEASED; urgency=medium
+mx-updater (26.09.01mx25) mx; urgency=medium
 
   * Actions: recognize polkit-mate-authentication-agent-1 in the known
     polkit agent list so MATE users get the pkexec/polkit GUI prompt

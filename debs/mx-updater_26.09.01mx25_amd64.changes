@@ -1,0 +1,65 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Mon, 07 Sep 2026 07:59:21 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.09.01mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.09.01mx25) mx; urgency=medium
+ .
+   * Actions: recognize polkit-mate-authentication-agent-1 in the known
+     polkit agent list so MATE users get the pkexec/polkit GUI prompt
+     instead of falling back to sudo.
+   * Systray: silence DBusException when closing a notification whose
+     daemon has already disappeared (seen with MATE's notification
+     daemon closing too fast).
+   * Fix: qt6ct Qt debug/XCB warning noise (palette diagnostics etc.)
+     leaking into the terminal from the changelog, history and
+     view-and-upgrade viewers. QT_LOGGING_RULES is now set directly in
+     each of these scripts, since they are launched as standalone
+     python3 subprocesses and previously only inherited the suppression
+     set by the bin/mx-updater* shell launchers.
+   * Translations refresh.
+Checksums-Sha1:
+ 7a3df6d05a114b020c9ea7885075a3ea6ca35571 1614 mx-updater_26.09.01mx25.dsc
+ 6641637e16c783acc7ea8e485d801910f29851f8 181652 mx-updater_26.09.01mx25.tar.xz
+ 78df91cb7fd1c62a4b04f149623a980b404115b7 375788 mx-updater_26.09.01mx25_all.deb
+ c1eb7f48a75888e825d5dc1b4a61447b6e676b57 7800 mx-updater_26.09.01mx25_amd64.buildinfo
+Checksums-Sha256:
+ 3ab5dd356b5c066ab110eda500c3f6db97670ccfa5f411a2fc30e13214894361 1614 mx-updater_26.09.01mx25.dsc
+ 32edff0d1a83a57648b2c6bdd758395eceedf772db0ffb896fb9be61fe043435 181652 mx-updater_26.09.01mx25.tar.xz
+ 20b2061e6d1805d15a02dae003464693dad81da131bd35b3f5fd68344399386d 375788 mx-updater_26.09.01mx25_all.deb
+ 720e24ff58e70f7bbe84ad653d400167cad0a20f43a310237263892d24db76f1 7800 mx-updater_26.09.01mx25_amd64.buildinfo
+Files:
+ 7dcf7e2fe0cba853c583edbb72fb53a1 1614 admin optional mx-updater_26.09.01mx25.dsc
+ 7682483ff687df58576c6049258fe5a1 181652 admin optional mx-updater_26.09.01mx25.tar.xz
+ 3f2e412d7969aa8af11b168f97aa7562 375788 admin optional mx-updater_26.09.01mx25_all.deb
+ 9dad7c1cb3732ca27e1fbe31fe3110c3 7800 admin optional mx-updater_26.09.01mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmqep2ETHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6YFBEACIHk9Kk//mgmPpyuk06Vqq9jRq0d+m
+5WHH2m4cV8VgncEXf3SRlNE26UtSafWarXoN15DPZOf+NNlUV/Sksvn2TSe41NBV
+HEh9+dWR3Qageblme/YV7tcyj4iYyUnp2EzCmraqhNYo59ZyqUAue6DMbakbWG92
+0wSmobgsddONHZ4pW82sLsCXHxA1g2fFRjPEBvifOwicf4yql8rr54G7m4KO4YY+
+8rYE9a9viP/X2MBJwg4TeVYCSim8KrA6sI7rSvnI8NxdeFe3YE86XcUXSs7/Iyf8
+JukXx+RsgUv79+fWEQn68gdihFZC0UUUj/SEBhD2GvCsubOe25E5kFSCV6/zn3Va
+twVFoBTBkLyzYykXZfo9zz7O9LykdinsbINzkFOoVrjBz/CVU2f95fwE6lc6KuPz
+crcImNlz6rpxyR4kRhtLA2Rcz3R/CvqBlAJRGCiXPhLhDeIaDYqykSf4lxZ9szrX
+Grz06DdxUyWcbPyN7D1HtZZNPyvin/OM6OpisQ84/CB8cZqzueW5w9naZ4VAOfHQ
+uVZtE58/161N/jGksyr9tidV2Qk1IaGOjcl7L4xAxNgo8Dvn3flgJEeOUS43Nxg3
+pnll9ZCQoFsFAjrrPkArdv3p05dfYstvtDvGO6xrLu3GYhXUH46QCYobI87lL3Yd
+1Cr75Uq8/c6eIQ==
+=zRUk
+-----END PGP SIGNATURE-----

@@ -1,0 +1,251 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.0
+Source: mx-updater
+Binary: mx-updater
+Architecture: all source
+Version: 26.09.01mx25
+Checksums-Md5:
+ 7dcf7e2fe0cba853c583edbb72fb53a1 1614 mx-updater_26.09.01mx25.dsc
+ 3f2e412d7969aa8af11b168f97aa7562 375788 mx-updater_26.09.01mx25_all.deb
+Checksums-Sha1:
+ 7a3df6d05a114b020c9ea7885075a3ea6ca35571 1614 mx-updater_26.09.01mx25.dsc
+ 78df91cb7fd1c62a4b04f149623a980b404115b7 375788 mx-updater_26.09.01mx25_all.deb
+Checksums-Sha256:
+ 3ab5dd356b5c066ab110eda500c3f6db97670ccfa5f411a2fc30e13214894361 1614 mx-updater_26.09.01mx25.dsc
+ 20b2061e6d1805d15a02dae003464693dad81da131bd35b3f5fd68344399386d 375788 mx-updater_26.09.01mx25_all.deb
+Build-Origin: Debian
+Build-Architecture: amd64
+Build-Date: Mon, 07 Sep 2026 14:00:24 +0200
+Build-Tainted-By:
+ usr-local-has-includes
+ usr-local-has-libraries
+ usr-local-has-programs
+Installed-Build-Depends:
+ autoconf (= 2.72-3.1),
+ automake (= 1:1.17-4),
+ autopoint (= 0.23.1-2),
+ autotools-dev (= 20240727.1),
+ base-files (= 13.8+deb13u6),
+ base-passwd (= 3.6.7),
+ bash (= 5.2.37-2+b9),
+ binutils (= 2.44-3),
+ binutils-common (= 2.44-3),
+ binutils-x86-64-linux-gnu (= 2.44-3),
+ bsdextrautils (= 2.41.5-0+deb13u1),
+ bsdmainutils (= 12.1.8),
+ bsdutils (= 1:2.41.5-0+deb13u1),
+ build-essential (= 12.12),
+ bzip2 (= 1.0.8-6),
+ coreutils (= 9.7-3),
+ cpp (= 4:14.2.0-1),
+ cpp-14 (= 14.2.0-19),
+ cpp-14-x86-64-linux-gnu (= 14.2.0-19),
+ cpp-x86-64-linux-gnu (= 4:14.2.0-1),
+ dash (= 0.5.12-12),
+ debconf (= 1.5.91),
+ debhelper (= 13.24.2),
+ debianutils (= 5.23.2),
+ dh-autoreconf (= 20),
+ dh-strip-nondeterminism (= 1.14.1-2),
+ diffutils (= 1:3.10-4),
+ dpkg (= 1.22.22),
+ dpkg-dev (= 1.22.22),
+ dwz (= 0.15-1+b1),
+ file (= 1:5.46-5),
+ findutils (= 4.10.0-3),
+ fontconfig (= 2.15.0-2.3),
+ fontconfig-config (= 2.15.0-2.3),
+ fonts-dejavu-core (= 2.37-8),
+ fonts-dejavu-mono (= 2.37-8),
+ fonts-freefont-ttf (= 20211204+svn4273-2),
+ fonts-liberation (= 1:2.1.5-3),
+ fonts-noto-core (= 20201225-2),
+ fonts-noto-mono (= 20201225-2),
+ fonts-urw-base35 (= 20200910-8),
+ g++ (= 4:14.2.0-1),
+ g++-14 (= 14.2.0-19),
+ g++-14-x86-64-linux-gnu (= 14.2.0-19),
+ g++-x86-64-linux-gnu (= 4:14.2.0-1),
+ gawk (= 1:5.2.1-2+b1),
+ gcc (= 4:14.2.0-1),
+ gcc-14 (= 14.2.0-19),
+ gcc-14-base (= 14.2.0-19),
+ gcc-14-x86-64-linux-gnu (= 14.2.0-19),
+ gcc-x86-64-linux-gnu (= 4:14.2.0-1),
+ gettext (= 0.23.1-2),
+ gettext-base (= 0.23.1-2),
+ grep (= 3.11-4),
+ groff-base (= 1.23.0-9),
+ gzip (= 1.13-1),
+ hostname (= 3.25),
+ init-system-helpers (= 1.69~deb13u1),
+ intltool-debian (= 0.35.0+20060710.6),
+ libacl1 (= 2.3.2-2+b1),
+ libarchive-zip-perl (= 1.68-1),
+ libasan8 (= 14.2.0-19),
+ libatomic1 (= 14.2.0-19),
+ libattr1 (= 1:2.5.2-3),
+ libaudit-common (= 1:4.0.2-2),
+ libaudit1 (= 1:4.0.2-2+b2),
+ libbinutils (= 2.44-3),
+ libblkid1 (= 2.41.5-0+deb13u1),
+ libbrotli1 (= 1.1.0-2+b7),
+ libbz2-1.0 (= 1.0.8-6),
+ libc-bin (= 2.41-12+deb13u3),
+ libc-dev-bin (= 2.41-12+deb13u3),
+ libc6 (= 2.41-12+deb13u3),
+ libc6-dev (= 2.41-12+deb13u3),
+ libcairo-gobject2 (= 1.18.4-1+b1),
+ libcairo2 (= 1.18.4-1+b1),
+ libcap-ng0 (= 0.8.5-4+b1),
+ libcap2 (= 1:2.75-10+deb13u1+b1),
+ libcc1-0 (= 14.2.0-19),
+ libcrypt-dev (= 1:4.4.38-1),
+ libcrypt1 (= 1:4.4.38-1),
+ libctf-nobfd0 (= 2.44-3),
+ libctf0 (= 2.44-3),
+ libdatrie1 (= 0.2.13-3+b1),
+ libdav1d7 (= 1.5.1-1),
+ libdb5.3t64 (= 5.3.28+dfsg2-9),
+ libdebconfclient0 (= 0.280),
+ libdebhelper-perl (= 13.24.2),
+ libdeflate0 (= 1.23-2),
+ libdpkg-perl (= 1.22.22),
+ libelf1t64 (= 0.192-4),
+ libexpat1 (= 2.8.3-1~deb13u1),
+ libffi8 (= 3.4.8-2),
+ libfile-stripnondeterminism-perl (= 1.14.1-2),
+ libfontconfig1 (= 2.15.0-2.3),
+ libfontenc1 (= 1:1.1.8-1+b2),
+ libfreetype6 (= 2.13.3+dfsg-1+deb13u1),
+ libfribidi0 (= 1.0.16-1),
+ libgcc-14-dev (= 14.2.0-19),
+ libgcc-s1 (= 14.2.0-19),
+ libgdbm-compat4t64 (= 1.24-2),
+ libgdbm6t64 (= 1.24-2),
+ libgdk-pixbuf-2.0-0 (= 2.42.12+dfsg-4+deb13u1),
+ libgdk-pixbuf2.0-common (= 2.42.12+dfsg-4+deb13u1),
+ libglib2.0-0t64 (= 2.84.4-3~deb13u3),
+ libgmp10 (= 2:6.3.0+dfsg-3),
+ libgomp1 (= 14.2.0-19),
+ libgprofng0 (= 2.44-3),
+ libgraphite2-3 (= 1.3.14-2+deb13u1),
+ libharfbuzz0b (= 10.2.0-1+deb13u1),
+ libhwasan0 (= 14.2.0-19),
+ libisl23 (= 0.27-1),
+ libitm1 (= 14.2.0-19),
+ libjansson4 (= 2.14-2+b3),
+ libjbig0 (= 2.1-6.1+b2),
+ libjpeg62-turbo (= 1:2.1.5-4),
+ liblastlog2-2 (= 2.41.5-0+deb13u1),
+ liblerc4 (= 4.0.0+ds-5),
+ liblsan0 (= 14.2.0-19),
+ liblzma5 (= 5.8.1-1+deb13u1),
+ libmagic-mgc (= 1:5.46-5),
+ libmagic1t64 (= 1:5.46-5),
+ libmd0 (= 1.1.0-2+b1),
+ libmount1 (= 2.41.5-0+deb13u1),
+ libmpc3 (= 1.3.1-1+b3),
+ libmpfr6 (= 4.2.2-1),
+ libpam-modules (= 1.7.0-5),
+ libpam-modules-bin (= 1.7.0-5),
+ libpam-runtime (= 1.7.0-5),
+ libpam0g (= 1.7.0-5),
+ libpango-1.0-0 (= 1.56.3-1),
+ libpangocairo-1.0-0 (= 1.56.3-1),
+ libpangoft2-1.0-0 (= 1.56.3-1),
+ libpcre2-8-0 (= 10.46-1~deb13u1),
+ libperl5.40 (= 5.40.1-6),
+ libpipeline1 (= 1.5.8-1),
+ libpixman-1-0 (= 0.44.0-3),
+ libpng16-16t64 (= 1.6.48-1+deb13u5),
+ libquadmath0 (= 14.2.0-19),
+ libreadline8t64 (= 8.2-6),
+ librsvg2-2 (= 2.60.0+dfsg-1),
+ librsvg2-bin (= 2.60.0+dfsg-1),
+ libseccomp2 (= 2.6.0-2),
+ libselinux1 (= 3.8.1-1),
+ libsframe1 (= 2.44-3),
+ libsharpyuv0 (= 1.5.0-0.1),
+ libsigsegv2 (= 2.14-1+b2),
+ libsmartcols1 (= 2.41.5-0+deb13u1),
+ libsqlite3-0 (= 3.46.1-7+deb13u1),
+ libssl3t64 (= 3.5.7-1~deb13u2),
+ libstdc++-14-dev (= 14.2.0-19),
+ libstdc++6 (= 14.2.0-19),
+ libsystemd0 (= 257.13-1~deb13u1),
+ libthai-data (= 0.1.29-2),
+ libthai0 (= 0.1.29-2+b1),
+ libtiff6 (= 4.7.0-3+deb13u3),
+ libtinfo6 (= 6.5+20250216-2),
+ libtool (= 2.5.4-4),
+ libtsan2 (= 14.2.0-19),
+ libubsan1 (= 14.2.0-19),
+ libuchardet0 (= 0.0.8-1+b2),
+ libudev1 (= 257.13-1~deb13u1),
+ libunistring5 (= 1.3-2),
+ libuuid1 (= 2.41.5-0+deb13u1),
+ libwebp7 (= 1.5.0-0.1),
+ libx11-6 (= 2:1.8.12-1),
+ libx11-data (= 2:1.8.12-1),
+ libxau6 (= 1:1.0.11-1),
+ libxcb-render0 (= 1.17.0-2+b1),
+ libxcb-shm0 (= 1.17.0-2+b1),
+ libxcb1 (= 1.17.0-2+b1),
+ libxdmcp6 (= 1:1.1.5-1),
+ libxext6 (= 2:1.3.4-1+b3),
+ libxml2 (= 2.12.7+dfsg+really2.9.14-2.1+deb13u3),
+ libxrender1 (= 1:0.9.12-1),
+ libzstd1 (= 1.5.7+dfsg-1),
+ linux-libc-dev (= 6.18.15-1~mx25ahs),
+ m4 (= 1.4.19-8),
+ make (= 4.4.1-2),
+ man-db (= 2.13.1-1),
+ mawk (= 1.3.4.20250131-1),
+ ncal (= 12.1.8),
+ ncurses-base (= 6.5+20250216-2),
+ ncurses-bin (= 6.5+20250216-2),
+ openssl-provider-legacy (= 3.5.7-1~deb13u2),
+ patch (= 2.8-2),
+ perl (= 5.40.1-6),
+ perl-base (= 5.40.1-6),
+ perl-modules-5.40 (= 5.40.1-6),
+ po-debconf (= 1.0.21+nmu1),
+ readline-common (= 8.2-6),
+ rpcsvc-proto (= 1.4.3-1),
+ sed (= 4.9-2+deb13u1),
+ sensible-utils (= 0.0.25),
+ shared-mime-info (= 2.4-5+b2),
+ sysvinit-utils (= 3.14-4),
+ tar (= 1.35+dfsg-3.1),
+ util-linux (= 2.41.5-0+deb13u1),
+ x11-common (= 1:7.7+24+deb13u1),
+ xfonts-encodings (= 1:1.0.4-2.2),
+ xfonts-utils (= 1:7.7+7),
+ xz-utils (= 5.8.1-1+deb13u1),
+ zlib1g (= 1:1.3.dfsg+really1.3.1-1+b1)
+Environment:
+ DEB_BUILD_OPTIONS="parallel=16"
+ LANG="en_US.UTF-8"
+ LC_TIME="en_US.UTF-8"
+ SOURCE_DATE_EPOCH="1788782361"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmqep2ATHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6UFXEACYUKX7glrX2YD+56XJ1QzrVy51JY24
+2hdOU5mPMecWBAiHxTm/QaJaGB9FulwG9SCAor0t3s/iojT09Ae2cby2J+ED6rIH
+/LuIsGlirg5XIyUAaOw5quodyBZxSEE7jOtEVVOsSN1wmKSObLyFSPoYHm5zaXMR
+Na9isCTSrqw+a6+pwU6/Ij5wD1yJUN2GmCWi695MYgmxqmVEd2OTVljBpFZIBP4r
+OJpxS2UabrVVPZAVytqXv8sPyzRozVa1ccXzGnbILlBhublCeceDU3YvxNu+8qAX
+6rM4o+KbhCUG3AYYiWMTsDLJM50LvNU9KOOENoMvn/jnTmZeHXseET+nQF0a92d4
+cI5KvXxkqURhEJxoGoMAoF1rioaVwCawFYMVNETPALRoDQoZKbER/4r7jiAyzZUH
+mIgOyvgbQ4kvZxzDtE04bVDvrahah+e1XtGoooMWcI/WPNTeKR+67OEEZU7b/YXk
+AHLwWvDVr5tdj92Cgrd2moXciyC6DuQAN9pFGUU5ObvyyclHslXy+s9dsHgkeMQI
+R4OH6ikHoi+T6p4AKj/SbpOU3tzIbahfaojoXG88bP+a4b9MGAAPjk/79kcJImZa
+pzsWUVbHEP1L5jze0Ven62ju7Sw2ZFQKxyyFqXG6bhiaMjv74H1QWyUwE7ItXZWj
+J76LCt85A474Xg==
+=UokI
+-----END PGP SIGNATURE-----

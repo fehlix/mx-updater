@@ -1,5 +1,5 @@
 # Languages codes with translation completness  >= 25%
-# generated with tx-complete.sh at Sun, 06 Sep 2026 19:11:40 -0400
+# generated with tx-complete.sh at Wed, 30 Sep 2026 12:53:57 -0400
 # Number of translations: 140
    Nr.		Cnt.	 Compl.		Code		Language
    ---		----	 ------		----		--------
@@ -14,7 +14,7 @@
      9		 140	   100%    	nl      	nl	Dutch; Flemish
     10		 140	   100%    	pl      	pl	Polish
     11		 140	   100%    	sv      	sv	Swedish
-    12		 134	    95%    	pt_BR   	pt	Portuguese @ Brazil
+    12		 137	    97%    	pt_BR   	pt	Portuguese @ Brazil
     13		 125	    89%    	ja      	ja	Japanese
     14		 102	    72%    	sq      	sq	Albanian
     15		  94	    67%    	pt      	pt	Portuguese

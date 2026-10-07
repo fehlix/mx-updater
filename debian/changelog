@@ -1,3 +1,23 @@
+mx-updater (26.10.01mx25) mx; urgency=medium
+
+  * Terminal: fix xdotool window search failing to match the terminal
+    title on qterminal by quoting it with bash's ${T@Q} instead of
+    printf '%q'.
+  * Terminal: when a terminal manages its own geometry ("own" size
+    option), skip only those calls to adjust the size and position.
+  * roxterm: set window class explicitly.
+  * terminator: fix a stray quoting bug in the --icon argument.
+  * Actions: force debconf to noninteractive during upgrades, instead
+    of leaving it to try (and fail) to init a GUI frontend under
+    pkexec; drops the "debconf: unable to initialize frontend"
+    warnings. Removed the now-unused desktop-session/Qt-theme
+    environment passthrough (DESKTOP_SESSION, KDE_FULL_SESSION,
+    XDG_CURRENT_DESKTOP, QT_*) that existed only to support that GUI
+    frontend.
+  * Translations refresh.
+
+ -- fehlix <fehlix@mxlinux.org>  Wed, 07 Oct 2026 17:18:04 -0400
+
 mx-updater (26.09.01mx25) mx; urgency=medium
 
   * Actions: recognize polkit-mate-authentication-agent-1 in the known

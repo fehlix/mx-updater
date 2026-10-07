@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Wallon <wallon@ik.me>, 2026
 # fehlix, 2026
+# Wallon <wallon@ik.me>, 2026
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-25 20:10-0400\n"
 "PO-Revision-Date: 2025-10-17 07:23+0000\n"
-"Last-Translator: fehlix, 2026\n"
+"Last-Translator: Wallon <wallon@ik.me>, 2026\n"
 "Language-Team: French (Belgium) (https://app.transifex.com/anticapitalista/teams/10162/fr_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,9 +473,9 @@ msgid ""
 "  wireframe-light (black wires): visible on light panel, invisible on dark panel."
 msgstr ""
 "Rend l’icône « boîte filaire » noir/blanc transparente (sans remplissage).\n"
-"Fonctionne mieux lorsque la couleur du panneau contraste avec la couleur des fils:\n"
-"  boîte filaire sombre (fils blancs): visible sur un panneau sombre, invisible sur un panneau clair.\n"
-"  boîte filaire claire (fils noirs): visible sur un panneau clair, invisible sur un panneau sombre."
+"Fonctionne mieux lorsque la couleur du tableau de bord contraste avec la couleur des fils:\n"
+"  boîte filaire sombre (fils blancs): visible sur un tableau de bord sombre, invisible sur un tableau de bord clair.\n"
+"  boîte filaire claire (fils noirs): visible sur un tableau de bord clair, invisible sur un tableau de bord sombre."
 
 #. TRANSLATORS: The strings "dark" or "light" are used for the "dark" or
 #. "light" icon-set, respectively.

@@ -324,16 +324,19 @@ updater_show() {
 
     fi
 
-    # Also skip xdotool when letting the terminal manage its own geometry
-    $use_own_geometry && XDO=": "
 
     if [ -z "$XDO" ]; then
-
-        XSEARCH="xdotool sleep 0.2 search --onlyvisible --name $(printf '%q' "$T")"
-        XSIZE="windowsize $TW $TH"
-        XMOVE="windowmove $TX $TY"
+        XSEARCH="xdotool sleep 0.3 search --onlyvisible --name ${T@Q}"
+        # skip settings window size and postion
+        # when letting the terminal manage its own geometry
+		if $use_own_geometry; then
+	        XSIZE=""
+	        XMOVE=""
+		else
+	        XSIZE="windowsize $TW $TH"
+	        XMOVE="windowmove $TX $TY"
+		fi
         XCLASS="set_window --classname ${CLASS_NAME} --class ${CLASS_NAME}"
-
         XDO="$XSEARCH $XSIZE $XMOVE $XCLASS"
     fi
 
@@ -402,10 +405,10 @@ updater_show() {
                qterminal "${kgeo_flags[@]}" -qwindowicon "$icon" -qwindowtitle "$T" -e "$C"
             ;;
       *roxterm)
-            roxterm --hide-menubar --separate "${rox_flags[@]}" -T "$T" -e "$C" 2>/dev/null
+            roxterm --hide-menubar --separate "${rox_flags[@]}" --class="${CLASS_NAME}" -T "${T}" -e "$C" 2>/dev/null
             ;;
       *terminator)
-            terminator --no-dbus --icon=""$icon -T "$T" -e "$C" 2>/dev/null
+            terminator --no-dbus --icon="$icon" -T "$T" -e "$C" 2>/dev/null
             ;;
       *urxvt)
             urxvt  "${urxvt_flags[@]}" -icon "$icon" -title "$T"  -e sh -c "echo '$msg'; sleep 1; $XDO; ${cmd}"

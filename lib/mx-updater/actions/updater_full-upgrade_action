@@ -109,14 +109,10 @@ else
     # from users environment into an array
     __ENVIRONEMENT_PATTERN__=(
     UPDATER_AUTO_CLOSE=
-    DESKTOP_SESSION=
-    KDE_FULL_SESSION=
     LANG=
     LANGUAGE=
     LC_[[:alpha:]]+=
     PWD=
-    QT_[[:alnum:]_]+=
-    XDG_CURRENT_DESKTOP=
     XDG_SESSION_TYPE=
     WAYLAND_DISPLAY=
     )

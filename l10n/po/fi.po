@@ -535,7 +535,7 @@ msgid ""
 "Select this to launch \"MX Updater\" automatically\n"
 "at login after the specified delay in seconds."
 msgstr ""
-"Valitse tämä, jos haluat käynnistää \"MX Päivitykset\" automaattisesti "
+"Valitse tämä, jos haluat käynnistää \"MX Päivitykset\" automaattisesti\n"
 "kirjautumisen yhteydessä määritetyn viiveen jälkeen."
 
 #. TRANSLATORS: This is the abbreviated string for "seconds" that appears

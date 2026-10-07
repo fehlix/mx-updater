@@ -708,7 +708,7 @@ msgstr "Um erro inesperado aconteceu:"
 #. match any preset (daily/weekly/etc). %s is a compact interval like "5d",
 #. "12h", or "always".
 msgid "custom (%s)"
-msgstr ""
+msgstr "Personalizar (%s)"
 
 #. TRANSLATORS: One-line header in the frequency combo tooltip showing current
 #. effective
@@ -716,7 +716,7 @@ msgstr ""
 #. interval,
 #. each wrapped in parentheses, e.g. "(daily)", "(5d)", "(always)", "(never)".
 msgid "Current (apt-config): refresh %s, upgrade %s"
-msgstr ""
+msgstr "Definição atual (apt-config): verificar: %s, atualizar: %s "
 
 msgid ""
 "Sets the interval for package list refresh (apt-get update).\n"
@@ -743,7 +743,7 @@ msgstr ""
 #. file
 #. with higher priority is overriding the value written by mx-updater.
 msgid "Setting Overridden"
-msgstr ""
+msgstr "A configuração está em baixa na hierarquia do sistema"
 
 #. TRANSLATORS: Title of the error dialog shown when the pkexec action script
 #. to set apt periodic upgrade configuration fails (non-zero exit).

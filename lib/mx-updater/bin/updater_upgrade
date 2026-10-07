@@ -15,6 +15,15 @@ if [ $(id -u) != 0 ]; then
 fi
 
 #-----------------------------------------------------------------------
+# force debconf to noninteractive: running under pkexec, no debconf GUI
+# frontend can initialize properly anyway (no reliable DISPLAY/desktop
+# context for it), which otherwise surfaces as
+# "debconf: unable to initialize frontend" warnings. This skips trying
+# and falls back to preseeded/default answers directly.
+#
+export DEBIAN_FRONTEND=noninteractive
+
+#-----------------------------------------------------------------------
 # set less-prompt
 #
 export TEXTDOMAINDIR="/usr/share/locale"

@@ -1,0 +1,67 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Wed, 07 Oct 2026 17:18:04 -0400
+Source: mx-updater
+Binary: mx-updater
+Architecture: source all
+Version: 26.10.01mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description:
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.10.01mx25) mx; urgency=medium
+ .
+   * Terminal: fix xdotool window search failing to match the terminal
+     title on qterminal by quoting it with bash's ${T@Q} instead of
+     printf '%q'.
+   * Terminal: when a terminal manages its own geometry ("own" size
+     option), skip only those calls to adjust the size and position.
+   * roxterm: set window class explicitly.
+   * terminator: fix a stray quoting bug in the --icon argument.
+   * Actions: force debconf to noninteractive during upgrades, instead
+     of leaving it to try (and fail) to init a GUI frontend under
+     pkexec; drops the "debconf: unable to initialize frontend"
+     warnings. Removed the now-unused desktop-session/Qt-theme
+     environment passthrough (DESKTOP_SESSION, KDE_FULL_SESSION,
+     XDG_CURRENT_DESKTOP, QT_*) that existed only to support that GUI
+     frontend.
+   * Translations refresh.
+Checksums-Sha1:
+ b5d2ef86248fb94588703c2b01ebbe1a7fc875d2 1614 mx-updater_26.10.01mx25.dsc
+ 4dbb9c628e183f03b52c9beac7734b8f85a007a7 182088 mx-updater_26.10.01mx25.tar.xz
+ 14ab08e812dc9b6f59c7db3c8cb2eea9c1ac2539 376188 mx-updater_26.10.01mx25_all.deb
+ f836bf5d8de63ff22392743a6605ec833e006975 7872 mx-updater_26.10.01mx25_amd64.buildinfo
+Checksums-Sha256:
+ a794429f5fa4519d0b1e345d5622e5edb77527b4cf1d68e64c0110b015d08329 1614 mx-updater_26.10.01mx25.dsc
+ 1e48055e1d8f55928dcbb9cd6671cb640d6520e19260cb5d781baa9ac378881a 182088 mx-updater_26.10.01mx25.tar.xz
+ 39923ef288086ada4c4048a777970c9560ea65ead937b68fd1f7c4d801f798c2 376188 mx-updater_26.10.01mx25_all.deb
+ 02e82024c20a60a9a91c5bf9c5f8287010cb7e0ce48c58525461a0e0e3935fbd 7872 mx-updater_26.10.01mx25_amd64.buildinfo
+Files:
+ dd10e5aa63e1e54f0ee8b30646ce4e5d 1614 admin optional mx-updater_26.10.01mx25.dsc
+ 1790b313214270afb52cba336dca8a9a 182088 admin optional mx-updater_26.10.01mx25.tar.xz
+ d1be3c6e3e80bf755c2a714a33462aec 376188 admin optional mx-updater_26.10.01mx25_all.deb
+ 8303f9dbf2361b0cd67164c614b6e0c3 7872 admin optional mx-updater_26.10.01mx25_amd64.buildinfo
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmrGwJgTHGZlaGxpeEBt
+eGxpbnV4Lm9yZwAKCRAvV48brJ2b6aALD/9FEjwz6FBI81nATP4VGyVtCQhALdBt
+vr3y7f3alTJft8g78O7z2NeDvVy1yLkTT62Ju24sAkrryBoyApb2ChEh0Z/3yI+M
+G6UfbzS7GkXDxQaEIycn0LPJnU+0/wlyt60MSWaJZvwWwDsW9LmPOiEBHyDyfGhE
+UuU+7fzG4qZuNdhg0uhM1EIo4j3V9vjckcfQQXu8FoBymUzu+cmknyONKHw9I3Ab
+qQCw/hbGmTJWi4LwQJrnx574sX6GBp6ojN5AOzwzmmPlRAkzvi6eEiwbW9BmAkKi
+HFNMmwy4gwVUAFy4/fccV5dlfmL28eT3eDQbl5Prvbj4SYsAhYyeRbPApuxxOF9g
+e1oBeEl4kT1pp9TlED8GSnru/bDXWPRM1qXxrptt+TzGyD41Rcq3AXb/qbpLqA8S
+cgLPQf6Yfqo+8yVSwxnNhrXrpk/FGXkQtAwuL2Y2J5ifhx/fnoZOIfEwMhrC5hSK
+1NIiNlqMqBV2vW73xvkADb8KBkweBQZJH4kVA0HvtCLd+BPRnzWKwkTqQoE1Oqky
+Jsi5J7WT5jSclPkwJoMAsI48UUFaM2ClwfYpnqHDMxrl0NwM9s1xdlCnj/1fIqzY
+DBQtk3ddV7qVJWJry/gbscUZmHeU8aBJ67BvTqHbLZoK6IiQYmaRC5tHITCXUhfT
+95dcHcB9DOnymw==
+=S5DQ
+-----END PGP SIGNATURE-----

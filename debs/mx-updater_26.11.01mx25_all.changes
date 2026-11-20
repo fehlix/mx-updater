@@ -1,0 +1,57 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 20 Nov 2026 17:16:53 -0500
+Binary: mx-updater
+Source: mx-updater
+Architecture: all source
+Version: 26.11.01mx25
+Distribution: mx
+Urgency: medium
+Maintainer: fehlix <fehlix@mxlinux.org>
+Changed-By: fehlix <fehlix@mxlinux.org>
+Description: 
+ mx-updater - tray applet to notify of system and application updates
+Changes:
+ mx-updater (26.11.01mx25) mx; urgency=medium
+ .
+   * polkit: allow basic and full upgrades from remote sessions (RDP,
+     X2Go, VNC, SSH) after admin authentication. allow_any was "no", so
+     pkexec refused without a password prompt and the upgrade terminal
+     closed right away.
+   * debian/control: add dh-python to Build-Depends.
+   * Translations refresh.
+Original-Maintainer: Kent Mathern <maintainer@mepiscommunity.org>
+Checksums-Sha1: 
+ 9caba8f632dac06b2fa1055b0bc9f08d98f346ce 1596 mx-updater_26.11.01mx25.dsc
+ 06a8433a5c6b29cc33b4ac56c3ca15d6d26130bb 182224 mx-updater_26.11.01mx25.tar.xz
+ e80a8464dde3ea3112d5d5cc7490820cad737b1a 376092 mx-updater_26.11.01mx25_all.deb
+ 79fe8779407f2cacf11196270b00484e2667bca1 7566 mx-updater_26.11.01mx25_amd64.buildinfo
+Checksums-Sha256: 
+ 333ea676bf405e41fdbe7b0d44905814b701a1590e39545339c1127aa2907218 1596 mx-updater_26.11.01mx25.dsc
+ 0342aac978fcb9ab3b993a72213a9c5cd46edd679b57da09171067f7ef72b649 182224 mx-updater_26.11.01mx25.tar.xz
+ c7ddacd50506fff9b727d0f9c64f077bff3072c26ebae98b767fadff9c9784e2 376092 mx-updater_26.11.01mx25_all.deb
+ 7d4c3909e1c4e76694c9413e159140a56c8f2478cffa7b5d5b6a43b3d504387b 7566 mx-updater_26.11.01mx25_amd64.buildinfo
+Files: 
+ bed70a30430c6624fde99e9465602daf 1596 admin optional mx-updater_26.11.01mx25.dsc
+ 56830f1da6087f75482a5caa81a02e75 182224 admin optional mx-updater_26.11.01mx25.tar.xz
+ d56642a47fdd2438734dc18c7d2b59ff 376092 admin optional mx-updater_26.11.01mx25_all.deb
+ 383e6e51bb1995ea0db05b3f6740721f 7566 admin optional mx-updater_26.11.01mx25_amd64.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEgRnC8/wKXRM2S0xLL1ePG6ydm+kFAmsA0RUACgkQL1ePG6yd
+m+m5Ug/+IspJm9Kie2WGJOsaWo/1GhxqeBvMnHw1aq6QMCjnJ4BPgZjAlagnPh54
+kBEuWWNCUCkcNqcI1hQL2HLAuygVJl+azLREO8udTo/tEy5FKfeyfZMox+lLgezq
+5W8i2kbgOuyafswHBGhN4URx0MUBmlqjhKip1y/40LYW4Pxp4xkYH3/3TCl6DHRS
+nRi1Sc70pNl3Okd0wzziFDiC6pbHEEW3tECnnTCTVCmjzHN466eflq0/zCGom+qU
+kJG7DAHNNR6qnFBvWDuaksk5GQU9Nq+AwLDJmCSR5AJ/U+48U8CE20XaveNmZDpO
+NUGSodCvDeDaN3osTTFc6mSG5Z1/X5bsOfibFfSKnStmxQyr0L2JO2KzwZgIeJI2
+8S3l/uskN20u5CrT8gSPnU/WsffE/LCEpDhyR3KU2IMIUKBVDSKIggWORvI9LdHi
+8YoJAhyGQS0VwGmQluHgDr5tkuWLhvdhEHZf4cATevcDrYElyp2TwdkviLf7jwvk
+4X/+DSQMifLwip9iu0snxOxLTQhx7z9aD9SDqODOBElVNojrJWnJ0PPwRdA9XL+b
+WrnBM2B2YBAfOD4+Xc237lhmgsyw6cP80jT7QTnL9LZ2GCs8BlNCnvSAIgyO2ePa
+c+T1ZaW4lcZQlREg9tWuGLDOVxxoUqBdUtrkHXwG81MF6vDTH1E=
+=Y/7X
+-----END PGP SIGNATURE-----
